@@ -1,0 +1,213 @@
+{
+  "keywords": [
+    "Gerrod",
+    "Silva",
+    "Julius",
+    "Ulv",
+    "Eleine",
+    "Hoenir",
+    "Faden",
+    "Siegrid",
+    "Youth",
+    "Defender",
+    "Merchant",
+    "Maiden",
+    "Archer",
+    "Crypt",
+    "Fungal",
+    "Floral",
+    "Sentinel",
+    "Subject",
+    "Executionner",
+    "Sinner",
+    "Champion",
+    "Elder",
+    "Chief",
+    "Aegis",
+    "Fellwyrm",
+    "Jump",
+    "Swim",
+    "Slam",
+    "Dash",
+    "Ults",
+    "Hook",
+    "Claw",
+    "Charge",
+    "Door",
+    "Mask",
+    "Plume",
+    "Parry",
+    "Spellbound Anklet"
+  ],
+
+  "forced": {
+    "Faden": "Door",
+    "Luminant Aegis Curio": "Luminant Aegis Curio",
+    "Lost Heirloom": "Lost Heirloom"
+  },
+
+  "settings": {
+    "ENNEMYSKIPS": false
+  },
+
+  "macros": {
+    "LEDGE": "Jump | Silva | Champion",
+    "2HORIZONTAL": "Dash + Sinner",
+    "HORIZONTAL": "Dash | Sinner",
+    "FULLSILVA": "Silva + Jump + Dash",
+    "ULVSTALL": "Ulv + Parry"
+  },
+
+  "connections": [
+    {
+      "from": "Siegrid",
+      "to": "Youth",
+      "requires": "LEDGE | Claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Fungal",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Floral",
+      "requires": "LEDGE | Claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Chief",
+      "requires": "Claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Gerrod",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Defender",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Eleine",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Merchant",
+      "requires": "LEDGE | Claw",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Silva",
+      "requires": "Swim + Slam",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Maiden",
+      "requires": "Claw | Jump + Dash + Silva + Hook + Swim",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Hoenir",
+      "requires": "Swim + HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Subject",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Executionner",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Silva",
+      "to": "Archer",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Silva",
+      "to": "Crypt",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Maiden",
+      "to": "Julius",
+      "requires": "HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Julius",
+      "to": "Aegis",
+      "requires": "Claw + (Hook | FULLSILVA + (Sinner | Champion))",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Faden",
+      "requires": "Charge + Slam + (FULLSILVA + 2HORIZONTAL + Champion | Hook | Claw)",
+      "twoways": true
+    },
+    {
+      "from": "Faden",
+      "to": "Champion",
+      "requires": "Door + Mask",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Sinner",
+      "requires": "Charge + Slam + Mask",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Ulv",
+      "requires": "FULLSILVA + Swim + (Hook | Claw)",
+      "twoways": true
+    },
+    {
+      "from": "Silva",
+      "to": "Ulv",
+      "requires": "LEDGE + HORIZONTAL",
+      "twoways": false
+    },
+    {
+      "from": "Gerrod",
+      "to": "Elder",
+      "requires": "Hook | HORIZONTAL + Jump | Dash + (Silva | ULVSTALL) | 2HORIZONTAL | Jump + Charge + (Champion | Silva) | Jump + Silva + Plume",
+      "twoways": true
+    },
+    {
+      "from": "Maiden",
+      "to": "Sentinel",
+      "requires": "Hook",
+      "twoways": true
+    },
+    {
+      "from": "Ulv",
+      "to": "Fellwyrm",
+      "requires": "Charge",
+      "twoways": true
+    }
+  ]
+}
