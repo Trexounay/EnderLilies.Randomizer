@@ -50,8 +50,6 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.randomizeRelicsCheckbox = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.currentRoomID = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.startingRoomText = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.levelRandom = new System.Windows.Forms.CheckBox();
@@ -306,8 +304,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.currentRoomID);
-            this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.startingRoomText);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.levelRandom);
@@ -318,28 +314,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Rooms";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // currentRoomID
-            // 
-            this.currentRoomID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.currentRoomID.AutoSize = true;
-            this.currentRoomID.Location = new System.Drawing.Point(249, 7);
-            this.currentRoomID.Name = "currentRoomID";
-            this.currentRoomID.Size = new System.Drawing.Size(13, 13);
-            this.currentRoomID.TabIndex = 15;
-            this.currentRoomID.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(177, 7);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Current Room:";
             // 
             // startingRoomText
             // 
@@ -441,8 +415,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox randomizeBossesCheckbox;
         private System.Windows.Forms.CheckBox randomizeRelicsCheckbox;
-        private System.Windows.Forms.Label currentRoomID;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView relicsDataView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;

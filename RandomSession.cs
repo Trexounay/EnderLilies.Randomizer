@@ -50,49 +50,7 @@ namespace EnderLilies.Randomizer
             "Door"
         };
 
-        public List<string> _relics = new List<string>()
-        {
-            "Soiled Prayer Beads",
-            "Royal Aegis Crest",
-            "Unused1",
-            "Broken Music Box",
-            "Cracked Familiar Stone",
-            "Snowdrop Bracelet",
-            "Blighted Appendage",
-            "Giant's Ring",
-            "Unused2",
-            "Ancient Dragon Claw",
-            "Unused3",
-            "Rusted Blue Ornament",
-            "Executioner's Gloves",
-            "Decayed Crown",
-            "Weathered Necklace",
-            "Immortal's Crest",
-            "Manisa's Ring",
-            "Aura's Ring",
-            "Unused4",
-            "Kilteus' Ring",
-            "Calivia's Ring",
-            "Unused5",
-            "White Priestess Statue",
-            "Priestess' Doll",
-            "White Priestess' Earrings",
-            "Holy Spring Water",
-            "Nymphilia's Ring",
-            "Spellbound Anklet",
-            "Plume",
-            "Ruined Witch's Book",
-            "Bloodstained Ribbon",
-            "Blightwreathed Blade",
-            "Mask",
-            "Unused6",
-            "Eldred's Ring",
-            "Ricorus' Ring",
-            "Unused7",
-            "Luminant Aegis Curio",
-            "Lost Heirloom",
-            "Parry",
-        };
+        List<string> _relics;
 
         public Dictionary<string, string> weapons = new Dictionary<string, string>();
         public Dictionary<string, string> aptitudes1 = new Dictionary<string, string>();
@@ -104,6 +62,7 @@ namespace EnderLilies.Randomizer
 
         public RandomSession(int seed, GameGraph g)
         {
+            _relics = GameMemory._relics;
             if (seed != 0)
                 Tools.rng = new Random(seed);
             HashSet<int> r =  g.Solve("Siegrid");

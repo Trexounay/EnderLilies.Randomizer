@@ -16,17 +16,18 @@ namespace EnderLilies.Randomizer
         const string _processName = "EnderLiliesSteam-Win64-Shipping";
         Process _process = null;
 
-        const int GEngine = 0x4621080;
+        const int GEngine = 0x4633480;
 
-        DeepPointer _levelsDataTable = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x308);
-        DeepPointer _aptitudesDataTable = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x320);
-        DeepPointer _spiritsDataTable = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x328);
-        DeepPointer _relicsDataTable = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x330);
+        /* GameMode */
+        DeepPointer _levelsDataTable = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x320);
+        DeepPointer _aptitudesDataTable = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x338);
+        DeepPointer _spiritsDataTable = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x340);
+        DeepPointer _relicsDataTable = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x348);
+        DeepPointer _gameDataReadyPointer = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x498);
+        DeepPointer _bIsInMenu = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x2A8);
 
-
-        DeepPointer _levelPointer = new DeepPointer(GEngine, 0xDE8, 0xF0, 0xF8, 0x1C8);
+        /* Level Load Subsystem */
         DeepPointer _loadedPointer = new DeepPointer(GEngine, 0xDE8, 0xF0, 0xF8, 0x8C);
-        DeepPointer _gameDataReadyPointer = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x428);
 
 
         ComponentSettings _settings = null;
@@ -83,7 +84,7 @@ namespace EnderLilies.Randomizer
             "Ults",
         };
 
-        List<string> _relics = new List<string>()
+        public static List<string> _relics = new List<string>()
         {
             "Soiled Prayer Beads",
             "Royal Aegis Crest",
@@ -112,7 +113,7 @@ namespace EnderLilies.Randomizer
             "White Priestess' Earrings",
             "Holy Spring Water",
             "Nymphilia's Ring",
-            "Spellbound Anklet",
+            "Anklet",
             "Plume",
             "Ruined Witch's Book",
             "Bloodstained Ribbon",
@@ -124,6 +125,7 @@ namespace EnderLilies.Randomizer
             "Unused7",
             "Luminant Aegis Curio",
             "Lost Heirloom",
+            "Blighted Phantom",
             "Parry",
         };
 
@@ -144,7 +146,6 @@ namespace EnderLilies.Randomizer
         public bool ProcessHook()
         {
             Process proc = Process.GetProcessesByName(_processName).FirstOrDefault();
-            var i = proc.MainModule.ModuleMemorySize;
             // Already hooked
             if (_process != null && proc != null)
                 return true;
@@ -249,7 +250,8 @@ namespace EnderLilies.Randomizer
 
         public void RandomizeRoom()
         {
-            if (_ptrs[_levelsDataTable] == IntPtr.Zero)
+            if (_ptrs[_levelsDataTable] == IntPtr.Zero ||
+                _bIsInMenu.Deref<int>(_process) == 4)
             {
                 _room_shuffled = false;
                 return;
@@ -273,7 +275,8 @@ namespace EnderLilies.Randomizer
             if (_ptrs[_spiritsDataTable] == IntPtr.Zero ||
                 _ptrs[_relicsDataTable] == IntPtr.Zero ||
                 _ptrs[_aptitudesDataTable] == IntPtr.Zero ||
-                !_gameDataReadyPointer.Deref<bool>(_process))
+                !_gameDataReadyPointer.Deref<bool>(_process) ||
+                _bIsInMenu.Deref<int>(_process) == 4)
             {
                 _shuffled = false;
                 return;
@@ -319,9 +322,9 @@ namespace EnderLilies.Randomizer
                     string apt2 = "";
                     s.aptitudes1.TryGetValue(_spirits[i], out apt1);
                     s.aptitudes2.TryGetValue(_spirits[i], out apt2);
-                    if (this._relics.Contains(apt1) && _settings.RandomRelics)
+                    if (_relics.Contains(apt1) && _settings.RandomRelics)
                         apt1 = s.relics.First((k) => k.Value == apt1).Key;
-                    if (this._relics.Contains(apt2) && _settings.RandomRelics)
+                    if (_relics.Contains(apt2) && _settings.RandomRelics)
                         apt2 = s.relics.First((k) => k.Value == apt2).Key;
                     SetSpiritsData(data, apt1, apt2, aptitudesIDs, relicsIDs);
                 }

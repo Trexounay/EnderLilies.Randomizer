@@ -61,8 +61,6 @@ namespace LiveSplit.UI.Components
                 DataSourceUpdateMode.OnPropertyChanged);
             this.randomizeRelicsCheckbox.DataBindings.Add("Checked", this, "RandomRelics", false,
                 DataSourceUpdateMode.OnPropertyChanged);
-            this.currentRoomID.DataBindings.Add("Text", this, "CurrentRoom", false,
-                DataSourceUpdateMode.OnPropertyChanged);
             FilePath = "Components/EnderLilies.Randomizer.json";
 
             this.Dock = DockStyle.Fill;
@@ -134,7 +132,7 @@ namespace LiveSplit.UI.Components
                     randoPreview.Rows[i].Cells[2].Style.BackColor = Color.LightCyan;
             }
             relicsDataView.Rows.Clear();
-            foreach (string relic in RandomSession._relics)
+            foreach (string relic in GameMemory._relics)
                 relicsDataView.Rows.Add(new object[] { relic, RandomSession.relics[relic] });
         }
 

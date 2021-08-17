@@ -171,19 +171,17 @@ namespace EnderLilies.Randomizer
                 var c = expr[pos];
                 if (ops.ContainsKey(c))
                 {
-                    if (token != "")
-                        tokens.Add(new Token(TokenType.symbol, token));
+                    if (token.Trim() != "")
+                        tokens.Add(new Token(TokenType.symbol, token.Trim()));
                     tokens.Add(new Token(ops[c], c.ToString()));
                     token = "";
                 }
-                else if (c != ' ')
-                {
+                else
                     token += c;
-                }
                 pos += 1;
             }
-            if (token != "")
-                tokens.Add(new Token(TokenType.symbol, token));
+            if (token.Trim() != "")
+                tokens.Add(new Token(TokenType.symbol, token.Trim()));
             return tokens;
         }
 
