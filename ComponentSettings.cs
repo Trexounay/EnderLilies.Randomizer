@@ -25,6 +25,7 @@ namespace LiveSplit.UI.Components
         public bool RandomLevels { get; set; }
         public bool RandomSpirits { get; set; }
         public bool RandomRelics { get; set; }
+        public bool NGPlus { get; set; }
 
         public RandomSession RandomSession { get; set; }
 
@@ -61,6 +62,8 @@ namespace LiveSplit.UI.Components
                 DataSourceUpdateMode.OnPropertyChanged);
             this.randomizeRelicsCheckbox.DataBindings.Add("Checked", this, "RandomRelics", false,
                 DataSourceUpdateMode.OnPropertyChanged);
+            this.ngCheckbox.DataBindings.Add("Checked", this, "NGPlus", false,
+                DataSourceUpdateMode.OnPropertyChanged);
             FilePath = "Components/EnderLilies.Randomizer.json";
 
             this.Dock = DockStyle.Fill;
@@ -79,6 +82,7 @@ namespace LiveSplit.UI.Components
             RandomLevels = SettingsHelper.ParseBool(element["RandomLevels"], false);
             RandomSpirits = SettingsHelper.ParseBool(element["RandomSpirits"], true);
             RandomRelics = SettingsHelper.ParseBool(element["RandomRelics"], true);
+            NGPlus = SettingsHelper.ParseBool(element["NGPlus"], false);
             Seed = SettingsHelper.ParseInt(element["Seed"], 0);
             StartingRoom = SettingsHelper.ParseInt(element["StartingRoom"], 12);
             this.path.Text = FilePath;
@@ -93,6 +97,7 @@ namespace LiveSplit.UI.Components
             settings_node.AppendChild(SettingsHelper.ToElement(document, "RandomLevels", RandomLevels));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "RandomSpirits", RandomSpirits));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "RandomRelics", RandomRelics));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "NGPlus", NGPlus));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "Seed", Seed));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "StartingRoom", StartingRoom));
             return settings_node;
@@ -127,9 +132,9 @@ namespace LiveSplit.UI.Components
                 if (!RandomSession.reachables.Contains(boss))
                     randoPreview.Rows[i].Cells[0].ErrorText = "Unreachable";
                 if (RandomSession.result.ContainsValue(weapon))
-                    randoPreview.Rows[i].Cells[1].Style.BackColor = Color.LightCyan;
+                    randoPreview.Rows[i].Cells[1].Style.Font = new Font(Control.DefaultFont, FontStyle.Bold);
                 if (RandomSession.result.ContainsValue(aptitude))
-                    randoPreview.Rows[i].Cells[2].Style.BackColor = Color.LightCyan;
+                    randoPreview.Rows[i].Cells[2].Style.Font = new Font(Control.DefaultFont, FontStyle.Bold);
             }
             relicsDataView.Rows.Clear();
             foreach (string relic in GameMemory._relics)

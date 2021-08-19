@@ -26,6 +26,8 @@ namespace EnderLilies.Randomizer
         DeepPointer _gameDataReadyPointer = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x498);
         DeepPointer _bIsInMenu = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x2A8);
 
+        DeepPointer _GameMode = new DeepPointer(GEngine, 0x780, 0x78, 0x118);
+
         /* Level Load Subsystem */
         DeepPointer _loadedPointer = new DeepPointer(GEngine, 0xDE8, 0xF0, 0xF8, 0x8C);
 
@@ -292,6 +294,12 @@ namespace EnderLilies.Randomizer
             List<long> relicsData = ReadDataTableValues(relicsDataPtr, 0x8, _relics.Count);
             List<long> aptitudesIDs = ReadDataTableValues(new DeepPointer(_ptrs[_aptitudesDataTable] + 0x30).Deref<IntPtr>(_process), 0x0, _aptitudes.Count);
 
+
+            if (_settings.NGPlus)
+            {
+                IntPtr ptr = _GameMode.Deref<IntPtr>(_process) + 0x440;
+                _process.WriteValue<int>(ptr, 1);
+            }
             RandomSession s = _settings.RandomSession;
             if (_settings.RandomRelics)
             {

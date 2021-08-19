@@ -22,11 +22,5 @@ namespace EnderLilies.Randomizer
                 list[n] = value;
             }
         }
-
-        public static string Capitalize(this string str)
-        {
-
-            return char.ToUpper(str[0]) + str.Substring(1);
-        }
     }
 }
