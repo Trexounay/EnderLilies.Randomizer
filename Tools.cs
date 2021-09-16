@@ -22,5 +22,21 @@ namespace EnderLilies.Randomizer
                 list[n] = value;
             }
         }
+
+        public static T RandomWithWeigh<T>(this IList<T> list, Dictionary<T, float> weights)
+        {
+            float sum = 0;
+            foreach (var entry in list)
+                sum += weights[entry];
+            double result = rng.NextDouble() * sum;
+            sum = 0;
+            foreach (var entry in list)
+            {
+                sum += weights[entry];
+                if (sum > result)
+                    return entry;
+            }
+            return list[list.Count - 1];
+        }
     }
 }

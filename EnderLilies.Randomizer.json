@@ -164,7 +164,7 @@
     {
       "from": "Hoenir",
       "to": "Faden",
-      "requires": "Charge + Slam + (FULLSILVA + 2HORIZONTAL + Champion | Hook | Claw)",
+      "requires": "Mask + Charge + Slam + (FULLSILVA + 2HORIZONTAL + Champion | Hook | Claw)",
       "twoways": true
     },
     {
@@ -194,7 +194,7 @@
     {
       "from": "Gerrod",
       "to": "Elder",
-      "requires": "Hook | HORIZONTAL + Jump | Dash + (Silva | ULVSTALL) | 2HORIZONTAL | Jump + Charge + (Champion | Silva) | Jump + Silva + Plume",
+      "requires": "Hook | HORIZONTAL + Jump | Dash + (Silva | ULVSTALL) | 2HORIZONTAL | Jump + Charge + (Champion | Silva) | Jump + Silva + (Plume | Ulv)",
       "twoways": true
     },
     {

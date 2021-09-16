@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.path = new System.Windows.Forms.TextBox();
             this.chooseFile = new System.Windows.Forms.Button();
@@ -44,29 +44,36 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.SettingsPage = new System.Windows.Forms.TabPage();
+            this.ngCheckbox = new System.Windows.Forms.CheckBox();
             this.levelRandom = new System.Windows.Forms.CheckBox();
             this.randomizeRelicsCheckbox = new System.Windows.Forms.CheckBox();
             this.randomizeBossesCheckbox = new System.Windows.Forms.CheckBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.SpiritsPage = new System.Windows.Forms.TabPage();
+            this.RelicsPage = new System.Windows.Forms.TabPage();
             this.relicsDataView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.RoomPage = new System.Windows.Forms.TabPage();
             this.startingRoomText = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.ngCheckbox = new System.Windows.Forms.CheckBox();
+            this.OddsPage = new System.Windows.Forms.TabPage();
+            this.oddGrid = new System.Windows.Forms.DataGridView();
+            this.OddsIteration = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CalculateOdds = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.randoPreview)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.SettingsPage.SuspendLayout();
+            this.SpiritsPage.SuspendLayout();
+            this.RelicsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.relicsDataView)).BeginInit();
-            this.tabPage2.SuspendLayout();
+            this.RoomPage.SuspendLayout();
+            this.OddsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.oddGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -77,7 +84,7 @@
             // 
             // path
             // 
-            this.path.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.path.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.path.Location = new System.Drawing.Point(6, 459);
             this.path.Name = "path";
@@ -86,7 +93,8 @@
             // 
             // chooseFile
             // 
-            this.chooseFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chooseFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chooseFile.Location = new System.Drawing.Point(334, 456);
             this.chooseFile.Name = "chooseFile";
             this.chooseFile.Size = new System.Drawing.Size(55, 24);
@@ -97,6 +105,8 @@
             // 
             // checkfile
             // 
+            this.checkfile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkfile.Location = new System.Drawing.Point(6, 381);
             this.checkfile.Name = "checkfile";
             this.checkfile.Size = new System.Drawing.Size(444, 72);
@@ -109,13 +119,14 @@
             this.randoPreview.AllowUserToAddRows = false;
             this.randoPreview.AllowUserToDeleteRows = false;
             this.randoPreview.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.randoPreview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.randoPreview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.randoPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.randoPreview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.randoPreview.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.randoPreview.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.randoPreview.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.randoPreview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nodes,
             this.Keys,
@@ -135,26 +146,27 @@
             // Nodes
             // 
             this.Nodes.FillWeight = 98.47716F;
-            this.Nodes.HeaderText = "Spirits";
+            this.Nodes.HeaderText = "Spirit";
             this.Nodes.Name = "Nodes";
             this.Nodes.ReadOnly = true;
             // 
             // Keys
             // 
             this.Keys.FillWeight = 101.5228F;
-            this.Keys.HeaderText = "Weapons";
+            this.Keys.HeaderText = "Weapon";
             this.Keys.Name = "Keys";
             this.Keys.ReadOnly = true;
             // 
             // aptitudes
             // 
-            this.aptitudes.HeaderText = "Aptitudes";
+            this.aptitudes.HeaderText = "Aptitude";
             this.aptitudes.Name = "aptitudes";
             this.aptitudes.ReadOnly = true;
             // 
             // open
             // 
-            this.open.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.open.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.open.Location = new System.Drawing.Point(395, 455);
             this.open.Name = "open";
             this.open.Size = new System.Drawing.Size(55, 24);
@@ -215,33 +227,44 @@
             this.tabSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabSettings.Controls.Add(this.tabPage4);
-            this.tabSettings.Controls.Add(this.tabPage1);
-            this.tabSettings.Controls.Add(this.tabPage3);
-            this.tabSettings.Controls.Add(this.tabPage2);
+            this.tabSettings.Controls.Add(this.SettingsPage);
+            this.tabSettings.Controls.Add(this.SpiritsPage);
+            this.tabSettings.Controls.Add(this.RelicsPage);
+            this.tabSettings.Controls.Add(this.RoomPage);
+            this.tabSettings.Controls.Add(this.OddsPage);
             this.tabSettings.Location = new System.Drawing.Point(2, 44);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
             this.tabSettings.Size = new System.Drawing.Size(467, 511);
             this.tabSettings.TabIndex = 13;
             // 
-            // tabPage4
+            // SettingsPage
             // 
-            this.tabPage4.Controls.Add(this.ngCheckbox);
-            this.tabPage4.Controls.Add(this.levelRandom);
-            this.tabPage4.Controls.Add(this.open);
-            this.tabPage4.Controls.Add(this.checkfile);
-            this.tabPage4.Controls.Add(this.path);
-            this.tabPage4.Controls.Add(this.chooseFile);
-            this.tabPage4.Controls.Add(this.randomizeRelicsCheckbox);
-            this.tabPage4.Controls.Add(this.randomizeBossesCheckbox);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(459, 485);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Settings";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.SettingsPage.Controls.Add(this.ngCheckbox);
+            this.SettingsPage.Controls.Add(this.levelRandom);
+            this.SettingsPage.Controls.Add(this.open);
+            this.SettingsPage.Controls.Add(this.checkfile);
+            this.SettingsPage.Controls.Add(this.path);
+            this.SettingsPage.Controls.Add(this.chooseFile);
+            this.SettingsPage.Controls.Add(this.randomizeRelicsCheckbox);
+            this.SettingsPage.Controls.Add(this.randomizeBossesCheckbox);
+            this.SettingsPage.Location = new System.Drawing.Point(4, 22);
+            this.SettingsPage.Name = "SettingsPage";
+            this.SettingsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SettingsPage.Size = new System.Drawing.Size(459, 485);
+            this.SettingsPage.TabIndex = 3;
+            this.SettingsPage.Text = "Settings";
+            this.SettingsPage.UseVisualStyleBackColor = true;
+            // 
+            // ngCheckbox
+            // 
+            this.ngCheckbox.AutoSize = true;
+            this.ngCheckbox.Location = new System.Drawing.Point(9, 29);
+            this.ngCheckbox.Name = "ngCheckbox";
+            this.ngCheckbox.Size = new System.Drawing.Size(61, 17);
+            this.ngCheckbox.TabIndex = 16;
+            this.ngCheckbox.Text = "NG+ AI";
+            this.ngCheckbox.UseVisualStyleBackColor = true;
             // 
             // levelRandom
             // 
@@ -277,27 +300,27 @@
             this.randomizeBossesCheckbox.Text = "Randomize Spirits";
             this.randomizeBossesCheckbox.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // SpiritsPage
             // 
-            this.tabPage1.Controls.Add(this.randoPreview);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(459, 485);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Spirits";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.SpiritsPage.Controls.Add(this.randoPreview);
+            this.SpiritsPage.Location = new System.Drawing.Point(4, 22);
+            this.SpiritsPage.Name = "SpiritsPage";
+            this.SpiritsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SpiritsPage.Size = new System.Drawing.Size(459, 485);
+            this.SpiritsPage.TabIndex = 0;
+            this.SpiritsPage.Text = "Spirits";
+            this.SpiritsPage.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // RelicsPage
             // 
-            this.tabPage3.Controls.Add(this.relicsDataView);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(459, 485);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Relics";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.RelicsPage.Controls.Add(this.relicsDataView);
+            this.RelicsPage.Location = new System.Drawing.Point(4, 22);
+            this.RelicsPage.Name = "RelicsPage";
+            this.RelicsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.RelicsPage.Size = new System.Drawing.Size(459, 485);
+            this.RelicsPage.TabIndex = 2;
+            this.RelicsPage.Text = "Relics";
+            this.RelicsPage.UseVisualStyleBackColor = true;
             // 
             // relicsDataView
             // 
@@ -305,8 +328,8 @@
             this.relicsDataView.AllowUserToDeleteRows = false;
             this.relicsDataView.AllowUserToResizeColumns = false;
             this.relicsDataView.AllowUserToResizeRows = false;
-            this.relicsDataView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.relicsDataView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.relicsDataView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -345,17 +368,17 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // tabPage2
+            // RoomPage
             // 
-            this.tabPage2.Controls.Add(this.startingRoomText);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(459, 485);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Rooms";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.RoomPage.Controls.Add(this.startingRoomText);
+            this.RoomPage.Controls.Add(this.label3);
+            this.RoomPage.Location = new System.Drawing.Point(4, 22);
+            this.RoomPage.Name = "RoomPage";
+            this.RoomPage.Padding = new System.Windows.Forms.Padding(3);
+            this.RoomPage.Size = new System.Drawing.Size(459, 485);
+            this.RoomPage.TabIndex = 1;
+            this.RoomPage.Text = "Rooms";
+            this.RoomPage.UseVisualStyleBackColor = true;
             // 
             // startingRoomText
             // 
@@ -385,15 +408,57 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Seed:";
             // 
-            // ngCheckbox
+            // OddsPage
             // 
-            this.ngCheckbox.AutoSize = true;
-            this.ngCheckbox.Location = new System.Drawing.Point(9, 29);
-            this.ngCheckbox.Name = "ngCheckbox";
-            this.ngCheckbox.Size = new System.Drawing.Size(48, 17);
-            this.ngCheckbox.TabIndex = 16;
-            this.ngCheckbox.Text = "NG+";
-            this.ngCheckbox.UseVisualStyleBackColor = true;
+            this.OddsPage.Controls.Add(this.CalculateOdds);
+            this.OddsPage.Controls.Add(this.label2);
+            this.OddsPage.Controls.Add(this.OddsIteration);
+            this.OddsPage.Controls.Add(this.oddGrid);
+            this.OddsPage.Location = new System.Drawing.Point(4, 22);
+            this.OddsPage.Name = "OddsPage";
+            this.OddsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.OddsPage.Size = new System.Drawing.Size(459, 485);
+            this.OddsPage.TabIndex = 4;
+            this.OddsPage.Text = "Odds";
+            this.OddsPage.UseVisualStyleBackColor = true;
+            // 
+            // oddGrid
+            // 
+            this.oddGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.oddGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.oddGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.oddGrid.Location = new System.Drawing.Point(6, 34);
+            this.oddGrid.Name = "oddGrid";
+            this.oddGrid.RowHeadersWidth = 60;
+            this.oddGrid.Size = new System.Drawing.Size(447, 448);
+            this.oddGrid.TabIndex = 0;
+            // 
+            // OddsIteration
+            // 
+            this.OddsIteration.Location = new System.Drawing.Point(66, 8);
+            this.OddsIteration.Name = "OddsIteration";
+            this.OddsIteration.Size = new System.Drawing.Size(83, 20);
+            this.OddsIteration.TabIndex = 1;
+            this.OddsIteration.Text = "10000";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Iterations:";
+            // 
+            // CalculateOdds
+            // 
+            this.CalculateOdds.Location = new System.Drawing.Point(393, 6);
+            this.CalculateOdds.Name = "CalculateOdds";
+            this.CalculateOdds.Size = new System.Drawing.Size(60, 23);
+            this.CalculateOdds.TabIndex = 11;
+            this.CalculateOdds.Text = "Calculate";
+            this.CalculateOdds.UseVisualStyleBackColor = true;
+            this.CalculateOdds.Click += new System.EventHandler(this.button1_Click);
             // 
             // ComponentSettings
             // 
@@ -409,13 +474,16 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabSettings.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
+            this.SettingsPage.ResumeLayout(false);
+            this.SettingsPage.PerformLayout();
+            this.SpiritsPage.ResumeLayout(false);
+            this.RelicsPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.relicsDataView)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.RoomPage.ResumeLayout(false);
+            this.RoomPage.PerformLayout();
+            this.OddsPage.ResumeLayout(false);
+            this.OddsPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.oddGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -435,21 +503,26 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabSettings;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage SpiritsPage;
+        private System.Windows.Forms.TabPage RoomPage;
+        private System.Windows.Forms.TabPage RelicsPage;
         private System.Windows.Forms.DataGridView relicsDataView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nodes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Keys;
-        private System.Windows.Forms.DataGridViewTextBoxColumn aptitudes;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage SettingsPage;
         private System.Windows.Forms.CheckBox levelRandom;
         private System.Windows.Forms.CheckBox randomizeRelicsCheckbox;
         private System.Windows.Forms.CheckBox randomizeBossesCheckbox;
         private System.Windows.Forms.TextBox startingRoomText;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox ngCheckbox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nodes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Keys;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aptitudes;
+        private System.Windows.Forms.TabPage OddsPage;
+        private System.Windows.Forms.Button CalculateOdds;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox OddsIteration;
+        private System.Windows.Forms.DataGridView oddGrid;
     }
 }

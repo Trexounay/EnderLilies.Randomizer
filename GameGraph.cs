@@ -35,7 +35,7 @@ namespace EnderLilies.Randomizer
         public List<string> keys = new List<string>();
         public List<string> nodes = new List<string>();
 
-        Dictionary<int, int> result = new Dictionary<int, int>();
+        Dictionary<int, int> forced = new Dictionary<int, int>();
 
         public string GetNode(int i)
         {
@@ -46,29 +46,24 @@ namespace EnderLilies.Randomizer
             return keys[i];
         }
 
-        public Dictionary<string, string> GetResult()
-        {
-            Dictionary<string, string> data = new Dictionary<string, string>();
-            foreach (KeyValuePair<int, int> pair in result)
-                data.Add(nodes[pair.Key], keys[pair.Value]);
-            return data;
-        }
-
         public HashSet<Edge> edges = new HashSet<Edge>();
 
         public GameGraph()
         {
         }
 
-        public HashSet<int> Solve(string start)
+        public Dictionary<string, string> Solve(string start)
         {
+            HashSet<int> reachables = new HashSet<int>();
+            Dictionary<int, int> result = new Dictionary<int, int>(forced);
             int start_id = nodes.IndexOf(start);
             if (start_id < 0)
                 return null;
-            HashSet<int> reachables = new HashSet<int>();
             HashSet<Edge> unsolved = new HashSet<Edge>(edges);
             List<int> empty_nodes = new List<int>();
-
+            Dictionary<int, float> inv_weights = new Dictionary<int, float>();
+            for (int i = 0; i < nodes.Count; ++i)
+                inv_weights[i] = 1;
 
             //result[start] = -1;
             reachables.Add(start_id);
@@ -78,7 +73,6 @@ namespace EnderLilies.Randomizer
             while (!done)
             {
                 HashSet<int> missings = new HashSet<int>();
-                List<int> new_access = new List<int>();
                 while (!done)
                 {
                     done = true;
@@ -106,10 +100,7 @@ namespace EnderLilies.Randomizer
                             unsolved.Remove(e);
                             reachables.Add(other);
                             if (!result.ContainsKey(other))
-                            {
                                 empty_nodes.Add(other);
-                                new_access.Add(other);
-                            }
                             done = false;
                         }
                         else if (requires.Count <= empty_nodes.Count)
@@ -119,19 +110,32 @@ namespace EnderLilies.Randomizer
                 if (missings.Count > 0 && empty_nodes.Count > 0)
                 {
                     int[] items = missings.ToArray();
-                    int node;
-                    if (new_access.Count > 0)
-                        node = new_access[Tools.rng.Next(new_access.Count)];
-                    else
-                        node = empty_nodes[Tools.rng.Next(empty_nodes.Count)];
-                    // random is here
+                    float sum = 0;
+                    float count = empty_nodes.Count;
+                    Dictionary<int, float> weights = new Dictionary<int, float>();
+                    foreach (var n in empty_nodes)
+                    {
+                        weights[n] = (1.0f - inv_weights[n]) + (1.0f / count);
+                        sum += weights[n];
+                    }
+                    foreach (var n in empty_nodes)
+                    {
+                        inv_weights[n] *= 1.0f - weights[n];
+                        weights[n] = (sum / count) / weights[n];
+                    }
+                    int node = empty_nodes.RandomWithWeigh(weights);
+                    //int node = empty_nodes[Tools.rng.Next(empty_nodes.Count)];
                     int key = items[Tools.rng.Next(items.Length)];
                     result[node] = key;
                     empty_nodes.Remove(node);
                     done = false;
                 }
             }
-            return reachables;
+
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            foreach (KeyValuePair<int, int> pair in result)
+                data.Add(nodes[pair.Key], keys[pair.Value]);
+            return data;
         }
 
         public void AddKey(string key)
@@ -171,7 +175,7 @@ namespace EnderLilies.Randomizer
         {
             AddNode(node);
             AddKey(key);
-            result[nodes.IndexOf(node)] = keys.IndexOf(key);
+            forced[nodes.IndexOf(node)] = keys.IndexOf(key);
         }
         public void AddResults(Dictionary<string, string> forced)
         {
@@ -215,7 +219,7 @@ namespace EnderLilies.Randomizer
                     foreach (string m2 in macros)
                         if (data.macros[m1].Contains(m2))
                         {
-                            data.macros[m1] = data.macros[m1].Replace(m2, "("+data.macros[m2]+")");
+                            data.macros[m1] = data.macros[m1].Replace(m2, "(" + data.macros[m2] + ")");
                             replacements = true;
                         }
             }

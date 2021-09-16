@@ -8,7 +8,7 @@ namespace EnderLilies.Randomizer
 {
     public class RandomSession
     {
-        public List<string> _bosses = new List<string>()
+        static public List<string> _bosses = new List<string>()
         {
             "Gerrod",
             "Silva",
@@ -37,7 +37,7 @@ namespace EnderLilies.Randomizer
             "Fellwyrm",
         };
 
-        public List<string> _passives = new List<string>()
+        static public List<string> _passives = new List<string>()
         {
             "Jump",
             "Swim",
@@ -57,7 +57,6 @@ namespace EnderLilies.Randomizer
         public Dictionary<string, string> aptitudes2 = new Dictionary<string, string>();
         public Dictionary<string, string> relics = new Dictionary<string, string>();
 
-        public HashSet<string> reachables = new HashSet<string>();
         public Dictionary<string, string> result;
 
         public RandomSession(int seed, GameGraph g)
@@ -65,10 +64,7 @@ namespace EnderLilies.Randomizer
             _relics = GameMemory._relics;
             if (seed != 0)
                 Tools.rng = new Random(seed);
-            HashSet<int> r =  g.Solve("Siegrid");
-            foreach (int i in r)
-                reachables.Add(g.GetNode(i));
-            result = g.GetResult();
+            result =  g.Solve("Siegrid");
 
             List<string> remaining_weapons = new List<string>(_bosses);
             List<string> remaining_passives = new List<string>(_passives);
@@ -118,6 +114,7 @@ namespace EnderLilies.Randomizer
 
             List<string> shuffled_bosses = new List<string>(_bosses);
             shuffled_bosses.Shuffle();
+            remaining_weapons.Shuffle();
             foreach (string boss in shuffled_bosses)
             {
                 if (remaining_weapons.Count > 0 && !weapons.ContainsKey(boss))

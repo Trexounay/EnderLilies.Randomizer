@@ -16,7 +16,7 @@ namespace EnderLilies.Randomizer
         const string _processName = "EnderLiliesSteam-Win64-Shipping";
         Process _process = null;
 
-        const int GEngine = 0x4633480;
+        const int GEngine = 0x4633500;
 
         /* GameMode */
         DeepPointer _levelsDataTable = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x320);
@@ -134,6 +134,7 @@ namespace EnderLilies.Randomizer
 
         public GameMemory(ComponentSettings settings)
         {
+            
             _settings = settings;
 
             _ptrs = new Dictionary<DeepPointer, IntPtr>()

@@ -30,7 +30,8 @@ namespace LiveSplit.UI.Components
         public RandomSession RandomSession { get; set; }
 
         int _currentRoom = 0;
-        public int CurrentRoom {
+        public int CurrentRoom
+        {
             get
             {
                 return _currentRoom;
@@ -129,8 +130,8 @@ namespace LiveSplit.UI.Components
                 RandomSession.weapons.TryGetValue(boss, out weapon);
                 RandomSession.aptitudes1.TryGetValue(boss, out aptitude);
                 int i = randoPreview.Rows.Add(new object[] { boss, weapon, aptitude });
-                if (!RandomSession.reachables.Contains(boss))
-                    randoPreview.Rows[i].Cells[0].ErrorText = "Unreachable";
+                /*if (!RandomSession.reachables.Contains(boss))
+                    randoPreview.Rows[i].Cells[0].ErrorText = "Unreachable";*/
                 if (RandomSession.result.ContainsValue(weapon))
                     randoPreview.Rows[i].Cells[1].Style.Font = new Font(Control.DefaultFont, FontStyle.Bold);
                 if (RandomSession.result.ContainsValue(aptitude))
@@ -183,6 +184,66 @@ namespace LiveSplit.UI.Components
             fileopener.StartInfo.Arguments = "\"" + Path.GetFullPath(FilePath) + "\"";
             fileopener.Start();
             fileopener.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int iterations = int.Parse(OddsIteration.Text);
+            var odds = new Dictionary<KeyValuePair<string, string>, int>();
+            GameGraph g = SerializableGraph.Import(FilePath);
+            var abilities = new HashSet<string>();
+            for (int i = iterations; i > 0; --i)
+            {
+                var r = new RandomSession(Tools.rng.Next(), g);
+                foreach (string b in RandomSession._bosses)
+                {
+                    List<string> loot = new List<string>();
+                    if (r.weapons.ContainsKey(b))
+                        loot.Add(r.weapons[b]);
+                    if (r.aptitudes1.ContainsKey(b))
+                        loot.Add(r.aptitudes1[b]);
+                    if (r.aptitudes2.ContainsKey(b))
+                        loot.Add(r.aptitudes2[b]);
+                    if (!r.aptitudes1.ContainsKey(b) && !r.aptitudes2.ContainsKey(b))
+                        loot.Add("Spirit Only");
+                    foreach (string l in loot)
+                    {
+                        KeyValuePair<string, string> p = new KeyValuePair<string, string>(b, l);
+                        if (!odds.ContainsKey(p))
+                            odds[p] = 0;
+                        odds[p]++;
+                        abilities.Add(l);
+                    }
+                }
+            }
+            oddGrid.Columns.Clear();
+            oddGrid.Rows.Clear();
+            abilities.Remove("Spirit Only");
+            var columns = abilities.ToList();
+            columns.Sort();
+            columns.Insert(0, "Spirit Only");
+            var rows = RandomSession._bosses.ToList();
+            rows.Sort();
+
+            foreach (string b in columns)
+                oddGrid.Columns.Add(b, b);
+            foreach (string b in rows)
+            {
+                List<string> values = new List<string>();
+                foreach (string a in columns)
+                {
+                    KeyValuePair<string, string> p = new KeyValuePair<string, string>(b, a);
+                    string value = "0%";
+                    if (odds.ContainsKey(p))
+                        value = ((odds[p] / (float)iterations) * 100).ToString() + "%";
+                    values.Add(value);
+                }
+                int i = oddGrid.Rows.Add(values.Cast<object>().ToArray());
+                oddGrid.Rows[i].HeaderCell = new DataGridViewRowHeaderCell()
+                {
+                    Value = b
+                };
+            }
         }
     }
 }
