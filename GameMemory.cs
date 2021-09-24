@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EnderLilies.Randomizer
 {
@@ -16,7 +14,7 @@ namespace EnderLilies.Randomizer
         const string _processName = "EnderLiliesSteam-Win64-Shipping";
         Process _process = null;
 
-        const int GEngine = 0x4633500;
+        const int GEngine = 0x4651C00;
 
         /* GameMode */
         DeepPointer _levelsDataTable = new DeepPointer(GEngine, 0x780, 0x78, 0x118, 0x320);

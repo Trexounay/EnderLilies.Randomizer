@@ -72,7 +72,7 @@ namespace EnderLilies.Randomizer
             bool done = false;
             while (!done)
             {
-                HashSet<int> missings = new HashSet<int>();
+                HashSet<HashSet<int>> missings = new HashSet<HashSet<int>>();
                 while (!done)
                 {
                     done = true;
@@ -104,30 +104,35 @@ namespace EnderLilies.Randomizer
                             done = false;
                         }
                         else if (requires.Count <= empty_nodes.Count)
-                            missings.UnionWith(requires);
+                            missings.Add(requires);
                     }
                 }
                 if (missings.Count > 0 && empty_nodes.Count > 0)
                 {
-                    int[] items = missings.ToArray();
-                    float sum = 0;
-                    float count = empty_nodes.Count;
-                    Dictionary<int, float> weights = new Dictionary<int, float>();
-                    foreach (var n in empty_nodes)
+                    HashSet<int>[] options = missings.ToArray();
+                    var items = new List<int>(options[Tools.rng.Next(options.Length)]);
+                    items.Shuffle();
+                    foreach (int item in items)
                     {
-                        weights[n] = (1.0f - inv_weights[n]) + (1.0f / count);
-                        sum += weights[n];
+                        float sum = 0;
+                        float count = empty_nodes.Count;
+                        Dictionary<int, float> weights = new Dictionary<int, float>();
+                        foreach (var n in empty_nodes)
+                        {
+                            weights[n] = 1.0f - (inv_weights[n] * (1 - (1.0f / count)));
+                            sum += weights[n];
+                        }
+                        foreach (var n in empty_nodes)
+                        {
+                            weights[n] = (sum / count) / weights[n];
+                            inv_weights[n] *= 1.0f - (weights[n] / (count * sum));
+                        }
+                        int node = empty_nodes.RandomWithWeigh(weights);
+                        //int node = empty_nodes[Tools.rng.Next(empty_nodes.Count)];
+                        result[node] = item;
+                        inv_weights.Remove(node);
+                        empty_nodes.Remove(node);
                     }
-                    foreach (var n in empty_nodes)
-                    {
-                        inv_weights[n] *= 1.0f - weights[n];
-                        weights[n] = (sum / count) / weights[n];
-                    }
-                    int node = empty_nodes.RandomWithWeigh(weights);
-                    //int node = empty_nodes[Tools.rng.Next(empty_nodes.Count)];
-                    int key = items[Tools.rng.Next(items.Length)];
-                    result[node] = key;
-                    empty_nodes.Remove(node);
                     done = false;
                 }
             }

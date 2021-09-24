@@ -204,6 +204,12 @@
       "twoways": true
     },
     {
+      "from": "Gerrod",
+      "to": "Sentinel",
+      "requires": "Swim + Jump + (Charge | HORIZONTAL) + (Silva | Champion)",
+      "twoways": true
+    },
+    {
       "from": "Ulv",
       "to": "Fellwyrm",
       "requires": "Charge",
