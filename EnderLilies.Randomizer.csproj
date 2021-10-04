@@ -53,25 +53,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Expressions.cs" />
-    <Compile Include="GameMemory.cs" />
+    <Compile Include="Game\GameInjector.cs" />
+    <Compile Include="Logic\RandomSession.cs" />
+    <Compile Include="Tools\Expressions.cs" />
     <Compile Include="ComponentSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ComponentSettings.Designer.cs">
       <DependentUpon>ComponentSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameGraph.cs" />
+    <Compile Include="Logic\GameGraph.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Randomizer.cs" />
-    <Compile Include="Factory.cs" />
+    <Compile Include="EnderLiliesRandomizer.cs" />
+    <Compile Include="EnderLiliesFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomSession.cs" />
-    <Compile Include="Tools.cs" />
+    <Compile Include="Tools\RNG.cs" />
+    <Compile Include="Tools\SafeNativeMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\LiveSplit.Core\LiveSplit.Core.csproj">
@@ -97,6 +98,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\600px-Refresh_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="update.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

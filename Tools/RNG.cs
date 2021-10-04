@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EnderLilies.Randomizer
 {
-    static class Tools
+    static class RNG
     {
-        public static Random rng = new Random();
+        public static Random stream = new Random();
 
         public static void Shuffle<T>(this IList<T> list)
         {
@@ -16,7 +16,7 @@ namespace EnderLilies.Randomizer
             while (n > 1)
             {
                 n--;
-                int k = rng.Next(n + 1);
+                int k = stream.Next(n + 1);
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
@@ -28,7 +28,7 @@ namespace EnderLilies.Randomizer
             float sum = 0;
             foreach (var entry in list)
                 sum += weights[entry];
-            double result = rng.NextDouble() * sum;
+            double result = stream.NextDouble() * sum;
             sum = 0;
             foreach (var entry in list)
             {

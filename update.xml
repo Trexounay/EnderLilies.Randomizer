@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<updates>
+  <update version="1.0.4">
+    <files>
+      <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+      <file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
+    </files>
+    <changelog>
+      <change>*** Implementation of the LiveSplit auto-update functionality***</change>
+    </changelog>
+  </update>
+</updates>
