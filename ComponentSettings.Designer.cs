@@ -28,22 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.seedText = new System.Windows.Forms.TextBox();
             this.lockSeed = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Randomize = new System.Windows.Forms.Button();
+            this.tabSettings = new System.Windows.Forms.TabControl();
+            this.SettingsPage = new System.Windows.Forms.TabPage();
+            this.checkfile = new System.Windows.Forms.Label();
+            this.open = new System.Windows.Forms.Button();
+            this.path = new System.Windows.Forms.TextBox();
+            this.chooseFile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.SettingsPage = new System.Windows.Forms.TabPage();
-            this.chooseFile = new System.Windows.Forms.Button();
-            this.path = new System.Windows.Forms.TextBox();
-            this.open = new System.Windows.Forms.Button();
-            this.tabSettings = new System.Windows.Forms.TabControl();
-            this.checkfile = new System.Windows.Forms.Label();
+            this.LogicPage = new System.Windows.Forms.TabPage();
+            this.LogicPreviewGridview = new System.Windows.Forms.DataGridView();
+            this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
-            this.SettingsPage.SuspendLayout();
             this.tabSettings.SuspendLayout();
+            this.SettingsPage.SuspendLayout();
+            this.LogicPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -99,14 +107,18 @@
             this.Randomize.UseVisualStyleBackColor = true;
             this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
             // 
-            // label1
+            // tabSettings
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Seed:";
+            this.tabSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabSettings.Controls.Add(this.SettingsPage);
+            this.tabSettings.Controls.Add(this.LogicPage);
+            this.tabSettings.Location = new System.Drawing.Point(2, 44);
+            this.tabSettings.Name = "tabSettings";
+            this.tabSettings.SelectedIndex = 0;
+            this.tabSettings.Size = new System.Drawing.Size(467, 511);
+            this.tabSettings.TabIndex = 13;
             // 
             // SettingsPage
             // 
@@ -122,26 +134,14 @@
             this.SettingsPage.Text = "Settings";
             this.SettingsPage.UseVisualStyleBackColor = true;
             // 
-            // chooseFile
+            // checkfile
             // 
-            this.chooseFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chooseFile.Location = new System.Drawing.Point(334, 456);
-            this.chooseFile.Name = "chooseFile";
-            this.chooseFile.Size = new System.Drawing.Size(55, 24);
-            this.chooseFile.TabIndex = 1;
-            this.chooseFile.Text = "Browse";
-            this.chooseFile.UseVisualStyleBackColor = true;
-            this.chooseFile.Click += new System.EventHandler(this.chooseFile_Click);
-            // 
-            // path
-            // 
-            this.path.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.path.Location = new System.Drawing.Point(6, 459);
-            this.path.Name = "path";
-            this.path.Size = new System.Drawing.Size(322, 20);
-            this.path.TabIndex = 0;
+            this.checkfile.AutoSize = true;
+            this.checkfile.Location = new System.Drawing.Point(7, 440);
+            this.checkfile.Name = "checkfile";
+            this.checkfile.Size = new System.Drawing.Size(35, 13);
+            this.checkfile.TabIndex = 6;
+            this.checkfile.Text = "label2";
             // 
             // open
             // 
@@ -155,26 +155,90 @@
             this.open.UseVisualStyleBackColor = true;
             this.open.Click += new System.EventHandler(this.open_Click);
             // 
-            // tabSettings
+            // path
             // 
-            this.tabSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.path.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabSettings.Controls.Add(this.SettingsPage);
-            this.tabSettings.Location = new System.Drawing.Point(2, 44);
-            this.tabSettings.Name = "tabSettings";
-            this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(467, 511);
-            this.tabSettings.TabIndex = 13;
+            this.path.Location = new System.Drawing.Point(6, 459);
+            this.path.Name = "path";
+            this.path.Size = new System.Drawing.Size(322, 20);
+            this.path.TabIndex = 0;
             // 
-            // label2
+            // chooseFile
             // 
-            this.checkfile.AutoSize = true;
-            this.checkfile.Location = new System.Drawing.Point(7, 440);
-            this.checkfile.Name = "label2";
-            this.checkfile.Size = new System.Drawing.Size(35, 13);
-            this.checkfile.TabIndex = 6;
-            this.checkfile.Text = "label2";
+            this.chooseFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chooseFile.Location = new System.Drawing.Point(334, 456);
+            this.chooseFile.Name = "chooseFile";
+            this.chooseFile.Size = new System.Drawing.Size(55, 24);
+            this.chooseFile.TabIndex = 1;
+            this.chooseFile.Text = "Browse";
+            this.chooseFile.UseVisualStyleBackColor = true;
+            this.chooseFile.Click += new System.EventHandler(this.chooseFile_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Seed:";
+            // 
+            // LogicPage
+            // 
+            this.LogicPage.Controls.Add(this.LogicPreviewGridview);
+            this.LogicPage.Location = new System.Drawing.Point(4, 22);
+            this.LogicPage.Name = "LogicPage";
+            this.LogicPage.Padding = new System.Windows.Forms.Padding(3);
+            this.LogicPage.Size = new System.Drawing.Size(459, 485);
+            this.LogicPage.TabIndex = 4;
+            this.LogicPage.Text = "Logic";
+            this.LogicPage.UseVisualStyleBackColor = true;
+            // 
+            // LogicPreviewGridview
+            // 
+            this.LogicPreviewGridview.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.LogicPreviewGridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LogicPreviewGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.LogicPreviewGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.LocationColumn,
+            this.ItemColumn,
+            this.ReachablesColumn});
+            this.LogicPreviewGridview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LogicPreviewGridview.Location = new System.Drawing.Point(3, 3);
+            this.LogicPreviewGridview.Name = "LogicPreviewGridview";
+            this.LogicPreviewGridview.ReadOnly = true;
+            this.LogicPreviewGridview.RowHeadersVisible = false;
+            this.LogicPreviewGridview.Size = new System.Drawing.Size(453, 479);
+            this.LogicPreviewGridview.TabIndex = 0;
+            // 
+            // LocationColumn
+            // 
+            this.LocationColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LocationColumn.HeaderText = "Location";
+            this.LocationColumn.Name = "LocationColumn";
+            this.LocationColumn.ReadOnly = true;
+            // 
+            // ItemColumn
+            // 
+            this.ItemColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ItemColumn.HeaderText = "Item";
+            this.ItemColumn.Name = "ItemColumn";
+            this.ItemColumn.ReadOnly = true;
+            // 
+            // ReachablesColumn
+            // 
+            this.ReachablesColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.ReachablesColumn.HeaderText = "Nodes";
+            this.ReachablesColumn.Name = "ReachablesColumn";
+            this.ReachablesColumn.ReadOnly = true;
+            this.ReachablesColumn.Width = 5;
             // 
             // ComponentSettings
             // 
@@ -188,9 +252,11 @@
             this.Load += new System.EventHandler(this.ComponentSettings_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabSettings.ResumeLayout(false);
             this.SettingsPage.ResumeLayout(false);
             this.SettingsPage.PerformLayout();
-            this.tabSettings.ResumeLayout(false);
+            this.LogicPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -210,5 +276,10 @@
         private System.Windows.Forms.TextBox path;
         private System.Windows.Forms.Button chooseFile;
         private System.Windows.Forms.Label checkfile;
+        private System.Windows.Forms.TabPage LogicPage;
+        private System.Windows.Forms.DataGridView LogicPreviewGridview;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LocationColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReachablesColumn;
     }
 }

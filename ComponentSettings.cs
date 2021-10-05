@@ -108,6 +108,33 @@ namespace EnderLilies.Randomizer
         {
             Session = new RandomSession(Seed, g);
             Session.WriteFile();
+
+            LogicPreviewGridview.Rows.Clear();
+            foreach (var l in g.logic)
+            {
+                if (l.node == -1)
+                {
+                    LogicPreviewGridview.Rows.Add("END",
+                        string.Format("{0}/{1}", l.items, g.keys.Count),
+                        string.Format("{0}/{1}", l.reachables, g.nodes.Count));
+                    continue;
+                }
+                var node = g.GetNode(l.node);
+                var item = Session.result[node];
+                foreach (var k in g.aliases)
+                {
+                    if (k.Value == node)
+                        node = k.Key;
+                    if (k.Value == item)
+                        item = k.Key;
+                }
+                node = node.Replace("_GAMEPLAY.BP_", ".");
+                node = node.Replace("Interactable_", "");
+                node = node.Replace("Passive_", "");
+                LogicPreviewGridview.Rows.Add(node,
+                    item,
+                    string.Format("{0}/{1}", l.reachables, g.nodes.Count));
+            }
         }
 
         void CheckFile()

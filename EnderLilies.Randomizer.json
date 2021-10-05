@@ -66,20 +66,144 @@
     "unlock": "Aptitude.door_unlock",
     "ults": "Aptitude.special_attack",
     "mask": "Passive.i_passive_ignore_damage_area",
-    "parry": "Passive.i_passive_parry"
+    "parry": "Passive.i_passive_parry",
+    "plume": "Passive.i_passive_jump_height_up",
+    "anklet": "Passive.i_passive_move_speed_up"
   },
 
   "macros": {
+    "2LEDGE": "djump + silva | djump + champion | silva + champion",
     "LEDGE": "djump | silva | champion",
     "2HORIZONTAL": "dodge + sinner",
     "HORIZONTAL": "dodge | sinner",
-    "FULLSILVA": "silva + djump + dodge"
+    "FULLSILVA": "silva + djump + dodge",
+    "CHARGE": "pierce + dash"
   },
 
   "connections": [
     {
+      "from": "Faden",
+      "to": "Abyss_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "(claw + 2LEDGE| LEDGE + HORIZONTAL) | (silva + djump + dodge + ulv)",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Castle_01_GAMEPLAY.BP_e2082_Dog",
+      "requires": "claw | FULLSILVA + hook + swim",
+      "twoways": true
+    },
+    {
+      "from": "Julius",
+      "to": "Castle_16_GAMEPLAY.BP_e2032_BigKnight",
+      "requires": "claw + (hook | FULLSILVA + (sinner | champion))",
+      "twoways": true
+    },
+    {
+      "from": "Dog",
+      "to": "Castle_20_GAMEPLAY.BP_e5030_Leader",
+      "requires": "HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Silva",
+      "to": "Cave_07_GAMEPLAY.BP_e2162_Spider",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Silva",
+      "to": "Cave_19_GAMEPLAY.BP_e2022_Soldier",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Cave_23_GAMEPLAY.BP_e5020_OlderSister",
+      "requires": "swim + slam",
+      "twoways": true
+    },
+    {
+      "from": "Sentinel",
+      "to": "Cave_23_GAMEPLAY.BP_e5020_OlderSister",
+      "requires": "2LEDGE | LEDGE + HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Start",
+      "to": "Church_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
+      "requires": "",
+      "twoways": true
+    },
+    {
       "from": "Start",
       "to": "Church_02_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Start",
+      "to": "Church_03_GAMEPLAY.BP_e5010_YoungerSister",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Church_04_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Church_05_GAMEPLAY.BP_Interactable_Passive_MaxHPUp_Lv1_2_3",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Church_07_GAMEPLAY.BP_e2012_Slime_Unique",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Church_07_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2_3",
+      "requires": "slam + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Church_08_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "swim + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Church_08_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Church_09_GAMEPLAY.BP_e2092_Priest",
+      "requires": "claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Church_09_GAMEPLAY.BP_Interactable_Passive_JumpHeightUp_2_3",
+      "requires": "claw + CHARGE + LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Church_09_GAMEPLAY.BP_SCR_LV2M_2001_2_3",
+      "requires": "claw",
+      "twoways": true
+    },
+    {
+      "from": "Start",
+      "to": "Church_10_GAMEPLAY.BP_Interactable_Item_Tip_2_3",
       "requires": "",
       "twoways": true
     },
@@ -91,176 +215,788 @@
     },
     {
       "from": "Start",
-      "to": "Church_10_GAMEPLAY.BP_Interactable_Item_Tip_2_3",
+      "to": "Church_11_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
       "requires": "",
       "twoways": true
     },
     {
       "from": "Start",
-      "to": "Church_05_GAMEPLAY.BP_Interactable_Passive_MaxHPUp_Lv1_2_3",
-      "requires": "LEDGE",
+      "to": "Church_11_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
       "twoways": true
     },
     {
       "from": "Start",
-      "to": "Siegrid",
+      "to": "Church_12_GAMEPLAY.BP_Interactable_Item_Tip1",
       "requires": "",
       "twoways": true
     },
     {
+      "from": "Start",
+      "to": "Church_13_GAMEPLAY.BP_Interactable_Item_Tip4",
+      "requires": "unlock",
+      "twoways": true
+    },
+    {
       "from": "Siegrid",
-      "to": "Youth",
+      "to": "Church_14_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2_3",
+      "requires": "claw + hook",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Church_14_GAMEPLAY.BP_Interactable_Item_Tip5",
+      "requires": "claw + hook",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_02_GAMEPLAY.BP_SCR_LV1S_2130_2_3",
+      "requires": "LEDGE | claw ",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_03_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "swim + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_03_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2_3",
+      "requires": "swim + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_04_GAMEPLAY.BP_Interactable_Passive_dmgup_swimming_2_3",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_04_GAMEPLAY.BP_SCR_LV1S_2100_2_3",
+      "requires": "slam + LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_05_GAMEPLAY.BP_Interactable_Item_Tip4",
       "requires": "LEDGE | claw",
       "twoways": true
     },
     {
       "from": "Siegrid",
-      "to": "Fungal",
+      "to": "Forest_06_GAMEPLAY.BP_e2122_Fungus",
       "requires": "LEDGE",
       "twoways": true
     },
     {
       "from": "Siegrid",
-      "to": "Floral",
+      "to": "Forest_06_GAMEPLAY.BP_Interactable_Item_Tip4",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_06_GAMEPLAY.BP_SCR_LV2M_2120_3_4",
+      "requires": "LEDGE + slam | 2LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_07_GAMEPLAY.BP_SCR_LV1S_2121_1_2",
+      "requires": "LEDGE + HORIZONTAL + (claw | hook)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_07_GAMEPLAY.BP_SCR_LV1S_2130_2_3",
       "requires": "LEDGE | claw",
       "twoways": true
     },
     {
       "from": "Siegrid",
-      "to": "Chief",
-      "requires": "claw",
-      "twoways": true
-    },
-    {
-      "from": "Siegrid",
-      "to": "Gerrod",
+      "to": "Forest_08_GAMEPLAY.BP_Interactable_Passive_Treasure_2_3",
       "requires": "LEDGE",
       "twoways": true
     },
     {
       "from": "Siegrid",
-      "to": "Defender",
-      "requires": "LEDGE",
+      "to": "Forest_08_GAMEPLAY.BP_Interactable_Passive_Treasure2",
+      "requires": "2LEDGE | LEDGE + hook",
       "twoways": true
     },
     {
       "from": "Siegrid",
-      "to": "Eleine",
-      "requires": "LEDGE",
-      "twoways": true
-    },
-    {
-      "from": "Siegrid",
-      "to": "Bird",
-      "requires": "LEDGE | claw",
-      "twoways": true
-    },
-    {
-      "from": "Gerrod",
-      "to": "Silva",
-      "requires": "swim + slam",
-      "twoways": true
-    },
-    {
-      "from": "Gerrod",
-      "to": "Dog",
-      "requires": "claw | FULLSILVA + hook + swim",
-      "twoways": true
-    },
-    {
-      "from": "Gerrod",
-      "to": "Hoenir",
-      "requires": "swim + HORIZONTAL",
-      "twoways": true
-    },
-    {
-      "from": "Hoenir",
-      "to": "Subject",
-      "requires": "",
-      "twoways": true
-    },
-    {
-      "from": "Hoenir",
-      "to": "Executionner",
-      "requires": "",
-      "twoways": true
-    },
-    {
-      "from": "Silva",
-      "to": "Archer",
-      "requires": "",
-      "twoways": true
-    },
-    {
-      "from": "Silva",
-      "to": "Crypt",
-      "requires": "",
-      "twoways": true
-    },
-    {
-      "from": "Dog",
-      "to": "Julius",
-      "requires": "HORIZONTAL",
-      "twoways": true
-    },
-    {
-      "from": "Julius",
-      "to": "Aegis",
-      "requires": "claw + (hook | FULLSILVA + (sinner | champion))",
-      "twoways": true
-    },
-    {
-      "from": "Hoenir",
-      "to": "Faden",
-      "requires": "mask + pierce + slam + (FULLSILVA + 2HORIZONTAL + champion | hook | claw)",
-      "twoways": true
-    },
-    {
-      "from": "Faden",
-      "to": "Champion",
-      "requires": "unlock + mask",
-      "twoways": true
-    },
-    {
-      "from": "Hoenir",
-      "to": "Sinner",
-      "requires": "pierce + slam + mask",
-      "twoways": true
-    },
-    {
-      "from": "Gerrod",
-      "to": "Ulv",
-      "requires": "FULLSILVA + swim + (hook | claw)",
-      "twoways": true
-    },
-    {
-      "from": "Silva",
-      "to": "Ulv",
+      "to": "Forest_08_GAMEPLAY.BP_SCR_LV2M_2120_1_2",
       "requires": "LEDGE + HORIZONTAL",
-      "twoways": false
+      "twoways": true
     },
     {
-      "from": "Gerrod",
-      "to": "Elder",
-      "requires": "hook | HORIZONTAL + djump | dodge + silva | 2HORIZONTAL | djump + dash + (champion | silva) | djump + silva + ulv",
+      "from": "Siegrid",
+      "to": "Forest_09_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2_3",
+      "requires": "swim + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_09_GAMEPLAY.BP_Interactable_Item_Tip1",
+      "requires": "swim + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_09_GAMEPLAY.BP_SCR_LV2S_2130_2_3",
+      "requires": "swim + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_10_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_11_GAMEPLAY.BP_e2132_Mandrake",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_11_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_11_GAMEPLAY.BP_Interactable_Passives_Treasure_2_3",
+      "requires": "swim + LEDGE + HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_11_GAMEPLAY.BP_SCR_LV1M_2120_2_3",
+      "requires": "LEDGE + swim + (claw | hook)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_11_GAMEPLAY.BP_SCR_LV1S_2130_2_3",
+      "requires": "swim + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_12_GAMEPLAY.BP_SCR_LV1M_2131_3_4",
+      "requires": "LEDGE | claw + swim",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_13_GAMEPLAY.BP_SCR_LV1S_2130_3_4",
+      "requires": "LEDGE | claw + swim",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_14_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "LEDGE | claw + swim",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_15_GAMEPLAY.BP_e5040_Witch",
+      "requires": "LEDGE | claw + swim",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_16_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "LEDGE + HORIZONTAL + claw + unlock",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_16_GAMEPLAY.BP_Interactable_Passives_Treasure_2_3",
+      "requires": "LEDGE + HORIZONTAL + claw + unlock",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_16_GAMEPLAY.BP_SCR_LV1LL_0000_2_3",
+      "requires": "LEDGE + HORIZONTAL + claw + unlock",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_17_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_Treasure_2_3",
+      "requires": "2LEDGE + HORIZONTAL | LEDGE + 2HORIZONTAL | LEDGE + HORIZONTAL + claw | LEDGE + (hook | claw) | claw + swim + hook",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_17_GAMEPLAY.BP_Interactable_Item_Tip4",
+      "requires": "LEDGE + (claw | hook) | claw + swim  + hook",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_17_GAMEPLAY.BP_Interactable_Passives_Treasure_2_3",
+      "requires": "2LEDGE + HORIZONTAL | LEDGE + 2HORIZONTAL | LEDGE + HORIZONTAL + claw | LEDGE + (hook | claw) | claw + swim + hook",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Forest_17_Map.BP_Interactable_Item_Tip5",
+      "requires": "2LEDGE + HORIZONTAL | LEDGE + 2HORIZONTAL | LEDGE + HORIZONTAL + claw | LEDGE + (hook | claw) | claw + swim + hook",
       "twoways": true
     },
     {
       "from": "Dog",
-      "to": "Sentinel",
+      "to": "Fort_01_GAMEPLAY.BP_e2192_Gargoyle",
       "requires": "hook",
       "twoways": true
     },
     {
       "from": "Gerrod",
-      "to": "Sentinel",
-      "requires": "swim + djump + (claw | hook) + (pierce | HORIZONTAL) + (silva | champion)",
+      "to": "Fort_01_GAMEPLAY.BP_e2192_Gargoyle",
+      "requires": "swim + djump + (claw | hook) + (CHARGE | HORIZONTAL) + (silva | champion)",
       "twoways": true
     },
     {
       "from": "Ulv",
-      "to": "Fellwyrm",
-      "requires": "pierce",
+      "to": "Fort_12_GAMEPLAY.BP_e2232_Dragon",
+      "requires": "CHARGE",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Fort_21_GAMEPLAY.BP_e5070_Killer",
+      "requires": "FULLSILVA + swim + (hook | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Oubliette_07_2_GAMEPLAY.BP_e2072_Mimic",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Oubliette_12_GAMEPLAY.BP_e2182_Shadow",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Oubliette_15_GAMEPLAY.BP_e5060_Assassin",
+      "requires": "swim + HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Faden",
+      "to": "Swamp_04_GAMEPLAY.BP_e2172_Inferior",
+      "requires": "unlock + mask",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_04_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2_3",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_05_GAMEPLAY.BP_SCR_LV2M_2171_2_3",
+      "requires": "swim + mask",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_05_GEO.BP_SCR_LV1M_2051_2_3",
+      "requires": "swim + mask",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_06_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_06_GAMEPLAY.BP_Interactable_Passives_Treasure_2_3",
+      "requires": "CHARGE + slam + (dodge + claw | hook)",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_06_GAMEPLAY.BP_SCR_LV1L_2180_3_4",
+      "requires": "CHARGE + slam + (dodge + claw | hook)",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_07_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "claw",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_07_GAMEPLAY.BP_Interactable_Passive_RecastTimeCut_Lv2_2_3",
+      "requires": "claw + (LEDGE | HORIZONTAL)",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_08_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_2_3",
+      "requires": "mask + swim",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_08_GAMEPLAY.BP_SCR_LV1M_2051_2_3",
+      "requires": "mask + swim",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_08_GAMEPLAY.BP_SCR_LV2M_2051_2_3",
+      "requires": "mask + swim",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_09_GAMEPLAY.BP_Interactable_Passives_Treasure_2_3",
+      "requires": "LEDGE + mask",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_09_GAMEPLAY.BP_SCR_LV2M_2170_2_3",
+      "requires": "LEDGE + HORIZONTAL + mask",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_1_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Eleine",
+      "to": "Swamp_1_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "swim + (hook + LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_10_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_10_GAMEPLAY.BP_SCR_LV1M_2051_2_3",
+      "requires": "mask + swim",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_11_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "mask + (claw  +  (champion + djump | HORIZONTAL) | (silva + djump)) | (HORIZONTAL + (djump | silva)) | (plume + silva + djump)",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_11_GAMEPLAY.BP_Interactable_Passives_Treasure_2_3",
+      "requires": "mask",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_12_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2_3",
+      "requires": "slam",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_12_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_13_GAMEPLAY.BP_SCR_LV1L_2170_3_4",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_13_GAMEPLAY.BP_SCR_LV2L_2170_3_4",
+      "requires": "mask + (hook | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_14_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2_3",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_14_GAMEPLAY.BP_SCR_LV1L_2170_3_4",
+      "requires": "LEDGE | Claw",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_15_GAMEPLAY.BP_e2052_Toad",
+      "requires": "CHARGE + slam + mask",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_15_GAMEPLAY.BP_SCR_LV1M_2171_2_3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_16_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_18_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_18_GAMEPLAY.BP_Interactable_Item_Tip4",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_18_GAMEPLAY.BP_Interactable_Spirit_s5080_2_3",
+      "requires": "mask + CHARGE + slam + (FULLSILVA + 2HORIZONTAL + champion | hook | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_18_GAMEPLAY.BP_SCR_LV1LL_miliel_2_3",
+      "requires": "claw + ((LEDGE + 2HORIZONTAL) | (2LEDGE + dodge))",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_2_GAMEPLAY.BP_SCR_LV2S_2010_2_3",
+      "requires": "mask + swim",
+      "twoways": true
+    },
+    {
+      "from": "Eleine",
+      "to": "Swamp_2_GAMEPLAY.BP_SCR_LV2S_2010_2_3",
+      "requires": "swim + (hook + LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_2_GAMEPLAY.BP_SCR_LV2S_2121_1_2",
+      "requires": "mask + swim",
+      "twoways": true
+    },
+    {
+      "from": "Eleine",
+      "to": "Swamp_2_GAMEPLAY.BP_SCR_LV2S_2121_1_2",
+      "requires": "swim + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_3_GAMEPLAY.BP_SCR_LV1L_2170_3_4",
+      "requires": "mask",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Swamp_3_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
+      "requires": "mask",
+      "twoways": true
+    },
+    {
+      "from": "Youth",
+      "to": "Village_02_GAMEPLAY.BP_SCR_LV1S_2020_2_3",
+      "requires": "djump + (silva | champion) | (djump | silva) + HORIZONTAL | hook",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_02_GAMEPLAY.BP_SCR_LV1S_2100_2_3",
+      "requires": "2LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
+      "requires": " LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_03_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "slam + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_03_GAMEPLAY.BP_Interactable_Passives_Treasure_2_3",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_03_GAMEPLAY.BP_SCR_LV1S_2021_2_3",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_03_GAMEPLAY.BP_SCR_LV2S_2020_2_3",
+      "requires": "slam + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_04_1_GAMEPLAY.BP_e2102_Crow",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_04_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_04_GAMEPLAY.BP_Interactable_Passives_Treasure_2_3",
+      "requires": "LEDGE + (hook | HORIZONTAL) | 2LEDGE + claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_04_GAMEPLAY.BP_SCR_LV1S_2010_1_2",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_05_GAMEPLAY.BP_Interactable_Item_Tip4",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_06_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_06_GAMEPLAY.BP_SCR_LV1M_2000_3_4",
+      "requires": "2LEDGE | LEDGE + claw | LEDGE + HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_06_GAMEPLAY.BP_SCR_LV1S_2020_2_3",
+      "requires": "LEDGE + slam + (hook | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_06_GAMEPLAY.BP_SCR_LV1S_2021_2_3",
+      "requires": "LEDGE + slam + (hook | claw)",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_06_GAMEPLAY.BP_SCR_LV2S_2010_3_4",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_06_GAMEPLAY.BP_SCR_LV2S_2021_2_3",
+      "requires": "LEDGE + slam",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_07_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2_3",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_07_GAMEPLAY.BP_SCR_LV1S_2100_3_4",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_07_GAMEPLAY.BP_SCR_LV2S_2080_3_4",
+      "requires": "LEDGE + hook | 2LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_08_GAMEPLAY.BP_e2002_Knight",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_08_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2_3",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_08_GAMEPLAY.BP_SCR_LV1S_2021_2_3",
+      "requires": "LEDGE + swim",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_09_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_09_GAMEPLAY.BP_Interactable_Item_Tip4",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_10_GAMEPLAY.BP_e5050_Giant",
+      "requires": "LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_11_1_GAMEPLAY.BP_Interactable_Item_HealPower_Up_5_6",
+      "requires": "slam",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_11_GAMEPLAY.BP_Interactable_Item_Tip1",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_11_GAMEPLAY.BP_Interactable_Item_Tip4",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_11_GAMEPLAY.BP_SCR_LV2S_2020_3_4",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_12_GAMEPLAY.BP_SCR_LV1S_2021_2_3",
+      "requires": "slam",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_Treasure_2_3",
+      "requires": "slam + LEDGE",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_13_GAMEPLAY.BP_Interactable_Passives_Treasure_2_3",
+      "requires": "swim + LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Siegrid",
+      "to": "Village_13_GAMEPLAY.BP_SCR_LV1S_2021_2_3",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_14_GAMEPLAY.BP_e2112_Ork",
+      "requires": "hook | LEDGE + sinner | dodge + silva | 2HORIZONTAL + plume | djump + (silva | champion)",
+      "twoways": true
+    },
+    {
+      "from": "Elder",
+      "to": "Village_14_GAMEPLAY.BP_SCR_LV1L_2111_2_3",
+      "requires": "slam + hook",
+      "twoways": true
+    },
+    {
+      "from": "Elder",
+      "to": "Village_14_GAMEPLAY.BP_SCR_LV2L_2110_3_4",
+      "requires": "slam + hook",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_15_GAMEPLAY.BP_SCR_LV1LL_0000_2_3",
+      "requires": "swim + djump + (claw | hook) + (CHARGE | HORIZONTAL) + (silva | champion)",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_15_GAMEPLAY.BP_SCR_LV1M_2050_3_4",
+      "requires": "swim + djump + (claw | hook) + (CHARGE | HORIZONTAL) + (silva | champion)",
+      "twoways": true
+    },
+    {
+      "from": "Sentinel",
+      "to": "Village_15_GAMEPLAY.BP_SCR_LV1M_2050_3_4",
+      "requires": "swim",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_15_GAMEPLAY.BP_SCR_LV2M_2050_2_3",
+      "requires": "swim",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_16_GAMEPLAY.BP_Interactable_Item_Tip4",
+      "requires": "slam + CHARGE",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Village_16_GAMEPLAY.BP_Interactable_Passives_Treasure_2_3",
+      "requires": "slam + CHARGE",
       "twoways": true
     }
   ],

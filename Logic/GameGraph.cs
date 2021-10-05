@@ -10,6 +10,13 @@ namespace EnderLilies.Randomizer
 {
     public class GameGraph
     {
+        public struct LogicLog
+        {
+            public int node;
+            public int reachables;
+            public int items;
+        }
+            
         public class Edge
         {
             public int from;
@@ -50,12 +57,15 @@ namespace EnderLilies.Randomizer
 
         public HashSet<Edge> edges = new HashSet<Edge>();
 
+        public List<LogicLog> logic = new List<LogicLog>();
+
         public GameGraph()
         {
         }
 
         public Dictionary<string, string> Solve(string start)
         {
+            logic.Clear();
             if (aliases.ContainsKey(start))
                 start = aliases[start];
             HashSet<int> reachables = new HashSet<int>();
@@ -129,6 +139,7 @@ namespace EnderLilies.Randomizer
                         int node = empty_nodes.RandomWithWeigh(weights);
                         //int node = empty_nodes[Tools.rng.Next(empty_nodes.Count)];
                         result[node] = items[RNG.stream.Next(items.Length)];
+                        logic.Add(new LogicLog() { node=node, reachables= reachables.Count });
                         inv_weights.Remove(node);
                         empty_nodes.Remove(node);
                         done = false;
@@ -139,6 +150,7 @@ namespace EnderLilies.Randomizer
             Dictionary<string, string> data = new Dictionary<string, string>();
             foreach (KeyValuePair<int, int> pair in result)
                 data.Add(nodes[pair.Key], keys[pair.Value]);
+            logic.Add(new LogicLog() { node = -1, reachables = reachables.Count, items=data.Count() });
             return data;
         }
 
