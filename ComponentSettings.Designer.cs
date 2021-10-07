@@ -40,13 +40,13 @@
             this.open = new System.Windows.Forms.Button();
             this.path = new System.Windows.Forms.TextBox();
             this.chooseFile = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.LogicPage = new System.Windows.Forms.TabPage();
             this.LogicPreviewGridview = new System.Windows.Forms.DataGridView();
             this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -176,15 +176,6 @@
             this.chooseFile.UseVisualStyleBackColor = true;
             this.chooseFile.Click += new System.EventHandler(this.chooseFile_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Seed:";
-            // 
             // LogicPage
             // 
             this.LogicPage.Controls.Add(this.LogicPreviewGridview);
@@ -199,6 +190,8 @@
             // LogicPreviewGridview
             // 
             this.LogicPreviewGridview.AllowUserToAddRows = false;
+            this.LogicPreviewGridview.AllowUserToDeleteRows = false;
+            this.LogicPreviewGridview.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
@@ -215,6 +208,7 @@
             this.LogicPreviewGridview.Name = "LogicPreviewGridview";
             this.LogicPreviewGridview.ReadOnly = true;
             this.LogicPreviewGridview.RowHeadersVisible = false;
+            this.LogicPreviewGridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.LogicPreviewGridview.Size = new System.Drawing.Size(453, 479);
             this.LogicPreviewGridview.TabIndex = 0;
             // 
@@ -239,6 +233,15 @@
             this.ReachablesColumn.Name = "ReachablesColumn";
             this.ReachablesColumn.ReadOnly = true;
             this.ReachablesColumn.Width = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Seed:";
             // 
             // ComponentSettings
             // 

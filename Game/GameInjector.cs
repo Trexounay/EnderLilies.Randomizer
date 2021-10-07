@@ -114,6 +114,7 @@ namespace EnderLilies.Randomizer
                     Trace.WriteLine(ex.ToString());
                     Thread.Sleep(1000);
                 }
+                Thread.Sleep(250);
             }
 
         }

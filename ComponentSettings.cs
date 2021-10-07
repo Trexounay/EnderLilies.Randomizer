@@ -20,7 +20,22 @@ namespace EnderLilies.Randomizer
         public string FilePath { get; set; }
         public string CheckFileResult { get; set; }
         public DataTable Preview { get; set; }
-        public int Seed { get; set; }
+
+
+        int _currentSeed = 0;
+        public int Seed
+        {
+            get
+            {
+                return _currentSeed;
+            }
+            set
+            {
+                _currentSeed = value;
+                CheckFile();
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Seed"));
+            }
+        }
         public int StartingRoom { get; set; }
         public bool LockSeed { get; set; }
         public bool RandomLevels { get; set; }
@@ -174,7 +189,6 @@ namespace EnderLilies.Randomizer
                 Seed = new System.Random().Next();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Seed"));
             }
-            CheckFile();
         }
 
         private void open_Click(object sender, EventArgs e)

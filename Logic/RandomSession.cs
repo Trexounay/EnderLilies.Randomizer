@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EnderLilies.Randomizer
 {
@@ -13,17 +10,20 @@ namespace EnderLilies.Randomizer
         public Dictionary<string, string> result;
         public RandomSession(int seed, GameGraph g)
         {
+            RNG.stream = new Random(seed);
             result = g.Solve("Start");
             List<string> items = new List<string>(g.locations.Values);
             items.AddRange(g.extra_items);
             foreach (string v in result.Values)
                 items.Remove(v);
-            items.Shuffle();
-            foreach (var k in g.locations)
+            items.Sort();
+            var loc = new List<string>(g.locations.Keys);
+            loc.Shuffle();
+            foreach (var k in loc)
             {
-                if (!result.ContainsKey(k.Key))
+                if (!result.ContainsKey(k))
                 {
-                    result[k.Key] = items[0];
+                    result[k] = items[0];
                     items.RemoveAt(0);
                 }
             }
