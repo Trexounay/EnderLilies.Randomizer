@@ -1,0 +1,285 @@
+﻿// Name: enderlilies, Version: 1.1.3
+
+#include "../pch.h"
+
+/*!!DEFINE!!*/
+
+/*!!HELPER_DEF!!*/
+
+/*!!HELPER_INC!!*/
+
+#ifdef _MSC_VER
+	#pragma pack(push, 0x01)
+#endif
+
+namespace CG
+{
+//---------------------------------------------------------------------------
+// Functions
+//---------------------------------------------------------------------------
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.ComputeDodgeVector
+//		Flags  -> (Public, HasOutParms, HasDefaults, BlueprintCallable, BlueprintEvent, BlueprintPure)
+// Parameters:
+//		struct FMoveTimelineEntry                          MoveTimelineEntry                                          (Parm, OutParm, NoDestructor)
+void UCA_Dodge_C::ComputeDodgeVector(struct FMoveTimelineEntry* MoveTimelineEntry)
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.ComputeDodgeVector");
+
+	UCA_Dodge_C_ComputeDodgeVector_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+	if (MoveTimelineEntry != nullptr)
+		*MoveTimelineEntry = params.MoveTimelineEntry;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.SetFacing
+//		Flags  -> (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
+// Parameters:
+void UCA_Dodge_C::SetFacing()
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.SetFacing");
+
+	UCA_Dodge_C_SetFacing_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.StopDodgeAnim
+//		Flags  -> (Public, BlueprintCallable, BlueprintEvent)
+void UCA_Dodge_C::StopDodgeAnim()
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.StopDodgeAnim");
+
+	UCA_Dodge_C_StopDodgeAnim_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.PlayDodgeAnim
+//		Flags  -> (Private, BlueprintCallable, BlueprintEvent)
+void UCA_Dodge_C::PlayDodgeAnim()
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.PlayDodgeAnim");
+
+	UCA_Dodge_C_PlayDodgeAnim_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.InitializeDodgeParams
+//		Flags  -> (Private, HasDefaults, BlueprintCallable, BlueprintEvent)
+// Parameters:
+//		bool                                               IsGrounded                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+void UCA_Dodge_C::InitializeDodgeParams(bool IsGrounded)
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.InitializeDodgeParams");
+
+	UCA_Dodge_C_InitializeDodgeParams_Params params;
+	params.IsGrounded = IsGrounded;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.OnSampleCommandAction
+//		Flags  -> (Event, Protected, HasOutParms, BlueprintCallable, BlueprintEvent)
+// Parameters:
+//		float                                              DeltaTime                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+//		Zenith_ECommandResult                              ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+Zenith_ECommandResult UCA_Dodge_C::OnSampleCommandAction(float DeltaTime)
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.OnSampleCommandAction");
+
+	UCA_Dodge_C_OnSampleCommandAction_Params params;
+	params.DeltaTime = DeltaTime;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+
+	return params.ReturnValue;
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.OnStartCommandAction
+//		Flags  -> (Event, Protected, BlueprintEvent)
+void UCA_Dodge_C::OnStartCommandAction()
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.OnStartCommandAction");
+
+	UCA_Dodge_C_OnStartCommandAction_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.OnLanded
+//		Flags  -> (Event, Protected, BlueprintEvent)
+void UCA_Dodge_C::OnLanded()
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.OnLanded");
+
+	UCA_Dodge_C_OnLanded_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.OnEndCommandAction
+//		Flags  -> (Event, Protected, BlueprintEvent)
+// Parameters:
+//		Zenith_ECommandRemoveTypes                         RemoveType                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+void UCA_Dodge_C::OnEndCommandAction(Zenith_ECommandRemoveTypes RemoveType)
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.OnEndCommandAction");
+
+	UCA_Dodge_C_OnEndCommandAction_Params params;
+	params.RemoveType = RemoveType;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.OnChangePawn
+//		Flags  -> (Event, Protected, BlueprintEvent)
+// Parameters:
+//		class APawn*                                       OldPawnSubject                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+//		class APawn*                                       NewPawnSubject                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+void UCA_Dodge_C::OnChangePawn(class APawn* OldPawnSubject, class APawn* NewPawnSubject)
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.OnChangePawn");
+
+	UCA_Dodge_C_OnChangePawn_Params params;
+	params.OldPawnSubject = OldPawnSubject;
+	params.NewPawnSubject = NewPawnSubject;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.OnHookStart
+//		Flags  -> (Event, Protected, BlueprintEvent)
+void UCA_Dodge_C::OnHookStart()
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.OnHookStart");
+
+	UCA_Dodge_C_OnHookStart_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.OnWallgrabStart
+//		Flags  -> (Event, Protected, BlueprintEvent)
+void UCA_Dodge_C::OnWallgrabStart()
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.OnWallgrabStart");
+
+	UCA_Dodge_C_OnWallgrabStart_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+// Function:
+//		Offset -> 0x010B8CE0
+//		Name   -> Function CA_Dodge.CA_Dodge_C.ExecuteUbergraph_CA_Dodge
+//		Flags  -> (Final)
+// Parameters:
+//		int                                                EntryPoint                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+void UCA_Dodge_C::ExecuteUbergraph_CA_Dodge(int EntryPoint)
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function CA_Dodge.CA_Dodge_C.ExecuteUbergraph_CA_Dodge");
+
+	UCA_Dodge_C_ExecuteUbergraph_CA_Dodge_Params params;
+	params.EntryPoint = EntryPoint;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+}
+
+
+}
+
+#ifdef _MSC_VER
+	#pragma pack(pop)
+#endif
