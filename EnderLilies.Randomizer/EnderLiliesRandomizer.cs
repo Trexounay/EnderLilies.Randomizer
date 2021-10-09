@@ -13,11 +13,13 @@ namespace EnderLilies.Randomizer
         public ComponentSettings Settings { get; set; }
         private GameInjector _gameInjector = null;
         private LiveSplitState _state;
+        private RandomSession _session;
 
         public EnderLiliesRandomizer(LiveSplitState state)
         {
             _state = state;
             Settings = new ComponentSettings();
+            _session = new RandomSession(Settings);
             _gameInjector = new GameInjector();
             _gameInjector.Run();
         }

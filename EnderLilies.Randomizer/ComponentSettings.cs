@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.Linq;
 using LiveSplit.UI;
+using System.Runtime.CompilerServices;
 
 namespace EnderLilies.Randomizer
 {
@@ -20,6 +21,119 @@ namespace EnderLilies.Randomizer
         public string FilePath { get; set; }
         public string CheckFileResult { get; set; }
         public DataTable Preview { get; set; }
+        public bool LockSeed { get; set; }
+
+        bool _shuffleSpirits; 
+        public bool ShuffleSpirits
+        {
+            get
+            {
+                return _shuffleSpirits;
+            }
+            set
+            {
+                _shuffleSpirits = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _shuffleRelics; 
+        public bool ShuffleRelics
+        {
+            get
+            {
+                return _shuffleRelics;
+            }
+            set
+            {
+                _shuffleRelics = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _shuffleTablets; 
+        public bool ShuffleTablets
+        {
+            get
+            {
+                return _shuffleTablets;
+            }
+            set
+            {
+                _shuffleTablets = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _shuffleChains; 
+        public bool ShuffleChains
+        {
+            get
+            {
+                return _shuffleChains;
+            }
+            set
+            {
+                _shuffleChains = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _shuffleAmulets;
+        public bool ShuffleAmulets
+        {
+            get
+            {
+                return _shuffleAmulets;
+            }
+            set
+            {
+                _shuffleAmulets = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _shuffleBlights;
+        public bool ShuffleBlights
+        {
+            get
+            {
+                return _shuffleBlights;
+            }
+            set
+            {
+                _shuffleBlights = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _shuffleFindings;
+        public bool ShuffleFindings
+        {
+            get
+            {
+                return _shuffleFindings;
+            }
+            set
+            {
+                _shuffleFindings = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _shuffleWishes;
+        public bool ShuffleWishes
+        {
+            get
+            {
+                return _shuffleWishes;
+            }
+            set
+            {
+                _shuffleWishes = value;
+                NotifyPropertyChanged();
+            }
+        }
 
 
         int _currentSeed = 0;
@@ -32,18 +146,9 @@ namespace EnderLilies.Randomizer
             set
             {
                 _currentSeed = value;
-                CheckFile();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Seed"));
+                NotifyPropertyChanged();
             }
         }
-        public int StartingRoom { get; set; }
-        public bool LockSeed { get; set; }
-        public bool RandomLevels { get; set; }
-        public bool RandomSpirits { get; set; }
-        public bool RandomRelics { get; set; }
-        public bool NGPlus { get; set; }
-
-        public RandomSession Session { get; set; }
 
         int _currentRoom = 0;
         public int CurrentRoom
@@ -55,7 +160,7 @@ namespace EnderLilies.Randomizer
             set
             {
                 _currentRoom = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentRoom"));
+                NotifyPropertyChanged();
             }
         }
 
@@ -69,6 +174,23 @@ namespace EnderLilies.Randomizer
                 DataSourceUpdateMode.OnPropertyChanged);
             this.lockSeed.DataBindings.Add("Checked", this, "LockSeed", false,
                 DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleAmulets.DataBindings.Add("Checked", this, "ShuffleAmulets", false,
+                DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleBlights.DataBindings.Add("Checked", this, "ShuffleBlights", false,
+                DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleChains.DataBindings.Add("Checked", this, "ShuffleChains", false,
+                DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleFindings.DataBindings.Add("Checked", this, "ShuffleFindings", false,
+                DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleRelics.DataBindings.Add("Checked", this, "ShuffleRelics", false,
+                DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleSpirits.DataBindings.Add("Checked", this, "ShuffleSpirits", false,
+                DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleTablets.DataBindings.Add("Checked", this, "ShuffleTablets", false,
+                DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleWishes.DataBindings.Add("Checked", this, "ShuffleWishes", false,
+                DataSourceUpdateMode.OnPropertyChanged);
+
             this.checkfile.DataBindings.Add("Text", this, "CheckFileResult", false,
                 DataSourceUpdateMode.OnPropertyChanged);
             FilePath = "Components/EnderLilies.Randomizer.json";
@@ -86,12 +208,15 @@ namespace EnderLilies.Randomizer
             Version version = SettingsHelper.ParseVersion(element["Version"]);
             FilePath = SettingsHelper.ParseString(element["FilePath"], "Components/EnderLilies.Randomizer.json");
             LockSeed = SettingsHelper.ParseBool(element["LockSeed"], false);
-            RandomLevels = SettingsHelper.ParseBool(element["RandomLevels"], false);
-            RandomSpirits = SettingsHelper.ParseBool(element["RandomSpirits"], true);
-            RandomRelics = SettingsHelper.ParseBool(element["RandomRelics"], true);
-            NGPlus = SettingsHelper.ParseBool(element["NGPlus"], false);
+            ShuffleAmulets = SettingsHelper.ParseBool(element["ShuffleAmulets"], true);
+            ShuffleBlights = SettingsHelper.ParseBool(element["ShuffleBlights"], true);
+            ShuffleChains = SettingsHelper.ParseBool(element["ShuffleChains"], true);
+            ShuffleFindings = SettingsHelper.ParseBool(element["ShuffleFindings"], true);
+            ShuffleRelics = SettingsHelper.ParseBool(element["ShuffleRelics"], true);
+            ShuffleSpirits = SettingsHelper.ParseBool(element["ShuffleSpirits"], true);
+            ShuffleTablets = SettingsHelper.ParseBool(element["ShuffleTablets"], true);
+            ShuffleWishes = SettingsHelper.ParseBool(element["ShuffleWishes"], true);
             Seed = SettingsHelper.ParseInt(element["Seed"], 0);
-            StartingRoom = SettingsHelper.ParseInt(element["StartingRoom"], 12);
             this.path.Text = FilePath;
         }
 
@@ -100,12 +225,15 @@ namespace EnderLilies.Randomizer
             var settings_node = document.CreateElement("Settings");
             settings_node.AppendChild(SettingsHelper.ToElement(document, "FilePath", FilePath));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "LockSeed", LockSeed));
-            settings_node.AppendChild(SettingsHelper.ToElement(document, "RandomLevels", RandomLevels));
-            settings_node.AppendChild(SettingsHelper.ToElement(document, "RandomSpirits", RandomSpirits));
-            settings_node.AppendChild(SettingsHelper.ToElement(document, "RandomRelics", RandomRelics));
-            settings_node.AppendChild(SettingsHelper.ToElement(document, "NGPlus", NGPlus));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleAmulets", ShuffleAmulets));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleBlights", ShuffleBlights));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleChains", ShuffleChains));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleFindings", ShuffleFindings));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleRelics", ShuffleRelics));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleSpirits", ShuffleSpirits));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleTablets", ShuffleTablets));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleWishes", ShuffleWishes));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "Seed", Seed));
-            settings_node.AppendChild(SettingsHelper.ToElement(document, "StartingRoom", StartingRoom));
             return settings_node;
         }
 
@@ -119,23 +247,22 @@ namespace EnderLilies.Randomizer
             }
         }
 
-        void GeneratePreview(GameGraph g)
+        public void GeneratePreview(RandomSession session)
         {
-            Session = new RandomSession(Seed, g);
-            Session.WriteFile();
-
+            var g = session.GameGraph;
             LogicPreviewGridview.Rows.Clear();
+            shuffleGroup.Text = string.Format("Shuffled Items : {0}", session.ShufflePool);
             foreach (var l in g.logic)
             {
                 if (l.node == -1)
                 {
                     LogicPreviewGridview.Rows.Add("END",
-                        string.Format("{0}/{1}", l.items, g.keys.Count),
-                        string.Format("{0}/{1}", l.reachables, g.nodes.Count));
+                        "",
+                        string.Format("{0}/{1}", l.reachables, g.locations.Count));
                     continue;
                 }
                 var node = g.GetNode(l.node);
-                var item = Session.result[node];
+                var item = session.result[node];
                 foreach (var k in g.aliases)
                 {
                     if (k.Value == node)
@@ -166,7 +293,6 @@ namespace EnderLilies.Randomizer
                 CheckFileResult = String.Format("Config file contains {0} nodes {1} keys and {2} connections",
                     g.nodes.Count, g.keys.Count, g.edges.Count);
                 this.checkfile.ForeColor = Color.Green;
-                GeneratePreview(g);
             }
             catch (Exception e)
             {
@@ -177,18 +303,13 @@ namespace EnderLilies.Randomizer
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CheckFileResult"));
         }
 
-        private void ComponentSettings_Load(object sender, EventArgs e)
-        {
-            CheckFile();
-        }
-
         private void Randomize_Click(object sender, EventArgs e)
         {
             if (!LockSeed)
             {
                 Seed = new System.Random().Next();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Seed"));
             }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Seed"));
         }
 
         private void open_Click(object sender, EventArgs e)
@@ -199,6 +320,19 @@ namespace EnderLilies.Randomizer
             fileopener.StartInfo.Arguments = "\"" + Path.GetFullPath(FilePath) + "\"";
             fileopener.Start();
             fileopener.Close();
+        }
+
+        private void ComponentSettings_Load(object sender, EventArgs e)
+        {
+            CheckFile();
+        }
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

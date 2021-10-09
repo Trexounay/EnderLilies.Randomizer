@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.seedText = new System.Windows.Forms.TextBox();
             this.lockSeed = new System.Windows.Forms.CheckBox();
@@ -36,6 +36,15 @@
             this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
+            this.shuffleGroup = new System.Windows.Forms.GroupBox();
+            this.shuffleWishes = new System.Windows.Forms.CheckBox();
+            this.shuffleSpirits = new System.Windows.Forms.CheckBox();
+            this.shuffleChains = new System.Windows.Forms.CheckBox();
+            this.shuffleTablets = new System.Windows.Forms.CheckBox();
+            this.shuffleAmulets = new System.Windows.Forms.CheckBox();
+            this.shuffleFindings = new System.Windows.Forms.CheckBox();
+            this.shuffleBlights = new System.Windows.Forms.CheckBox();
+            this.shuffleRelics = new System.Windows.Forms.CheckBox();
             this.checkfile = new System.Windows.Forms.Label();
             this.open = new System.Windows.Forms.Button();
             this.path = new System.Windows.Forms.TextBox();
@@ -50,6 +59,7 @@
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
+            this.shuffleGroup.SuspendLayout();
             this.LogicPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).BeginInit();
             this.SuspendLayout();
@@ -122,6 +132,7 @@
             // 
             // SettingsPage
             // 
+            this.SettingsPage.Controls.Add(this.shuffleGroup);
             this.SettingsPage.Controls.Add(this.checkfile);
             this.SettingsPage.Controls.Add(this.open);
             this.SettingsPage.Controls.Add(this.path);
@@ -134,14 +145,113 @@
             this.SettingsPage.Text = "Settings";
             this.SettingsPage.UseVisualStyleBackColor = true;
             // 
+            // shuffleGroup
+            // 
+            this.shuffleGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.shuffleGroup.Controls.Add(this.shuffleWishes);
+            this.shuffleGroup.Controls.Add(this.shuffleSpirits);
+            this.shuffleGroup.Controls.Add(this.shuffleChains);
+            this.shuffleGroup.Controls.Add(this.shuffleTablets);
+            this.shuffleGroup.Controls.Add(this.shuffleAmulets);
+            this.shuffleGroup.Controls.Add(this.shuffleFindings);
+            this.shuffleGroup.Controls.Add(this.shuffleBlights);
+            this.shuffleGroup.Controls.Add(this.shuffleRelics);
+            this.shuffleGroup.Location = new System.Drawing.Point(38, 22);
+            this.shuffleGroup.Name = "shuffleGroup";
+            this.shuffleGroup.Size = new System.Drawing.Size(385, 116);
+            this.shuffleGroup.TabIndex = 16;
+            this.shuffleGroup.TabStop = false;
+            this.shuffleGroup.Text = "Shuffled Items (140)";
+            // 
+            // shuffleWishes
+            // 
+            this.shuffleWishes.AutoSize = true;
+            this.shuffleWishes.Location = new System.Drawing.Point(6, 88);
+            this.shuffleWishes.Name = "shuffleWishes";
+            this.shuffleWishes.Size = new System.Drawing.Size(114, 17);
+            this.shuffleWishes.TabIndex = 15;
+            this.shuffleWishes.Text = "Priestesses wishes";
+            this.shuffleWishes.UseVisualStyleBackColor = true;
+            // 
+            // shuffleSpirits
+            // 
+            this.shuffleSpirits.AutoSize = true;
+            this.shuffleSpirits.Location = new System.Drawing.Point(6, 19);
+            this.shuffleSpirits.Name = "shuffleSpirits";
+            this.shuffleSpirits.Size = new System.Drawing.Size(54, 17);
+            this.shuffleSpirits.TabIndex = 11;
+            this.shuffleSpirits.Text = "Spirits";
+            this.shuffleSpirits.UseVisualStyleBackColor = true;
+            // 
+            // shuffleChains
+            // 
+            this.shuffleChains.AutoSize = true;
+            this.shuffleChains.Location = new System.Drawing.Point(262, 19);
+            this.shuffleChains.Name = "shuffleChains";
+            this.shuffleChains.Size = new System.Drawing.Size(107, 17);
+            this.shuffleChains.TabIndex = 14;
+            this.shuffleChains.Text = "Chains of sorcery";
+            this.shuffleChains.UseVisualStyleBackColor = true;
+            // 
+            // shuffleTablets
+            // 
+            this.shuffleTablets.AutoSize = true;
+            this.shuffleTablets.Location = new System.Drawing.Point(6, 65);
+            this.shuffleTablets.Name = "shuffleTablets";
+            this.shuffleTablets.Size = new System.Drawing.Size(88, 17);
+            this.shuffleTablets.TabIndex = 7;
+            this.shuffleTablets.Text = "Stone tablets";
+            this.shuffleTablets.UseVisualStyleBackColor = true;
+            // 
+            // shuffleAmulets
+            // 
+            this.shuffleAmulets.AutoSize = true;
+            this.shuffleAmulets.Location = new System.Drawing.Point(262, 42);
+            this.shuffleAmulets.Name = "shuffleAmulets";
+            this.shuffleAmulets.Size = new System.Drawing.Size(107, 17);
+            this.shuffleAmulets.TabIndex = 13;
+            this.shuffleAmulets.Text = "Amulet fragments";
+            this.shuffleAmulets.UseVisualStyleBackColor = true;
+            // 
+            // shuffleFindings
+            // 
+            this.shuffleFindings.AutoSize = true;
+            this.shuffleFindings.Location = new System.Drawing.Point(262, 88);
+            this.shuffleFindings.Name = "shuffleFindings";
+            this.shuffleFindings.Size = new System.Drawing.Size(65, 17);
+            this.shuffleFindings.TabIndex = 8;
+            this.shuffleFindings.Text = "Findings";
+            this.shuffleFindings.UseVisualStyleBackColor = true;
+            // 
+            // shuffleBlights
+            // 
+            this.shuffleBlights.AutoSize = true;
+            this.shuffleBlights.Location = new System.Drawing.Point(262, 65);
+            this.shuffleBlights.Name = "shuffleBlights";
+            this.shuffleBlights.Size = new System.Drawing.Size(94, 17);
+            this.shuffleBlights.TabIndex = 12;
+            this.shuffleBlights.Text = "Blight deposits";
+            this.shuffleBlights.UseVisualStyleBackColor = true;
+            // 
+            // shuffleRelics
+            // 
+            this.shuffleRelics.AutoSize = true;
+            this.shuffleRelics.Location = new System.Drawing.Point(6, 42);
+            this.shuffleRelics.Name = "shuffleRelics";
+            this.shuffleRelics.Size = new System.Drawing.Size(55, 17);
+            this.shuffleRelics.TabIndex = 10;
+            this.shuffleRelics.Text = "Relics";
+            this.shuffleRelics.UseVisualStyleBackColor = true;
+            // 
             // checkfile
             // 
             this.checkfile.AutoSize = true;
             this.checkfile.Location = new System.Drawing.Point(7, 440);
             this.checkfile.Name = "checkfile";
-            this.checkfile.Size = new System.Drawing.Size(35, 13);
+            this.checkfile.Size = new System.Drawing.Size(65, 13);
             this.checkfile.TabIndex = 6;
-            this.checkfile.Text = "label2";
+            this.checkfile.Text = "File check...";
             // 
             // open
             // 
@@ -192,11 +302,11 @@
             this.LogicPreviewGridview.AllowUserToAddRows = false;
             this.LogicPreviewGridview.AllowUserToDeleteRows = false;
             this.LogicPreviewGridview.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.LogicPreviewGridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.LogicPreviewGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LogicPreviewGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -218,6 +328,7 @@
             this.LocationColumn.HeaderText = "Location";
             this.LocationColumn.Name = "LocationColumn";
             this.LocationColumn.ReadOnly = true;
+            this.LocationColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // ItemColumn
             // 
@@ -225,6 +336,7 @@
             this.ItemColumn.HeaderText = "Item";
             this.ItemColumn.Name = "ItemColumn";
             this.ItemColumn.ReadOnly = true;
+            this.ItemColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // ReachablesColumn
             // 
@@ -232,6 +344,7 @@
             this.ReachablesColumn.HeaderText = "Nodes";
             this.ReachablesColumn.Name = "ReachablesColumn";
             this.ReachablesColumn.ReadOnly = true;
+            this.ReachablesColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ReachablesColumn.Width = 5;
             // 
             // label1
@@ -258,6 +371,8 @@
             this.tabSettings.ResumeLayout(false);
             this.SettingsPage.ResumeLayout(false);
             this.SettingsPage.PerformLayout();
+            this.shuffleGroup.ResumeLayout(false);
+            this.shuffleGroup.PerformLayout();
             this.LogicPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).EndInit();
             this.ResumeLayout(false);
@@ -281,8 +396,17 @@
         private System.Windows.Forms.Label checkfile;
         private System.Windows.Forms.TabPage LogicPage;
         private System.Windows.Forms.DataGridView LogicPreviewGridview;
+        private System.Windows.Forms.GroupBox shuffleGroup;
+        private System.Windows.Forms.CheckBox shuffleSpirits;
+        private System.Windows.Forms.CheckBox shuffleChains;
+        private System.Windows.Forms.CheckBox shuffleTablets;
+        private System.Windows.Forms.CheckBox shuffleAmulets;
+        private System.Windows.Forms.CheckBox shuffleFindings;
+        private System.Windows.Forms.CheckBox shuffleBlights;
+        private System.Windows.Forms.CheckBox shuffleRelics;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReachablesColumn;
+        private System.Windows.Forms.CheckBox shuffleWishes;
     }
 }

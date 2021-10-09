@@ -63,13 +63,14 @@ namespace EnderLilies.Randomizer
         {
         }
 
+        public Dictionary<int, int> result = new Dictionary<int, int>();
+
         public Dictionary<string, string> Solve(string start)
         {
             logic.Clear();
             if (aliases.ContainsKey(start))
                 start = aliases[start];
             HashSet<int> reachables = new HashSet<int>();
-            Dictionary<int, int> result = new Dictionary<int, int>();
             int start_id = nodes.IndexOf(start);
             if (start_id < 0)
                 return null;
@@ -79,7 +80,6 @@ namespace EnderLilies.Randomizer
             for (int i = 0; i < nodes.Count; ++i)
                 inv_weights[i] = 1;
 
-            //result[start] = -1;
             reachables.Add(start_id);
             if (!result.ContainsKey(start_id))
                 empty_nodes.Add(start_id);
@@ -108,7 +108,7 @@ namespace EnderLilies.Randomizer
                             other = e.from;
                         else
                             continue;
-                        HashSet<int> requires = e.GetMissing(result.Values);
+                        HashSet<int> requires = e.GetMissing(from r in result where reachables.Contains(r.Key) select r.Value);
                         if (requires.Count == 0)
                         {
                             unsolved.Remove(e);
@@ -117,7 +117,7 @@ namespace EnderLilies.Randomizer
                                 empty_nodes.Add(other);
                             done = false;
                         }
-                        else if (requires.Count <= empty_nodes.Count)
+                        else if ((requires.Count <= empty_nodes.Count) && !result.ContainsKey(other))
                             missings.UnionWith(requires);
                     }
                     float count = empty_nodes.Count;
@@ -208,7 +208,9 @@ namespace EnderLilies.Randomizer
         {
             AddNode(node);
             AddKey(key);
+            result.Add(nodes.IndexOf(node), keys.IndexOf(key));
         }
+
         public void AddResults(Dictionary<string, string> forced)
         {
             foreach (KeyValuePair<string, string> pair in forced)
