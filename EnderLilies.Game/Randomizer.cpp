@@ -57,7 +57,7 @@ bool Randomizer::IsReady()
 		return false;
 	}
 	CG::UWorldLoaderSubsystem* loader = (CG::UWorldLoaderSubsystem*)GameInstance->SubSystems[0x1F];
-	if (loader == nullptr || !gm->bGameDataReady || loader->bProcessingLoad || loader->bWaitingFade)
+	if (loader == nullptr || !gm->bGameDataReady || loader->bProcessingLoad)
 	{
 		_new_map = true;
 		return false;
@@ -156,15 +156,31 @@ void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandl
 	}
 	name = map + "." + name;
 	auto entry = _replacements.find(name);
+
+	std::string og = itemhandle->RowName.GetName();
+	if (itemhandle->DataTable == gm->ItemAptitudeTable)
+		og = "Aptitude." + og;
+	else if (itemhandle->DataTable == gm->ItemGenericTable)
+		og = "Generic." + og;
+	else if (itemhandle->DataTable == gm->ItemParameterTable)
+		og = "Parameter." + og;
+	else if (itemhandle->DataTable == gm->ItemPassiveTable)
+		og = "Passive." + og;
+	else if (itemhandle->DataTable == gm->ItemSpiritTable)
+		og = "Spirit." + og;
+	else if (itemhandle->DataTable == gm->ItemTipTable)
+		og = "Tip." + og;
+
 	if (entry != _replacements.end())
 	{
-		std::string og = itemhandle->RowName.GetName();
 		itemhandle->DataTable = *(CG::UDataTable**)(&((char*)gm)[entry->second.datatable]);
 		itemhandle->RowName = itemhandle->DataTable->Data[entry->second.entry].Name;
-		std::cout << "(" << actor->RootComponent->RelativeLocation.Y << ":" << actor->RootComponent->RelativeLocation.Z << ")\t" << name << "\t:\t" << og << "->" << itemhandle->RowName.GetName() << std::endl;
+		std::cout << "(" << actor->RootComponent->RelativeLocation.Y << ":" << actor->RootComponent->RelativeLocation.Z << ")\t" << name << "\t" << og << "->" << itemhandle->RowName.GetName() << std::endl;
 	}
 	else
-		std::cout << "UNKNOWN LOCATION:" << "(" << actor->RootComponent->RelativeLocation.Y << ":" << actor->RootComponent->RelativeLocation.Z << ")\t" << name << "\t:\t" << itemhandle->RowName.GetName() << std::endl;
+	{
+		std::cout << "UNKNOWN LOCATION:" << "(" << actor->RootComponent->RelativeLocation.Y << ":" << actor->RootComponent->RelativeLocation.Z << ")\t" << name << "\t" << og << std::endl;
+	}
 	_done.insert(itemhandle);
 }
 
@@ -241,7 +257,6 @@ void Randomizer::EraseSpirits()
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UDataTable* table = gm->ItemSpiritTable;
-	std::cout << "erase spirit" << std::endl;
 	CG::FSpiritData* data = (CG::FSpiritData*)(table->Data[0].ptr);
 	CG::FDataTableRowHandle empty = data->ItemSpiritData.AptitudeToUnlock;
 	for (int i = 0; i < table->Data.Num(); ++i)
@@ -251,7 +266,6 @@ void Randomizer::EraseSpirits()
 		data->ItemSpiritData.AptitudeToUnlockTutorial = empty;
 		data->ItemSpiritData.SecondaryAptitudeToUnlock = empty;
 		data->ItemSpiritData.SecondaryAptitudeToUnlockTutorial = empty;
-		data->ItemSpiritData.bInitialSpirit = true;
 	}
 }
 
@@ -263,9 +277,11 @@ void Randomizer::RefreshAptitudes()
 	for (int i = 0; i < AptitudeItems.Num(); ++i)
 		pc->OnAptitudeItemAdded(AptitudeItems[i]);
 
-
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	for (int i = 0; i < gm->TutorialTable->Data.Num(); ++i)
 		pc->MarkTutorialAsSeen(gm->TutorialTable->Data[i].Name);
+#ifdef _DEBUG
+	pc->SpiritEquipComponent->SetCanChangeEquipment(true);
+#endif
 }
 

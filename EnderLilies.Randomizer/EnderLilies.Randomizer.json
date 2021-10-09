@@ -79,7 +79,6 @@
     "FULLSILVA": "silva + djump + dodge",
     "CHARGE": "pierce + dash"
   },
-
   "connections": [
     {
       "from": "Faden",
@@ -575,6 +574,12 @@
     },
     {
       "from": "Youth",
+      "to": "Forest_04_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Youth",
       "to": "Forest_05_GAMEPLAY.BP_Interactable_Item_Tip4",
       "requires": "LEDGE | claw",
       "twoways": true
@@ -606,6 +611,12 @@
     {
       "from": "Youth",
       "to": "Forest_07_GAMEPLAY.BP_SCR_LV1S_2130_2",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Youth",
+      "to": "Forest_07_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
       "requires": "LEDGE | claw",
       "twoways": true
     },
@@ -683,8 +694,20 @@
     },
     {
       "from": "Youth",
+      "to": "Forest_11_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
+      "requires": "LEDGE | claw",
+      "twoways": true
+    },
+    {
+      "from": "Youth",
       "to": "Forest_12_GAMEPLAY.BP_SCR_LV1M_2131_3",
       "requires": "LEDGE | claw + swim",
+      "twoways": true
+    },
+    {
+      "from": "Youth",
+      "to": "Forest_12_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
+      "requires": "LEDGE | claw",
       "twoways": true
     },
     {
@@ -772,8 +795,182 @@
       "twoways": true
     },
     {
+      "from": "Gerrod",
+      "to": "Oubliette_01_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_5",
+      "requires": "swim + HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Oubliette_01_GAMEPLAY.BP_SCR_LV1S_2010_3",
+      "requires": "swim + HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Oubliette_02_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "swim + HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_03_GAMEPLAY.BP_SCR_LV1M_2050_2",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_03_GAMEPLAY.BP_SCR_LV1S_2081_2",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_03_GEO.BP_SCR_LV1LL_0000_2",
+      "requires": "CHARGE",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_04_GAMEPLAY.BP_SCR_LV1S_2020_2",
+      "requires": "FULLSILVA | hook",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_04_GAMEPLAY.BP_SCR_LV2S_2010_3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_05_1_GAMEPLAY.BP_SCR_LV2S_2021_2",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_05_2_GAMEPLAY.BP_SCR_LV1S_2010_3",
+      "requires": "claw + hook",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_05_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_2",
+      "requires": "claw + hook",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_05_GAMEPLAY.BP_SCR_LV1L_2220_3",
+      "requires": "CHARGE",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_05_GAMEPLAY.BP_SCR_LV1S_2021_2",
+      "requires": "claw + hook",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_05_3_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_06_1_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_06_2_GAMEPLAY.BP_Interactable_Passive_dmgup_maxHP_2",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_06_3_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2",
+      "requires": "hook | FULLSILVA",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_06_4_GAMEPLAY.BP_Interactable_Item_FinalPassivePart_2",
+      "requires": "unlock + ( hook | FULLSILVA + claw)",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_06_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2",
+      "requires": "hook",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_06_GAMEPLAY.BP_SCR_LV1S_2021_2",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_06_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_07_1_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
       "from": "Hoenir",
       "to": "Oubliette_07_2_GAMEPLAY.BP_e2072_Mimic",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_08_GAMEPLAY.BP_SCR_LV2M_2050_3",
+      "requires": "slam",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_08_GAMEPLAY.BP_SCR_LV2S_2081_2",
+      "requires": "hook",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_09_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
+      "requires": "claw",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_09_GAMEPLAY.BP_Interactable_Item_MaxHPUp_5",
+      "requires": "claw",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_09_GAMEPLAY.BP_SCR_LV1M_2050_2",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_10_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_11_GAMEPLAY.BP_SCR_LV2S_2020_2",
       "requires": "",
       "twoways": true
     },
@@ -784,10 +981,112 @@
       "twoways": true
     },
     {
+      "from": "Subject",
+      "to": "Oubliette_13_1_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
+      "requires": " claw + (FULLSILVA | hook)",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_13_2_GAMEPLAY.BP_SCR_LV3S_5000_1",
+      "requires": "slam",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_13_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2",
+      "requires": "claw | 2LEDGE | hook",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_13_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_13_GAMEPLAY.BP_SCR_LV1M_2001_3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Subject",
+      "to": "Oubliette_13_GAMEPLAY.BP_SCR_LV1M_2180_2",
+      "requires": "CHARGE",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Oubliette_14_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "",
+      "twoways": true
+    },
+    {
       "from": "Gerrod",
       "to": "Oubliette_15_GAMEPLAY.BP_e5060_Assassin",
       "requires": "swim + HORIZONTAL",
       "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Oubliette_16_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2",
+      "requires": "hook | FULLSILVA | silva + djump+ claw",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Oubliette_16_GAMEPLAY.BP_SCR_LV1L_2180_3",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Hoenir",
+      "to": "Outside_03_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "claw + silva + djump",
+      "twoways": false
+    },
+    {
+      "from": "Sentinel",
+      "to": "Outside_03_GAMEPLAY.BP_Interactable_Item_Tip3",
+      "requires": "claw + 2LEDGE",
+      "twoways": false
+    },
+    {
+      "from": "Hoenir",
+      "to": "Outside_03_GAMEPLAY.BP_Interactable_Item_Tip4",
+      "requires": "claw + silva + djump",
+      "twoways": false
+    },
+    {
+      "from": "Sentinel",
+      "to": "Outside_03_GAMEPLAY.BP_Interactable_Item_Tip4",
+      "requires": "claw + 2LEDGE",
+      "twoways": false
+    },
+    {
+      "from": "Hoenir",
+      "to": "Outside_03_GAMEPLAY.BP_Interactable_Passive_ShortHeal_2",
+      "requires": "swim + claw + silva + djump ",
+      "twoways": false
+    },
+    {
+      "from": "Sentinel",
+      "to": "Outside_03_GAMEPLAY.BP_Interactable_Passive_ShortHeal_2",
+      "requires": "claw + swim",
+      "twoways": false
+    },
+    {
+      "from": "Hoenir",
+      "to": "Outside_03_GAMEPLAY.BP_SCR_LV2L_2230_2",
+      "requires": "claw + silva + djump",
+      "twoways": false
+    },
+    {
+      "from": "Sentinel",
+      "to": "Outside_03_GAMEPLAY.BP_SCR_LV2L_2230_2",
+      "requires": "claw + 2LEDGE",
+      "twoways": false
     },
     {
       "from": "Faden",
@@ -1240,6 +1539,12 @@
       "twoways": true
     },
     {
+      "from": "Youth",
+      "to": "Village_13_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
+      "requires": "slam + (LEDGE | claw)",
+      "twoways": true
+    },
+    {
       "from": "Gerrod",
       "to": "Village_14_GAMEPLAY.BP_e2112_Ork",
       "requires": "hook | LEDGE + sinner | dodge + silva | 2HORIZONTAL + plume | djump + (silva | champion)",
@@ -1294,7 +1599,6 @@
       "twoways": true
     }
   ],
-
   "locations": {
     "Abyss_01_GAMEPLAY.BP_Interactable_Item_Tip3": "Tip.tip_066",
     "Abyss_01_GAMEPLAY.BP_SCR_LV2M_2171_2": "Generic.i_SpiritCurrencyLv2_L",
@@ -1517,6 +1821,7 @@
     "Oubliette_06_4_GAMEPLAY.BP_Interactable_Item_FinalPassivePart_2": "Generic.i_FinalPassivePart_Up",
     "Oubliette_06_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2": "Generic.i_PassiveSlot_Up",
     "Oubliette_06_GAMEPLAY.BP_SCR_LV1S_2021_2": "Generic.i_SpiritCurrencyLv1_S",
+    "Oubliette_06_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": "Parameter.i_maxHPUp_01",
     "Oubliette_07_1_GAMEPLAY.BP_Interactable_Item_Tip3": "Tip.tip_014",
     "Oubliette_07_2_GAMEPLAY.BP_e2072_Mimic": "Spirit.s2072",
     "Oubliette_08_GAMEPLAY.BP_SCR_LV2M_2050_3": "Generic.i_SpiritCurrencyLv2_M",
@@ -1623,7 +1928,6 @@
     "Village_16_GAMEPLAY.BP_Interactable_Item_Tip4": "Tip.tip_054",
     "Village_16_GAMEPLAY.BP_Interactable_Passives_Treasure_2": "Generic.i_FinalPassivePart_Up"
   },
-
   "extra_items": [
     "Aptitude.double_jump",
     "Aptitude.Dodge",

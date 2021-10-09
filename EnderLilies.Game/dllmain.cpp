@@ -8,6 +8,7 @@
 #include "lib/detours.h"
 #include "Randomizer.h"
 
+bool g_cancel = false;
 Randomizer* rando;
 
 typedef void (*ProcessEventPtr)(CG::UObject*, CG::UFunction*, void*);
@@ -49,16 +50,15 @@ bool DoDetour()
 	}
 }
 
-bool g_cancel = false;
 DWORD APIENTRY HackMain(HMODULE hModule)
 {
-	/*
+#ifdef _DEBUG
 	AllocConsole();
 	FILE* fDummy;
 	freopen_s(&fDummy, "CONIN$", "r", stdin);
 	freopen_s(&fDummy, "CONOUT$", "w", stdout);
 	freopen_s(&fDummy, "CONOUT$", "w", stderr);
-	*/
+#endif
 	std::cout << "RANDOMIZER" << std::endl;
 	Sleep(1000);
 	CG::InitSdk();
