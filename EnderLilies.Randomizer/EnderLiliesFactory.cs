@@ -11,11 +11,11 @@ namespace EnderLilies.Randomizer
         public string ComponentName => "Randomizer for Ender Lilies";
         public string Description => "A randomizer for ENDER LILIES: Quietius of the Knights";
         public ComponentCategory Category => ComponentCategory.Control;
-        public Version Version => Version.Parse("1.0.4");
+        public Version Version => Version.Parse("2.0.2");
 
         public string UpdateName => ComponentName;
-        public string UpdateURL => "https://github.com/Trexounay/EnderLilies.Randomizer";
-        public string XMLURL => "https://raw.githubusercontent.com/Trexounay/EnderLilies.Randomizer/master/update.xml";
+        public string UpdateURL => "https://raw.githubusercontent.com/Trexounay/EnderLilies.Randomizer/master/Update/";
+        public string XMLURL => "https://raw.githubusercontent.com/Trexounay/EnderLilies.Randomizer/master/Update/update.xml";
 
         public IComponent Create(LiveSplitState state) => new EnderLiliesRandomizer(state);
     }
