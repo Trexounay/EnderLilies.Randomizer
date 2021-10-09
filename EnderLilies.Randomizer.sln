@@ -8,6 +8,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EnderLilies.Game", "EnderLilies.Game\EnderLilies.Game.vcxproj", "{EB7B7252-457A-4529-8C86-572492F0B826}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{774F0B6E-EC8F-4B32-A9EA-9AAEE4CC0EBA}"
+	ProjectSection(SolutionItems) = preProject
+		Update\update.xml = Update\update.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

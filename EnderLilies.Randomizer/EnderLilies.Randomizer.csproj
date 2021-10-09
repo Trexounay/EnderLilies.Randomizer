@@ -95,8 +95,5 @@
     </None>
     <None Include="Resources\600px-Refresh_icon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="update.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
