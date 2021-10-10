@@ -300,7 +300,6 @@ namespace EnderLilies.Randomizer
                 this.checkfile.ForeColor = Color.Red;
                 this.checkfile.Text = CheckFileResult;
             }
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CheckFileResult"));
         }
 
         private void Randomize_Click(object sender, EventArgs e)

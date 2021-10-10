@@ -203,7 +203,7 @@ void Randomizer::ReadSeedFile(std::string path)
 		0x340,
 		0x350,
 	};
-
+	_replacements.clear();
 	std::fstream file(path, std::ios::in);
 	if (file.is_open())
 	{
