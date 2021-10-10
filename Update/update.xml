@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
+  <update version="2.0.4">
+    <files>
+      <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+    </files>
+    <changelog>
+      <change>*** Fixed a typo in abyss logic ***</change>
+    </changelog>
+  </update>
   <update version="2.0.3">
     <files>
       <file path="Components/EnderLilies.Randomizer.json" status="changed"/>

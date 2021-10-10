@@ -92,37 +92,37 @@
     {
       "from": "Faden",
       "to": "Abyss_01_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "door + swim + CHARGE + (hook | FULLSILVA)",
+      "requires": "unlock + swim + CHARGE + (hook | FULLSILVA)",
       "twoways": true
     },
     {
       "from": "Faden",
       "to": "Abyss_01_GAMEPLAY.BP_SCR_LV2M_2171_2",
-      "requires": "door + swim + CHARGE + (hook | FULLSILVA)",
+      "requires": "unlock + swim + CHARGE + (hook | FULLSILVA)",
       "twoways": true
     },
     {
       "from": "Faden",
       "to": "Abyss_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "door + ((claw + 2LEDGE | LEDGE + HORIZONTAL) | (silva + djump + dodge + ulv))",
+      "requires": "unlock + ((claw + 2LEDGE | LEDGE + HORIZONTAL) | (silva + djump + dodge + ulv))",
       "twoways": true
     },
     {
       "from": "Faden",
       "to": "Abyss_02_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "door + swim + CHARGE + (hook | FULLSILVA)",
+      "requires": "unlock + swim + CHARGE + (hook | FULLSILVA)",
       "twoways": true
     },
     {
       "from": "Faden",
       "to": "Abyss_02_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "door + swim + CHARGE + (hook | FULLSILVA)",
+      "requires": "unlock + swim + CHARGE + (hook | FULLSILVA)",
       "twoways": true
     },
     {
       "from": "Faden",
       "to": "Abyss_02_GAMEPLAY.BP_Interactable_Passive_healcountup_2",
-      "requires": "door + swim + CHARGE + (hook | FULLSILVA)",
+      "requires": "unlock + swim + CHARGE + (hook | FULLSILVA)",
       "twoways": true
     },
     {
