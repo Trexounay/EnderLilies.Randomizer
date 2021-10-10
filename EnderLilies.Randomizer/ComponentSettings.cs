@@ -23,7 +23,7 @@ namespace EnderLilies.Randomizer
         public DataTable Preview { get; set; }
         public bool LockSeed { get; set; }
 
-        bool _shuffleSpirits; 
+        bool _shuffleSpirits;
         public bool ShuffleSpirits
         {
             get
@@ -37,7 +37,7 @@ namespace EnderLilies.Randomizer
             }
         }
 
-        bool _shuffleRelics; 
+        bool _shuffleRelics;
         public bool ShuffleRelics
         {
             get
@@ -51,7 +51,7 @@ namespace EnderLilies.Randomizer
             }
         }
 
-        bool _shuffleTablets; 
+        bool _shuffleTablets;
         public bool ShuffleTablets
         {
             get
@@ -65,7 +65,7 @@ namespace EnderLilies.Randomizer
             }
         }
 
-        bool _shuffleChains; 
+        bool _shuffleChains;
         public bool ShuffleChains
         {
             get
@@ -304,11 +304,31 @@ namespace EnderLilies.Randomizer
 
         private void Randomize_Click(object sender, EventArgs e)
         {
+            
             if (!LockSeed)
             {
                 Seed = new System.Random().Next();
             }
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Seed"));
+            else
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Seed"));
+            return;
+            var seed = 0;
+
+            var r = new RandomSession(this);
+            for (int i = 0; i < 10000; i++)
+            {
+                r.Generate(seed, false);
+                string[] c = {
+                    "Abyss_05_GAMEPLAY.BP_Interactable_Item_FinalPassivePart_2",
+                    "Abyss_05_GAMEPLAY.BP_Interactable_Item_Tip4",
+                    "Abyss_05_GAMEPLAY.BP_SCR_LV3S_5000_1",
+                };
+                foreach (var j in c)
+                    if (r.result[j].StartsWith("Aptitude.") && r.result[j] != "Aptitude.special_attack")
+                        break;
+            }
+            Seed = seed;
+            r.WriteFile();
         }
 
         private void open_Click(object sender, EventArgs e)

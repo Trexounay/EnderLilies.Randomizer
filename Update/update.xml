@@ -3,6 +3,8 @@
   <update version="2.0.4">
     <files>
       <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+      <file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
+      <file path="Components/EnderLilies.Game.dll" status="changed"/>
     </files>
     <changelog>
       <change>*** Fixed a typo in abyss logic ***</change>

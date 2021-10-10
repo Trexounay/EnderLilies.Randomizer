@@ -58,7 +58,7 @@ namespace EnderLilies.Randomizer
         }
 
         public List<string> items;
-        public void Generate(int seed)
+        public void Generate(int seed, bool write=true)
         {
             GameGraph = GetGraph();
             RNG.stream = new Random(seed);
@@ -80,7 +80,8 @@ namespace EnderLilies.Randomizer
                     items.RemoveAt(0);
                 }
             }
-            WriteFile();
+            if (write)
+                WriteFile();
         }
 
         public GameGraph GetGraph()
