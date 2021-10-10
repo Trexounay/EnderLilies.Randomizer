@@ -281,6 +281,21 @@ void Randomizer::RefreshAptitudes()
 	for (int i = 0; i < gm->TutorialTable->Data.Num(); ++i)
 		pc->MarkTutorialAsSeen(gm->TutorialTable->Data[i].Name);
 #ifdef _DEBUG
+	pc->UnlockAllAptitudes();
+
+	CG::FDataTableRowHandle handle;
+	handle.DataTable = gm->ItemSpiritTable;
+	for (int i = 0; i < gm->ItemSpiritTable->Data.Num(); ++i)
+	{
+		handle.RowName = gm->ItemSpiritTable->Data[i].Name;
+		pc->InventoryComponent->AddItem(handle);
+	}
+	handle.DataTable = gm->ItemPassiveTable;
+	for (int i = 0; i < gm->ItemPassiveTable->Data.Num(); ++i)
+	{
+		handle.RowName = gm->ItemPassiveTable->Data[i].Name;
+		pc->InventoryComponent->AddItem(handle);
+	}
 	pc->SpiritEquipComponent->SetCanChangeEquipment(true);
 #endif
 }
