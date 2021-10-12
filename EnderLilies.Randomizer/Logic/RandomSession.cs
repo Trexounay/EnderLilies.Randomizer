@@ -168,7 +168,7 @@ namespace EnderLilies.Randomizer
                 writer.WriteLine("SEED:" + _settings.Seed.ToString());
                 var keys = new List<string>(result.Keys);
                 if (_settings.SkinOverride > 0)
-                    writer.WriteLine("SETTINGS:override_skin=" + (_settings.SkinOverride).ToString());
+                    writer.WriteLine("SETTINGS:override_skin=" + (_settings.SkinOverride-1).ToString());
                 if (_settings.ShuffleSlots)
                     writer.WriteLine("SETTINGS:shuffle_slots");
                 if (_settings.NGPlus)

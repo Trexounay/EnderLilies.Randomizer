@@ -36,6 +36,7 @@
             this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
+            this.unusedRelics = new System.Windows.Forms.CheckBox();
             this.shuffleSlots = new System.Windows.Forms.CheckBox();
             this.skinLevelText = new System.Windows.Forms.Label();
             this.ngPlusSetting = new System.Windows.Forms.CheckBox();
@@ -60,7 +61,6 @@
             this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.unusedRelics = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -156,6 +156,18 @@
             this.SettingsPage.Text = "Settings";
             this.SettingsPage.UseVisualStyleBackColor = true;
             // 
+            // unusedRelics
+            // 
+            this.unusedRelics.AutoSize = true;
+            this.unusedRelics.Checked = true;
+            this.unusedRelics.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.unusedRelics.Location = new System.Drawing.Point(42, 193);
+            this.unusedRelics.Name = "unusedRelics";
+            this.unusedRelics.Size = new System.Drawing.Size(110, 17);
+            this.unusedRelics.TabIndex = 21;
+            this.unusedRelics.Text = "Add unused relics";
+            this.unusedRelics.UseVisualStyleBackColor = true;
+            // 
             // shuffleSlots
             // 
             this.shuffleSlots.AutoSize = true;
@@ -191,7 +203,7 @@
             // 
             this.lilySkinOverride.BackColor = System.Drawing.SystemColors.Window;
             this.lilySkinOverride.Location = new System.Drawing.Point(246, 163);
-            this.lilySkinOverride.Maximum = 11;
+            this.lilySkinOverride.Maximum = 12;
             this.lilySkinOverride.Name = "lilySkinOverride";
             this.lilySkinOverride.Size = new System.Drawing.Size(186, 45);
             this.lilySkinOverride.TabIndex = 17;
@@ -422,18 +434,6 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Seed:";
-            // 
-            // unusedRelics
-            // 
-            this.unusedRelics.AutoSize = true;
-            this.unusedRelics.Checked = true;
-            this.unusedRelics.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.unusedRelics.Location = new System.Drawing.Point(42, 193);
-            this.unusedRelics.Name = "unusedRelics";
-            this.unusedRelics.Size = new System.Drawing.Size(110, 17);
-            this.unusedRelics.TabIndex = 21;
-            this.unusedRelics.Text = "Add unused relics";
-            this.unusedRelics.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 

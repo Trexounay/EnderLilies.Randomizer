@@ -215,6 +215,7 @@ namespace EnderLilies.Randomizer
                     "Blighted 7",
                     "Blighted 8",
                     "Blighted 9",
+                    "Blighted 10",
                     "Fully Blighted",
                 };
                 skinLevelText.Text = "Lilly:" + lily_level[value];
