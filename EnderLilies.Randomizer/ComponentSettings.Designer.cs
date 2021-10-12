@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.seedText = new System.Windows.Forms.TextBox();
             this.lockSeed = new System.Windows.Forms.CheckBox();
@@ -36,6 +36,10 @@
             this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
+            this.shuffleSlots = new System.Windows.Forms.CheckBox();
+            this.skinLevelText = new System.Windows.Forms.Label();
+            this.ngPlusSetting = new System.Windows.Forms.CheckBox();
+            this.lilySkinOverride = new System.Windows.Forms.TrackBar();
             this.shuffleGroup = new System.Windows.Forms.GroupBox();
             this.shuffleWishes = new System.Windows.Forms.CheckBox();
             this.shuffleSpirits = new System.Windows.Forms.CheckBox();
@@ -56,9 +60,11 @@
             this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.unusedRelics = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lilySkinOverride)).BeginInit();
             this.shuffleGroup.SuspendLayout();
             this.LogicPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).BeginInit();
@@ -132,6 +138,11 @@
             // 
             // SettingsPage
             // 
+            this.SettingsPage.Controls.Add(this.unusedRelics);
+            this.SettingsPage.Controls.Add(this.shuffleSlots);
+            this.SettingsPage.Controls.Add(this.skinLevelText);
+            this.SettingsPage.Controls.Add(this.ngPlusSetting);
+            this.SettingsPage.Controls.Add(this.lilySkinOverride);
             this.SettingsPage.Controls.Add(this.shuffleGroup);
             this.SettingsPage.Controls.Add(this.checkfile);
             this.SettingsPage.Controls.Add(this.open);
@@ -144,6 +155,46 @@
             this.SettingsPage.TabIndex = 3;
             this.SettingsPage.Text = "Settings";
             this.SettingsPage.UseVisualStyleBackColor = true;
+            // 
+            // shuffleSlots
+            // 
+            this.shuffleSlots.AutoSize = true;
+            this.shuffleSlots.Checked = true;
+            this.shuffleSlots.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.shuffleSlots.Location = new System.Drawing.Point(42, 147);
+            this.shuffleSlots.Name = "shuffleSlots";
+            this.shuffleSlots.Size = new System.Drawing.Size(109, 17);
+            this.shuffleSlots.TabIndex = 20;
+            this.shuffleSlots.Text = "Shuffle relics cost";
+            this.shuffleSlots.UseVisualStyleBackColor = true;
+            // 
+            // skinLevelText
+            // 
+            this.skinLevelText.AutoSize = true;
+            this.skinLevelText.Location = new System.Drawing.Point(297, 147);
+            this.skinLevelText.Name = "skinLevelText";
+            this.skinLevelText.Size = new System.Drawing.Size(85, 13);
+            this.skinLevelText.TabIndex = 19;
+            this.skinLevelText.Text = "Lilly skin: Normal";
+            // 
+            // ngPlusSetting
+            // 
+            this.ngPlusSetting.AutoSize = true;
+            this.ngPlusSetting.Location = new System.Drawing.Point(42, 170);
+            this.ngPlusSetting.Name = "ngPlusSetting";
+            this.ngPlusSetting.Size = new System.Drawing.Size(61, 17);
+            this.ngPlusSetting.TabIndex = 18;
+            this.ngPlusSetting.Text = "NG+ AI";
+            this.ngPlusSetting.UseVisualStyleBackColor = true;
+            // 
+            // lilySkinOverride
+            // 
+            this.lilySkinOverride.BackColor = System.Drawing.SystemColors.Window;
+            this.lilySkinOverride.Location = new System.Drawing.Point(246, 163);
+            this.lilySkinOverride.Maximum = 11;
+            this.lilySkinOverride.Name = "lilySkinOverride";
+            this.lilySkinOverride.Size = new System.Drawing.Size(186, 45);
+            this.lilySkinOverride.TabIndex = 17;
             // 
             // shuffleGroup
             // 
@@ -167,6 +218,8 @@
             // shuffleWishes
             // 
             this.shuffleWishes.AutoSize = true;
+            this.shuffleWishes.Checked = true;
+            this.shuffleWishes.CheckState = System.Windows.Forms.CheckState.Checked;
             this.shuffleWishes.Location = new System.Drawing.Point(6, 88);
             this.shuffleWishes.Name = "shuffleWishes";
             this.shuffleWishes.Size = new System.Drawing.Size(114, 17);
@@ -177,6 +230,8 @@
             // shuffleSpirits
             // 
             this.shuffleSpirits.AutoSize = true;
+            this.shuffleSpirits.Checked = true;
+            this.shuffleSpirits.CheckState = System.Windows.Forms.CheckState.Checked;
             this.shuffleSpirits.Location = new System.Drawing.Point(6, 19);
             this.shuffleSpirits.Name = "shuffleSpirits";
             this.shuffleSpirits.Size = new System.Drawing.Size(54, 17);
@@ -187,6 +242,8 @@
             // shuffleChains
             // 
             this.shuffleChains.AutoSize = true;
+            this.shuffleChains.Checked = true;
+            this.shuffleChains.CheckState = System.Windows.Forms.CheckState.Checked;
             this.shuffleChains.Location = new System.Drawing.Point(262, 19);
             this.shuffleChains.Name = "shuffleChains";
             this.shuffleChains.Size = new System.Drawing.Size(107, 17);
@@ -197,6 +254,8 @@
             // shuffleTablets
             // 
             this.shuffleTablets.AutoSize = true;
+            this.shuffleTablets.Checked = true;
+            this.shuffleTablets.CheckState = System.Windows.Forms.CheckState.Checked;
             this.shuffleTablets.Location = new System.Drawing.Point(6, 65);
             this.shuffleTablets.Name = "shuffleTablets";
             this.shuffleTablets.Size = new System.Drawing.Size(88, 17);
@@ -207,6 +266,8 @@
             // shuffleAmulets
             // 
             this.shuffleAmulets.AutoSize = true;
+            this.shuffleAmulets.Checked = true;
+            this.shuffleAmulets.CheckState = System.Windows.Forms.CheckState.Checked;
             this.shuffleAmulets.Location = new System.Drawing.Point(262, 42);
             this.shuffleAmulets.Name = "shuffleAmulets";
             this.shuffleAmulets.Size = new System.Drawing.Size(107, 17);
@@ -217,6 +278,8 @@
             // shuffleFindings
             // 
             this.shuffleFindings.AutoSize = true;
+            this.shuffleFindings.Checked = true;
+            this.shuffleFindings.CheckState = System.Windows.Forms.CheckState.Checked;
             this.shuffleFindings.Location = new System.Drawing.Point(262, 88);
             this.shuffleFindings.Name = "shuffleFindings";
             this.shuffleFindings.Size = new System.Drawing.Size(65, 17);
@@ -227,6 +290,8 @@
             // shuffleBlights
             // 
             this.shuffleBlights.AutoSize = true;
+            this.shuffleBlights.Checked = true;
+            this.shuffleBlights.CheckState = System.Windows.Forms.CheckState.Checked;
             this.shuffleBlights.Location = new System.Drawing.Point(262, 65);
             this.shuffleBlights.Name = "shuffleBlights";
             this.shuffleBlights.Size = new System.Drawing.Size(94, 17);
@@ -237,6 +302,8 @@
             // shuffleRelics
             // 
             this.shuffleRelics.AutoSize = true;
+            this.shuffleRelics.Checked = true;
+            this.shuffleRelics.CheckState = System.Windows.Forms.CheckState.Checked;
             this.shuffleRelics.Location = new System.Drawing.Point(6, 42);
             this.shuffleRelics.Name = "shuffleRelics";
             this.shuffleRelics.Size = new System.Drawing.Size(55, 17);
@@ -302,11 +369,11 @@
             this.LogicPreviewGridview.AllowUserToAddRows = false;
             this.LogicPreviewGridview.AllowUserToDeleteRows = false;
             this.LogicPreviewGridview.AllowUserToResizeRows = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.LogicPreviewGridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.LogicPreviewGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LogicPreviewGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -356,6 +423,18 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Seed:";
             // 
+            // unusedRelics
+            // 
+            this.unusedRelics.AutoSize = true;
+            this.unusedRelics.Checked = true;
+            this.unusedRelics.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.unusedRelics.Location = new System.Drawing.Point(42, 193);
+            this.unusedRelics.Name = "unusedRelics";
+            this.unusedRelics.Size = new System.Drawing.Size(110, 17);
+            this.unusedRelics.TabIndex = 21;
+            this.unusedRelics.Text = "Add unused relics";
+            this.unusedRelics.UseVisualStyleBackColor = true;
+            // 
             // ComponentSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -371,6 +450,7 @@
             this.tabSettings.ResumeLayout(false);
             this.SettingsPage.ResumeLayout(false);
             this.SettingsPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lilySkinOverride)).EndInit();
             this.shuffleGroup.ResumeLayout(false);
             this.shuffleGroup.PerformLayout();
             this.LogicPage.ResumeLayout(false);
@@ -408,5 +488,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReachablesColumn;
         private System.Windows.Forms.CheckBox shuffleWishes;
+        private System.Windows.Forms.TrackBar lilySkinOverride;
+        private System.Windows.Forms.Label skinLevelText;
+        private System.Windows.Forms.CheckBox ngPlusSetting;
+        private System.Windows.Forms.CheckBox shuffleSlots;
+        private System.Windows.Forms.CheckBox unusedRelics;
     }
 }

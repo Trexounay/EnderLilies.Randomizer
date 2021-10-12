@@ -60,6 +60,7 @@ private:
 	void RemoveHasItemCheck();
 	void EraseSpirits();
 	void RefreshAptitudes();
+	void ShuffleRelicSlots();
 	void ReadSeedFile(std::string path);
 	void FindItems(CG::UClass* type);
 	void ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);

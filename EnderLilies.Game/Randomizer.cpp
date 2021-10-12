@@ -3,6 +3,7 @@
 #include "Randomizer.h"
 #include <iostream>
 #include <fstream>
+#include <stdlib.h>
 
 
 Randomizer::Randomizer(std::string path, CG::UWorld** pworld)
@@ -184,6 +185,21 @@ void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandl
 	_done.insert(itemhandle);
 }
 
+void Randomizer::ShuffleRelicSlots()
+{
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	CG::UDataTable* table = gm->ItemPassiveTable;
+	for (int i = table->Data.Num(); i > 1;)
+	{
+		int k = rand() % i;
+		i--;
+		int count = ((CG::FItemPassiveData*)table->Data[k].ptr)->SlotCount;
+		((CG::FItemPassiveData*)table->Data[k].ptr)->SlotCount = ((CG::FItemPassiveData*)table->Data[i].ptr)->SlotCount;
+		((CG::FItemPassiveData*)table->Data[i].ptr)->SlotCount = count;
+
+	}
+}
+
 void Randomizer::ReadSeedFile(std::string path)
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
@@ -211,36 +227,57 @@ void Randomizer::ReadSeedFile(std::string path)
 		while (std::getline(file, line))
 		{
 			auto sep = line.find(":");
+			if (sep <= 0)
+				continue;
 			std::string location = line.substr(0, sep);
 			std::string item = line.substr(sep + 1, line.length());
 			trim(location);
 			trim(item);
-			bool found = false;
-			for (char i = 0; i < 6; ++i) {
-				if (item.compare(0, strlen(tableNames[i]), tableNames[i]) == 0)
+			if (location == "SEED")
+				srand(atoi(item.c_str()));
+			else if (location == "SETTINGS")
+			{
+				if (item == "shuffle_slots")
+					ShuffleRelicSlots();
+				else if (location == "SETTINGS" && item == "NG+")
+					gm->NewGamePlusGeneration = 1;
+				else if (item.find("override_skin") != std::string::npos)
 				{
-					auto entry = item.substr(strlen(tableNames[i]) + 1, item.length());
-					DWORD_PTR ptr = (DWORD_PTR)gm;
-					CG::UDataTable* table = *(CG::UDataTable**)(&((char*)gm)[offsets[i]]);
-					for (int j = 0; j < table->Data.Num(); ++j)
-						if (table->Data[j].Name.GetName() == entry)
-						{
-							FTableRowProxy proxy;
-							proxy.datatable = offsets[i];
-							proxy.entry = j;
-							_replacements[location] = proxy;
-							found = true;
-							break;
-						}
+					int level = atoi(item.substr(sizeof("override_skin"), item.length()).c_str());
+					((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController)->ParameterPlayerComponent->SetSkinLevelOverride(level, true);
 				}
 			}
-			if (!found)
-				std::cout << "unknown item:\t" << item << std::endl;
+			else
+			{
+				bool found = false;
+				for (char i = 0; i < 6; ++i)
+				{
+					if (item.compare(0, strlen(tableNames[i]), tableNames[i]) == 0)
+					{
+						auto entry = item.substr(strlen(tableNames[i]) + 1, item.length());
+						DWORD_PTR ptr = (DWORD_PTR)gm;
+						CG::UDataTable* table = *(CG::UDataTable**)(&((char*)gm)[offsets[i]]);
+						for (int j = 0; j < table->Data.Num(); ++j)
+							if (table->Data[j].Name.GetName() == entry)
+							{
+								FTableRowProxy proxy;
+								proxy.datatable = offsets[i];
+								proxy.entry = j;
+								_replacements[location] = proxy;
+								found = true;
+								break;
+							}
+					}
+				}
+				if (!found)
+					std::cout << "unknown item:\t" << item << std::endl;
+			}
 		}
 		if (file.is_open())
 			file.close();
 	}
 }
+
 void Randomizer::RemoveHasItemCheck()
 {
 	CG::UFunction* fn = CG::UObject::FindObject<CG::UFunction>("Function Zenith.InventoryComponent.HasItem");

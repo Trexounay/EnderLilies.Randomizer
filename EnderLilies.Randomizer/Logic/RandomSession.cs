@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace EnderLilies.Randomizer
@@ -58,7 +59,35 @@ namespace EnderLilies.Randomizer
         }
 
         public List<string> items;
-        public void Generate(int seed, bool write=true)
+
+        public void ShuffleTablets(List<string> locations)
+        {
+            List<Predicate<string>> areas = new List<Predicate<string>>
+            {
+                (s) => s.StartsWith("Castle"),
+                (s) => s.StartsWith("Cave"),
+                (s) => s.StartsWith("Forest"),
+                (s) => s.StartsWith("Outside") || s.StartsWith("Fort"),
+                (s) => s.StartsWith("Oubliette"),
+                (s) => s.StartsWith("Village"),
+                (s) => s.StartsWith("Swamp") || s.StartsWith("Abyss"),
+            };
+            int i = items.IndexOf("Generic.i_FinalPassivePart_Up");
+            int relic_index = 0;
+            while (i != -1)
+            {
+                var location = locations.First((l) => !result.ContainsKey(l) && areas[relic_index](l));
+                if (!string.IsNullOrEmpty(location))
+                {
+                    result[location] = items[i];
+                    relic_index++;
+                    items.RemoveAt(i);
+                }
+                i = items.IndexOf("Generic.i_FinalPassivePart_Up");
+            }
+        }
+
+        public void Generate(int seed, bool write = true)
         {
             GameGraph = GetGraph();
             RNG.stream = new Random(seed);
@@ -69,9 +98,13 @@ namespace EnderLilies.Randomizer
             items.AddRange(GameGraph.extra_items);
             foreach (string v in result.Values)
                 items.Remove(v);
-            items.Sort(new CompareItems());
+
             var loc = new List<string>(GameGraph.locations.Keys);
+            items.Sort(new CompareItems());
             loc.Shuffle();
+
+            if (_settings.ShuffleTablets)
+                ShuffleTablets(loc);
             foreach (var k in loc)
             {
                 if (!result.ContainsKey(k))
@@ -86,65 +119,66 @@ namespace EnderLilies.Randomizer
 
         public GameGraph GetGraph()
         {
+            Dictionary<string, bool> pool = new Dictionary<string, bool>()
+            {
+                { "Parameter.i_maxHP", _settings.ShuffleAmulets },
+                { "Generic.i_SpiritCurrency", _settings.ShuffleBlights },
+                { "Generic.i_PassiveSlot", _settings.ShuffleChains },
+                { "Tip.", _settings.ShuffleFindings },
+                { "Passive.", _settings.ShuffleRelics },
+                { "Spirit.", _settings.ShuffleSpirits },
+                { "Generic.i_FinalPassivePart_Up", _settings.ShuffleTablets },
+                { "Generic.i_Heal", _settings.ShuffleWishes },
+            };
+            string[] unused_relics ={
+                "Passive.i_passive_post_damage_invincibility",
+                "Passive.i_passive_maxhpup_LV3",
+                "Passive.i_passive_dmgup_grounded_LV2",
+                "Passive.i_passive_dmgup_airborne_LV2",
+                "Passive.i_passive_spirit_maxcast_count_up_LV3",
+                "Passive.i_passive_recast_time_cut_LV3",
+                "Passive.i_passive_stamina_up"
+            };
+
             GameGraph g = SerializableGraph.Import(_settings.FilePath);
+            if (!_settings.UnusedRelics)
+                foreach (var relic in unused_relics)
+                    g.extra_items.Remove(relic);
             foreach (var k in g.locations)
             {
-                if (k.Value.StartsWith("Parameter.i_maxHP") && !_settings.ShuffleAmulets)
+                foreach (var filter in pool)
                 {
-                    g.AddResult(k.Key, k.Value);
-                    continue;
+                    if (k.Value.StartsWith(filter.Key) && !filter.Value)
+                    {
+                        g.AddResult(k.Key, k.Value);
+                        break;
+                    }
                 }
-                if (k.Value.StartsWith("Generic.i_SpiritCurrency") && !_settings.ShuffleBlights)
-                {
-                    g.AddResult(k.Key, k.Value);
-                    continue;
-                }
-                else if (k.Value.StartsWith("Generic.i_PassiveSlot") && !_settings.ShuffleChains)
-                {
-                    g.AddResult(k.Key, k.Value);
-                    continue;
-                }
-                else if (k.Value.StartsWith("Tip.") && !_settings.ShuffleFindings)
-                {
-                    g.AddResult(k.Key, k.Value);
-                    continue;
-                }
-                else if (k.Value.StartsWith("Passive.") && !_settings.ShuffleRelics)
-                {
-                    g.AddResult(k.Key, k.Value);
-                    continue;
-                }
-                else if (k.Value.StartsWith("Spirit.") && !_settings.ShuffleSpirits)
-                {
-                    g.AddResult(k.Key, k.Value);
-                    continue;
-                }
-                else if (k.Value.StartsWith("Generic.i_FinalPassivePart_Up") && !_settings.ShuffleTablets)
-                {
-                    g.AddResult(k.Key, k.Value);
-                    continue;
-                }
-                else if (k.Value.StartsWith("Generic.i_Heal") && !_settings.ShuffleWishes)
-                {
-                    g.AddResult(k.Key, k.Value);
-                    continue;
-                }
-                Console.WriteLine(k.Value);
             }
-            ShufflePool = g.locations.Count - g.result.Count;
+            ShufflePool = g.locations.Count - g._forced.Count;
             return g;
         }
 
-        public void WriteFile()
+        public void WriteFile(bool sort = false)
         {
             string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? String.Empty;
             string path = Path.Combine(dir, "EnderLiliesSeed.txt");
             using (StreamWriter writer = new StreamWriter(path))
             {
-                foreach (var k in result)
+                writer.WriteLine("SEED:" + _settings.Seed.ToString());
+                var keys = new List<string>(result.Keys);
+                if (_settings.SkinOverride > 0)
+                    writer.WriteLine("SETTINGS:override_skin=" + (_settings.SkinOverride).ToString());
+                if (_settings.ShuffleSlots)
+                    writer.WriteLine("SETTINGS:shuffle_slots");
+                if (_settings.NGPlus)
+                    writer.WriteLine("SETTINGS:NG+");
+                if (sort)
+                    keys.Sort();
+                foreach (var k in keys)
                 {
-                    if (k.Value != GameGraph.locations[k.Key])
-                        writer.WriteLine(k.Key + ":" + k.Value);
+                    if (result[k] != GameGraph.locations[k])
+                        writer.WriteLine(k + ":" + result[k]);
                 }
             }
         }

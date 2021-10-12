@@ -135,6 +135,48 @@ namespace EnderLilies.Randomizer
             }
         }
 
+        bool _shuffleSlots;
+        public bool ShuffleSlots
+        {
+            get
+            {
+                return _shuffleSlots;
+            }
+            set
+            {
+                _shuffleSlots = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _ngPlus;
+        public bool NGPlus
+        {
+            get
+            {
+                return _ngPlus;
+            }
+            set
+            {
+                _ngPlus = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _unusedRelics;
+        public bool UnusedRelics
+        {
+            get
+            {
+                return _unusedRelics;
+            }
+            set
+            {
+                _unusedRelics = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
         int _currentSeed = 0;
         public int Seed
@@ -150,16 +192,32 @@ namespace EnderLilies.Randomizer
             }
         }
 
-        int _currentRoom = 0;
-        public int CurrentRoom
+        int _skinOverride = 0;
+        public int SkinOverride
         {
             get
             {
-                return _currentRoom;
+                return _skinOverride;
             }
             set
             {
-                _currentRoom = value;
+                _skinOverride = value;
+                string[] lily_level =
+                    {
+                    "Normal",
+                    "Pure",
+                    "Blighted 1",
+                    "Blighted 2",
+                    "Blighted 3",
+                    "Blighted 4",
+                    "Blighted 5",
+                    "Blighted 6",
+                    "Blighted 7",
+                    "Blighted 8",
+                    "Blighted 9",
+                    "Fully Blighted",
+                };
+                skinLevelText.Text = "Lilly:" + lily_level[value];
                 NotifyPropertyChanged();
             }
         }
@@ -171,6 +229,9 @@ namespace EnderLilies.Randomizer
             this.path.DataBindings.Add("Text", this, "FilePath", false,
                 DataSourceUpdateMode.OnPropertyChanged);
             this.seedText.DataBindings.Add("Text", this, "Seed", false,
+                DataSourceUpdateMode.OnPropertyChanged);
+
+            this.lilySkinOverride.DataBindings.Add("Value", this, "SkinOverride", false,
                 DataSourceUpdateMode.OnPropertyChanged);
             this.lockSeed.DataBindings.Add("Checked", this, "LockSeed", false,
                 DataSourceUpdateMode.OnPropertyChanged);
@@ -190,6 +251,9 @@ namespace EnderLilies.Randomizer
                 DataSourceUpdateMode.OnPropertyChanged);
             this.shuffleWishes.DataBindings.Add("Checked", this, "ShuffleWishes", false,
                 DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleSlots.DataBindings.Add("Checked", this, "ShuffleSlots", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.ngPlusSetting.DataBindings.Add("Checked", this, "NGPlus", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.unusedRelics.DataBindings.Add("Checked", this, "UnusedRelics", false, DataSourceUpdateMode.OnPropertyChanged);
 
             this.checkfile.DataBindings.Add("Text", this, "CheckFileResult", false,
                 DataSourceUpdateMode.OnPropertyChanged);
@@ -216,6 +280,9 @@ namespace EnderLilies.Randomizer
             ShuffleSpirits = SettingsHelper.ParseBool(element["ShuffleSpirits"], true);
             ShuffleTablets = SettingsHelper.ParseBool(element["ShuffleTablets"], true);
             ShuffleWishes = SettingsHelper.ParseBool(element["ShuffleWishes"], true);
+            ShuffleSlots = SettingsHelper.ParseBool(element["ShuffleSlots"], true);
+            UnusedRelics = SettingsHelper.ParseBool(element["UnusedRelics"], true);
+            NGPlus = SettingsHelper.ParseBool(element["NGPlus"], false);
             Seed = SettingsHelper.ParseInt(element["Seed"], 0);
             this.path.Text = FilePath;
         }
@@ -233,6 +300,9 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleSpirits", ShuffleSpirits));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleTablets", ShuffleTablets));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleWishes", ShuffleWishes));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleSlots", ShuffleSlots));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "UnusedRelics", UnusedRelics));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "NGPlus", NGPlus));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "Seed", Seed));
             return settings_node;
         }
@@ -270,9 +340,7 @@ namespace EnderLilies.Randomizer
                     if (k.Value == item)
                         item = k.Key;
                 }
-                node = node.Replace("_GAMEPLAY.BP_", ".");
-                node = node.Replace("Interactable_", "");
-                node = node.Replace("Passive_", "");
+                node = node.Replace("_GAMEPLAY.BP_", ".").Replace("Interactable_", "").Replace("Passive_", "");
                 LogicPreviewGridview.Rows.Add(node,
                     item,
                     string.Format("{0}/{1}", l.reachables, g.nodes.Count));
@@ -304,31 +372,10 @@ namespace EnderLilies.Randomizer
 
         private void Randomize_Click(object sender, EventArgs e)
         {
-            
             if (!LockSeed)
-            {
                 Seed = new System.Random().Next();
-            }
             else
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Seed"));
-            return;
-            var seed = 0;
-
-            var r = new RandomSession(this);
-            for (int i = 0; i < 10000; i++)
-            {
-                r.Generate(seed, false);
-                string[] c = {
-                    "Abyss_05_GAMEPLAY.BP_Interactable_Item_FinalPassivePart_2",
-                    "Abyss_05_GAMEPLAY.BP_Interactable_Item_Tip4",
-                    "Abyss_05_GAMEPLAY.BP_SCR_LV3S_5000_1",
-                };
-                foreach (var j in c)
-                    if (r.result[j].StartsWith("Aptitude.") && r.result[j] != "Aptitude.special_attack")
-                        break;
-            }
-            Seed = seed;
-            r.WriteFile();
         }
 
         private void open_Click(object sender, EventArgs e)

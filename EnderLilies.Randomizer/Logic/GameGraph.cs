@@ -16,7 +16,7 @@ namespace EnderLilies.Randomizer
             public int reachables;
             public int items;
         }
-            
+
         public class Edge
         {
             public int from;
@@ -63,10 +63,75 @@ namespace EnderLilies.Randomizer
         {
         }
 
-        public Dictionary<int, int> result = new Dictionary<int, int>();
+        public Dictionary<int, int> _forced = new Dictionary<int, int>();
+
+
+        public HashSet<int> UpdateReachables(ref List<int> empty,
+            ref List<Edge> unsolved,
+            ref HashSet<int> reachables,
+            Dictionary<int, int> result)
+        {
+            HashSet<int> items = new HashSet<int>();
+            foreach (var n in result)
+                if (reachables.Contains(n.Key))
+                    items.Add(n.Value);
+            bool done = false;
+            HashSet<int> missing_progress = new HashSet<int>();
+            HashSet<int> missing_no_progress = new HashSet<int>();
+            while (!done)
+            {
+                done = true;
+                missing_progress.Clear();
+                missing_no_progress.Clear();
+                List<Edge> connections = new List<Edge>(unsolved);
+                foreach (Edge e in connections)
+                {
+                    int other = 0;
+                    if (reachables.Contains(e.from) && reachables.Contains(e.to) ||
+                        (reachables.Contains(e.to) && !e.twoways))
+                    {
+                        unsolved.Remove(e);
+                        done = false;
+                        continue;
+                    }
+                    if (reachables.Contains(e.from))
+                        other = e.to;
+                    else if (reachables.Contains(e.to) && e.twoways)
+                        other = e.from;
+                    else
+                        continue;
+                    HashSet<int> requires = e.GetMissing(items);
+                    if (requires.Count == 0)
+                    {
+                        unsolved.Remove(e);
+                        reachables.Add(other);
+                        if (result.ContainsKey(other))
+                            items.Add(result[other]);
+                        else
+                            empty.Add(other);
+                        done = false;
+                    }
+                    else if (requires.Count <= empty.Count && !result.ContainsKey(other))
+                    {
+                        if (requires.Count < missing_progress.Count || missing_progress.Count == 0)
+                            missing_progress = requires;
+                        //missing_progress.UnionWith(requires);
+                    }
+                    else if (requires.Count <= empty.Count)
+                        if (requires.Count < missing_no_progress.Count || missing_no_progress.Count == 0)
+                            missing_no_progress = requires;
+                    //missing_no_progress.UnionWith(requires);
+                }
+            }
+            if (missing_progress.Count > 0)
+                return missing_progress;
+            else
+                return missing_no_progress;
+        }
 
         public Dictionary<string, string> Solve(string start)
         {
+            Dictionary<int, int> result = new Dictionary<int, int>(_forced);
             logic.Clear();
             if (aliases.ContainsKey(start))
                 start = aliases[start];
@@ -74,83 +139,52 @@ namespace EnderLilies.Randomizer
             int start_id = nodes.IndexOf(start);
             if (start_id < 0)
                 return null;
-            HashSet<Edge> unsolved = new HashSet<Edge>(edges);
+            List<Edge> unsolved = new List<Edge>(edges);
+            unsolved.Shuffle();
             List<int> empty_nodes = new List<int>();
             Dictionary<int, float> inv_weights = new Dictionary<int, float>();
             for (int i = 0; i < nodes.Count; ++i)
                 inv_weights[i] = 1;
-
             reachables.Add(start_id);
             if (!result.ContainsKey(start_id))
                 empty_nodes.Add(start_id);
             bool done = false;
+
+            HashSet<int> missings = new HashSet<int>();
             while (!done)
             {
-                HashSet<int> missings = new HashSet<int>();
-                while (!done)
+                done = true;
+                missings = UpdateReachables(ref empty_nodes, ref unsolved, ref reachables, result);
+                int count = empty_nodes.Count;
+                if (missings.Count > 0 && count > 0)
                 {
-                    done = true;
-                    missings.Clear();
-                    List<Edge> connections = new List<Edge>(unsolved);
-                    foreach (Edge e in connections)
+                    done = false;
+                    float sum = 0;
+                    Dictionary<int, float> weights = new Dictionary<int, float>();
+                    foreach (var n in empty_nodes)
                     {
-                        int other = 0;
-                        if (reachables.Contains(e.from) && reachables.Contains(e.to) ||
-                            (reachables.Contains(e.to) && !e.twoways))
-                        {
-                            unsolved.Remove(e);
-                            done = false;
-                            continue;
-                        }
-                        if (reachables.Contains(e.from))
-                            other = e.to;
-                        else if (reachables.Contains(e.to) && e.twoways)
-                            other = e.from;
-                        else
-                            continue;
-                        HashSet<int> requires = e.GetMissing(from r in result where reachables.Contains(r.Key) select r.Value);
-                        if (requires.Count == 0)
-                        {
-                            unsolved.Remove(e);
-                            reachables.Add(other);
-                            if (!result.ContainsKey(other))
-                                empty_nodes.Add(other);
-                            done = false;
-                        }
-                        else if ((requires.Count <= empty_nodes.Count) && !result.ContainsKey(other))
-                            missings.UnionWith(requires);
+                        weights[n] = 1.0f - (inv_weights[n] * (1 - (1.0f / count)));
+                        sum += weights[n];
                     }
-                    float count = empty_nodes.Count;
-                    if (missings.Count > 0 && count > 0)
+                    foreach (var n in empty_nodes)
                     {
-                        int[] items = missings.ToArray();
-                        float sum = 0;
-                        Dictionary<int, float> weights = new Dictionary<int, float>();
-                        foreach (var n in empty_nodes)
-                        {
-                            weights[n] = 1.0f - (inv_weights[n] * (1 - (1.0f / count)));
-                            sum += weights[n];
-                        }
-                        foreach (var n in empty_nodes)
-                        {
-                            weights[n] = (sum / count) / weights[n];
-                            inv_weights[n] *= 1.0f - (weights[n] / (count * sum));
-                        }
-                        int node = empty_nodes.RandomWithWeigh(weights);
-                        //int node = empty_nodes[Tools.rng.Next(empty_nodes.Count)];
-                        result[node] = items[RNG.stream.Next(items.Length)];
-                        logic.Add(new LogicLog() { node=node, reachables= reachables.Count });
-                        inv_weights.Remove(node);
-                        empty_nodes.Remove(node);
-                        done = false;
+                        weights[n] = (sum / count) / weights[n];
+                        inv_weights[n] *= 1.0f - (weights[n] / (count * sum));
                     }
+                    var pool = missings.ToArray();
+                    int node = empty_nodes.RandomWithWeigh(weights);
+                    int item = pool[RNG.stream.Next(pool.Length)];
+                    result[node] = item;
+                    logic.Add(new LogicLog() { node = node, reachables = reachables.Count });
+                    inv_weights.Remove(node);
+                    empty_nodes.Remove(node);
                 }
             }
 
             Dictionary<string, string> data = new Dictionary<string, string>();
             foreach (KeyValuePair<int, int> pair in result)
                 data.Add(nodes[pair.Key], keys[pair.Value]);
-            logic.Add(new LogicLog() { node = -1, reachables = reachables.Count, items=data.Count() });
+            logic.Add(new LogicLog() { node = -1, reachables = reachables.Count, items = data.Count() });
             return data;
         }
 
@@ -208,7 +242,7 @@ namespace EnderLilies.Randomizer
         {
             AddNode(node);
             AddKey(key);
-            result.Add(nodes.IndexOf(node), keys.IndexOf(key));
+            _forced.Add(nodes.IndexOf(node), keys.IndexOf(key));
         }
 
         public void AddResults(Dictionary<string, string> forced)
