@@ -139,13 +139,14 @@ void Randomizer::FindItems(CG::UClass *type)
 	}
 }
 
-void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle)
+void *Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle)
 {
+	void* ptr = nullptr;
 	if (itemhandle == nullptr)
-		return;
+		return ptr;
 	auto result = _done.find(itemhandle);
 	if (result != _done.end())
-		return;
+		return ptr;
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 
 	auto map = actor->Outer->Outer->GetName();
@@ -171,18 +172,20 @@ void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandl
 		og = "Spirit." + og;
 	else if (itemhandle->DataTable == gm->ItemTipTable)
 		og = "Tip." + og;
-
 	if (entry != _replacements.end())
 	{
 		itemhandle->DataTable = *(CG::UDataTable**)(&((char*)gm)[entry->second.datatable]);
 		itemhandle->RowName = itemhandle->DataTable->Data[entry->second.entry].Name;
+		#
 		std::cout << "(" << actor->RootComponent->RelativeLocation.Y << ":" << actor->RootComponent->RelativeLocation.Z << ")\t" << name << "\t" << og << "->" << itemhandle->RowName.GetName() << std::endl;
+		//ptr = itemhandle->DataTable->Data[entry->second.entry].ptr;
 	}
 	else
 	{
 		std::cout << "UNKNOWN LOCATION:" << "(" << actor->RootComponent->RelativeLocation.Y << ":" << actor->RootComponent->RelativeLocation.Z << ")\t" << name << "\t" << og << std::endl;
 	}
 	_done.insert(itemhandle);
+	return ptr;
 }
 
 void Randomizer::ShuffleRelicSlots()
@@ -317,6 +320,12 @@ void Randomizer::RefreshAptitudes()
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	for (int i = 0; i < gm->TutorialTable->Data.Num(); ++i)
 		pc->MarkTutorialAsSeen(gm->TutorialTable->Data[i].Name);
+
+	/*
+	for (int i = 0; i < gm->ItemTipTable->Data.Num(); ++i)
+		((CG::FItemTipData*)gm->ItemTipTable->Data[i].ptr)->GetItemTriggerClass = text;*/
+
+
 #ifdef _DEBUG
 	pc->UnlockAllAptitudes();
 

@@ -837,7 +837,7 @@
     {
       "from": "Start",
       "to": "Church_13_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "unlock",
+      "requires": "unlock + LEDGE",
       "twoways": true
     },
     {
@@ -2073,19 +2073,19 @@
     {
       "from": "Youth",
       "to": "Village_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_Treasure_2",
-      "requires": "slam + LEDGE",
+      "requires": "slam + djump",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_13_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
-      "requires": "slam + (LEDGE | claw)",
+      "requires": "slam",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_13_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
-      "requires": "swim + LEDGE | claw",
+      "requires": "swim",
       "twoways": true
     },
     {

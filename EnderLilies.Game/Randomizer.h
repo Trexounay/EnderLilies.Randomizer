@@ -63,6 +63,6 @@ private:
 	void ShuffleRelicSlots();
 	void ReadSeedFile(std::string path);
 	void FindItems(CG::UClass* type);
-	void ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);
+	void* ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);
 	void Init();
 };

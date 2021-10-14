@@ -647,7 +647,6 @@ struct FName
 		{
 			if (GetGlobalNames()[i]->GetAnsiName() == nameToFind)
 			{
-				std::cout << "found name!" << std::endl;
 				ComparisonIndex = i;
 #ifdef FNamePool_WITH_CASE_PRESERVING_NAME
 				DisplayIndex = i;
@@ -659,7 +658,6 @@ struct FName
 #ifdef FNAME_POOL
 		uintptr_t lastFNameAddress = NULL;
 
-		std::cout << "insert name!" << std::endl;
 		for (FNameEntry* name = GetGlobalNames().GetNext(lastFNameAddress); name != nullptr; name = GetGlobalNames().GetNext(lastFNameAddress))
 		{
 			if (name->GetAnsiName() == nameToFind)

@@ -96,4 +96,8 @@
     <None Include="Resources\600px-Refresh_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Update\Components\$(ProjectName).dll"
+copy /Y "$(TargetDir)$(ProjectName).json" "$(SolutionDir)Update\Components\$(ProjectName).json"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
