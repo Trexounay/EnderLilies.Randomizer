@@ -45,6 +45,9 @@ private:
 	bool _new_game = true;
 	bool _new_map = true;
 	bool _need_init = true;
+
+	int skin_override = -1;
+
 	std::string _path;
 	std::unordered_map<std::string, FTableRowProxy> _replacements;
 	std::unordered_set<CG::FDataTableRowHandle*> _done;

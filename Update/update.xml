@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
+  <update version="2.0.8">
+    <files>
+      <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+      <file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
+      <file path="Components/EnderLilies.Game.dll" status="changed"/>
+    </files>
+    <changelog>
+      <change>Fixed skin resetting after a return to respite</change>
+      <change>Added settings to control chapter progression</change>
+      <change>Updated for Ender Lilies version 1.1.5</change>
+    </changelog>
+  </update>
   <update version="2.0.7">
     <files>
       <file path="Components/EnderLilies.Randomizer.json" status="changed"/>

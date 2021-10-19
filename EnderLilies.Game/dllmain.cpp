@@ -64,12 +64,12 @@ DWORD APIENTRY HackMain(HMODULE hModule)
 	CG::InitSdk();
 
 	char  dllName[MAX_PATH];
-	GetModuleFileNameA(hModule, dllName, MAX_PATH);
+	GetModuleFileNameA(hModule, dllName, MAX_PATH); 
 	std::string path(dllName);
 	path = path.substr(0, path.find_last_of("\\/"));
 
 	auto mBaseAddress = reinterpret_cast<uintptr_t>(GetModuleHandleA("EnderLiliesSteam-Win64-Shipping.exe"));
-	rando = new Randomizer(path, (CG::UWorld**)(mBaseAddress + 0x046554D0));
+	rando = new Randomizer(path, (CG::UWorld**)(mBaseAddress + 0x4655590));
 
 	while (!g_cancel)
 	{

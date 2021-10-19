@@ -115,12 +115,10 @@ namespace EnderLilies.Randomizer
                     {
                         if (requires.Count < missing_progress.Count || missing_progress.Count == 0)
                             missing_progress = requires;
-                        //missing_progress.UnionWith(requires);
                     }
                     else if (requires.Count <= empty.Count)
                         if (requires.Count < missing_no_progress.Count || missing_no_progress.Count == 0)
                             missing_no_progress = requires;
-                    //missing_no_progress.UnionWith(requires);
                 }
             }
             if (missing_progress.Count > 0)

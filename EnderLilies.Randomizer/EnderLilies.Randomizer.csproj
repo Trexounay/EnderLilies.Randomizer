@@ -59,6 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnderLiliesTracker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnderLiliesTracker.Designer.cs">
+      <DependentUpon>EnderLiliesTracker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Game\GameInjector.cs" />
     <Compile Include="Logic\RandomSession.cs" />
     <Compile Include="Tools\Expressions.cs" />
@@ -83,6 +89,9 @@
   <ItemGroup>
     <EmbeddedResource Include="ComponentSettings.resx">
       <DependentUpon>ComponentSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnderLiliesTracker.resx">
+      <DependentUpon>EnderLiliesTracker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

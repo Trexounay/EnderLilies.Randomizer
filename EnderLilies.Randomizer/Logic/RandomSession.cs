@@ -173,6 +173,10 @@ namespace EnderLilies.Randomizer
                     writer.WriteLine("SETTINGS:shuffle_slots");
                 if (_settings.NGPlus)
                     writer.WriteLine("SETTINGS:NG+");
+                if (_settings.MaxChapter < 10)
+                    writer.WriteLine("SETTINGS:max_chapter=" + (_settings.MaxChapter).ToString());
+                if (_settings.StartChapter > 1)
+                    writer.WriteLine("SETTINGS:start_chapter=" + (_settings.StartChapter).ToString());
                 if (sort)
                     keys.Sort();
                 foreach (var k in keys)

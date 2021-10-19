@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.seedText = new System.Windows.Forms.TextBox();
-            this.lockSeed = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
@@ -40,7 +39,7 @@
             this.shuffleSlots = new System.Windows.Forms.CheckBox();
             this.skinLevelText = new System.Windows.Forms.Label();
             this.ngPlusSetting = new System.Windows.Forms.CheckBox();
-            this.lilySkinOverride = new System.Windows.Forms.TrackBar();
+            this.skinLevel = new System.Windows.Forms.TrackBar();
             this.shuffleGroup = new System.Windows.Forms.GroupBox();
             this.shuffleWishes = new System.Windows.Forms.CheckBox();
             this.shuffleSpirits = new System.Windows.Forms.CheckBox();
@@ -61,13 +60,19 @@
             this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.startChapterText = new System.Windows.Forms.Label();
+            this.startChapter = new System.Windows.Forms.TrackBar();
+            this.maxChapterText = new System.Windows.Forms.Label();
+            this.maxChapter = new System.Windows.Forms.TrackBar();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lilySkinOverride)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).BeginInit();
             this.shuffleGroup.SuspendLayout();
             this.LogicPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.startChapter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -84,22 +89,11 @@
             this.seedText.TabIndex = 6;
             this.seedText.Text = "0";
             // 
-            // lockSeed
-            // 
-            this.lockSeed.AutoSize = true;
-            this.lockSeed.Location = new System.Drawing.Point(161, 19);
-            this.lockSeed.Name = "lockSeed";
-            this.lockSeed.Size = new System.Drawing.Size(46, 17);
-            this.lockSeed.TabIndex = 7;
-            this.lockSeed.Text = "lock";
-            this.lockSeed.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.Randomize);
             this.groupBox1.Controls.Add(this.tabSettings);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.lockSeed);
             this.groupBox1.Controls.Add(this.seedText);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 1);
@@ -138,11 +132,15 @@
             // 
             // SettingsPage
             // 
+            this.SettingsPage.Controls.Add(this.maxChapterText);
+            this.SettingsPage.Controls.Add(this.maxChapter);
+            this.SettingsPage.Controls.Add(this.startChapterText);
+            this.SettingsPage.Controls.Add(this.startChapter);
             this.SettingsPage.Controls.Add(this.unusedRelics);
             this.SettingsPage.Controls.Add(this.shuffleSlots);
             this.SettingsPage.Controls.Add(this.skinLevelText);
             this.SettingsPage.Controls.Add(this.ngPlusSetting);
-            this.SettingsPage.Controls.Add(this.lilySkinOverride);
+            this.SettingsPage.Controls.Add(this.skinLevel);
             this.SettingsPage.Controls.Add(this.shuffleGroup);
             this.SettingsPage.Controls.Add(this.checkfile);
             this.SettingsPage.Controls.Add(this.open);
@@ -185,9 +183,9 @@
             this.skinLevelText.AutoSize = true;
             this.skinLevelText.Location = new System.Drawing.Point(297, 147);
             this.skinLevelText.Name = "skinLevelText";
-            this.skinLevelText.Size = new System.Drawing.Size(85, 13);
+            this.skinLevelText.Size = new System.Drawing.Size(63, 13);
             this.skinLevelText.TabIndex = 19;
-            this.skinLevelText.Text = "Lilly skin: Normal";
+            this.skinLevelText.Text = "Lilly: Normal";
             // 
             // ngPlusSetting
             // 
@@ -199,14 +197,15 @@
             this.ngPlusSetting.Text = "NG+ AI";
             this.ngPlusSetting.UseVisualStyleBackColor = true;
             // 
-            // lilySkinOverride
+            // skinLevel
             // 
-            this.lilySkinOverride.BackColor = System.Drawing.SystemColors.Window;
-            this.lilySkinOverride.Location = new System.Drawing.Point(246, 163);
-            this.lilySkinOverride.Maximum = 12;
-            this.lilySkinOverride.Name = "lilySkinOverride";
-            this.lilySkinOverride.Size = new System.Drawing.Size(186, 45);
-            this.lilySkinOverride.TabIndex = 17;
+            this.skinLevel.BackColor = System.Drawing.SystemColors.Window;
+            this.skinLevel.LargeChange = 1;
+            this.skinLevel.Location = new System.Drawing.Point(246, 163);
+            this.skinLevel.Maximum = 12;
+            this.skinLevel.Name = "skinLevel";
+            this.skinLevel.Size = new System.Drawing.Size(186, 45);
+            this.skinLevel.TabIndex = 17;
             // 
             // shuffleGroup
             // 
@@ -381,11 +380,11 @@
             this.LogicPreviewGridview.AllowUserToAddRows = false;
             this.LogicPreviewGridview.AllowUserToDeleteRows = false;
             this.LogicPreviewGridview.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.LogicPreviewGridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.LogicPreviewGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LogicPreviewGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -435,6 +434,46 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Seed:";
             // 
+            // startChapterText
+            // 
+            this.startChapterText.AutoSize = true;
+            this.startChapterText.Location = new System.Drawing.Point(297, 198);
+            this.startChapterText.Name = "startChapterText";
+            this.startChapterText.Size = new System.Drawing.Size(69, 13);
+            this.startChapterText.TabIndex = 23;
+            this.startChapterText.Text = "Start Chapter";
+            // 
+            // startChapter
+            // 
+            this.startChapter.BackColor = System.Drawing.SystemColors.Window;
+            this.startChapter.LargeChange = 1;
+            this.startChapter.Location = new System.Drawing.Point(246, 214);
+            this.startChapter.Minimum = 1;
+            this.startChapter.Name = "startChapter";
+            this.startChapter.Size = new System.Drawing.Size(186, 45);
+            this.startChapter.TabIndex = 22;
+            this.startChapter.Value = 1;
+            // 
+            // maxChapterText
+            // 
+            this.maxChapterText.AutoSize = true;
+            this.maxChapterText.Location = new System.Drawing.Point(297, 249);
+            this.maxChapterText.Name = "maxChapterText";
+            this.maxChapterText.Size = new System.Drawing.Size(67, 13);
+            this.maxChapterText.TabIndex = 25;
+            this.maxChapterText.Text = "Max Chapter";
+            // 
+            // maxChapter
+            // 
+            this.maxChapter.BackColor = System.Drawing.SystemColors.Window;
+            this.maxChapter.LargeChange = 1;
+            this.maxChapter.Location = new System.Drawing.Point(246, 265);
+            this.maxChapter.Minimum = 1;
+            this.maxChapter.Name = "maxChapter";
+            this.maxChapter.Size = new System.Drawing.Size(186, 45);
+            this.maxChapter.TabIndex = 24;
+            this.maxChapter.Value = 10;
+            // 
             // ComponentSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,11 +489,13 @@
             this.tabSettings.ResumeLayout(false);
             this.SettingsPage.ResumeLayout(false);
             this.SettingsPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lilySkinOverride)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).EndInit();
             this.shuffleGroup.ResumeLayout(false);
             this.shuffleGroup.PerformLayout();
             this.LogicPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.startChapter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -464,7 +505,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button Randomize;
         private System.Windows.Forms.TextBox seedText;
-        private System.Windows.Forms.CheckBox lockSeed;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label1;
@@ -488,10 +528,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReachablesColumn;
         private System.Windows.Forms.CheckBox shuffleWishes;
-        private System.Windows.Forms.TrackBar lilySkinOverride;
+        private System.Windows.Forms.TrackBar skinLevel;
         private System.Windows.Forms.Label skinLevelText;
         private System.Windows.Forms.CheckBox ngPlusSetting;
         private System.Windows.Forms.CheckBox shuffleSlots;
         private System.Windows.Forms.CheckBox unusedRelics;
+        private System.Windows.Forms.Label maxChapterText;
+        private System.Windows.Forms.TrackBar maxChapter;
+        private System.Windows.Forms.Label startChapterText;
+        private System.Windows.Forms.TrackBar startChapter;
     }
 }

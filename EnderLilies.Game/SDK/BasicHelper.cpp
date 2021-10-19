@@ -43,7 +43,7 @@ bool InitSdk(const std::string& moduleName, const uintptr_t gObjectsOffset, cons
 }
 bool InitSdk()
 {
-	return InitSdk("EnderLiliesSteam-Win64-Shipping.exe", 0x451BF68, 0x45039C0);
+	return InitSdk("EnderLiliesSteam-Win64-Shipping.exe", 0x451C028, 0x4503A80);
 }
 #endif
 //---------------------------------------------------------------------------

@@ -99,7 +99,12 @@ void Randomizer::NewMap()
 		else if (id == _chests_name)
 			_chests = static_cast<CG::UClass*>(object);
 	}
-
+	if (skin_override >= 0)
+	{
+		auto parameter = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController)->ParameterPlayerComponent;
+		if (parameter != nullptr)
+			parameter->SetSkinLevelOverride(skin_override, true);
+	}
 	_new_map = false;
 }
 
@@ -244,11 +249,21 @@ void Randomizer::ReadSeedFile(std::string path)
 					ShuffleRelicSlots();
 				else if (location == "SETTINGS" && item == "NG+")
 					gm->NewGamePlusGeneration = 1;
-				else if (item.find("override_skin") != std::string::npos)
+				else if (item.find("start_chapter") != std::string::npos)
 				{
-					int level = atoi(item.substr(sizeof("override_skin"), item.length()).c_str());
-					((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController)->ParameterPlayerComponent->SetSkinLevelOverride(level, true);
+					int chapter = atoi(item.substr(sizeof("start_chapter"), item.length()).c_str());
+					if (gm->DifficultyLevel < chapter)
+						gm->SetDifficultyLevel(chapter);
 				}
+				else if (item.find("max_chapter") != std::string::npos)
+				{
+					int chapter = atoi(item.substr(sizeof("max_chapter"), item.length()).c_str());
+					gm->MaxDifficultyLevel = chapter;
+					if (gm->DifficultyLevel > chapter)
+						gm->SetDifficultyLevel(chapter);
+				}
+				else if (item.find("override_skin") != std::string::npos)
+					this->skin_override = atoi(item.substr(sizeof("override_skin"), item.length()).c_str());
 			}
 			else
 			{

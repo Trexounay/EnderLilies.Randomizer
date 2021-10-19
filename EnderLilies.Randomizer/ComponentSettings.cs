@@ -21,7 +21,6 @@ namespace EnderLilies.Randomizer
         public string FilePath { get; set; }
         public string CheckFileResult { get; set; }
         public DataTable Preview { get; set; }
-        public bool LockSeed { get; set; }
 
         bool _shuffleSpirits;
         public bool ShuffleSpirits
@@ -177,7 +176,6 @@ namespace EnderLilies.Randomizer
             }
         }
 
-
         int _currentSeed = 0;
         public int Seed
         {
@@ -192,6 +190,40 @@ namespace EnderLilies.Randomizer
             }
         }
 
+        int _startChapter = 1;
+        public int StartChapter
+        {
+            get
+            {
+                return _startChapter;
+            }
+            set
+            {
+                _startChapter = Math.Max(1, Math.Min(10, value));
+                startChapterText.Text = "Start Chapter: " + _startChapter.ToString();
+                if (_startChapter > _maxChapter)
+                    maxChapter.Value = _startChapter;
+                NotifyPropertyChanged();
+            }
+        }
+
+        int _maxChapter = 10;
+        public int MaxChapter
+        {
+            get
+            {
+                return _maxChapter;
+            }
+            set
+            {
+                _maxChapter = Math.Max(1, Math.Min(10, value));
+                maxChapterText.Text = "Max Chapter: " + _maxChapter.ToString();
+                if (_maxChapter < _startChapter)
+                    startChapter.Value = _maxChapter;
+                NotifyPropertyChanged();
+            }
+        }
+
         int _skinOverride = 0;
         public int SkinOverride
         {
@@ -201,8 +233,8 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _skinOverride = value;
-                string[] lily_level =
+                _skinOverride = Math.Max(0, Math.Min(12, value));
+                string[] lilyLevel =
                     {
                     "Normal",
                     "Pure",
@@ -218,7 +250,7 @@ namespace EnderLilies.Randomizer
                     "Blighted 10",
                     "Fully Blighted",
                 };
-                skinLevelText.Text = "Lilly:" + lily_level[value];
+                skinLevelText.Text = "Lilly: " + lilyLevel[value];
                 NotifyPropertyChanged();
             }
         }
@@ -226,38 +258,25 @@ namespace EnderLilies.Randomizer
         public ComponentSettings()
         {
             InitializeComponent();
+            this.path.DataBindings.Add("Text", this, "FilePath", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.seedText.DataBindings.Add("Text", this, "Seed", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.checkfile.DataBindings.Add("Text", this, "CheckFileResult", false, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.path.DataBindings.Add("Text", this, "FilePath", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-            this.seedText.DataBindings.Add("Text", this, "Seed", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-
-            this.lilySkinOverride.DataBindings.Add("Value", this, "SkinOverride", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-            this.lockSeed.DataBindings.Add("Checked", this, "LockSeed", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-            this.shuffleAmulets.DataBindings.Add("Checked", this, "ShuffleAmulets", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-            this.shuffleBlights.DataBindings.Add("Checked", this, "ShuffleBlights", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-            this.shuffleChains.DataBindings.Add("Checked", this, "ShuffleChains", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-            this.shuffleFindings.DataBindings.Add("Checked", this, "ShuffleFindings", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-            this.shuffleRelics.DataBindings.Add("Checked", this, "ShuffleRelics", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-            this.shuffleSpirits.DataBindings.Add("Checked", this, "ShuffleSpirits", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-            this.shuffleTablets.DataBindings.Add("Checked", this, "ShuffleTablets", false,
-                DataSourceUpdateMode.OnPropertyChanged);
-            this.shuffleWishes.DataBindings.Add("Checked", this, "ShuffleWishes", false,
-                DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleAmulets.DataBindings.Add("Checked", this, "ShuffleAmulets", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleBlights.DataBindings.Add("Checked", this, "ShuffleBlights", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleChains.DataBindings.Add("Checked", this, "ShuffleChains", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleFindings.DataBindings.Add("Checked", this, "ShuffleFindings", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleRelics.DataBindings.Add("Checked", this, "ShuffleRelics", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleSpirits.DataBindings.Add("Checked", this, "ShuffleSpirits", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleTablets.DataBindings.Add("Checked", this, "ShuffleTablets", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.shuffleWishes.DataBindings.Add("Checked", this, "ShuffleWishes", false, DataSourceUpdateMode.OnPropertyChanged);
             this.shuffleSlots.DataBindings.Add("Checked", this, "ShuffleSlots", false, DataSourceUpdateMode.OnPropertyChanged);
             this.ngPlusSetting.DataBindings.Add("Checked", this, "NGPlus", false, DataSourceUpdateMode.OnPropertyChanged);
             this.unusedRelics.DataBindings.Add("Checked", this, "UnusedRelics", false, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.checkfile.DataBindings.Add("Text", this, "CheckFileResult", false,
-                DataSourceUpdateMode.OnPropertyChanged);
+            this.skinLevel.DataBindings.Add("Value", this, "SkinOverride", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.startChapter.DataBindings.Add("Value", this, "StartChapter", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.maxChapter.DataBindings.Add("Value", this, "MaxChapter", false, DataSourceUpdateMode.OnPropertyChanged);
             FilePath = "Components/EnderLilies.Randomizer.json";
 
             this.Dock = DockStyle.Fill;
@@ -265,14 +284,18 @@ namespace EnderLilies.Randomizer
             this.Preview = new DataTable();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
+        bool pauseUpdate = false;
         public void SetSettings(XmlNode node)
         {
+            pauseUpdate = true;
             var element = (XmlElement)node;
             Version version = SettingsHelper.ParseVersion(element["Version"]);
+            SkinOverride = SettingsHelper.ParseInt(element["SkinOverride"], 0);
+            StartChapter = SettingsHelper.ParseInt(element["StartChapter"], 1);
+            MaxChapter = SettingsHelper.ParseInt(element["MaxChapter"], 10);
             FilePath = SettingsHelper.ParseString(element["FilePath"], "Components/EnderLilies.Randomizer.json");
-            LockSeed = SettingsHelper.ParseBool(element["LockSeed"], false);
             ShuffleAmulets = SettingsHelper.ParseBool(element["ShuffleAmulets"], true);
             ShuffleBlights = SettingsHelper.ParseBool(element["ShuffleBlights"], true);
             ShuffleChains = SettingsHelper.ParseBool(element["ShuffleChains"], true);
@@ -284,7 +307,9 @@ namespace EnderLilies.Randomizer
             ShuffleSlots = SettingsHelper.ParseBool(element["ShuffleSlots"], true);
             UnusedRelics = SettingsHelper.ParseBool(element["UnusedRelics"], true);
             NGPlus = SettingsHelper.ParseBool(element["NGPlus"], false);
-            Seed = SettingsHelper.ParseInt(element["Seed"], 0);
+            pauseUpdate = false;
+
+            PropertyChanged(this, new PropertyChangedEventArgs("toto"));
             this.path.Text = FilePath;
         }
 
@@ -292,7 +317,6 @@ namespace EnderLilies.Randomizer
         {
             var settings_node = document.CreateElement("Settings");
             settings_node.AppendChild(SettingsHelper.ToElement(document, "FilePath", FilePath));
-            settings_node.AppendChild(SettingsHelper.ToElement(document, "LockSeed", LockSeed));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleAmulets", ShuffleAmulets));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleBlights", ShuffleBlights));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleChains", ShuffleChains));
@@ -305,6 +329,9 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "UnusedRelics", UnusedRelics));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "NGPlus", NGPlus));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "Seed", Seed));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "SkinOverride", SkinOverride));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "StartChapter", StartChapter));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "MaxChapter", MaxChapter));
             return settings_node;
         }
 
@@ -373,10 +400,7 @@ namespace EnderLilies.Randomizer
 
         private void Randomize_Click(object sender, EventArgs e)
         {
-            if (!LockSeed)
-                Seed = new System.Random().Next();
-            else
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Seed"));
+            Seed = new System.Random().Next();
         }
 
         private void open_Click(object sender, EventArgs e)
@@ -396,10 +420,17 @@ namespace EnderLilies.Randomizer
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            if (PropertyChanged != null)
-            {
+            if (!pauseUpdate && PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+        }
+
+        EnderLiliesTracker tracker;
+
+        private void showTracker_Click(object sender, EventArgs e)
+        {
+            if (tracker == null || tracker.IsDisposed)
+                tracker = new EnderLiliesTracker();
+            tracker.Visible = !tracker.Visible;
         }
     }
 }
