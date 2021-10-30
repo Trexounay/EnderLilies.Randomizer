@@ -10,43 +10,47 @@ namespace EnderLilies.Randomizer
     {
         public override string ComponentName => "Ender Lilies Randomizer";
 
-        public ComponentSettings Settings { get; set; }
-        private GameInjector _gameInjector = null;
-        private LiveSplitState _state;
+        private ComponentSettings _settings;
+        private GameInjector _gameInjector;
+        private GameTracker _tracker;
         private RandomSession _session;
 
         public EnderLiliesRandomizer(LiveSplitState state)
         {
-            _state = state;
-            Settings = new ComponentSettings();
-            _session = new RandomSession(Settings);
+            _settings = new ComponentSettings();
             _gameInjector = new GameInjector();
-            _gameInjector.Run();
+            _tracker = new GameTracker();
+            _session = new RandomSession(_settings);
         }
 
         public override void Dispose()
         {
-            _gameInjector?.Stop();
+            _tracker.Stop();
         }
 
         public override XmlNode GetSettings(XmlDocument document)
         {
-            return Settings.GetSettings(document);
+            return _settings.GetSettings(document);
         }
 
         public override Control GetSettingsControl(LayoutMode mode)
         {
-            Settings.Mode = mode;
-            return Settings;
+            _settings.Mode = mode;
+            return _settings;
         }
 
         public override void SetSettings(XmlNode settings)
         {
-            Settings.SetSettings(settings);
+            _settings.SetSettings(settings);
         }
 
         public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
+            _gameInjector.Update();
+            if (_settings.UATServer)
+                _tracker.Update();
+            else
+                _tracker.Stop();
         }
     }
 }

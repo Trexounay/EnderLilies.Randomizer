@@ -28,13 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.seedText = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
+            this.uatserver = new System.Windows.Forms.CheckBox();
+            this.maxChapterText = new System.Windows.Forms.Label();
+            this.maxChapter = new System.Windows.Forms.TrackBar();
+            this.startChapterText = new System.Windows.Forms.Label();
+            this.startChapter = new System.Windows.Forms.TrackBar();
             this.unusedRelics = new System.Windows.Forms.CheckBox();
             this.shuffleSlots = new System.Windows.Forms.CheckBox();
             this.skinLevelText = new System.Windows.Forms.Label();
@@ -60,19 +66,18 @@
             this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.startChapterText = new System.Windows.Forms.Label();
-            this.startChapter = new System.Windows.Forms.TrackBar();
-            this.maxChapterText = new System.Windows.Forms.Label();
-            this.maxChapter = new System.Windows.Forms.TrackBar();
+            this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.shuffleRooms = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.startChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).BeginInit();
             this.shuffleGroup.SuspendLayout();
             this.LogicPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.startChapter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.componentSettingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -132,6 +137,8 @@
             // 
             // SettingsPage
             // 
+            this.SettingsPage.Controls.Add(this.shuffleRooms);
+            this.SettingsPage.Controls.Add(this.uatserver);
             this.SettingsPage.Controls.Add(this.maxChapterText);
             this.SettingsPage.Controls.Add(this.maxChapter);
             this.SettingsPage.Controls.Add(this.startChapterText);
@@ -153,6 +160,57 @@
             this.SettingsPage.TabIndex = 3;
             this.SettingsPage.Text = "Settings";
             this.SettingsPage.UseVisualStyleBackColor = true;
+            // 
+            // uatserver
+            // 
+            this.uatserver.AutoSize = true;
+            this.uatserver.Checked = true;
+            this.uatserver.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uatserver.Location = new System.Drawing.Point(305, 410);
+            this.uatserver.Name = "uatserver";
+            this.uatserver.Size = new System.Drawing.Size(145, 17);
+            this.uatserver.TabIndex = 26;
+            this.uatserver.Text = "Send data to item tracker";
+            this.uatserver.UseVisualStyleBackColor = true;
+            // 
+            // maxChapterText
+            // 
+            this.maxChapterText.AutoSize = true;
+            this.maxChapterText.Location = new System.Drawing.Point(297, 249);
+            this.maxChapterText.Name = "maxChapterText";
+            this.maxChapterText.Size = new System.Drawing.Size(67, 13);
+            this.maxChapterText.TabIndex = 25;
+            this.maxChapterText.Text = "Max Chapter";
+            // 
+            // maxChapter
+            // 
+            this.maxChapter.BackColor = System.Drawing.SystemColors.Window;
+            this.maxChapter.LargeChange = 0;
+            this.maxChapter.Location = new System.Drawing.Point(246, 265);
+            this.maxChapter.Maximum = 9;
+            this.maxChapter.Name = "maxChapter";
+            this.maxChapter.Size = new System.Drawing.Size(186, 45);
+            this.maxChapter.TabIndex = 24;
+            this.maxChapter.Value = 9;
+            // 
+            // startChapterText
+            // 
+            this.startChapterText.AutoSize = true;
+            this.startChapterText.Location = new System.Drawing.Point(297, 198);
+            this.startChapterText.Name = "startChapterText";
+            this.startChapterText.Size = new System.Drawing.Size(69, 13);
+            this.startChapterText.TabIndex = 23;
+            this.startChapterText.Text = "Start Chapter";
+            // 
+            // startChapter
+            // 
+            this.startChapter.BackColor = System.Drawing.SystemColors.Window;
+            this.startChapter.LargeChange = 1;
+            this.startChapter.Location = new System.Drawing.Point(246, 214);
+            this.startChapter.Maximum = 9;
+            this.startChapter.Name = "startChapter";
+            this.startChapter.Size = new System.Drawing.Size(186, 45);
+            this.startChapter.TabIndex = 22;
             // 
             // unusedRelics
             // 
@@ -380,11 +438,11 @@
             this.LogicPreviewGridview.AllowUserToAddRows = false;
             this.LogicPreviewGridview.AllowUserToDeleteRows = false;
             this.LogicPreviewGridview.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.LogicPreviewGridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.LogicPreviewGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LogicPreviewGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -434,45 +492,19 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Seed:";
             // 
-            // startChapterText
+            // componentSettingsBindingSource
             // 
-            this.startChapterText.AutoSize = true;
-            this.startChapterText.Location = new System.Drawing.Point(297, 198);
-            this.startChapterText.Name = "startChapterText";
-            this.startChapterText.Size = new System.Drawing.Size(69, 13);
-            this.startChapterText.TabIndex = 23;
-            this.startChapterText.Text = "Start Chapter";
+            this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
             // 
-            // startChapter
+            // shuffleRooms
             // 
-            this.startChapter.BackColor = System.Drawing.SystemColors.Window;
-            this.startChapter.LargeChange = 1;
-            this.startChapter.Location = new System.Drawing.Point(246, 214);
-            this.startChapter.Minimum = 1;
-            this.startChapter.Name = "startChapter";
-            this.startChapter.Size = new System.Drawing.Size(186, 45);
-            this.startChapter.TabIndex = 22;
-            this.startChapter.Value = 1;
-            // 
-            // maxChapterText
-            // 
-            this.maxChapterText.AutoSize = true;
-            this.maxChapterText.Location = new System.Drawing.Point(297, 249);
-            this.maxChapterText.Name = "maxChapterText";
-            this.maxChapterText.Size = new System.Drawing.Size(67, 13);
-            this.maxChapterText.TabIndex = 25;
-            this.maxChapterText.Text = "Max Chapter";
-            // 
-            // maxChapter
-            // 
-            this.maxChapter.BackColor = System.Drawing.SystemColors.Window;
-            this.maxChapter.LargeChange = 1;
-            this.maxChapter.Location = new System.Drawing.Point(246, 265);
-            this.maxChapter.Minimum = 1;
-            this.maxChapter.Name = "maxChapter";
-            this.maxChapter.Size = new System.Drawing.Size(186, 45);
-            this.maxChapter.TabIndex = 24;
-            this.maxChapter.Value = 10;
+            this.shuffleRooms.AutoSize = true;
+            this.shuffleRooms.Location = new System.Drawing.Point(42, 216);
+            this.shuffleRooms.Name = "shuffleRooms";
+            this.shuffleRooms.Size = new System.Drawing.Size(90, 17);
+            this.shuffleRooms.TabIndex = 27;
+            this.shuffleRooms.Text = "Shuffle rooms";
+            this.shuffleRooms.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 
@@ -489,13 +521,14 @@
             this.tabSettings.ResumeLayout(false);
             this.SettingsPage.ResumeLayout(false);
             this.SettingsPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.startChapter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).EndInit();
             this.shuffleGroup.ResumeLayout(false);
             this.shuffleGroup.PerformLayout();
             this.LogicPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.startChapter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.componentSettingsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -537,5 +570,8 @@
         private System.Windows.Forms.TrackBar maxChapter;
         private System.Windows.Forms.Label startChapterText;
         private System.Windows.Forms.TrackBar startChapter;
+        private System.Windows.Forms.CheckBox uatserver;
+        private System.Windows.Forms.BindingSource componentSettingsBindingSource;
+        private System.Windows.Forms.CheckBox shuffleRooms;
     }
 }

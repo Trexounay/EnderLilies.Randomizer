@@ -11,6 +11,7 @@
 bool g_cancel = false;
 Randomizer* rando;
 
+
 typedef void (*ProcessEventPtr)(CG::UObject*, CG::UFunction*, void*);
 static ProcessEventPtr processEvent;
 __declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn, void* parms)
@@ -32,8 +33,8 @@ bool DoDetour()
 	if (rando->World() == nullptr || rando->World()->Name.ComparisonIndex <= 0)
 		return false;
 	LONG error;
-	processEvent = CG::GetVFunction<void(*)(CG::UObject*, CG::UFunction*, void*)>(rando->World(), 67);	//executeUbergraph = (void(*)(CG::UObject*, int))CG::UObject::FindObject<CG::UFunction>("Function CoreUObject.Object.ExecuteUbergraph");
-	
+	processEvent = CG::GetVFunction<void(*)(CG::UObject*, CG::UFunction*, void*)>(rando->World(), 67);
+
 	DetourRestoreAfterWith();
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
@@ -70,7 +71,7 @@ DWORD APIENTRY HackMain(HMODULE hModule)
 
 	auto mBaseAddress = reinterpret_cast<uintptr_t>(GetModuleHandleA("EnderLiliesSteam-Win64-Shipping.exe"));
 	rando = new Randomizer(path, (CG::UWorld**)(mBaseAddress + 0x4655590));
-
+	//GEngine = *(CG::UGameEngine**)(mBaseAddress + 0x4651CC0);
 	while (!g_cancel)
 	{
 		Sleep(100);

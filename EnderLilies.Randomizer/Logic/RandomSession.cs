@@ -168,15 +168,17 @@ namespace EnderLilies.Randomizer
                 writer.WriteLine("SEED:" + _settings.Seed.ToString());
                 var keys = new List<string>(result.Keys);
                 if (_settings.SkinOverride > 0)
-                    writer.WriteLine("SETTINGS:override_skin=" + (_settings.SkinOverride-1).ToString());
+                    writer.WriteLine("SETTINGS:override_skin=" + (_settings.SkinOverride - 1).ToString());
                 if (_settings.ShuffleSlots)
                     writer.WriteLine("SETTINGS:shuffle_slots");
+                if (_settings.ShuffleRooms)
+                    writer.WriteLine("SETTINGS:shuffle_rooms");
                 if (_settings.NGPlus)
                     writer.WriteLine("SETTINGS:NG+");
-                if (_settings.MaxChapter < 10)
-                    writer.WriteLine("SETTINGS:max_chapter=" + (_settings.MaxChapter).ToString());
-                if (_settings.StartChapter > 1)
-                    writer.WriteLine("SETTINGS:start_chapter=" + (_settings.StartChapter).ToString());
+                if (_settings.MaxChapter < 9)
+                    writer.WriteLine("SETTINGS:max_chapter=" + (_settings.MaxChapter + 1).ToString());
+                if (_settings.StartChapter > 0)
+                    writer.WriteLine("SETTINGS:start_chapter=" + (_settings.StartChapter + 1).ToString());
                 if (sort)
                     keys.Sort();
                 foreach (var k in keys)

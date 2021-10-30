@@ -13,25 +13,6 @@ namespace EnderLilies.Randomizer
     class GameInjector
     {
         private const string _gameDLL = "EnderLilies.Game.dll";
-        private Task _thread;
-        private CancellationTokenSource _cancelSource;
-
-        public void Run()
-        {
-            if (_thread != null && _thread.Status == TaskStatus.Running)
-                throw new InvalidOperationException();
-
-            _cancelSource = new CancellationTokenSource();
-            _thread = Task.Factory.StartNew(WatcherThread);
-        }
-
-        public void Stop()
-        {
-            if (_cancelSource == null || _thread == null || _thread.Status != TaskStatus.Running)
-                return;
-            _cancelSource.Cancel();
-            _thread.Wait();
-        }
 
         static Process GetGameProcess()
         {
@@ -92,31 +73,11 @@ namespace EnderLilies.Randomizer
             }
         }
 
-        void WatcherThread()
+        public void Update()
         {
-            while (!_cancelSource.IsCancellationRequested)
-            {
-                try
-                {
-                    Process game;
-                    while ((game = GetGameProcess()) == null)
-                    {
-                        Thread.Sleep(250);
-                        if (_cancelSource.IsCancellationRequested)
-                            return;
-                    }
-
-                    if (!ProcessHasModule(game, _gameDLL))
-                        InjectDLL(game, GetGameDLLPath());
-                }
-                catch (Exception ex)
-                {
-                    Trace.WriteLine(ex.ToString());
-                    Thread.Sleep(1000);
-                }
-                Thread.Sleep(250);
-            }
-
+            Process game = GetGameProcess();
+            if (game != null && !ProcessHasModule(game, _gameDLL))
+                InjectDLL(game, GetGameDLLPath());
         }
     }
 }

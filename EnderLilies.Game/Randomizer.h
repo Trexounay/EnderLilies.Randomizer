@@ -35,8 +35,6 @@ public:
 	~Randomizer();
 
 	bool IsReady();
-	void NewGame();
-	void NewMap();
 	void Update();
 
 private:
@@ -44,9 +42,12 @@ private:
 
 	bool _new_game = true;
 	bool _new_map = true;
-	bool _need_init = true;
+	bool _new_data = true;
 
-	int skin_override = -1;
+	int _starting_weapon = -1;
+	int _skin_override = -1;
+	bool _shuffle_relics = false;
+	bool _shuffle_rooms = false;
 
 	std::string _path;
 	std::unordered_map<std::string, FTableRowProxy> _replacements;
@@ -64,8 +65,13 @@ private:
 	void EraseSpirits();
 	void RefreshAptitudes();
 	void ShuffleRelicSlots();
+	void RandomizeStartingWeapon();
+	void ShuffleRooms();
 	void ReadSeedFile(std::string path);
 	void FindItems(CG::UClass* type);
 	void* ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);
-	void Init();
+	void FindNames();
+	void NewGame();
+	void NewMap();
+	void GameDataReady();
 };

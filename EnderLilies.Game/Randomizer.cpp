@@ -15,10 +15,9 @@ Randomizer::Randomizer(std::string path, CG::UWorld** pworld)
 
 Randomizer::~Randomizer()
 {
-
 }
 
-void Randomizer::Init()
+void Randomizer::FindNames()
 {
 	std::cout << "INIT" << std::endl;
 	uintptr_t lastFNameAddress = NULL;
@@ -34,7 +33,6 @@ void Randomizer::Init()
 		else if (str == "BP_Interactable_Treasure_C")
 			_chests_name = name;
 	}
-	_need_init = false;
 }
 
 const CG::FGuid MainLevel = { 1674253860, 1178503981, -1366124878, -652381037 };
@@ -57,29 +55,51 @@ bool Randomizer::IsReady()
 		_new_game = true;
 		return false;
 	}
+	if (_new_game)
+		this->NewGame();
+	if (!gm->bGameDataReady)
+	{
+		_new_data = true;
+		return false;
+	}
 	CG::UWorldLoaderSubsystem* loader = (CG::UWorldLoaderSubsystem*)GameInstance->SubSystems[0x1F];
-	if (loader == nullptr || !gm->bGameDataReady || loader->bProcessingLoad)
+	if (loader == nullptr || loader->bProcessingLoad)
 	{
 		_new_map = true;
 		return false;
 	}
+	if (_new_data)
+		this->GameDataReady();
+	if (_new_map)
+		this->NewMap();
 	return true;
 }
 
 void Randomizer::NewGame()
 {
-	if (_need_init)
-		Init();
-	std::cout << "NEWGAME" << std::endl;
-	RemoveHasItemCheck();
-	EraseSpirits();
-	RefreshAptitudes();
-	ReadSeedFile(_path + "/EnderLiliesSeed.txt");
 	_new_game = false;
+	std::cout << "NEWGAME" << std::endl;
+	FindNames();
+	RemoveHasItemCheck();
+	ReadSeedFile(_path + "/EnderLiliesSeed.txt");
+	if (_shuffle_rooms)
+		ShuffleRooms();
+	if (_shuffle_relics)
+		ShuffleRelicSlots();
+	EraseSpirits();
+}
+
+void Randomizer::GameDataReady()
+{
+	_new_data = false;
+	std::cout << "NEWDATA" << std::endl;
+	RandomizeStartingWeapon();
+	RefreshAptitudes();
 }
 
 void Randomizer::NewMap()
 {
+	_new_map = false;
 	std::cout << "NEWMAP" << std::endl;
 	_done.clear();
 	_bosses = nullptr;
@@ -99,29 +119,22 @@ void Randomizer::NewMap()
 		else if (id == _chests_name)
 			_chests = static_cast<CG::UClass*>(object);
 	}
-	if (skin_override >= 0)
+	if (_skin_override >= 0)
 	{
 		auto parameter = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController)->ParameterPlayerComponent;
 		if (parameter != nullptr)
-			parameter->SetSkinLevelOverride(skin_override, true);
+			parameter->SetSkinLevelOverride(_skin_override, true);
 	}
-	_new_map = false;
 }
 
 void Randomizer::Update()
 {
-	if (!this->IsReady())
-		return;
-	if (_new_game)
-		this->NewGame();
-	if (_new_map)
-		this->NewMap();
 	FindItems(_bosses);
 	FindItems(_pickups);
 	FindItems(_chests);
 }
 
-void Randomizer::FindItems(CG::UClass *type)
+void Randomizer::FindItems(CG::UClass* type)
 {
 	if (type == nullptr)
 		return;
@@ -144,7 +157,7 @@ void Randomizer::FindItems(CG::UClass *type)
 	}
 }
 
-void *Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle)
+void* Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle)
 {
 	void* ptr = nullptr;
 	if (itemhandle == nullptr)
@@ -181,9 +194,7 @@ void *Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhand
 	{
 		itemhandle->DataTable = *(CG::UDataTable**)(&((char*)gm)[entry->second.datatable]);
 		itemhandle->RowName = itemhandle->DataTable->Data[entry->second.entry].Name;
-		#
 		std::cout << "(" << actor->RootComponent->RelativeLocation.Y << ":" << actor->RootComponent->RelativeLocation.Z << ")\t" << name << "\t" << og << "->" << itemhandle->RowName.GetName() << std::endl;
-		//ptr = itemhandle->DataTable->Data[entry->second.entry].ptr;
 	}
 	else
 	{
@@ -204,7 +215,31 @@ void Randomizer::ShuffleRelicSlots()
 		int count = ((CG::FItemPassiveData*)table->Data[k].ptr)->SlotCount;
 		((CG::FItemPassiveData*)table->Data[k].ptr)->SlotCount = ((CG::FItemPassiveData*)table->Data[i].ptr)->SlotCount;
 		((CG::FItemPassiveData*)table->Data[i].ptr)->SlotCount = count;
+	}
+}
 
+void Randomizer::ShuffleRooms()
+{
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	CG::UDataTable* table = gm->GameMapTable;
+	void* start_room = table->Data[12].ptr;
+	for (int i = table->Data.Num(); i > 1;)
+	{
+		int k = rand() % i;
+		i--;
+		void* map = table->Data[k].ptr;
+		table->Data[k].ptr = table->Data[i].ptr;
+		table->Data[i].ptr = map;
+	}
+	for (int i = table->Data.Num(); i > 1; --i)
+	{
+		void* map = table->Data[i].ptr;
+		if (map == start_room)
+		{
+			table->Data[i].ptr = table->Data[0].ptr;
+			table->Data[0].ptr = start_room;
+			break;
+		}
 	}
 }
 
@@ -246,9 +281,13 @@ void Randomizer::ReadSeedFile(std::string path)
 			else if (location == "SETTINGS")
 			{
 				if (item == "shuffle_slots")
-					ShuffleRelicSlots();
-				else if (location == "SETTINGS" && item == "NG+")
+					_shuffle_relics = true;
+				else if (item == "shuffle_rooms")
+					_shuffle_rooms = true;
+				else if (item == "NG+")
 					gm->NewGamePlusGeneration = 1;
+				else if (item.find("starting_weapon") != std::string::npos)
+					_starting_weapon = atoi(item.substr(sizeof("starting_weapon"), item.length()).c_str());
 				else if (item.find("start_chapter") != std::string::npos)
 				{
 					int chapter = atoi(item.substr(sizeof("start_chapter"), item.length()).c_str());
@@ -263,7 +302,7 @@ void Randomizer::ReadSeedFile(std::string path)
 						gm->SetDifficultyLevel(chapter);
 				}
 				else if (item.find("override_skin") != std::string::npos)
-					this->skin_override = atoi(item.substr(sizeof("override_skin"), item.length()).c_str());
+					this->_skin_override = atoi(item.substr(sizeof("override_skin"), item.length()).c_str());
 			}
 			else
 			{
@@ -324,24 +363,50 @@ void Randomizer::EraseSpirits()
 	}
 }
 
+void Randomizer::RandomizeStartingWeapon()
+{
+	if (_starting_weapon == -1)
+		return;
+	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+
+	pc->InventoryComponent->ItemSpiritInventory->RemoveItemByRowName(gm->ItemSpiritTable->Data[0].Name);
+
+	CG::FDataTableRowHandle handle;
+	handle.DataTable = gm->ItemSpiritTable;
+	handle.RowName = gm->ItemSpiritTable->Data[_starting_weapon].Name;
+	pc->InventoryComponent->ItemSpiritInventory->AddItem(handle);
+
+	pc->SpiritEquipComponent->UnequipSpirit(CG::Zenith_ESummonSet::ESummonSet__SetA, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
+	pc->SpiritEquipComponent->UnequipSpirit(CG::Zenith_ESummonSet::ESummonSet__SetB, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
+
+	pc->SpiritEquipComponent->EquipSpiritToCurrentSet(gm->ItemSpiritTable->Data[_starting_weapon].Name, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
+	pc->SpiritEquipComponent->SwitchSummonSet(CG::Zenith_ESummonSet::ESummonSet__SetB);
+	pc->SpiritEquipComponent->EquipSpiritToCurrentSet(gm->ItemSpiritTable->Data[_starting_weapon].Name, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
+	_starting_weapon = -1;
+}
+
 void Randomizer::RefreshAptitudes()
 {
 	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+
 	pc->UnlockedAptitudes.Empty();
 	const CG::TArray<CG::FInventoryBaseItemData>& AptitudeItems = pc->InventoryComponent->ItemAptitudeInventory->GetAllItems();
 	for (int i = 0; i < AptitudeItems.Num(); ++i)
 		pc->OnAptitudeItemAdded(AptitudeItems[i]);
 
-	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	for (int i = 0; i < gm->TutorialTable->Data.Num(); ++i)
 		pc->MarkTutorialAsSeen(gm->TutorialTable->Data[i].Name);
 
-	/*
-	for (int i = 0; i < gm->ItemTipTable->Data.Num(); ++i)
-		((CG::FItemTipData*)gm->ItemTipTable->Data[i].ptr)->GetItemTriggerClass = text;*/
-
-
 #ifdef _DEBUG
+	/*
+	pc->InventoryComponent->ItemSpiritInventory->Clear();
+	CG::FDataTableRowHandle handle;
+	handle.DataTable = gm->ItemSpiritTable;
+	handle.RowName = gm->ItemSpiritTable->Data[4].Name;
+	pc->InventoryComponent->AddItem(handle);*/
+	/*
 	pc->UnlockAllAptitudes();
 
 	CG::FDataTableRowHandle handle;
@@ -358,6 +423,7 @@ void Randomizer::RefreshAptitudes()
 		pc->InventoryComponent->AddItem(handle);
 	}
 	pc->SpiritEquipComponent->SetCanChangeEquipment(true);
+	*/
 #endif
 }
 
