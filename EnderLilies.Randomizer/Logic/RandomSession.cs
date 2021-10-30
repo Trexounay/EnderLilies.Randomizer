@@ -86,12 +86,26 @@ namespace EnderLilies.Randomizer
                 i = items.IndexOf("Generic.i_FinalPassivePart_Up");
             }
         }
-
         public void Generate(int seed, bool write = true)
         {
             GameGraph = GetGraph();
             RNG.stream = new Random(seed);
-            result = GameGraph.Solve("Start");
+            string weapon = "umbral";
+            if (_settings.RandomWeapon)
+            {
+                List<string> startingWeapons = new List<string>() {
+                    "umbral",
+                    "gerrod",
+                    "silva",
+                    "julius",
+                    "ulv",
+                    //"eleine",
+                    //"hoenir",
+                    //"faden"
+                };
+                weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Count)];
+            }
+            result = GameGraph.Solve("Start", weapon);
             if (result == null)
                 return;
             items = new List<string>(GameGraph.locations.Values);

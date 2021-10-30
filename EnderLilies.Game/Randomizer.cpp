@@ -286,8 +286,6 @@ void Randomizer::ReadSeedFile(std::string path)
 					_shuffle_rooms = true;
 				else if (item == "NG+")
 					gm->NewGamePlusGeneration = 1;
-				else if (item.find("starting_weapon") != std::string::npos)
-					_starting_weapon = atoi(item.substr(sizeof("starting_weapon"), item.length()).c_str());
 				else if (item.find("start_chapter") != std::string::npos)
 				{
 					int chapter = atoi(item.substr(sizeof("start_chapter"), item.length()).c_str());
@@ -365,7 +363,8 @@ void Randomizer::EraseSpirits()
 
 void Randomizer::RandomizeStartingWeapon()
 {
-	if (_starting_weapon == -1)
+	auto entry = _replacements.find("starting_weapon");
+	if (entry == _replacements.end())
 		return;
 	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
@@ -374,15 +373,16 @@ void Randomizer::RandomizeStartingWeapon()
 
 	CG::FDataTableRowHandle handle;
 	handle.DataTable = gm->ItemSpiritTable;
-	handle.RowName = gm->ItemSpiritTable->Data[_starting_weapon].Name;
+	handle.RowName = gm->ItemSpiritTable->Data[entry->second.entry].Name;
+
 	pc->InventoryComponent->ItemSpiritInventory->AddItem(handle);
 
 	pc->SpiritEquipComponent->UnequipSpirit(CG::Zenith_ESummonSet::ESummonSet__SetA, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
 	pc->SpiritEquipComponent->UnequipSpirit(CG::Zenith_ESummonSet::ESummonSet__SetB, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
 
-	pc->SpiritEquipComponent->EquipSpiritToCurrentSet(gm->ItemSpiritTable->Data[_starting_weapon].Name, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
+	pc->SpiritEquipComponent->EquipSpiritToCurrentSet(gm->ItemSpiritTable->Data[entry->second.entry].Name, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
 	pc->SpiritEquipComponent->SwitchSummonSet(CG::Zenith_ESummonSet::ESummonSet__SetB);
-	pc->SpiritEquipComponent->EquipSpiritToCurrentSet(gm->ItemSpiritTable->Data[_starting_weapon].Name, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
+	pc->SpiritEquipComponent->EquipSpiritToCurrentSet(gm->ItemSpiritTable->Data[entry->second.entry].Name, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
 	_starting_weapon = -1;
 }
 

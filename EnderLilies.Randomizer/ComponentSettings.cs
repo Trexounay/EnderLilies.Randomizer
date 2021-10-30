@@ -204,6 +204,20 @@ namespace EnderLilies.Randomizer
             }
         }
 
+        bool _randomWeapon = false;
+        public bool RandomWeapon
+        {
+            get
+            {
+                return _randomWeapon;
+            }
+            set
+            {
+                _randomWeapon = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         int _currentSeed = 0;
         public int Seed
         {
@@ -303,6 +317,7 @@ namespace EnderLilies.Randomizer
             this.unusedRelics.DataBindings.Add("Checked", this, "UnusedRelics", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.uatserver.DataBindings.Add("Checked", this, "UATServer", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.shuffleRooms.DataBindings.Add("Checked", this, "ShuffleRooms", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.randomWeapon.DataBindings.Add("Checked", this, "RandomWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
 
             this.skinLevel.DataBindings.Add("Value", this, "SkinOverride", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             this.startChapter.DataBindings.Add("Value", this, "StartChapter", false, DataSourceUpdateMode.OnPropertyChanged, 0);
@@ -339,6 +354,7 @@ namespace EnderLilies.Randomizer
             UATServer = SettingsHelper.ParseBool(element["UATServer"], false);
             NGPlus = SettingsHelper.ParseBool(element["NGPlus"], false);
             ShuffleRooms = SettingsHelper.ParseBool(element["ShuffleRooms"], false);
+            RandomWeapon = SettingsHelper.ParseBool(element["RandomWeapon"], false);
 
             this.path.Text = FilePath;
         }
@@ -364,6 +380,7 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "StartChapter", StartChapter));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "MaxChapter", MaxChapter));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleRooms", ShuffleRooms));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "RandomWeapon", RandomWeapon));
             return settings_node;
         }
 

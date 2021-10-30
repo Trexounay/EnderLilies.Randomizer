@@ -36,6 +36,7 @@
             this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
+            this.shuffleRooms = new System.Windows.Forms.CheckBox();
             this.uatserver = new System.Windows.Forms.CheckBox();
             this.maxChapterText = new System.Windows.Forms.Label();
             this.maxChapter = new System.Windows.Forms.TrackBar();
@@ -67,7 +68,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.shuffleRooms = new System.Windows.Forms.CheckBox();
+            this.randomWeapon = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -137,6 +138,7 @@
             // 
             // SettingsPage
             // 
+            this.SettingsPage.Controls.Add(this.randomWeapon);
             this.SettingsPage.Controls.Add(this.shuffleRooms);
             this.SettingsPage.Controls.Add(this.uatserver);
             this.SettingsPage.Controls.Add(this.maxChapterText);
@@ -160,6 +162,16 @@
             this.SettingsPage.TabIndex = 3;
             this.SettingsPage.Text = "Settings";
             this.SettingsPage.UseVisualStyleBackColor = true;
+            // 
+            // shuffleRooms
+            // 
+            this.shuffleRooms.AutoSize = true;
+            this.shuffleRooms.Location = new System.Drawing.Point(42, 216);
+            this.shuffleRooms.Name = "shuffleRooms";
+            this.shuffleRooms.Size = new System.Drawing.Size(90, 17);
+            this.shuffleRooms.TabIndex = 27;
+            this.shuffleRooms.Text = "Shuffle rooms";
+            this.shuffleRooms.UseVisualStyleBackColor = true;
             // 
             // uatserver
             // 
@@ -496,15 +508,15 @@
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
             // 
-            // shuffleRooms
+            // randomWeapon
             // 
-            this.shuffleRooms.AutoSize = true;
-            this.shuffleRooms.Location = new System.Drawing.Point(42, 216);
-            this.shuffleRooms.Name = "shuffleRooms";
-            this.shuffleRooms.Size = new System.Drawing.Size(90, 17);
-            this.shuffleRooms.TabIndex = 27;
-            this.shuffleRooms.Text = "Shuffle rooms";
-            this.shuffleRooms.UseVisualStyleBackColor = true;
+            this.randomWeapon.AutoSize = true;
+            this.randomWeapon.Location = new System.Drawing.Point(42, 239);
+            this.randomWeapon.Name = "randomWeapon";
+            this.randomWeapon.Size = new System.Drawing.Size(144, 17);
+            this.randomWeapon.TabIndex = 28;
+            this.randomWeapon.Text = "Random starting weapon";
+            this.randomWeapon.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 
@@ -573,5 +585,6 @@
         private System.Windows.Forms.CheckBox uatserver;
         private System.Windows.Forms.BindingSource componentSettingsBindingSource;
         private System.Windows.Forms.CheckBox shuffleRooms;
+        private System.Windows.Forms.CheckBox randomWeapon;
     }
 }

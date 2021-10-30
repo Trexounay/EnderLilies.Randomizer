@@ -2482,7 +2482,8 @@
     "Village_15_GAMEPLAY.BP_SCR_LV1M_2050_3": "Generic.i_SpiritCurrencyLv1_M",
     "Village_15_GAMEPLAY.BP_SCR_LV2M_2050_2": "Generic.i_SpiritCurrencyLv2_S",
     "Village_16_GAMEPLAY.BP_Interactable_Item_Tip4": "Tip.tip_054",
-    "Village_16_GAMEPLAY.BP_Interactable_Passives_Treasure_2": "Generic.i_FinalPassivePart_Up"
+    "Village_16_GAMEPLAY.BP_Interactable_Passives_Treasure_2": "Generic.i_FinalPassivePart_Up",
+    "starting_weapon": "Spirit.s5000"
   },
   "extra_items": [
     "Aptitude.double_jump",
@@ -2502,6 +2503,7 @@
     "Passive.i_passive_recast_time_cut_LV3",
     "Passive.i_passive_stamina_up",
     "Passive.i_passive_override_skin_level",
-    "Passive.i_passive_override_skin_level_max"
+    "Passive.i_passive_override_skin_level_max",
+    "Parameter.i_maxHPUp_03"
   ]
 }

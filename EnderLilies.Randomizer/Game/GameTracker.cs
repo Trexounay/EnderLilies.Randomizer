@@ -181,8 +181,8 @@ namespace EnderLilies.Randomizer
             IntPtr ptr = _address.Deref<IntPtr>(_process, IntPtr.Zero);
             if (ptr == IntPtr.Zero)
                 return;
-            int count = _process.ReadValue<int>(ptr + 0x68);
-            if (count >= 0 && count != _count)
+            int count = _process.ReadValue<int>(ptr + 0x68, -1);
+            if (count >= 0 && count <= names.Count)
             {
                 IntPtr itemsPtr = _process.ReadValue<IntPtr>(ptr + 0x60);
                 List<int> newItems = new List<int>();

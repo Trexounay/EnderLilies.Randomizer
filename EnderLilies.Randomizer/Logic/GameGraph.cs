@@ -127,8 +127,9 @@ namespace EnderLilies.Randomizer
                 return missing_no_progress;
         }
 
-        public Dictionary<string, string> Solve(string start)
+        public Dictionary<string, string> Solve(string start, string weapon="umbral")
         {
+            AddResult("starting_weapon", weapon);
             Dictionary<int, int> result = new Dictionary<int, int>(_forced);
             logic.Clear();
             if (aliases.ContainsKey(start))
@@ -144,6 +145,7 @@ namespace EnderLilies.Randomizer
             for (int i = 0; i < nodes.Count; ++i)
                 inv_weights[i] = 1;
             reachables.Add(start_id);
+            reachables.Add(nodes.IndexOf("starting_weapon"));
             if (!result.ContainsKey(start_id))
                 empty_nodes.Add(start_id);
             bool done = false;
@@ -238,6 +240,10 @@ namespace EnderLilies.Randomizer
 
         public void AddResult(string node, string key)
         {
+            if (aliases.ContainsKey(key))
+                key = aliases[key];
+            if (aliases.ContainsKey(node))
+                node = aliases[node];
             AddNode(node);
             AddKey(key);
             _forced.Add(nodes.IndexOf(node), keys.IndexOf(key));
