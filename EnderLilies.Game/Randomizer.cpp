@@ -369,6 +369,10 @@ void Randomizer::RandomizeStartingWeapon()
 	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 
+	auto intent = ((CG::UGameInstanceZenith_C*)World()->OwningGameInstance)->GetLaunchGameIntent();
+	if (intent != CG::Zenith_ELaunchGameIntent::ELaunchGameIntent__NewGame)
+		return;
+
 	pc->InventoryComponent->ItemSpiritInventory->RemoveItemByRowName(gm->ItemSpiritTable->Data[0].Name);
 
 	CG::FDataTableRowHandle handle;
@@ -383,7 +387,6 @@ void Randomizer::RandomizeStartingWeapon()
 	pc->SpiritEquipComponent->EquipSpiritToCurrentSet(gm->ItemSpiritTable->Data[entry->second.entry].Name, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
 	pc->SpiritEquipComponent->SwitchSummonSet(CG::Zenith_ESummonSet::ESummonSet__SetB);
 	pc->SpiritEquipComponent->EquipSpiritToCurrentSet(gm->ItemSpiritTable->Data[entry->second.entry].Name, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
-	_starting_weapon = -1;
 }
 
 void Randomizer::RefreshAptitudes()

@@ -44,7 +44,6 @@ private:
 	bool _new_map = true;
 	bool _new_data = true;
 
-	int _starting_weapon = -1;
 	int _skin_override = -1;
 	bool _shuffle_relics = false;
 	bool _shuffle_rooms = false;
