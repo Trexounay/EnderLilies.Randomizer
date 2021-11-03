@@ -1,7 +1,7 @@
 # EnderLilies.Randomizer
 Randomizer for Ender Lilies : Quietus of the Knights
 
-Check the Releases page for the last version and follow the installation instructions: https://github.com/Trexounay/EnderLilies.Randomizer/releases
+Get the last version and follow the installation instructions: https://github.com/Trexounay/EnderLilies.Randomizer/releases
 
 More information on Discord: https://disboard.org/server/803782694436864031
 
