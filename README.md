@@ -5,4 +5,5 @@ Get the last version and follow the installation instructions: https://github.co
 
 More information on Discord: https://disboard.org/server/803782694436864031
 
-Tracker by Lurch9229 available on EmoTracker: https://emotracker.net/download
+Trackers by Lurch9229 available on [EmoTracker](https://emotracker.net/download)
+or [Poptracker](https://github.com/black-sliver/PopTracker/releases) with [Ender Lilies' pack](https://github.com/lurch9229/ender-lilies-poptracker/tree/devMain) by Lurch9229
