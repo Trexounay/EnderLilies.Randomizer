@@ -24,6 +24,7 @@ struct FTableRowProxy
 {
 	int datatable;
 	int entry;
+	FTableRowProxy* progress = nullptr;
 };
 
 class Randomizer
@@ -47,6 +48,7 @@ private:
 	int _skin_override = -1;
 	bool _shuffle_relics = false;
 	bool _shuffle_rooms = false;
+	bool _force_ancient_souls = false;
 
 	std::string _path;
 	std::unordered_map<std::string, FTableRowProxy> _replacements;
@@ -55,22 +57,27 @@ private:
 	CG::UClass* _bosses;
 	CG::UClass* _pickups;
 	CG::UClass* _chests;
+	CG::UClass* _transitions;
 
 	CG::FNameEntry* _bosses_name;
 	CG::FNameEntry* _pickups_name;
 	CG::FNameEntry* _chests_name;
+	CG::FNameEntry* _transitions_name;
 
 	void RemoveHasItemCheck();
-	void EraseSpirits();
+	void ModifySpirits();
 	void RefreshAptitudes();
 	void ShuffleRelicSlots();
 	void RandomizeStartingWeapon();
 	void ShuffleRooms();
 	void ReadSeedFile(std::string path);
 	void FindItems(CG::UClass* type);
-	void* ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);
+	void ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);
+	void TransitionFound(CG::ABP_WorldTravelVolume_C* volume);
 	void FindNames();
 	void NewGame();
 	void NewMap();
 	void GameDataReady();
+	bool FindTableRow(std::string item, FTableRowProxy& result);
+	bool PlayerHasItem(const FTableRowProxy proxy);
 };

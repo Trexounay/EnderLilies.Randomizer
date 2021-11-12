@@ -48,7 +48,11 @@ namespace EnderLilies.Randomizer
         {
             _gameInjector.Update();
             if (_settings.UATServer)
+            {
                 _tracker.Update();
+                if (!_tracker.ServerConnected())
+                    _settings.UATServer = false;
+            }
             else
                 _tracker.Stop();
         }

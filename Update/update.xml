@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
+  <update version="2.1.0">
+    <files>
+      <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+      <file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
+      <file path="Components/EnderLilies.Game.dll" status="changed"/>
+    </files>
+    <changelog>
+      <change>/!\ Make sure you close ENDER LILIES before Updating /!\</change>
+      <change>Fixed an issue with the auto tracker raising errors in LiveSplit</change>
+      <change>Added error messages when something goes wrong</change>
+      <change>Randomized starting weapon requires ancient souls to upgrade</change>
+      <change>Julius Dash and Piercing Lance now always drop in order</change>
+      <change>Fixed an issue with autotracking of amulet fragments</change>
+    </changelog>
+  </update>
   <update version="2.0.9">
     <files>
       <file path="Components/EnderLilies.Randomizer.json" status="changed"/>

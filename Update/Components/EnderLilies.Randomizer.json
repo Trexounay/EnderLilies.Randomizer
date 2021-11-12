@@ -71,6 +71,8 @@
     "unlock": "Aptitude.door_unlock",
     "ults": "Aptitude.special_attack",
 
+    "dash/pierce": "Aptitude.dash,Aptitude.dash_attack",
+
     "mask": "Passive.i_passive_ignore_damage_area",
     "parry": "Passive.i_passive_parry",
     "plume": "Passive.i_passive_jump_height_up",

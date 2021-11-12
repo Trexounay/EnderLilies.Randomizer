@@ -11,7 +11,6 @@
 bool g_cancel = false;
 Randomizer* rando;
 
-
 typedef void (*ProcessEventPtr)(CG::UObject*, CG::UFunction*, void*);
 static ProcessEventPtr processEvent;
 __declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn, void* parms)
@@ -32,14 +31,13 @@ bool DoDetour()
 {
 	if (rando->World() == nullptr || rando->World()->Name.ComparisonIndex <= 0)
 		return false;
-	LONG error;
-	processEvent = CG::GetVFunction<void(*)(CG::UObject*, CG::UFunction*, void*)>(rando->World(), 67);
 
+	processEvent = CG::GetVFunction<void(*)(CG::UObject*, CG::UFunction*, void*)>(rando->World(), 67);
 	DetourRestoreAfterWith();
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 	DetourAttach(&(PVOID&)processEvent, ProcessEventHook);
-	error = DetourTransactionCommit();
+	LONG error = DetourTransactionCommit();
 
 	if (error == NO_ERROR) {
 		std::cout << "No error detouring " << std::endl;

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace EnderLilies.Randomizer
 {
@@ -24,10 +25,26 @@ namespace EnderLilies.Randomizer
             return process.ModulesWow64Safe().Any(m => m.ModuleName.ToLower() == module.ToLower());
         }
 
-        static string GetGameDLLPath()
+        bool _message;
+        string GetGameDLLPath()
         {
-            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? String.Empty;
-            return Path.Combine(dir, _gameDLL);
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? String.Empty, _gameDLL);
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(path);
+            if (Assembly.GetExecutingAssembly().GetName().Version.ToString() != fileVersionInfo.ProductVersion)
+            {
+                if (!_message)
+                {
+                    _message = true;
+                    var response = MessageBox.Show("Your randomizer version (" + fileVersionInfo.ProductVersion +
+                        ") does not match your livesplit component version (" + Assembly.GetExecutingAssembly().GetName().Version.ToString() + ")\n\n" +
+                        "Please download the last version on:\n\n" +
+                        "https://github.com/Trexounay/EnderLilies.Randomizer", "Randomizer version mismatch", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (response == DialogResult.OK)
+                        System.Diagnostics.Process.Start("https://github.com/Trexounay/EnderLilies.Randomizer/releases");
+                }
+                throw new Exception("Version missmatch");
+            }
+            return path;
         }
 
         static void InjectDLL(Process process, string path)

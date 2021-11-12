@@ -218,6 +218,34 @@ namespace EnderLilies.Randomizer
             }
         }
 
+        bool _dashProgressive = true;
+        public bool DashProgressive
+        {
+            get
+            {
+                return _dashProgressive;
+            }
+            set
+            {
+                _dashProgressive = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _startWeaponUsesAncientSouls = false;
+        public bool StartWeaponUsesAncientSouls
+        {
+            get
+            {
+                return _startWeaponUsesAncientSouls;
+            }
+            set
+            {
+                _startWeaponUsesAncientSouls = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         int _currentSeed = 0;
         public int Seed
         {
@@ -318,6 +346,9 @@ namespace EnderLilies.Randomizer
             this.uatserver.DataBindings.Add("Checked", this, "UATServer", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.shuffleRooms.DataBindings.Add("Checked", this, "ShuffleRooms", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.randomWeapon.DataBindings.Add("Checked", this, "RandomWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.dashProgressive.DataBindings.Add("Checked", this, "DashProgressive", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.startWeaponUsesAncientSouls.DataBindings.Add("Checked", this, "StartWeaponUsesAncientSouls", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.startWeaponUsesAncientSouls.DataBindings.Add("Enabled", this, "RandomWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
 
             this.skinLevel.DataBindings.Add("Value", this, "SkinOverride", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             this.startChapter.DataBindings.Add("Value", this, "StartChapter", false, DataSourceUpdateMode.OnPropertyChanged, 0);
@@ -355,6 +386,8 @@ namespace EnderLilies.Randomizer
             NGPlus = SettingsHelper.ParseBool(element["NGPlus"], false);
             ShuffleRooms = SettingsHelper.ParseBool(element["ShuffleRooms"], false);
             RandomWeapon = SettingsHelper.ParseBool(element["RandomWeapon"], false);
+            DashProgressive = SettingsHelper.ParseBool(element["DashProgressive"], true);
+            StartWeaponUsesAncientSouls = SettingsHelper.ParseBool(element["StartWeaponUsesAncientSouls"], true);
 
             this.path.Text = FilePath;
         }
@@ -381,6 +414,8 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "MaxChapter", MaxChapter));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleRooms", ShuffleRooms));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "RandomWeapon", RandomWeapon));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "DashProgressive", DashProgressive));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "StartWeaponUsesAncientSouls", StartWeaponUsesAncientSouls));
             return settings_node;
         }
 

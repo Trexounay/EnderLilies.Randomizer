@@ -1,0 +1,6 @@
+[submodule "websocket-sharp"]
+	path = websocket-sharp
+	url = git@github.com:sta/websocket-sharp.git
+[submodule "EnderLilies.Randomizer/websocket-sharp"]
+	path = EnderLilies.Randomizer/websocket-sharp
+	url = git@github.com:sta/websocket-sharp.git

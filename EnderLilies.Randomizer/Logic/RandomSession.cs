@@ -119,6 +119,12 @@ namespace EnderLilies.Randomizer
 
             if (_settings.ShuffleTablets)
                 ShuffleTablets(loc);
+            Dictionary<string, string> progressItem = new Dictionary<string, string>()
+            {
+                {"Aptitude.dash_attack", "Aptitude.dash,Aptitude.dash_attack"},
+                {"Aptitude.dash", "Aptitude.dash,Aptitude.dash_attack"},
+            };
+
             foreach (var k in loc)
             {
                 if (!result.ContainsKey(k))
@@ -126,6 +132,8 @@ namespace EnderLilies.Randomizer
                     result[k] = items[0];
                     items.RemoveAt(0);
                 }
+                if (_settings.DashProgressive && progressItem.ContainsKey(result[k]))
+                    result[k] = progressItem[result[k]];
             }
             if (write)
                 WriteFile();
@@ -189,6 +197,8 @@ namespace EnderLilies.Randomizer
                     writer.WriteLine("SETTINGS:shuffle_rooms");
                 if (_settings.NGPlus)
                     writer.WriteLine("SETTINGS:NG+");
+                if (_settings.StartWeaponUsesAncientSouls)
+                    writer.WriteLine("SETTINGS:force_ancient_souls");
                 if (_settings.MaxChapter < 9)
                     writer.WriteLine("SETTINGS:max_chapter=" + (_settings.MaxChapter + 1).ToString());
                 if (_settings.StartChapter > 0)

@@ -15,6 +15,7 @@ namespace EnderLilies.Randomizer
             public int node;
             public int reachables;
             public int items;
+            public float odds;
         }
 
         public class Edge
@@ -66,7 +67,8 @@ namespace EnderLilies.Randomizer
         public Dictionary<int, int> _forced = new Dictionary<int, int>();
 
 
-        public HashSet<int> UpdateReachables(ref List<int> empty,
+        public HashSet<int> UpdateReachables(
+            ref List<int> new_empty,
             ref List<Edge> unsolved,
             ref HashSet<int> reachables,
             Dictionary<int, int> result)
@@ -108,17 +110,22 @@ namespace EnderLilies.Randomizer
                         if (result.ContainsKey(other))
                             items.Add(result[other]);
                         else
-                            empty.Add(other);
+                            new_empty.Add(other);
                         done = false;
                     }
-                    else if (requires.Count <= empty.Count && !result.ContainsKey(other))
+                    else
                     {
-                        if (requires.Count < missing_progress.Count || missing_progress.Count == 0)
-                            missing_progress = requires;
+                        if (result.ContainsKey(other))
+                        {
+                            if (requires.Count < missing_progress.Count || missing_progress.Count == 0)
+                                missing_progress = requires;
+                        }
+                        else
+                        {
+                            if (requires.Count < missing_no_progress.Count || missing_no_progress.Count == 0)
+                                missing_no_progress = requires;
+                        }
                     }
-                    else if (requires.Count <= empty.Count)
-                        if (requires.Count < missing_no_progress.Count || missing_no_progress.Count == 0)
-                            missing_no_progress = requires;
                 }
             }
             if (missing_progress.Count > 0)
@@ -127,7 +134,7 @@ namespace EnderLilies.Randomizer
                 return missing_no_progress;
         }
 
-        public Dictionary<string, string> Solve(string start, string weapon="umbral")
+        public Dictionary<string, string> Solve(string start, string weapon = "umbral")
         {
             AddResult("starting_weapon", weapon);
             Dictionary<int, int> result = new Dictionary<int, int>(_forced);
@@ -154,11 +161,19 @@ namespace EnderLilies.Randomizer
             while (!done)
             {
                 done = true;
-                missings = UpdateReachables(ref empty_nodes, ref unsolved, ref reachables, result);
-                int count = empty_nodes.Count;
+                List<int> new_empty_nodes = new List<int>();
+                missings = UpdateReachables(ref new_empty_nodes, ref unsolved, ref reachables, result);
+                int count = empty_nodes.Count + new_empty_nodes.Count;
                 if (missings.Count > 0 && count > 0)
                 {
                     done = false;
+                    /*
+                    int old_node = empty_nodes[RNG.stream.Next(empty_nodes.Count)];
+                    new_empty_nodes.Add(old_node);
+                    int node = new_empty_nodes[RNG.stream.Next(new_empty_nodes.Count)];
+                    */
+                    empty_nodes.AddRange(new_empty_nodes);
+
                     float sum = 0;
                     Dictionary<int, float> weights = new Dictionary<int, float>();
                     foreach (var n in empty_nodes)
@@ -171,11 +186,11 @@ namespace EnderLilies.Randomizer
                         weights[n] = (sum / count) / weights[n];
                         inv_weights[n] *= 1.0f - (weights[n] / (count * sum));
                     }
-                    var pool = missings.ToArray();
                     int node = empty_nodes.RandomWithWeigh(weights);
+                    var pool = missings.ToArray();
                     int item = pool[RNG.stream.Next(pool.Length)];
                     result[node] = item;
-                    logic.Add(new LogicLog() { node = node, reachables = reachables.Count });
+                    logic.Add(new LogicLog() { node = node, reachables = reachables.Count - 1});
                     inv_weights.Remove(node);
                     empty_nodes.Remove(node);
                 }

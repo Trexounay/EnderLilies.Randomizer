@@ -32,6 +32,8 @@ void Randomizer::FindNames()
 			_pickups_name = name;
 		else if (str == "BP_Interactable_Treasure_C")
 			_chests_name = name;
+		//else if (str == "BP_WorldTravelVolume_C")
+			//_transitions_name = name;
 	}
 }
 
@@ -86,14 +88,13 @@ void Randomizer::NewGame()
 		ShuffleRooms();
 	if (_shuffle_relics)
 		ShuffleRelicSlots();
-	EraseSpirits();
+	ModifySpirits();
 }
 
 void Randomizer::GameDataReady()
 {
 	_new_data = false;
 	std::cout << "NEWDATA" << std::endl;
-	RandomizeStartingWeapon();
 	RefreshAptitudes();
 }
 
@@ -118,6 +119,8 @@ void Randomizer::NewMap()
 			_pickups = static_cast<CG::UClass*>(object);
 		else if (id == _chests_name)
 			_chests = static_cast<CG::UClass*>(object);
+		//else if (id == _transitions_name)
+			//_transitions = static_cast<CG::UClass*>(object);
 	}
 	if (_skin_override >= 0)
 	{
@@ -132,6 +135,7 @@ void Randomizer::Update()
 	FindItems(_bosses);
 	FindItems(_pickups);
 	FindItems(_chests);
+	//FindItems(_transitions);
 }
 
 void Randomizer::FindItems(CG::UClass* type)
@@ -154,17 +158,27 @@ void Randomizer::FindItems(CG::UClass* type)
 			ItemFound(out[i], &((CG::ABP_Interactable_Item_C*)out[i])->Item);
 		else if (type == _chests)
 			ItemFound(out[i], &((CG::ABP_Interactable_Treasure_C*)out[i])->UniqueItem);
+		//else if (type == _transitions)
+			//TransitionFound((CG::ABP_WorldTravelVolume_C*)out[i]);
 	}
 }
 
-void* Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle)
+void Randomizer::TransitionFound(CG::ABP_WorldTravelVolume_C* volume)
 {
-	void* ptr = nullptr;
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	CG::FDataTableRowHandle handle;
+	handle.DataTable = gm->GameMapTable;
+	handle.RowName = gm->GameMapTable->Data[3].Name;
+	volume->GameMapToLoad = handle;
+}
+
+void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle)
+{
 	if (itemhandle == nullptr)
-		return ptr;
+		return;
 	auto result = _done.find(itemhandle);
 	if (result != _done.end())
-		return ptr;
+		return;
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 
 	auto map = actor->Outer->Outer->GetName();
@@ -176,32 +190,47 @@ void* Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhand
 	}
 	name = map + "." + name;
 	auto entry = _replacements.find(name);
-
-	std::string og = itemhandle->RowName.GetName();
-	if (itemhandle->DataTable == gm->ItemAptitudeTable)
-		og = "Aptitude." + og;
-	else if (itemhandle->DataTable == gm->ItemGenericTable)
-		og = "Generic." + og;
-	else if (itemhandle->DataTable == gm->ItemParameterTable)
-		og = "Parameter." + og;
-	else if (itemhandle->DataTable == gm->ItemPassiveTable)
-		og = "Passive." + og;
-	else if (itemhandle->DataTable == gm->ItemSpiritTable)
-		og = "Spirit." + og;
-	else if (itemhandle->DataTable == gm->ItemTipTable)
-		og = "Tip." + og;
 	if (entry != _replacements.end())
 	{
-		itemhandle->DataTable = *(CG::UDataTable**)(&((char*)gm)[entry->second.datatable]);
-		itemhandle->RowName = itemhandle->DataTable->Data[entry->second.entry].Name;
-		std::cout << "(" << actor->RootComponent->RelativeLocation.Y << ":" << actor->RootComponent->RelativeLocation.Z << ")\t" << name << "\t" << og << "->" << itemhandle->RowName.GetName() << std::endl;
+		FTableRowProxy replacement = entry->second;
+		while (replacement.progress != nullptr)
+		{
+			if (PlayerHasItem(replacement))
+				replacement = *replacement.progress;
+			else
+				break;
+		}
+		itemhandle->DataTable = *(CG::UDataTable**)(&((char*)gm)[replacement.datatable]);
+		itemhandle->RowName = itemhandle->DataTable->Data[replacement.entry].Name;
+		if (replacement.progress == nullptr)
+			_done.insert(itemhandle);
 	}
 	else
-	{
-		std::cout << "UNKNOWN LOCATION:" << "(" << actor->RootComponent->RelativeLocation.Y << ":" << actor->RootComponent->RelativeLocation.Z << ")\t" << name << "\t" << og << std::endl;
-	}
-	_done.insert(itemhandle);
-	return ptr;
+		_done.insert(itemhandle);
+}
+
+bool Randomizer::PlayerHasItem(const FTableRowProxy proxy)
+{
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
+
+	CG::FDataTableRowHandle handle;
+	handle.DataTable = *(CG::UDataTable**)(&((char*)gm)[proxy.datatable]);
+	handle.RowName = handle.DataTable->Data[proxy.entry].Name;
+
+	if (handle.DataTable == pc->InventoryComponent->ItemAptitudeInventory->GetValidDataTable())
+		return pc->InventoryComponent->ItemAptitudeInventory->HasItem(handle);
+	if (handle.DataTable == pc->InventoryComponent->ItemGenericInventory->GetValidDataTable())
+		return pc->InventoryComponent->ItemGenericInventory->HasItem(handle);
+	if (handle.DataTable == pc->InventoryComponent->ItemParameterInventory->GetValidDataTable())
+		return pc->InventoryComponent->ItemParameterInventory->HasItem(handle);
+	if (handle.DataTable == pc->InventoryComponent->ItemPassiveInventory->GetValidDataTable())
+		return pc->InventoryComponent->ItemPassiveInventory->HasItem(handle);
+	if (handle.DataTable == pc->InventoryComponent->ItemSpiritInventory->GetValidDataTable())
+		return pc->InventoryComponent->ItemSpiritInventory->HasItem(handle);
+	if (handle.DataTable == pc->InventoryComponent->ItemTipInventory->GetValidDataTable())
+		return pc->InventoryComponent->ItemTipInventory->HasItem(handle);
+	return false;
 }
 
 void Randomizer::ShuffleRelicSlots()
@@ -246,24 +275,12 @@ void Randomizer::ShuffleRooms()
 void Randomizer::ReadSeedFile(std::string path)
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
-	const char* tableNames[6] = {
-		"Aptitude",
-		"Generic",
-		"Parameter",
-		"Passive",
-		"Spirit",
-		"Tip",
-	};
-	int offsets[6] = {
-		0x338,
-		0x328,
-		0x330,
-		0x348,
-		0x340,
-		0x350,
-	};
 	_replacements.clear();
 	std::fstream file(path, std::ios::in);
+	_force_ancient_souls = false;
+	_shuffle_relics = false;
+	_shuffle_rooms = false;
+	_skin_override = -1;
 	if (file.is_open())
 	{
 		std::string line;
@@ -286,6 +303,8 @@ void Randomizer::ReadSeedFile(std::string path)
 					_shuffle_rooms = true;
 				else if (item == "NG+")
 					gm->NewGamePlusGeneration = 1;
+				else if (item == "force_ancient_souls")
+					_force_ancient_souls = true;
 				else if (item.find("start_chapter") != std::string::npos)
 				{
 					int chapter = atoi(item.substr(sizeof("start_chapter"), item.length()).c_str());
@@ -304,27 +323,23 @@ void Randomizer::ReadSeedFile(std::string path)
 			}
 			else
 			{
-				bool found = false;
-				for (char i = 0; i < 6; ++i)
+				FTableRowProxy result;
+				for (int index = item.rfind(","); index != std::string::npos; index = item.rfind(","))
 				{
-					if (item.compare(0, strlen(tableNames[i]), tableNames[i]) == 0)
+					FTableRowProxy* progress = new FTableRowProxy();
+					std::string token = item.substr(index+1, item.length());
+					item = item.substr(0, index);
+					if (FindTableRow(token, *progress))
 					{
-						auto entry = item.substr(strlen(tableNames[i]) + 1, item.length());
-						DWORD_PTR ptr = (DWORD_PTR)gm;
-						CG::UDataTable* table = *(CG::UDataTable**)(&((char*)gm)[offsets[i]]);
-						for (int j = 0; j < table->Data.Num(); ++j)
-							if (table->Data[j].Name.GetName() == entry)
-							{
-								FTableRowProxy proxy;
-								proxy.datatable = offsets[i];
-								proxy.entry = j;
-								_replacements[location] = proxy;
-								found = true;
-								break;
-							}
+						progress->progress = result.progress;
+						result.progress = progress;
 					}
+					else
+						delete progress;
 				}
-				if (!found)
+				if (FindTableRow(item, result))
+					_replacements[location] = result;
+				else
 					std::cout << "unknown item:\t" << item << std::endl;
 			}
 		}
@@ -332,6 +347,45 @@ void Randomizer::ReadSeedFile(std::string path)
 			file.close();
 	}
 }
+
+bool Randomizer::FindTableRow(std::string item, FTableRowProxy& result)
+{
+	const char* tableNames[6] = {
+		"Aptitude",
+		"Generic",
+		"Parameter",
+		"Passive",
+		"Spirit",
+		"Tip",
+	};
+	int offsets[6] = {
+		0x338,
+		0x328,
+		0x330,
+		0x348,
+		0x340,
+		0x350,
+	};
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	for (char i = 0; i < 6; ++i)
+	{
+		if (item.compare(0, strlen(tableNames[i]), tableNames[i]) == 0)
+		{
+			auto entry = item.substr(strlen(tableNames[i]) + 1, item.length());
+			DWORD_PTR ptr = (DWORD_PTR)gm;
+			CG::UDataTable* table = *(CG::UDataTable**)(&((char*)gm)[offsets[i]]);
+			for (int j = 0; j < table->Data.Num(); ++j)
+				if (table->Data[j].Name.GetName() == entry)
+				{
+					result.datatable = offsets[i];
+					result.entry = j;
+					return true;
+				}
+		}
+	}
+	return false;
+}
+
 
 void Randomizer::RemoveHasItemCheck()
 {
@@ -345,22 +399,53 @@ void Randomizer::RemoveHasItemCheck()
 	VirtualProtect(src, 5, curProtection, &temp);
 }
 
-void Randomizer::EraseSpirits()
+void Randomizer::ModifySpirits()
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UDataTable* table = gm->ItemSpiritTable;
-	CG::FSpiritData* data = (CG::FSpiritData*)(table->Data[0].ptr);
-	CG::FDataTableRowHandle empty = data->ItemSpiritData.AptitudeToUnlock;
+	CG::FItemSpiritData* data = (CG::FItemSpiritData*)(table->Data[0].ptr);
+	CG::FDataTableRowHandle empty = data->AptitudeToUnlock;
+
+	int starting_weapon = 0;
+	auto entry = _replacements.find("starting_weapon");
+	if (entry != _replacements.end())
+		starting_weapon = entry->second.entry;
+
 	for (int i = 0; i < table->Data.Num(); ++i)
 	{
-		CG::FSpiritData* data = (CG::FSpiritData*)(table->Data[i].ptr);
-		data->ItemSpiritData.AptitudeToUnlock = empty;
-		data->ItemSpiritData.AptitudeToUnlockTutorial = empty;
-		data->ItemSpiritData.SecondaryAptitudeToUnlock = empty;
-		data->ItemSpiritData.SecondaryAptitudeToUnlockTutorial = empty;
+		CG::FItemSpiritData* data = (CG::FItemSpiritData*)(table->Data[i].ptr);
+		data->AptitudeToUnlock = empty;
+		data->AptitudeToUnlockTutorial = empty;
+		data->SecondaryAptitudeToUnlock = empty;
+		data->SecondaryAptitudeToUnlockTutorial = empty;
+		if (starting_weapon != 0)
+			data->bInitialSpirit = (i == starting_weapon);
 	}
+
+	if (starting_weapon != 0 && _force_ancient_souls)
+	{
+		CG::UDataTable* oldTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[0].ptr))->SpiritLevelTable;
+		CG::UDataTable* newTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[starting_weapon].ptr))->SpiritLevelTable;
+
+		for (int j = 0; j < oldTable->Data.Num(); ++j)
+		{
+			CG::FSpiritParameterLevelData* oldLevel = (CG::FSpiritParameterLevelData*)oldTable->Data[j].ptr;
+			CG::FSpiritParameterLevelData* newLevel = (CG::FSpiritParameterLevelData*)newTable->Data[j].ptr;
+
+			CG::Zenith_ECurrencyType tmpType = oldLevel->CurrencyTypeForLevelUp;
+			int tmpCount = oldLevel->NecessaryCurrencyForLevelUp;
+			oldLevel->CurrencyTypeForLevelUp = newLevel->CurrencyTypeForLevelUp;
+			oldLevel->NecessaryCurrencyForLevelUp = newLevel->NecessaryCurrencyForLevelUp;
+			newLevel->CurrencyTypeForLevelUp = tmpType;
+			newLevel->NecessaryCurrencyForLevelUp = tmpCount;
+		}
+	}
+
 }
 
+/// <summary>
+/// obsolete
+/// </summary>
 void Randomizer::RandomizeStartingWeapon()
 {
 	auto entry = _replacements.find("starting_weapon");
@@ -368,6 +453,23 @@ void Randomizer::RandomizeStartingWeapon()
 		return;
 	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+
+
+	CG::UDataTable* oldTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[0].ptr))->SpiritLevelTable;
+	CG::UDataTable* newTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[entry->second.entry].ptr))->SpiritLevelTable;
+
+	for (int j = 0; j < oldTable->Data.Num(); ++j)
+	{
+		CG::FSpiritParameterLevelData* oldLevel = (CG::FSpiritParameterLevelData*)oldTable->Data[j].ptr;
+		CG::FSpiritParameterLevelData* newLevel = (CG::FSpiritParameterLevelData*)newTable->Data[j].ptr;
+
+		CG::Zenith_ECurrencyType tmpType = oldLevel->CurrencyTypeForLevelUp;
+		int tmpCount = oldLevel->NecessaryCurrencyForLevelUp;
+		oldLevel->CurrencyTypeForLevelUp = newLevel->CurrencyTypeForLevelUp;
+		oldLevel->NecessaryCurrencyForLevelUp = newLevel->NecessaryCurrencyForLevelUp;
+		newLevel->CurrencyTypeForLevelUp = tmpType;
+		newLevel->NecessaryCurrencyForLevelUp = tmpCount;
+	}
 
 	auto intent = ((CG::UGameInstanceZenith_C*)World()->OwningGameInstance)->GetLaunchGameIntent();
 	if (intent != CG::Zenith_ELaunchGameIntent::ELaunchGameIntent__NewGame)

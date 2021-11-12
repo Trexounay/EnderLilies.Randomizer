@@ -7,6 +7,7 @@ using WebSocketSharp;
 using WebSocketSharp.Server;
 using System.Web.Script.Serialization;
 using System.Text;
+using System.Windows.Forms;
 
 namespace EnderLilies.Randomizer
 {
@@ -82,7 +83,7 @@ namespace EnderLilies.Randomizer
         }
         protected override void OnOpen()
         {
-            if (State == WebSocketState.Open)
+            if (ConnectionState == WebSocketState.Open)
             {
                 var serializer = new JavaScriptSerializer();
                 string t = serializer.Serialize(new object[] { new Info("EnderLilies", "1.1.5", 0) });
@@ -93,7 +94,7 @@ namespace EnderLilies.Randomizer
 
         public void OnNewItems(Dictionary<string, int> items)
         {
-            if (State == WebSocketState.Open)
+            if (ConnectionState == WebSocketState.Open)
             {
                 var serializer = new JavaScriptSerializer();
                 var itemscommands = (from pair in items select new Var(pair.Key, pair.Value)).ToArray();
@@ -182,7 +183,7 @@ namespace EnderLilies.Randomizer
             if (ptr == IntPtr.Zero)
                 return;
             int count = _process.ReadValue<int>(ptr + 0x68, -1);
-            if (count >= 0 && count <= names.Count)
+            if (count >= 0 && count != _count)
             {
                 IntPtr itemsPtr = _process.ReadValue<IntPtr>(ptr + 0x60);
                 List<int> newItems = new List<int>();
@@ -653,14 +654,34 @@ namespace EnderLilies.Randomizer
                 inv.OnItemsModified += NewItemReceived;
         }
 
-        public void CreateServer()
+        public Exception _lastError;
+        public void CreateServer(int port = 65399)
         {
-            _server = new WebSocketServer("ws://localhost:65399");
-            _server.AddWebSocketService<UATService>("/", (UATService service) =>
+            _lastError = null;
+            try
             {
-                service.tracker = this;
-            });
-            _server.Start();
+                _server = new WebSocketServer("ws://localhost:" + port.ToString());
+                _server.AddWebSocketService<UATService>("/", (UATService service) =>
+                {
+                    service.tracker = this;
+                });
+                _server.Start();
+            }
+            catch (Exception e)
+            {
+                _lastError = e;
+                if (port == 65399)
+                    CreateServer(44444);
+                else
+                {
+
+                    string msg = "Unknown error.";
+                    if (_lastError != null)
+                        msg = _lastError.Message;
+                    MessageBox.Show("Could not start UAT server: " +
+                        msg, "UAT Server Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         public void Stop()
@@ -680,15 +701,23 @@ namespace EnderLilies.Randomizer
             return Process.GetProcessesByName("EnderLiliesSteam-Win64-Shipping").FirstOrDefault(p => !p.HasExited);
         }
 
-        public bool Connected()
+        public void Connect()
         {
-            if (_server == null)
+            if (!GameConnected())
                 CreateServer();
+        }
+
+        public bool GameConnected()
+        {
             if (_process == null || _process.HasExited)
                 _process = GetGameProcess();
             if (_process == null)
                 return false;
-            return _server.IsListening;
+            return true;
+        }
+        public bool ServerConnected()
+        {
+            return _server != null && _server.IsListening;
         }
 
         public event Action<Dictionary<string, int>> OnNewItems;
@@ -712,7 +741,12 @@ namespace EnderLilies.Randomizer
         public void Update()
         {
             StringBuilder level = new StringBuilder();
-            if (!Connected() || !_persistentLevel.DerefString(_process, level) || level.ToString() == "TitleMap")
+            if (!ServerConnected())
+            {
+                Connect();
+                return;
+            }
+            if (!GameConnected() || !_persistentLevel.DerefString(_process, level) || level.ToString() == "TitleMap")
             {
                 foreach (var inv in _inventories)
                     inv.Reset();

@@ -176,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="lib\detours.h" />
     <ClInclude Include="Randomizer.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SDK.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SDK\BP_Character_Boss_Base_classes.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="SDK\BP_Interactable_Treasure_classes.h" />
     <ClInclude Include="SDK\BP_Interactable_Treasure_parameters.h" />
     <ClInclude Include="SDK\BP_Interactable_Treasure_structs.h" />
+    <ClInclude Include="SDK\BP_WorldTravelVolume_classes.h" />
     <ClInclude Include="SDK\CoreUObject_classes.h" />
     <ClInclude Include="SDK\CoreUObject_parameters.h" />
     <ClInclude Include="SDK\CoreUObject_structs.h" />
@@ -211,6 +213,9 @@
     <ClCompile Include="SDK\CoreUObject_functions.cpp" />
     <ClCompile Include="SDK\Engine_functions.cpp" />
     <ClCompile Include="SDK\Zenith_functions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="EnderLilies.Game.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

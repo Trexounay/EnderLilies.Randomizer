@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using EnderLilies.Randomizer;
 using LiveSplit.Model;
 using LiveSplit.UI.Components;
@@ -11,7 +12,7 @@ namespace EnderLilies.Randomizer
         public string ComponentName => "Randomizer for Ender Lilies";
         public string Description => "A randomizer for ENDER LILIES: Quietius of the Knights";
         public ComponentCategory Category => ComponentCategory.Control;
-        public Version Version => Version.Parse("2.0.9");
+        public Version Version => Assembly.GetExecutingAssembly().GetName().Version;
 
         public string UpdateName => ComponentName;
         public string UpdateURL => "https://raw.githubusercontent.com/Trexounay/EnderLilies.Randomizer/master/Update/";
