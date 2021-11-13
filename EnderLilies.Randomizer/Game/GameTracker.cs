@@ -674,7 +674,6 @@ namespace EnderLilies.Randomizer
                     CreateServer(44444);
                 else
                 {
-
                     string msg = "Unknown error.";
                     if (_lastError != null)
                         msg = _lastError.Message;
@@ -703,8 +702,7 @@ namespace EnderLilies.Randomizer
 
         public void Connect()
         {
-            if (!GameConnected())
-                CreateServer();
+            CreateServer();
         }
 
         public bool GameConnected()
