@@ -42,7 +42,7 @@ public:
 	unsigned char                                      UnknownData_1MCJ[0x5];                                     // 0x02E3(0x0005) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 	struct FText                                       SystemMessageOnInteract;                                   // 0x02E8(0x0018) (Edit, BlueprintVisible, BlueprintReadOnly)
 	TArray<class UClass*>                              Conditions;                                                // 0x0300(0x0010) (Edit, BlueprintVisible)
-	TEnumAsByte<EConditionOperatorType_EConditionOperatorType> ConditionOperator;                                         // 0x0310(0x0001) (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	TEnumAsByte<EConditionOperatorType_EConditionOperatorType> ConditionOperator;                                 // 0x0310(0x0001) (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 
 
 	static UClass* StaticClass()

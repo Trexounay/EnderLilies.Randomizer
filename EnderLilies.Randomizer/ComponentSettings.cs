@@ -246,6 +246,20 @@ namespace EnderLilies.Randomizer
             }
         }
 
+        bool _metaprogression = false;
+        public bool MetaProgression
+        {
+            get
+            {
+                return _metaprogression;
+            }
+            set
+            {
+                _metaprogression = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         int _currentSeed = 0;
         public int Seed
         {
@@ -328,6 +342,8 @@ namespace EnderLilies.Randomizer
         public ComponentSettings()
         {
             InitializeComponent();
+            this.metaprogressTooltip.SetToolTip(metaprogression, "Items for progression will always be placed on newly accessible checks");
+
             this.path.DataBindings.Add("Text", this, "FilePath", false, DataSourceUpdateMode.OnPropertyChanged, "Components/EnderLilies.Randomizer.json");
             this.seedText.DataBindings.Add("Text", this, "Seed", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             this.checkfile.DataBindings.Add("Text", this, "CheckFileResult", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -349,6 +365,7 @@ namespace EnderLilies.Randomizer
             this.dashProgressive.DataBindings.Add("Checked", this, "DashProgressive", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.startWeaponUsesAncientSouls.DataBindings.Add("Checked", this, "StartWeaponUsesAncientSouls", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.startWeaponUsesAncientSouls.DataBindings.Add("Enabled", this, "RandomWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.metaprogression.DataBindings.Add("Checked", this, "MetaProgression", false, DataSourceUpdateMode.OnPropertyChanged, false);
 
             this.skinLevel.DataBindings.Add("Value", this, "SkinOverride", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             this.startChapter.DataBindings.Add("Value", this, "StartChapter", false, DataSourceUpdateMode.OnPropertyChanged, 0);
@@ -386,6 +403,7 @@ namespace EnderLilies.Randomizer
             NGPlus = SettingsHelper.ParseBool(element["NGPlus"], false);
             ShuffleRooms = SettingsHelper.ParseBool(element["ShuffleRooms"], false);
             RandomWeapon = SettingsHelper.ParseBool(element["RandomWeapon"], false);
+            MetaProgression = SettingsHelper.ParseBool(element["MetaProgression"], false);
             DashProgressive = SettingsHelper.ParseBool(element["DashProgressive"], true);
             StartWeaponUsesAncientSouls = SettingsHelper.ParseBool(element["StartWeaponUsesAncientSouls"], true);
 
@@ -414,6 +432,7 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "MaxChapter", MaxChapter));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleRooms", ShuffleRooms));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "RandomWeapon", RandomWeapon));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "MetaProgression", MetaProgression));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "DashProgressive", DashProgressive));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "StartWeaponUsesAncientSouls", StartWeaponUsesAncientSouls));
             return settings_node;
@@ -444,6 +463,7 @@ namespace EnderLilies.Randomizer
                     continue;
                 }
                 var node = g.GetNode(l.node);
+                var tooltip = node.ToString();
                 var item = session.result[node];
                 foreach (var k in g.aliases)
                 {
@@ -452,10 +472,55 @@ namespace EnderLilies.Randomizer
                     if (k.Value == item)
                         item = k.Key;
                 }
-                node = node.Replace("_GAMEPLAY.BP_", ".").Replace("Interactable_", "").Replace("Passive_", "");
-                LogicPreviewGridview.Rows.Add(node,
+
+                Dictionary<string, string> replacements = new Dictionary<string, string>
+                {
+                    {"_GAMEPLAY.BP_", " | "},
+                    {"_GEO.BP_", " | "},
+                    {"Interactable_", ""},
+                    {"Passive_", ""},
+                    {"Village_", "Cliffside Hamlet "},
+                    {"Oubliette_", "Stockade "},
+                    {"Forest_", "Witch Thicket "},
+                    {"Fort_", "Twin Spires "},
+                    {"Church_", "White Parish "},
+                    {"Cave_", "Catacombs "},
+                    {"Swamp_", "Verboten Domain "},
+                    {"Abyss_", "Abyss "},
+                    {"Outside_", "Hinterlands "},
+                    {"Castle_", "Ruined Castle "},
+                    {"SCR_LV1S_", "10 stagnant "},
+                    {"SCR_LV1M_", "30 stagnant "},
+                    {"SCR_LV1L_", "100 stagnant "},
+                    {"SCR_LV1LL_", "800 stagnant "},
+                    {"SCR_LV2S_", "10 furious "},
+                    {"SCR_LV2M_", "30 furious "},
+                    {"SCR_LV2L_", "100 furious "},
+                    {"SCR_LV2LL_", "800 furious "},
+                    {"SCR_LV3S_", "1 ancient soul"},
+                    {"SCR_LV3M_", "2 ancient soul"},
+                    {"Item_Tip_", "finding "},
+                    {"Item_Tip", "finding "},
+                    {"Item_HealPower_Up_", "priestress wish "},
+                    {"Item_FinalPassivePart_", "stone tablet "},
+                    {"Item_PassiveSlot_", "chain of sorcery "},
+                    {"Item_MaxHPUp_01_", "amulet fragment "},
+                    {"Item_MaxHPUp_02_", "amulet gem "},
+                    {"Drop", "barrel"},
+                    {"Passives_Treasure_", "chest "},
+                    {"Treasure_", "chest "},
+                    {"Treasure", "chest "},
+                };
+                foreach (var r in replacements)
+                    node = node.Replace(r.Key, r.Value);
+                if (node.Contains("|"))
+                {
+                    node = node.TrimEnd("0123456789_ ".ToArray());
+                }
+                int rowid = LogicPreviewGridview.Rows.Add(node,
                     item,
                     string.Format("{0}/{1}", l.reachables, g.nodes.Count));
+                LogicPreviewGridview.Rows[rowid].Cells[0].ToolTipText = tooltip;
             }
         }
 

@@ -21764,6 +21764,11 @@ public:
 	FName Name;
 	void* ptr;
 	unsigned char                                      UnknownData[0x08];
+
+	inline bool operator==(const FName& other) const
+	{
+		return Name.ComparisonIndex == other.ComparisonIndex && Name.Number == other.Number;
+	}
 };
 
 // Class Engine.DataTable
@@ -21780,6 +21785,16 @@ public:
 	unsigned char                                      UnknownData_6LS8[0x7];                                     // 0x0081(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 	struct FString                                     ImportKeyField;                                            // 0x0088(0x0010) (Edit, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	unsigned char                                      UnknownData_7RDA[0x18];                                    // 0x0098(0x0018) MISSED OFFSET (PADDING)
+
+	int GetIndex(FName name) const
+	{
+		for (int i = 0; i < Data.Num(); ++i)
+		{
+			if (Data[i].Name == name)
+				return i;
+		}
+		return -1;
+	}
 
 
 	static UClass* StaticClass()

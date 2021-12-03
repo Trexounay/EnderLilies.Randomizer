@@ -68,6 +68,16 @@ public:
 		return Count;
 	}
 
+	int GetIndex(T elem) const
+	{
+		for (int i = 0; i < Num(); ++i)
+		{
+			if (Data[i] == elem)
+				return i;
+		}
+		return -1;
+	}
+
 	T& operator[](int i)
 	{
 		return Data[i];

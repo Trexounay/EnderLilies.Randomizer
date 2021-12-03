@@ -57,23 +57,24 @@ private:
 	CG::UClass* _bosses;
 	CG::UClass* _pickups;
 	CG::UClass* _chests;
-	CG::UClass* _transitions;
+	CG::UClass* _transitions_volumes;
+	CG::UClass* _transitions_trigger;
 
 	CG::FNameEntry* _bosses_name;
 	CG::FNameEntry* _pickups_name;
 	CG::FNameEntry* _chests_name;
-	CG::FNameEntry* _transitions_name;
+	CG::FNameEntry* _transitions_volumes_name;
+	CG::FNameEntry* _transitions_trigger_name;
 
 	void RemoveHasItemCheck();
 	void ModifySpirits();
 	void RefreshAptitudes();
 	void ShuffleRelicSlots();
-	void RandomizeStartingWeapon();
 	void ShuffleRooms();
 	void ReadSeedFile(std::string path);
 	void FindItems(CG::UClass* type);
 	void ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);
-	void TransitionFound(CG::ABP_WorldTravelVolume_C* volume);
+	void TransitionFound(CG::FDataTableRowHandle* handle, CG::FName* PlayerStartTag);
 	void FindNames();
 	void NewGame();
 	void NewMap();

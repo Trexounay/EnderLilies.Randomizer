@@ -210,6 +210,7 @@
     <ClCompile Include="SDK\BP_Interactable_Event_functions.cpp" />
     <ClCompile Include="SDK\BP_Interactable_Item_functions.cpp" />
     <ClCompile Include="SDK\BP_Interactable_Treasure_functions.cpp" />
+    <ClCompile Include="SDK\BP_WorldTravelVolume_functions.cpp" />
     <ClCompile Include="SDK\CoreUObject_functions.cpp" />
     <ClCompile Include="SDK\Engine_functions.cpp" />
     <ClCompile Include="SDK\Zenith_functions.cpp" />

@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
+  <update version="2.1.1">
+    <files>
+      <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+      <file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
+      <file path="Components/EnderLilies.Game.dll" status="changed"/>
+    </files>
+    <changelog>
+      <change>/!\ Make sure you close ENDER LILIES before Updating /!\</change>
+      <change>Made locations cleaner in Logic tab</change>
+      <change>Added a new Meta-progression setting that always put progression items in most recently accessible check</change>
+    </changelog>
+  </update>
   <update version="2.1.0">
     <files>
       <file path="Components/EnderLilies.Randomizer.json" status="changed"/>

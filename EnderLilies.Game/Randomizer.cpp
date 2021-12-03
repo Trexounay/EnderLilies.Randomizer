@@ -32,8 +32,10 @@ void Randomizer::FindNames()
 			_pickups_name = name;
 		else if (str == "BP_Interactable_Treasure_C")
 			_chests_name = name;
-		//else if (str == "BP_WorldTravelVolume_C")
-			//_transitions_name = name;
+		else if (str == "BP_WorldTravelVolume_C")
+			_transitions_volumes_name = name;
+		else if (str == "BP_Interactable_WorldTravel_C")
+			_transitions_trigger_name = name;
 	}
 }
 
@@ -106,6 +108,8 @@ void Randomizer::NewMap()
 	_bosses = nullptr;
 	_pickups = nullptr;
 	_chests = nullptr;
+	_transitions_volumes = nullptr;
+	_transitions_trigger = nullptr;
 
 	for (int i = 0; i < CG::UObject::GetGlobalObjects().Num(); ++i)
 	{
@@ -119,8 +123,12 @@ void Randomizer::NewMap()
 			_pickups = static_cast<CG::UClass*>(object);
 		else if (id == _chests_name)
 			_chests = static_cast<CG::UClass*>(object);
-		//else if (id == _transitions_name)
-			//_transitions = static_cast<CG::UClass*>(object);
+		/*
+		else if (id == _transitions_volumes_name)
+			_transitions_volumes = static_cast<CG::UClass*>(object);
+		else if (id == _transitions_trigger_name)
+			_transitions_trigger = static_cast<CG::UClass*>(object);
+		*/
 	}
 	if (_skin_override >= 0)
 	{
@@ -135,8 +143,10 @@ void Randomizer::Update()
 	FindItems(_bosses);
 	FindItems(_pickups);
 	FindItems(_chests);
-	//FindItems(_transitions);
+	//FindItems(_transitions_volumes);
+	//FindItems(_transitions_trigger);
 }
+
 
 void Randomizer::FindItems(CG::UClass* type)
 {
@@ -158,18 +168,20 @@ void Randomizer::FindItems(CG::UClass* type)
 			ItemFound(out[i], &((CG::ABP_Interactable_Item_C*)out[i])->Item);
 		else if (type == _chests)
 			ItemFound(out[i], &((CG::ABP_Interactable_Treasure_C*)out[i])->UniqueItem);
-		//else if (type == _transitions)
-			//TransitionFound((CG::ABP_WorldTravelVolume_C*)out[i]);
+/*		else if (type == _transitions_volumes)
+			TransitionFound(&((CG::ABP_WorldTravelVolume_C*)out[i])->GameMapToLoad, &((CG::ABP_WorldTravelVolume_C*)out[i])->PlayerStartTag);
+		else if (type == _transitions_trigger)
+			TransitionFound(&((CG::ABP_Interactable_WorldTravel_C*)out[i])->GameMapToLoad, &((CG::ABP_Interactable_WorldTravel_C*)out[i])->PlayerStartTag);
+*/
 	}
 }
 
-void Randomizer::TransitionFound(CG::ABP_WorldTravelVolume_C* volume)
+void Randomizer::TransitionFound(CG::FDataTableRowHandle *handle, CG::FName *PlayerStartTag)
 {
-	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
-	CG::FDataTableRowHandle handle;
-	handle.DataTable = gm->GameMapTable;
-	handle.RowName = gm->GameMapTable->Data[3].Name;
-	volume->GameMapToLoad = handle;
+	if (_done.find(handle) != _done.end())
+		return;
+	std::cout << handle->RowName.GetName() << "\t" << PlayerStartTag->GetName() << std::endl;
+	_done.insert(handle);
 }
 
 void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle)
@@ -441,54 +453,6 @@ void Randomizer::ModifySpirits()
 		}
 	}
 
-}
-
-/// <summary>
-/// obsolete
-/// </summary>
-void Randomizer::RandomizeStartingWeapon()
-{
-	auto entry = _replacements.find("starting_weapon");
-	if (entry == _replacements.end())
-		return;
-	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
-	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
-
-
-	CG::UDataTable* oldTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[0].ptr))->SpiritLevelTable;
-	CG::UDataTable* newTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[entry->second.entry].ptr))->SpiritLevelTable;
-
-	for (int j = 0; j < oldTable->Data.Num(); ++j)
-	{
-		CG::FSpiritParameterLevelData* oldLevel = (CG::FSpiritParameterLevelData*)oldTable->Data[j].ptr;
-		CG::FSpiritParameterLevelData* newLevel = (CG::FSpiritParameterLevelData*)newTable->Data[j].ptr;
-
-		CG::Zenith_ECurrencyType tmpType = oldLevel->CurrencyTypeForLevelUp;
-		int tmpCount = oldLevel->NecessaryCurrencyForLevelUp;
-		oldLevel->CurrencyTypeForLevelUp = newLevel->CurrencyTypeForLevelUp;
-		oldLevel->NecessaryCurrencyForLevelUp = newLevel->NecessaryCurrencyForLevelUp;
-		newLevel->CurrencyTypeForLevelUp = tmpType;
-		newLevel->NecessaryCurrencyForLevelUp = tmpCount;
-	}
-
-	auto intent = ((CG::UGameInstanceZenith_C*)World()->OwningGameInstance)->GetLaunchGameIntent();
-	if (intent != CG::Zenith_ELaunchGameIntent::ELaunchGameIntent__NewGame)
-		return;
-
-	pc->InventoryComponent->ItemSpiritInventory->RemoveItemByRowName(gm->ItemSpiritTable->Data[0].Name);
-
-	CG::FDataTableRowHandle handle;
-	handle.DataTable = gm->ItemSpiritTable;
-	handle.RowName = gm->ItemSpiritTable->Data[entry->second.entry].Name;
-
-	pc->InventoryComponent->ItemSpiritInventory->AddItem(handle);
-
-	pc->SpiritEquipComponent->UnequipSpirit(CG::Zenith_ESummonSet::ESummonSet__SetA, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
-	pc->SpiritEquipComponent->UnequipSpirit(CG::Zenith_ESummonSet::ESummonSet__SetB, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
-
-	pc->SpiritEquipComponent->EquipSpiritToCurrentSet(gm->ItemSpiritTable->Data[entry->second.entry].Name, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
-	pc->SpiritEquipComponent->SwitchSummonSet(CG::Zenith_ESummonSet::ESummonSet__SetB);
-	pc->SpiritEquipComponent->EquipSpiritToCurrentSet(gm->ItemSpiritTable->Data[entry->second.entry].Name, CG::Zenith_ECommandInputTypes::ECommandInputTypes__ATTACK);
 }
 
 void Randomizer::RefreshAptitudes()

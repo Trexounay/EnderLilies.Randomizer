@@ -134,7 +134,7 @@ namespace EnderLilies.Randomizer
                 return missing_no_progress;
         }
 
-        public Dictionary<string, string> Solve(string start, string weapon = "umbral")
+        public Dictionary<string, string> Solve(string start, string weapon = "umbral", bool metaprogression=false)
         {
             AddResult("starting_weapon", weapon);
             Dictionary<int, int> result = new Dictionary<int, int>(_forced);
@@ -167,31 +167,29 @@ namespace EnderLilies.Randomizer
                 if (missings.Count > 0 && count > 0)
                 {
                     done = false;
-                    /*
-                    int old_node = empty_nodes[RNG.stream.Next(empty_nodes.Count)];
-                    new_empty_nodes.Add(old_node);
-                    int node = new_empty_nodes[RNG.stream.Next(new_empty_nodes.Count)];
-                    */
                     empty_nodes.AddRange(new_empty_nodes);
-
-                    float sum = 0;
-                    Dictionary<int, float> weights = new Dictionary<int, float>();
-                    foreach (var n in empty_nodes)
+                    int node = empty_nodes.Last();
+                    if (!metaprogression)
                     {
-                        weights[n] = 1.0f - (inv_weights[n] * (1 - (1.0f / count)));
-                        sum += weights[n];
+                        float sum = 0;
+                        Dictionary<int, float> weights = new Dictionary<int, float>();
+                        foreach (var n in empty_nodes)
+                        {
+                            weights[n] = 1.0f - (inv_weights[n] * (1 - (1.0f / count)));
+                            sum += weights[n];
+                        }
+                        foreach (var n in empty_nodes)
+                        {
+                            weights[n] = (sum / count) / weights[n];
+                            inv_weights[n] *= 1.0f - (weights[n] / (count * sum));
+                        }
+                        node = empty_nodes.RandomWithWeigh(weights);
+                        inv_weights.Remove(node);
                     }
-                    foreach (var n in empty_nodes)
-                    {
-                        weights[n] = (sum / count) / weights[n];
-                        inv_weights[n] *= 1.0f - (weights[n] / (count * sum));
-                    }
-                    int node = empty_nodes.RandomWithWeigh(weights);
                     var pool = missings.ToArray();
                     int item = pool[RNG.stream.Next(pool.Length)];
                     result[node] = item;
                     logic.Add(new LogicLog() { node = node, reachables = reachables.Count - 1});
-                    inv_weights.Remove(node);
                     empty_nodes.Remove(node);
                 }
             }

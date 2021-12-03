@@ -36,6 +36,8 @@
             this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
+            this.dashProgressive = new System.Windows.Forms.CheckBox();
+            this.startWeaponUsesAncientSouls = new System.Windows.Forms.CheckBox();
             this.randomWeapon = new System.Windows.Forms.CheckBox();
             this.shuffleRooms = new System.Windows.Forms.CheckBox();
             this.uatserver = new System.Windows.Forms.CheckBox();
@@ -68,9 +70,9 @@
             this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.metaprogression = new System.Windows.Forms.CheckBox();
+            this.metaprogressTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.startWeaponUsesAncientSouls = new System.Windows.Forms.CheckBox();
-            this.dashProgressive = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -140,6 +142,7 @@
             // 
             // SettingsPage
             // 
+            this.SettingsPage.Controls.Add(this.metaprogression);
             this.SettingsPage.Controls.Add(this.dashProgressive);
             this.SettingsPage.Controls.Add(this.startWeaponUsesAncientSouls);
             this.SettingsPage.Controls.Add(this.randomWeapon);
@@ -166,6 +169,30 @@
             this.SettingsPage.TabIndex = 3;
             this.SettingsPage.Text = "Settings";
             this.SettingsPage.UseVisualStyleBackColor = true;
+            // 
+            // dashProgressive
+            // 
+            this.dashProgressive.AutoSize = true;
+            this.dashProgressive.Checked = true;
+            this.dashProgressive.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dashProgressive.Location = new System.Drawing.Point(42, 285);
+            this.dashProgressive.Name = "dashProgressive";
+            this.dashProgressive.Size = new System.Drawing.Size(188, 17);
+            this.dashProgressive.TabIndex = 30;
+            this.dashProgressive.Text = "Dash always before piercing lance";
+            this.dashProgressive.UseVisualStyleBackColor = true;
+            // 
+            // startWeaponUsesAncientSouls
+            // 
+            this.startWeaponUsesAncientSouls.AutoSize = true;
+            this.startWeaponUsesAncientSouls.Checked = true;
+            this.startWeaponUsesAncientSouls.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.startWeaponUsesAncientSouls.Location = new System.Drawing.Point(60, 262);
+            this.startWeaponUsesAncientSouls.Name = "startWeaponUsesAncientSouls";
+            this.startWeaponUsesAncientSouls.Size = new System.Drawing.Size(154, 17);
+            this.startWeaponUsesAncientSouls.TabIndex = 29;
+            this.startWeaponUsesAncientSouls.Text = "Upgrade with ancient souls";
+            this.startWeaponUsesAncientSouls.UseVisualStyleBackColor = true;
             // 
             // randomWeapon
             // 
@@ -518,33 +545,19 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Seed:";
             // 
+            // metaprogression
+            // 
+            this.metaprogression.AutoSize = true;
+            this.metaprogression.Location = new System.Drawing.Point(42, 308);
+            this.metaprogression.Name = "metaprogression";
+            this.metaprogression.Size = new System.Drawing.Size(108, 17);
+            this.metaprogression.TabIndex = 31;
+            this.metaprogression.Text = "Meta Progression";
+            this.metaprogression.UseVisualStyleBackColor = true;
+            // 
             // componentSettingsBindingSource
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
-            // 
-            // startWeaponUsesAncientSouls
-            // 
-            this.startWeaponUsesAncientSouls.AutoSize = true;
-            this.startWeaponUsesAncientSouls.Checked = true;
-            this.startWeaponUsesAncientSouls.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.startWeaponUsesAncientSouls.Location = new System.Drawing.Point(60, 262);
-            this.startWeaponUsesAncientSouls.Name = "startWeaponUsesAncientSouls";
-            this.startWeaponUsesAncientSouls.Size = new System.Drawing.Size(154, 17);
-            this.startWeaponUsesAncientSouls.TabIndex = 29;
-            this.startWeaponUsesAncientSouls.Text = "Upgrade with ancient souls";
-            this.startWeaponUsesAncientSouls.UseVisualStyleBackColor = true;
-            // 
-            // dashProgressive
-            // 
-            this.dashProgressive.AutoSize = true;
-            this.dashProgressive.Checked = true;
-            this.dashProgressive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dashProgressive.Location = new System.Drawing.Point(42, 285);
-            this.dashProgressive.Name = "dashProgressive";
-            this.dashProgressive.Size = new System.Drawing.Size(188, 17);
-            this.dashProgressive.TabIndex = 30;
-            this.dashProgressive.Text = "Dash always before piercing lance";
-            this.dashProgressive.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 
@@ -616,5 +629,7 @@
         private System.Windows.Forms.CheckBox randomWeapon;
         private System.Windows.Forms.CheckBox startWeaponUsesAncientSouls;
         private System.Windows.Forms.CheckBox dashProgressive;
+        private System.Windows.Forms.CheckBox metaprogression;
+        private System.Windows.Forms.ToolTip metaprogressTooltip;
     }
 }

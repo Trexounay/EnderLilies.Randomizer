@@ -105,7 +105,7 @@ namespace EnderLilies.Randomizer
                 };
                 weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Count)];
             }
-            result = GameGraph.Solve("Start", weapon);
+            result = GameGraph.Solve("Start", weapon, _settings.MetaProgression);
             if (result == null)
                 return;
             items = new List<string>(GameGraph.locations.Values);
