@@ -58,7 +58,7 @@
     "elder": "Spirit.s2112",
     "chief": "Spirit.s2092",
     "aegis": "Spirit.s2032",
-    "fellwyrm:": "Spirit.s2232",
+    "fellwyrm": "Spirit.s2232",
 
     "djump": "Aptitude.double_jump",
     "dodge": "Aptitude.Dodge",
@@ -323,7 +323,7 @@
     {
       "from": "Dog",
       "to": "Castle_14_GAMEPLAY.BP_SCR_LV1L_2220_3",
-      "requires": "CHARGE + (claw | LEDGE + HORIZONTAL)",
+      "requires": "CHARGE + LEDGE + (claw | HORIZONTAL)",
       "twoways": true
     },
     {
@@ -413,43 +413,43 @@
     {
       "from": "Dog",
       "to": "Castle_17_GAMEPLAY.BP_SCR_LV1M_2000_3",
-      "requires": "",
+      "requires": "LEDGE",
       "twoways": true
     },
     {
       "from": "Dog",
       "to": "Castle_18_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "CHARGE",
+      "requires": "LEDGE + CHARGE",
       "twoways": true
     },
     {
       "from": "Dog",
       "to": "Castle_18_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "CHARGE",
+      "requires": "LEDGE + CHARGE",
       "twoways": true
     },
     {
       "from": "Dog",
       "to": "Castle_18_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
-      "requires": "CHARGE",
+      "requires": "LEDGE + CHARGE",
       "twoways": true
     },
     {
       "from": "Dog",
       "to": "Castle_18_GAMEPLAY.BP_SCR_LV2L_2221_2",
-      "requires": "CHARGE + hook",
+      "requires": "LEDGE + CHARGE + hook",
       "twoways": true
     },
     {
       "from": "Dog",
       "to": "Castle_19_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "",
+      "requires": "LEDGE",
       "twoways": true
     },
     {
       "from": "Dog",
       "to": "Castle_20_GAMEPLAY.BP_e5030_Leader",
-      "requires": "",
+      "requires": "LEDGE",
       "twoways": true
     },
     {
@@ -839,7 +839,7 @@
     {
       "from": "Start",
       "to": "Church_13_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "unlock + LEDGE",
+      "requires": "unlock + ( djump | champion | silva + dodge )",
       "twoways": true
     },
     {
@@ -911,7 +911,7 @@
     {
       "from": "Youth",
       "to": "Forest_06_GAMEPLAY.BP_SCR_LV2M_2120_3",
-      "requires": "LEDGE + slam | 2LEDGE",
+      "requires": "LEDGE + slam | 2LEDGE | LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
@@ -947,7 +947,7 @@
     {
       "from": "Youth",
       "to": "Forest_08_GAMEPLAY.BP_SCR_LV2M_2120_1",
-      "requires": "LEDGE + HORIZONTAL",
+      "requires": "LEDGE | HORIZONTAL",
       "twoways": true
     },
     {
@@ -1361,19 +1361,19 @@
     {
       "from": "Gerrod",
       "to": "Oubliette_01_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_5",
-      "requires": "swim + HORIZONTAL",
+      "requires": "swim + (HORIZONTAL | hook)",
       "twoways": true
     },
     {
       "from": "Gerrod",
       "to": "Oubliette_01_GAMEPLAY.BP_SCR_LV1S_2010_3",
-      "requires": "swim + HORIZONTAL",
+      "requires": "swim + (HORIZONTAL | hook)",
       "twoways": true
     },
     {
       "from": "Gerrod",
       "to": "Oubliette_02_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "swim + HORIZONTAL",
+      "requires": "swim + (HORIZONTAL | hook)",
       "twoways": true
     },
     {
@@ -1589,7 +1589,7 @@
     {
       "from": "Gerrod",
       "to": "Oubliette_15_GAMEPLAY.BP_e5060_Assassin",
-      "requires": "swim + HORIZONTAL",
+      "requires": "swim + (HORIZONTAL | hook)",
       "twoways": true
     },
     {
@@ -1883,7 +1883,7 @@
     {
       "from": "Youth",
       "to": "Village_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
-      "requires": " LEDGE | claw",
+      "requires": "",
       "twoways": true
     },
     {
@@ -1895,7 +1895,7 @@
     {
       "from": "Youth",
       "to": "Village_02_GAMEPLAY.BP_SCR_LV1S_2100_2",
-      "requires": "2LEDGE",
+      "requires": "2LEDGE | silva + dodge | hook",
       "twoways": true
     },
     {
@@ -1907,13 +1907,13 @@
     {
       "from": "Youth",
       "to": "Village_03_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
-      "requires": "LEDGE | claw",
+      "requires": "",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_03_GAMEPLAY.BP_SCR_LV1S_2021_2",
-      "requires": "LEDGE | claw",
+      "requires": "",
       "twoways": true
     },
     {
@@ -1925,121 +1925,121 @@
     {
       "from": "Youth",
       "to": "Village_04_1_GAMEPLAY.BP_e2102_Crow",
-      "requires": "LEDGE | claw",
+      "requires": "",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_04_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "LEDGE | claw",
+      "requires": "",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_04_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
-      "requires": "LEDGE + (hook | HORIZONTAL) | 2LEDGE + claw",
+      "requires": "hook | LEDGE + HORIZONTAL | 2LEDGE",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_04_GAMEPLAY.BP_SCR_LV1S_2010_1",
-      "requires": "LEDGE | claw",
+      "requires": "",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_05_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "LEDGE | claw",
+      "requires": "",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_06_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "LEDGE | claw",
+      "requires": "",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_06_GAMEPLAY.BP_SCR_LV1M_2000_3",
-      "requires": "2LEDGE | LEDGE + claw | LEDGE + HORIZONTAL",
+      "requires": "2LEDGE | LEDGE + claw | (silva | djump) + HORIZONTAL | champion + sinner",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_06_GAMEPLAY.BP_SCR_LV1S_2020_2",
-      "requires": "LEDGE + slam + (hook | claw)",
+      "requires": "slam + (2LEDGE | LEDGE + claw | hook)",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_06_GAMEPLAY.BP_SCR_LV1S_2021_2",
-      "requires": "LEDGE + slam + (hook | claw)",
+      "requires": "slam + (2LEDGE | LEDGE + claw | hook)",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_06_GAMEPLAY.BP_SCR_LV2S_2010_3",
-      "requires": "LEDGE",
+      "requires": "LEDGE | hook",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_06_GAMEPLAY.BP_SCR_LV2S_2021_2",
-      "requires": "LEDGE + slam",
+      "requires": "(LEDGE | hook) + slam",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_07_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2",
-      "requires": "LEDGE",
+      "requires": "LEDGE | hook",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_07_GAMEPLAY.BP_SCR_LV1S_2100_3",
-      "requires": "LEDGE",
+      "requires": "LEDGE | hook",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_07_GAMEPLAY.BP_SCR_LV2S_2080_3",
-      "requires": "LEDGE + hook | 2LEDGE",
+      "requires": "hook | 2LEDGE",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_08_GAMEPLAY.BP_e2002_Knight",
-      "requires": "LEDGE",
+      "requires": "LEDGE | hook",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_08_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "LEDGE",
+      "requires": "LEDGE | hook",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_08_GAMEPLAY.BP_SCR_LV1S_2021_2",
-      "requires": "LEDGE + swim",
+      "requires": "(LEDGE | hook) + swim",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_09_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "LEDGE",
+      "requires": "LEDGE | hook",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_09_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "LEDGE",
+      "requires": "LEDGE | hook",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Village_10_GAMEPLAY.BP_e5050_Giant",
-      "requires": "LEDGE",
+      "requires": "LEDGE | hook",
       "twoways": true
     },
     {
@@ -2075,7 +2075,7 @@
     {
       "from": "Youth",
       "to": "Village_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_Treasure_2",
-      "requires": "slam + djump",
+      "requires": "slam + (djump | 2LEDGE | LEDGE + HORIZONTAL)",
       "twoways": true
     },
     {

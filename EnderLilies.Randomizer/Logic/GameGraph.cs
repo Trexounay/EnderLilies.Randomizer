@@ -163,6 +163,7 @@ namespace EnderLilies.Randomizer
                 done = true;
                 List<int> new_empty_nodes = new List<int>();
                 missings = UpdateReachables(ref new_empty_nodes, ref unsolved, ref reachables, result);
+                new_empty_nodes.Shuffle();
                 int count = empty_nodes.Count + new_empty_nodes.Count;
                 if (missings.Count > 0 && count > 0)
                 {

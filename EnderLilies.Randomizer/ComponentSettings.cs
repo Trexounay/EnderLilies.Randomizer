@@ -476,6 +476,7 @@ namespace EnderLilies.Randomizer
                 Dictionary<string, string> replacements = new Dictionary<string, string>
                 {
                     {"_GAMEPLAY.BP_", " | "},
+                    {"_MAP.BP_", " | "},
                     {"_GEO.BP_", " | "},
                     {"Interactable_", ""},
                     {"Passive_", ""},
