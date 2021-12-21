@@ -10,7 +10,7 @@
       <change>/!\ Make sure you close ENDER LILIES before Updating /!\</change>
       <change>Improved logic</change>
       <change>Added more options for starting weapon</change>
-      <change>Added option shuffle what blight each spirit requires for upgrade</change>
+      <change>Added an option to shuffle what each spirit requires for upgrade</change>
     </changelog>
   </update>
   <update version="2.1.1">
