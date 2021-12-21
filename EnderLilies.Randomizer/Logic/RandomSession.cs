@@ -116,10 +116,14 @@ namespace EnderLilies.Randomizer
             if (result == null)
                 return;
             items = new List<string>(GameGraph.locations.Values);
+
             items.AddRange(GameGraph.extra_items);
             foreach (string v in result.Values)
                 items.Remove(v);
-
+            if (_settings.MetaProgression)
+                foreach (string v in GameGraph.keys)
+                    if (items.Contains(v))
+                        items.Remove(v);
             var loc = new List<string>(GameGraph.locations.Keys);
             items.Sort(new CompareItems());
             loc.Shuffle();
