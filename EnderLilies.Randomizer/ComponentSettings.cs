@@ -204,16 +204,114 @@ namespace EnderLilies.Randomizer
             }
         }
 
-        bool _randomWeapon = false;
-        public bool RandomWeapon
+        bool _umbralWeapon = true;
+        public bool UmbralWeapon
         {
             get
             {
-                return _randomWeapon;
+                return _umbralWeapon;
             }
             set
             {
-                _randomWeapon = value;
+                _umbralWeapon = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _gerrodWeapon = true;
+        public bool GerrodWeapon
+        {
+            get
+            {
+                return _gerrodWeapon;
+            }
+            set
+            {
+                _gerrodWeapon = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _silvaWeapon = true;
+        public bool SilvaWeapon
+        {
+            get
+            {
+                return _silvaWeapon;
+            }
+            set
+            {
+                _silvaWeapon = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _ulvWeapon = true;
+        public bool UlvWeapon
+        {
+            get
+            {
+                return _ulvWeapon;
+            }
+            set
+            {
+                _ulvWeapon = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _juliusWeapon = true;
+        public bool JuliusWeapon
+        {
+            get
+            {
+                return _juliusWeapon;
+            }
+            set
+            {
+                _juliusWeapon = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _fadenWeapon = false;
+        public bool FadenWeapon
+        {
+            get
+            {
+                return _fadenWeapon;
+            }
+            set
+            {
+                _fadenWeapon = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _eleineWeapon = false;
+        public bool EleineWeapon
+        {
+            get
+            {
+                return _eleineWeapon;
+            }
+            set
+            {
+                _eleineWeapon = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _hoenirWeapon = false;
+        public bool HoenirWeapon
+        {
+            get
+            {
+                return _hoenirWeapon;
+            }
+            set
+            {
+                _hoenirWeapon = value;
                 NotifyPropertyChanged();
             }
         }
@@ -242,6 +340,20 @@ namespace EnderLilies.Randomizer
             set
             {
                 _startWeaponUsesAncientSouls = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _shuffleWeaponUpgrades = false;
+        public bool ShuffleWeaponUpgrades
+        {
+            get
+            {
+                return _shuffleWeaponUpgrades;
+            }
+            set
+            {
+                _shuffleWeaponUpgrades = value;
                 NotifyPropertyChanged();
             }
         }
@@ -361,10 +473,20 @@ namespace EnderLilies.Randomizer
             this.unusedRelics.DataBindings.Add("Checked", this, "UnusedRelics", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.uatserver.DataBindings.Add("Checked", this, "UATServer", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.shuffleRooms.DataBindings.Add("Checked", this, "ShuffleRooms", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            this.randomWeapon.DataBindings.Add("Checked", this, "RandomWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            
+            this.umbralWeapon.DataBindings.Add("Checked", this, "UmbralWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.gerrodWeapon.DataBindings.Add("Checked", this, "GerrodWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.silvaWeapon.DataBindings.Add("Checked", this, "SilvaWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.ulvWeapon.DataBindings.Add("Checked", this, "UlvWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.juliusWeapon.DataBindings.Add("Checked", this, "JuliusWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.fadenWeapon.DataBindings.Add("Checked", this, "FadenWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.eleineWeapon.DataBindings.Add("Checked", this, "EleineWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.hoenirWeapon.DataBindings.Add("Checked", this, "HoenirWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+
             this.dashProgressive.DataBindings.Add("Checked", this, "DashProgressive", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.startWeaponUsesAncientSouls.DataBindings.Add("Checked", this, "StartWeaponUsesAncientSouls", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            this.startWeaponUsesAncientSouls.DataBindings.Add("Enabled", this, "RandomWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.shuffleWeaponUpgrades.DataBindings.Add("Checked", this, "ShuffleWeaponUpgrades", false, DataSourceUpdateMode.OnPropertyChanged, false);
+
             this.metaprogression.DataBindings.Add("Checked", this, "MetaProgression", false, DataSourceUpdateMode.OnPropertyChanged, false);
 
             this.skinLevel.DataBindings.Add("Value", this, "SkinOverride", false, DataSourceUpdateMode.OnPropertyChanged, 0);
@@ -373,13 +495,12 @@ namespace EnderLilies.Randomizer
             FilePath = "Components/EnderLilies.Randomizer.json";
 
             this.Dock = DockStyle.Fill;
-
+            if (Seed == 0)
+                Seed = new System.Random().Next();
             this.Preview = new DataTable();
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
-        bool pauseUpdate = false;
         public void SetSettings(XmlNode node)
         {
             var element = (XmlElement)node;
@@ -402,10 +523,21 @@ namespace EnderLilies.Randomizer
             UATServer = SettingsHelper.ParseBool(element["UATServer"], false);
             NGPlus = SettingsHelper.ParseBool(element["NGPlus"], false);
             ShuffleRooms = SettingsHelper.ParseBool(element["ShuffleRooms"], false);
-            RandomWeapon = SettingsHelper.ParseBool(element["RandomWeapon"], false);
+            
+            UmbralWeapon = SettingsHelper.ParseBool(element["UmbralWeapon"], true);
+            GerrodWeapon = SettingsHelper.ParseBool(element["GerrodWeapon"], true);
+            SilvaWeapon = SettingsHelper.ParseBool(element["SilvaWeapon"], true);
+            UlvWeapon = SettingsHelper.ParseBool(element["UlvWeapon"], true);
+            JuliusWeapon = SettingsHelper.ParseBool(element["JuliusWeapon"], true);
+            FadenWeapon = SettingsHelper.ParseBool(element["FadenWeapon"], false);
+            EleineWeapon = SettingsHelper.ParseBool(element["EleineWeapon"], false);
+            HoenirWeapon = SettingsHelper.ParseBool(element["HoenirWeapon"], false);
+
             MetaProgression = SettingsHelper.ParseBool(element["MetaProgression"], false);
             DashProgressive = SettingsHelper.ParseBool(element["DashProgressive"], true);
+            
             StartWeaponUsesAncientSouls = SettingsHelper.ParseBool(element["StartWeaponUsesAncientSouls"], true);
+            ShuffleWeaponUpgrades = SettingsHelper.ParseBool(element["ShuffleWeaponUpgrades"], false);
 
             this.path.Text = FilePath;
         }
@@ -431,10 +563,21 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "StartChapter", StartChapter));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "MaxChapter", MaxChapter));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleRooms", ShuffleRooms));
-            settings_node.AppendChild(SettingsHelper.ToElement(document, "RandomWeapon", RandomWeapon));
+
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "UmbralWeapon", UmbralWeapon));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "GerrodWeapon", GerrodWeapon));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "SilvaWeapon", SilvaWeapon));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "UlvWeapon", UlvWeapon));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "JuliusWeapon", JuliusWeapon));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "FadenWeapon", FadenWeapon));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "EleineWeapon", EleineWeapon));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "HoenirWeapon", HoenirWeapon));
+
             settings_node.AppendChild(SettingsHelper.ToElement(document, "MetaProgression", MetaProgression));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "DashProgressive", DashProgressive));
+            
             settings_node.AppendChild(SettingsHelper.ToElement(document, "StartWeaponUsesAncientSouls", StartWeaponUsesAncientSouls));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleWeaponUpgrades", ShuffleWeaponUpgrades));
             return settings_node;
         }
 
@@ -566,11 +709,12 @@ namespace EnderLilies.Randomizer
         private void ComponentSettings_Load(object sender, EventArgs e)
         {
             CheckFile();
+            NotifyPropertyChanged();
         }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            if (!pauseUpdate && PropertyChanged != null)
+            if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }

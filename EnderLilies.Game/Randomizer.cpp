@@ -219,6 +219,10 @@ void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandl
 	}
 	else
 		_done.insert(itemhandle);
+
+#ifdef _DEBUG
+	std::cout << name << std::endl;
+#endif
 }
 
 bool Randomizer::PlayerHasItem(const FTableRowProxy proxy)
@@ -291,6 +295,7 @@ void Randomizer::ReadSeedFile(std::string path)
 	std::fstream file(path, std::ios::in);
 	_force_ancient_souls = false;
 	_shuffle_relics = false;
+	_shuffle_upgrades = false;
 	_shuffle_rooms = false;
 	_skin_override = -1;
 	if (file.is_open())
@@ -313,6 +318,8 @@ void Randomizer::ReadSeedFile(std::string path)
 					_shuffle_relics = true;
 				else if (item == "shuffle_rooms")
 					_shuffle_rooms = true;
+				else if (item == "shuffle_upgrades")
+					_shuffle_upgrades = true;
 				else if (item == "NG+")
 					gm->NewGamePlusGeneration = 1;
 				else if (item == "force_ancient_souls")
@@ -434,10 +441,37 @@ void Randomizer::ModifySpirits()
 			data->bInitialSpirit = (i == starting_weapon);
 	}
 
-	if (starting_weapon != 0 && _force_ancient_souls)
+	if (_shuffle_upgrades)
+	{
+		for (int i = gm->ItemSpiritTable->Data.Num(); i > 2;)
+		{
+			int k = (rand() % (i - 1)) + 1;
+			i--;
+			
+			CG::UDataTable* oldTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[k].ptr))->SpiritLevelTable;
+			CG::UDataTable* newTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[i].ptr))->SpiritLevelTable;
+
+			for (int j = 0; j < oldTable->Data.Num(); ++j)
+			{
+				CG::FSpiritParameterLevelData* oldLevel = (CG::FSpiritParameterLevelData*)oldTable->Data[j].ptr;
+				CG::FSpiritParameterLevelData* newLevel = (CG::FSpiritParameterLevelData*)newTable->Data[j].ptr;
+
+				CG::Zenith_ECurrencyType tmpType = oldLevel->CurrencyTypeForLevelUp;
+				int tmpCount = oldLevel->NecessaryCurrencyForLevelUp;
+				oldLevel->CurrencyTypeForLevelUp = newLevel->CurrencyTypeForLevelUp;
+				oldLevel->NecessaryCurrencyForLevelUp = newLevel->NecessaryCurrencyForLevelUp;
+				newLevel->CurrencyTypeForLevelUp = tmpType;
+				newLevel->NecessaryCurrencyForLevelUp = tmpCount;
+			}
+		}
+	}
+	int k = starting_weapon;
+	if (!_force_ancient_souls)
+		k = rand() % gm->ItemSpiritTable->Data.Num();
+	if ((_force_ancient_souls || _shuffle_upgrades) && k != 0)
 	{
 		CG::UDataTable* oldTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[0].ptr))->SpiritLevelTable;
-		CG::UDataTable* newTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[starting_weapon].ptr))->SpiritLevelTable;
+		CG::UDataTable* newTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[k].ptr))->SpiritLevelTable;
 
 		for (int j = 0; j < oldTable->Data.Num(); ++j)
 		{
@@ -452,7 +486,6 @@ void Randomizer::ModifySpirits()
 			newLevel->NecessaryCurrencyForLevelUp = tmpCount;
 		}
 	}
-
 }
 
 void Randomizer::RefreshAptitudes()
@@ -469,14 +502,20 @@ void Randomizer::RefreshAptitudes()
 		pc->MarkTutorialAsSeen(gm->TutorialTable->Data[i].Name);
 
 #ifdef _DEBUG
-	/*
-	pc->InventoryComponent->ItemSpiritInventory->Clear();
-	CG::FDataTableRowHandle handle;
-	handle.DataTable = gm->ItemSpiritTable;
-	handle.RowName = gm->ItemSpiritTable->Data[4].Name;
-	pc->InventoryComponent->AddItem(handle);*/
-	/*
+
 	pc->UnlockAllAptitudes();
+
+
+	for (int i = 0; i < gm->InitialCommonSpiritLevel->Data.Num(); ++i)
+	{
+		CG::FInitialSpiritLevelData* init = (CG::FInitialSpiritLevelData*)gm->InitialCommonSpiritLevel->Data[i].ptr;
+		init->InitialLevel = 1;
+	}
+	for (int i = 0; i < gm->InitialBossSpiritLevel->Data.Num(); ++i)
+	{
+		CG::FInitialSpiritLevelData* init = (CG::FInitialSpiritLevelData*)gm->InitialBossSpiritLevel->Data[i].ptr;
+		init->InitialLevel = 1;
+	}
 
 	CG::FDataTableRowHandle handle;
 	handle.DataTable = gm->ItemSpiritTable;
@@ -492,7 +531,7 @@ void Randomizer::RefreshAptitudes()
 		pc->InventoryComponent->AddItem(handle);
 	}
 	pc->SpiritEquipComponent->SetCanChangeEquipment(true);
-	*/
+	
 #endif
 }
 

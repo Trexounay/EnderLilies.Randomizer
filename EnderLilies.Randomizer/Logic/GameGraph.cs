@@ -115,6 +115,8 @@ namespace EnderLilies.Randomizer
                     }
                     else
                     {
+                        if (requires.Contains(dash) && requires.Contains(pierce))
+                            requires.Remove(pierce);
                         if (result.ContainsKey(other))
                         {
                             if (requires.Count < missing_progress.Count || missing_progress.Count == 0)
@@ -134,11 +136,18 @@ namespace EnderLilies.Randomizer
                 return missing_no_progress;
         }
 
+        int dash = -1;
+        int pierce = -1;
+
         public Dictionary<string, string> Solve(string start, string weapon = "umbral", bool metaprogression=false)
         {
             AddResult("starting_weapon", weapon);
             Dictionary<int, int> result = new Dictionary<int, int>(_forced);
             logic.Clear();
+            
+            dash = keys.IndexOf(aliases["dash"]);
+            pierce = keys.IndexOf(aliases["pierce"]);
+
             if (aliases.ContainsKey(start))
                 start = aliases[start];
             HashSet<int> reachables = new HashSet<int>();

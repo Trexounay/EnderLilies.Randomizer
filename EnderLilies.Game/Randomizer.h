@@ -48,6 +48,7 @@ private:
 	int _skin_override = -1;
 	bool _shuffle_relics = false;
 	bool _shuffle_rooms = false;
+	bool _shuffle_upgrades = false;
 	bool _force_ancient_souls = false;
 
 	std::string _path;

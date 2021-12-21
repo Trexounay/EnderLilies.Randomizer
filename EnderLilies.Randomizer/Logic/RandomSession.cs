@@ -91,20 +91,27 @@ namespace EnderLilies.Randomizer
             GameGraph = GetGraph();
             RNG.stream = new Random(seed);
             string weapon = "umbral";
-            if (_settings.RandomWeapon)
-            {
-                List<string> startingWeapons = new List<string>() {
-                    "umbral",
-                    "gerrod",
-                    "silva",
-                    "julius",
-                    "ulv",
-                    //"eleine",
-                    //"hoenir",
-                    //"faden"
-                };
+            List<string> startingWeapons = new List<string>();
+            if (_settings.UmbralWeapon)
+                startingWeapons.Add("umbral");
+            if (_settings.GerrodWeapon)
+                startingWeapons.Add("gerrod");
+            if (_settings.SilvaWeapon)
+                startingWeapons.Add("silva");
+            if (_settings.UlvWeapon)
+                startingWeapons.Add("ulv");
+            if (_settings.JuliusWeapon)
+                startingWeapons.Add("julius");
+            if (_settings.FadenWeapon)
+                startingWeapons.Add("faden");
+            if (_settings.EleineWeapon)
+                startingWeapons.Add("eleine");
+            if (_settings.HoenirWeapon)
+                startingWeapons.Add("hoenir");
+            if (_settings.UmbralWeapon)
+                startingWeapons.Add(weapon);
+            if (startingWeapons.Count > 0)
                 weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Count)];
-            }
             result = GameGraph.Solve("Start", weapon, _settings.MetaProgression);
             if (result == null)
                 return;
@@ -152,7 +159,7 @@ namespace EnderLilies.Randomizer
                 { "Generic.i_FinalPassivePart_Up", _settings.ShuffleTablets },
                 { "Generic.i_Heal", _settings.ShuffleWishes },
             };
-            string[] unused_relics ={
+            string[] unused_relics = {
                 "Passive.i_passive_post_damage_invincibility",
                 "Passive.i_passive_maxhpup_LV3",
                 "Passive.i_passive_dmgup_grounded_LV2",
@@ -199,6 +206,8 @@ namespace EnderLilies.Randomizer
                     writer.WriteLine("SETTINGS:NG+");
                 if (_settings.StartWeaponUsesAncientSouls)
                     writer.WriteLine("SETTINGS:force_ancient_souls");
+                if (_settings.ShuffleWeaponUpgrades)
+                    writer.WriteLine("SETTINGS:shuffle_upgrades");
                 if (_settings.MaxChapter < 9)
                     writer.WriteLine("SETTINGS:max_chapter=" + (_settings.MaxChapter + 1).ToString());
                 if (_settings.StartChapter > 0)

@@ -1091,7 +1091,7 @@
     {
       "from": "Gerrod",
       "to": "Fort_01_GAMEPLAY.BP_e2192_Gargoyle",
-      "requires": "swim + djump + (claw | hook) + (CHARGE | HORIZONTAL) + (silva | champion)",
+      "requires": "swim + (claw + 2LEDGE + HORIZONTAL | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL))",
       "twoways": true
     },
     {
@@ -1109,13 +1109,13 @@
     {
       "from": "Silva",
       "to": "Fort_02_GAMEPLAY.BP_SCR_LV2S_2021_2",
-      "requires": "LEDGE + HORIZONTAL",
+      "requires": "LEDGE + HORIZONTAL | 2LEDGE",
       "twoways": true
     },
     {
       "from": "Silva",
       "to": "Fort_03_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "LEDGE + HORIZONTAL",
+      "requires": "LEDGE + HORIZONTAL | 2LEDGE",
       "twoways": true
     },
     {
@@ -1307,7 +1307,7 @@
     {
       "from": "BastionGates",
       "to": "Fort_17_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "LEDGE + (HORIZONTAL | claw)",
+      "requires": "LEDGE",
       "twoways": true
     },
     {
@@ -1319,31 +1319,31 @@
     {
       "from": "BastionGates",
       "to": "Fort_18_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
-      "requires": "LEDGE + HORIZONTAL",
+      "requires": "LEDGE",
       "twoways": true
     },
     {
       "from": "BastionGates",
       "to": "Fort_19_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
-      "requires": "LEDGE + HORIZONTAL",
+      "requires": "LEDGE",
       "twoways": true
     },
     {
       "from": "BastionGates",
       "to": "Fort_19_GAMEPLAY.BP_SCR_LV2M_2190_4",
-      "requires": "LEDGE + HORIZONTAL + claw",
+      "requires": "LEDGE + claw",
       "twoways": true
     },
     {
       "from": "BastionGates",
       "to": "Fort_19_GAMEPLAY.BP_SCR_LV2S_2021_2",
-      "requires": "LEDGE + HORIZONTAL + slam",
+      "requires": "LEDGE + slam",
       "twoways": true
     },
     {
       "from": "BastionGates",
       "to": "Fort_21_GAMEPLAY.BP_e5070_Killer",
-      "requires": "LEDGE + HORIZONTAL",
+      "requires": "LEDGE",
       "twoways": true
     },
     {
@@ -1361,19 +1361,19 @@
     {
       "from": "Gerrod",
       "to": "Oubliette_01_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_5",
-      "requires": "swim + (HORIZONTAL | hook)",
+      "requires": "swim + (HORIZONTAL | 2LEDGE | hook)",
       "twoways": true
     },
     {
       "from": "Gerrod",
       "to": "Oubliette_01_GAMEPLAY.BP_SCR_LV1S_2010_3",
-      "requires": "swim + (HORIZONTAL | hook)",
+      "requires": "swim + (HORIZONTAL | 2LEDGE | hook)",
       "twoways": true
     },
     {
       "from": "Gerrod",
       "to": "Oubliette_02_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "swim + (HORIZONTAL | hook)",
+      "requires": "swim + (HORIZONTAL | 2LEDGE | hook)",
       "twoways": true
     },
     {
@@ -1613,7 +1613,7 @@
     {
       "from": "Sentinel",
       "to": "Outside_03_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "claw + 2LEDGE",
+      "requires": "claw + (2LEDGE | LEDGE + HORIZONTAL)",
       "twoways": true
     },
     {
@@ -1625,7 +1625,7 @@
     {
       "from": "Sentinel",
       "to": "Outside_03_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "claw + 2LEDGE",
+      "requires": "claw + (2LEDGE | LEDGE + HORIZONTAL)",
       "twoways": true
     },
     {
@@ -1649,19 +1649,19 @@
     {
       "from": "Sentinel",
       "to": "Outside_03_GAMEPLAY.BP_SCR_LV2L_2230_2",
-      "requires": "claw + 2LEDGE",
+      "requires": "claw + (2LEDGE | LEDGE + HORIZONTAL)",
       "twoways": true
     },
     {
       "from": "Lab1",
       "to": "Swamp_04_GAMEPLAY.BP_e2172_Inferior",
-      "requires": "unlock + mask + LEDGE",
+      "requires": "unlock + LEDGE",
       "twoways": true
     },
     {
       "from": "Lab1",
       "to": "Swamp_04_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2",
-      "requires": "mask + LEDGE",
+      "requires": "LEDGE",
       "twoways": true
     },
     {
@@ -1685,7 +1685,7 @@
     {
       "from": "Lab1",
       "to": "Swamp_06_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "mask",
+      "requires": "",
       "twoways": true
     },
     {
@@ -1703,7 +1703,7 @@
     {
       "from": "Lab2",
       "to": "Swamp_07_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "claw + LEDGE + CHARGE",
+      "requires": "claw + LEDGE + CHARGE + mask",
       "twoways": true
     },
     {
@@ -1715,19 +1715,19 @@
     {
       "from": "Sinner",
       "to": "Swamp_08_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_2",
-      "requires": "",
+      "requires": "swim + mask",
       "twoways": true
     },
     {
       "from": "Sinner",
       "to": "Swamp_08_GAMEPLAY.BP_SCR_LV1M_2051_2",
-      "requires": "",
+      "requires": "swim + mask",
       "twoways": true
     },
     {
       "from": "Sinner",
       "to": "Swamp_08_GAMEPLAY.BP_SCR_LV2M_2051_2",
-      "requires": "",
+      "requires": "swim + mask",
       "twoways": true
     },
     {
@@ -1757,19 +1757,19 @@
     {
       "from": "Lab3",
       "to": "Swamp_10_GAMEPLAY.BP_SCR_LV1M_2051_2",
-      "requires": "swim",
+      "requires": "swim + mask",
       "twoways": true
     },
     {
       "from": "Lab3",
       "to": "Swamp_11_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "mask + claw  +  HORIZONTAL + 2LEDGE",
+      "requires": "claw  +  HORIZONTAL + 2LEDGE",
       "twoways": true
     },
     {
       "from": "Lab3",
       "to": "Swamp_11_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
-      "requires": "slam + mask",
+      "requires": "slam",
       "twoways": false
     },
     {
@@ -1785,33 +1785,33 @@
       "twoways": true
     },
     {
-      "from": "Lab1",
+      "from": "Lab3",
       "to": "Swamp_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Lab1",
+      "from": "Lab3",
       "to": "Swamp_13_GAMEPLAY.BP_SCR_LV1L_2170_3",
-      "requires": "CHARGE + slam",
+      "requires": "slam",
       "twoways": false
     },
     {
       "from": "Lab3",
       "to": "Swamp_13_GAMEPLAY.BP_SCR_LV2L_2170_3",
-      "requires": "slam + (hook | claw) + mask",
+      "requires": "slam + (hook | claw)",
       "twoways": false
     },
     {
       "from": "Lab3",
       "to": "Swamp_14_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2",
-      "requires": "slam+ mask",
+      "requires": "slam",
       "twoways": false
     },
     {
       "from": "Lab3",
       "to": "Swamp_14_GAMEPLAY.BP_SCR_LV1L_2170_3",
-      "requires": "slam + (2LEDGE | hook)+ mask",
+      "requires": "slam + (2LEDGE | hook)",
       "twoways": false
     },
     {
@@ -1823,7 +1823,7 @@
     {
       "from": "Lab3",
       "to": "Swamp_15_GAMEPLAY.BP_SCR_LV1M_2171_2",
-      "requires": "slam + mask",
+      "requires": "slam",
       "twoways": false
     },
     {
@@ -1847,7 +1847,7 @@
     {
       "from": "Lab2",
       "to": "Swamp_18_GAMEPLAY.BP_Interactable_Spirit_s5080_2",
-      "requires": "mask + CHARGE + slam + (FULLSILVA + 2HORIZONTAL + champion | hook | claw)",
+      "requires": "CHARGE + slam + (FULLSILVA | hook | claw) + mask",
       "twoways": true
     },
     {
@@ -1877,7 +1877,7 @@
     {
       "from": "Lab1",
       "to": "Swamp_3_GAMEPLAY.BP_SCR_LV1L_2170_3",
-      "requires": "mask",
+      "requires": "",
       "twoways": true
     },
     {
@@ -2117,13 +2117,13 @@
     {
       "from": "Gerrod",
       "to": "Village_15_GAMEPLAY.BP_SCR_LV1LL_0000_2",
-      "requires": "swim + djump + (claw | hook) + (CHARGE | HORIZONTAL) + (silva | champion)",
+      "requires": "swim + (claw + 2LEDGE + HORIZONTAL | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL))",
       "twoways": true
     },
     {
       "from": "Gerrod",
       "to": "Village_15_GAMEPLAY.BP_SCR_LV1M_2050_3",
-      "requires": "swim + djump + (claw | hook) + (CHARGE | HORIZONTAL) + (silva | champion)",
+      "requires": "swim + (claw + 2LEDGE + HORIZONTAL | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL))",
       "twoways": true
     },
     {

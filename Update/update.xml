@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
-  <update version="2.1.1">
+  <update version="2.1.2">
     <files>
       <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
       <file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
@@ -8,6 +8,18 @@
     </files>
     <changelog>
       <change>/!\ Make sure you close ENDER LILIES before Updating /!\</change>
+      <change>Improved logic</change>
+      <change>Added more options for starting weapon</change>
+      <change>Added option shuffle what blight each spirit requires for upgrade</change>
+    </changelog>
+  </update>
+  <update version="2.1.1">
+    <files>
+      <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+      <file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
+      <file path="Components/EnderLilies.Game.dll" status="changed"/>
+    </files>
+    <changelog>
       <change>Made locations cleaner in Logic tab</change>
       <change>Added a new Meta-progression setting that always put progression items in most recently accessible check</change>
     </changelog>
@@ -19,7 +31,6 @@
       <file path="Components/EnderLilies.Game.dll" status="changed"/>
     </files>
     <changelog>
-      <change>/!\ Make sure you close ENDER LILIES before Updating /!\</change>
       <change>Fixed an issue with the auto tracker raising errors in LiveSplit</change>
       <change>Added error messages when something goes wrong</change>
       <change>Randomized starting weapon requires ancient souls to upgrade</change>
