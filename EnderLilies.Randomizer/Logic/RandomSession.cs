@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace EnderLilies.Randomizer
 {
@@ -90,28 +91,22 @@ namespace EnderLilies.Randomizer
         {
             GameGraph = GetGraph();
             RNG.stream = new Random(seed);
+            Dictionary<string, bool> settings = new Dictionary<string, bool>()
+            {
+                { "umbral", _settings.UmbralWeapon },
+                { "gerrod", _settings.GerrodWeapon },
+                { "silva",  _settings.SilvaWeapon },
+                { "ulv",    _settings.UlvWeapon },
+                { "julius", _settings.JuliusWeapon },
+                { "faden",  _settings.FadenWeapon },
+                { "eleine", _settings.EleineWeapon },
+                { "hoenir", _settings.HoenirWeapon },
+            };
+
             string weapon = "umbral";
-            List<string> startingWeapons = new List<string>();
-            if (_settings.UmbralWeapon)
-                startingWeapons.Add("umbral");
-            if (_settings.GerrodWeapon)
-                startingWeapons.Add("gerrod");
-            if (_settings.SilvaWeapon)
-                startingWeapons.Add("silva");
-            if (_settings.UlvWeapon)
-                startingWeapons.Add("ulv");
-            if (_settings.JuliusWeapon)
-                startingWeapons.Add("julius");
-            if (_settings.FadenWeapon)
-                startingWeapons.Add("faden");
-            if (_settings.EleineWeapon)
-                startingWeapons.Add("eleine");
-            if (_settings.HoenirWeapon)
-                startingWeapons.Add("hoenir");
-            if (_settings.UmbralWeapon)
-                startingWeapons.Add(weapon);
-            if (startingWeapons.Count > 0)
-                weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Count)];
+            var startingWeapons = settings.Where(p => p.Value).ToArray();
+            if (startingWeapons.Length > 0)
+                weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Length)].Key;
             result = GameGraph.Solve("Start", weapon, _settings.MetaProgression);
             if (result == null)
                 return;
@@ -206,10 +201,14 @@ namespace EnderLilies.Randomizer
                     writer.WriteLine("SETTINGS:shuffle_slots");
                 if (_settings.ShuffleRooms)
                     writer.WriteLine("SETTINGS:shuffle_rooms");
+                if (_settings.ShuffleEnemies)
+                    writer.WriteLine("SETTINGS:shuffle_enemies");
                 if (_settings.NGPlus)
                     writer.WriteLine("SETTINGS:NG+");
                 if (_settings.StartWeaponUsesAncientSouls)
                     writer.WriteLine("SETTINGS:force_ancient_souls");
+                if (_settings.MinibossesChapter)
+                    writer.WriteLine("SETTINGS:minibosses_chapter");
                 if (_settings.ShuffleWeaponUpgrades)
                     writer.WriteLine("SETTINGS:shuffle_upgrades");
                 if (_settings.MaxChapter < 9)

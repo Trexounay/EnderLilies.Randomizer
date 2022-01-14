@@ -5,6 +5,9 @@
 #include <fstream>
 #include <stdlib.h>
 
+std::unordered_map<std::string, CG::UClass*>	Randomizer::_bp_classes;
+std::unordered_map<std::string, CG::UFunction*>	Randomizer::_bp_funcs;
+
 
 Randomizer::Randomizer(std::string path, CG::UWorld** pworld)
 {
@@ -21,21 +24,26 @@ void Randomizer::FindNames()
 {
 	std::cout << "INIT" << std::endl;
 	uintptr_t lastFNameAddress = NULL;
-	for (CG::FNameEntry* name = CG::FName::GetGlobalNames().GetNext(lastFNameAddress);
+	int32_t nextFNameComparisonId = -1;
+	CG::FNamePool pool = CG::FName::GetGlobalNames();
+
+	if (pool[BlueprintGeneratedClassIndex]->GetAnsiName() == "BlueprintGeneratedClass" &&
+		pool[FunctionIndex]->GetAnsiName() == "Function")
+		return;
+
+	BlueprintGeneratedClassIndex = -1;
+	FunctionIndex = -1;
+	for (CG::FNameEntry* name = pool.GetNext(lastFNameAddress, nextFNameComparisonId);
 		name != nullptr && lastFNameAddress != 0;
-		name = CG::FName::GetGlobalNames().GetNext(lastFNameAddress))
+		name = pool.GetNext(lastFNameAddress, nextFNameComparisonId))
 	{
 		auto str = name->GetAnsiName();
-		if (str == "BP_Character_Boss_Base_C")
-			_bosses_name = name;
-		else if (str == "BP_Interactable_Item_C")
-			_pickups_name = name;
-		else if (str == "BP_Interactable_Treasure_C")
-			_chests_name = name;
-		else if (str == "BP_WorldTravelVolume_C")
-			_transitions_volumes_name = name;
-		else if (str == "BP_Interactable_WorldTravel_C")
-			_transitions_trigger_name = name;
+		if (str == "BlueprintGeneratedClass")
+			BlueprintGeneratedClassIndex = nextFNameComparisonId;
+		else if (str == "Function")
+			FunctionIndex = nextFNameComparisonId;
+		if (BlueprintGeneratedClassIndex > 0 && FunctionIndex > 0)
+			return;
 	}
 }
 
@@ -105,30 +113,24 @@ void Randomizer::NewMap()
 	_new_map = false;
 	std::cout << "NEWMAP" << std::endl;
 	_done.clear();
-	_bosses = nullptr;
-	_pickups = nullptr;
-	_chests = nullptr;
-	_transitions_volumes = nullptr;
-	_transitions_trigger = nullptr;
+	_bp_classes.clear();
+	_bp_funcs.clear();
+
+	CG::FNamePool pool = CG::FName::GetGlobalNames();
 
 	for (int i = 0; i < CG::UObject::GetGlobalObjects().Num(); ++i)
 	{
 		auto object = CG::UObject::GetGlobalObjects().GetByIndex(i);
 		if (object == nullptr || object->Name.ComparisonIndex == 0)
 			continue;
-		auto id = CG::FName::GetGlobalNames().GetById(object->Name.ComparisonIndex);
-		if (id == _bosses_name)
-			_bosses = static_cast<CG::UClass*>(object);
-		else if (id == _pickups_name)
-			_pickups = static_cast<CG::UClass*>(object);
-		else if (id == _chests_name)
-			_chests = static_cast<CG::UClass*>(object);
-		/*
-		else if (id == _transitions_volumes_name)
-			_transitions_volumes = static_cast<CG::UClass*>(object);
-		else if (id == _transitions_trigger_name)
-			_transitions_trigger = static_cast<CG::UClass*>(object);
-		*/
+		if (object->Class->Name.ComparisonIndex == BlueprintGeneratedClassIndex)
+			_bp_classes[object->Name.GetName()] = static_cast<CG::UClass*>(object);
+		else if (object->Class->Name.ComparisonIndex == FunctionIndex)
+		{
+			CG::FNameEntry* entry = CG::FName::GetGlobalNames()[object->Outer->Name.ComparisonIndex];
+			if (entry->AnsiName[0] == 'B' && entry->AnsiName[1] == 'P')
+				_bp_funcs[object->Outer->Name.GetName() + "." + object->Name.GetName()] = static_cast<CG::UFunction*>(object);
+		}
 	}
 	if (_skin_override >= 0)
 	{
@@ -136,20 +138,64 @@ void Randomizer::NewMap()
 		if (parameter != nullptr)
 			parameter->SetSkinLevelOverride(_skin_override, true);
 	}
+	if (_shuffle_enemies)
+		ShuffleEnnemies();
 }
+
+void Randomizer::ShuffleEnnemies()
+{
+	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
+	CG::TArray<CG::AActor*> out;
+	statics->STATIC_GetAllActorsOfClass(World(), _bp_classes["BP_EnemySpawnPoint_C"], &out);
+	int count = out.Num();
+	if (count > 0)
+	{
+		srand(_seed + count);
+		for (int i = count; i > 1;)
+		{
+			int k = rand() % i;
+			i--;
+
+			CG::ABP_EnemySpawnPoint_C* spawn1 = (CG::ABP_EnemySpawnPoint_C*)out[i];
+			CG::ABP_EnemySpawnPoint_C* spawn2 = (CG::ABP_EnemySpawnPoint_C*)out[k];
+			if (spawn1->bHOOK_ConsiderAsBossSpawn || spawn2->bHOOK_ConsiderAsBossSpawn)
+				continue;
+
+			auto transform1 = spawn1->GetTransform();
+			spawn1->RootComponent->K2_SetWorldTransform(spawn2->GetTransform(), false, NULL, true);
+			spawn2->RootComponent->K2_SetWorldTransform(transform1, false, NULL, true);
+
+			spawn1->bShouldActivateByDefault = true;
+			spawn2->bShouldActivateByDefault = true;
+		}
+	}
+
+	if (_bp_classes["BP_Condition_EnemyList_C"] != NULL)
+	{
+		CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
+		CG::TArray<CG::AActor*> out;
+		statics->STATIC_GetAllActorsOfClass(World(), _bp_classes["BP_Condition_EnemyList_C"], &out);
+		for (int i = 0; i < out.Num(); ++i)
+		{
+			CG::BP_Condition_EnemyList* condition = (CG::BP_Condition_EnemyList*)out[i];
+			if (!condition->ConditionResult)
+				condition->SetConditionResult(true, true);
+		}
+	}
+}
+
 
 void Randomizer::Update()
 {
-	FindItems(_bosses);
-	FindItems(_pickups);
-	FindItems(_chests);
-	//FindItems(_transitions_volumes);
-	//FindItems(_transitions_trigger);
+	FindItems("BP_Character_Boss_Base_C");
+	FindItems("BP_Interactable_Item_C");
+	FindItems("BP_Interactable_Treasure_C");
 }
 
 
-void Randomizer::FindItems(CG::UClass* type)
+void Randomizer::FindItems(const std::string& type_name)
 {
+	CG::UClass* type = _bp_classes[type_name];
 	if (type == nullptr)
 		return;
 	if (type->Name.ComparisonIndex <= 0)
@@ -162,21 +208,21 @@ void Randomizer::FindItems(CG::UClass* type)
 	statics->STATIC_GetAllActorsOfClass(World(), type, &out);
 	for (int i = 0; i < out.Num(); ++i)
 	{
-		if (type == _bosses)
-			ItemFound(out[i], &((CG::ABP_Character_Boss_Base_C*)out[i])->Item);
-		else if (type == _pickups)
+		if (type_name == "BP_Character_Boss_Base_C")
+		{
+			CG::ABP_Character_Boss_Base_C* boss = (CG::ABP_Character_Boss_Base_C*)out[i];
+			ItemFound(out[i], &(boss)->Item);
+			if (_minibosses_chapter)
+				boss->SourceSpawnPoint->bAddDifficultyLevelOnClear = true;
+		}
+		else if (type_name == "BP_Interactable_Item_C")
 			ItemFound(out[i], &((CG::ABP_Interactable_Item_C*)out[i])->Item);
-		else if (type == _chests)
+		else if (type_name == "BP_Interactable_Treasure_C")
 			ItemFound(out[i], &((CG::ABP_Interactable_Treasure_C*)out[i])->UniqueItem);
-/*		else if (type == _transitions_volumes)
-			TransitionFound(&((CG::ABP_WorldTravelVolume_C*)out[i])->GameMapToLoad, &((CG::ABP_WorldTravelVolume_C*)out[i])->PlayerStartTag);
-		else if (type == _transitions_trigger)
-			TransitionFound(&((CG::ABP_Interactable_WorldTravel_C*)out[i])->GameMapToLoad, &((CG::ABP_Interactable_WorldTravel_C*)out[i])->PlayerStartTag);
-*/
 	}
 }
 
-void Randomizer::TransitionFound(CG::FDataTableRowHandle *handle, CG::FName *PlayerStartTag)
+void Randomizer::TransitionFound(CG::FDataTableRowHandle* handle, CG::FName* PlayerStartTag)
 {
 	if (_done.find(handle) != _done.end())
 		return;
@@ -219,7 +265,6 @@ void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandl
 	}
 	else
 		_done.insert(itemhandle);
-
 #ifdef _DEBUG
 	std::cout << name << std::endl;
 #endif
@@ -296,7 +341,9 @@ void Randomizer::ReadSeedFile(std::string path)
 	_force_ancient_souls = false;
 	_shuffle_relics = false;
 	_shuffle_upgrades = false;
+	_shuffle_enemies = false;
 	_shuffle_rooms = false;
+	_minibosses_chapter = false;
 	_skin_override = -1;
 	if (file.is_open())
 	{
@@ -311,7 +358,10 @@ void Randomizer::ReadSeedFile(std::string path)
 			trim(location);
 			trim(item);
 			if (location == "SEED")
-				srand(atoi(item.c_str()));
+			{
+				_seed = atoi(item.c_str());
+				srand(_seed);
+			}
 			else if (location == "SETTINGS")
 			{
 				if (item == "shuffle_slots")
@@ -320,10 +370,14 @@ void Randomizer::ReadSeedFile(std::string path)
 					_shuffle_rooms = true;
 				else if (item == "shuffle_upgrades")
 					_shuffle_upgrades = true;
+				else if (item == "shuffle_enemies")
+					_shuffle_enemies = true;
 				else if (item == "NG+")
 					gm->NewGamePlusGeneration = 1;
 				else if (item == "force_ancient_souls")
 					_force_ancient_souls = true;
+				else if (item == "minibosses_chapter")
+					_minibosses_chapter = true;
 				else if (item.find("start_chapter") != std::string::npos)
 				{
 					int chapter = atoi(item.substr(sizeof("start_chapter"), item.length()).c_str());
@@ -346,7 +400,7 @@ void Randomizer::ReadSeedFile(std::string path)
 				for (int index = item.rfind(","); index != std::string::npos; index = item.rfind(","))
 				{
 					FTableRowProxy* progress = new FTableRowProxy();
-					std::string token = item.substr(index+1, item.length());
+					std::string token = item.substr(index + 1, item.length());
 					item = item.substr(0, index);
 					if (FindTableRow(token, *progress))
 					{
@@ -367,7 +421,7 @@ void Randomizer::ReadSeedFile(std::string path)
 	}
 }
 
-bool Randomizer::FindTableRow(std::string item, FTableRowProxy& result)
+bool Randomizer::FindTableRow(const std::string& item, FTableRowProxy& result)
 {
 	const char* tableNames[6] = {
 		"Aptitude",
@@ -447,7 +501,7 @@ void Randomizer::ModifySpirits()
 		{
 			int k = (rand() % (i - 1)) + 1;
 			i--;
-			
+
 			CG::UDataTable* oldTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[k].ptr))->SpiritLevelTable;
 			CG::UDataTable* newTable = ((CG::FItemSpiritData*)(gm->ItemSpiritTable->Data[i].ptr))->SpiritLevelTable;
 
@@ -531,7 +585,7 @@ void Randomizer::RefreshAptitudes()
 		pc->InventoryComponent->AddItem(handle);
 	}
 	pc->SpiritEquipComponent->SetCanChangeEquipment(true);
-	
+
 #endif
 }
 

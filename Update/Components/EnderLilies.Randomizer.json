@@ -6,6 +6,7 @@
     "Lab3": "Swamp_10_GAMEPLAY.BP_Interactable_Item_Tip3",
     "Lab4": "Swamp_12_GAMEPLAY.BP_Interactable_Item_Tip3",
     "BastionGates": "Fort_03_GAMEPLAY.BP_Interactable_Item_Tip3",
+    "AnkletRoom": "Forest_17_GAMEPLAY.BP_Interactable_Item_Tip4",
 
     "Gerrod": "Village_10_GAMEPLAY.BP_e5050_Giant",
     "Silva": "Cave_23_GAMEPLAY.BP_e5021_OlderSister",
@@ -515,7 +516,7 @@
     {
       "from": "Silva",
       "to": "Cave_05_GAMEPLAY.BP_SCR_LV1M_2161_2",
-      "requires": "hook",
+      "requires": "",
       "twoways": true
     },
     {
@@ -611,13 +612,13 @@
     {
       "from": "Silva",
       "to": "Cave_13_GAMEPLAY.BP_SCR_LV2L_2091_4",
-      "requires": "hook | claw + 2HORIZONTAL + LEDGE",
+      "requires": "hook | claw",
       "twoways": true
     },
     {
       "from": "Silva",
       "to": "Cave_13_GAMEPLAY.BP_SCR_LV2M_2161_5",
-      "requires": "HORIZONTAL",
+      "requires": "dash | LEDGE | HORIZONTAL",
       "twoways": true
     },
     {
@@ -689,19 +690,19 @@
     {
       "from": "Silva",
       "to": "Cave_20_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
-      "requires": "hook | LEDGE",
+      "requires": "",
       "twoways": true
     },
     {
       "from": "Silva",
       "to": "Cave_20_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "hook | LEDGE",
+      "requires": "",
       "twoways": true
     },
     {
       "from": "Silva",
       "to": "Cave_20_GAMEPLAY.BP_SCR_LV1S_2011_2",
-      "requires": "hook | LEDGE",
+      "requires": "",
       "twoways": true
     },
     {
@@ -1059,27 +1060,27 @@
       "twoways": true
     },
     {
-      "from": "Youth",
+      "from": "AnkletRoom",
       "to": "Forest_17_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_Treasure_2",
-      "requires": "2LEDGE + HORIZONTAL | LEDGE + 2HORIZONTAL | LEDGE + HORIZONTAL + claw | LEDGE + (hook | claw) | claw + swim + hook",
+      "requires": "claw | LEDGE",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Forest_17_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "LEDGE + (claw | hook) | claw + swim  + hook",
+      "requires": "hook | LEDGE + claw | silva + djump | sinner + (djump | champion) | 2HORIZONTAL + LEDGE | 2LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
-      "from": "Youth",
+      "from": "AnkletRoom",
       "to": "Forest_17_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
-      "requires": "2LEDGE + HORIZONTAL | LEDGE + 2HORIZONTAL | LEDGE + HORIZONTAL + claw | LEDGE + (hook | claw) | claw + swim + hook",
+      "requires": "claw | LEDGE",
       "twoways": true
     },
     {
-      "from": "Youth",
+      "from": "AnkletRoom",
       "to": "Forest_17_Map.BP_Interactable_Item_Tip5",
-      "requires": "2LEDGE + HORIZONTAL | LEDGE + 2HORIZONTAL | LEDGE + HORIZONTAL + claw | LEDGE + (hook | claw) | claw + swim + hook",
+      "requires": "claw | LEDGE + hook | silva + djump",
       "twoways": true
     },
     {

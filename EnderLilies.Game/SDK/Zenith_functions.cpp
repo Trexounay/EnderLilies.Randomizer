@@ -8754,7 +8754,8 @@ class AController* AEnemySpawnPoint::GetEnemyController()
 //		class AZenithCharacter*                            ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class AZenithCharacter* AEnemySpawnPoint::GetEnemy()
 {
-	static UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.EnemySpawnPoint.GetEnemy");
+	UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.EnemySpawnPoint.GetEnemy");
+	//UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.EnemySpawnPoint.GetEnemy");
 
 	AEnemySpawnPoint_GetEnemy_Params params;
 

@@ -49,7 +49,7 @@ public:
 		{
 			auto object = GetGlobalObjects().GetByIndex(i);
 	
-			if (object == nullptr)
+			if (object == nullptr || object->Class == nullptr)
 			{
 				continue;
 			}
@@ -257,7 +257,7 @@ public:
 	class FField*                                      ChildProperties;                                           // 0x0050(0x0008) NOT AUTO-GENERATED PROPERTY
 	int32_t                                            PropertySize;                                              // 0x0058(0x0004) NOT AUTO-GENERATED PROPERTY
 	int32_t                                            MinAlignment;                                              // 0x005C(0x0004) NOT AUTO-GENERATED PROPERTY
-	TArray<uint8_t>                                Script;                                                    // 0x0060(0x0010) NOT AUTO-GENERATED PROPERTY
+	TArray<uint8_t>                                Script;														  // 0x0060(0x0010) NOT AUTO-GENERATED PROPERTY
 	class FProperty*                                   PropertyLink;                                              // 0x0070(0x0008) NOT AUTO-GENERATED PROPERTY
 	class FProperty*                                   RefLink;                                                   // 0x0078(0x0008) NOT AUTO-GENERATED PROPERTY
 	class FProperty*                                   DestructorLink;                                            // 0x0080(0x0008) NOT AUTO-GENERATED PROPERTY
@@ -348,19 +348,19 @@ template<typename T>
 class UFunction : public UStruct
 {
 public:
-	int32_t                                            FunctionFlags;                                             // 0x00B0(0x0004) NOT AUTO-GENERATED PROPERTY
-	uint8_t                                          NumParms;                                                  // 0x00B4(0x0001) NOT AUTO-GENERATED PROPERTY
-	uint16_t                                         ParmsSize;                                                 // 0x00B5(0x0002) NOT AUTO-GENERATED PROPERTY
-	unsigned char                                      pad_9EEJ255TMB[0x01];                                      // 0x00B7(0x0001) NOT AUTO-GENERATED PROPERTY
-	uint16_t                                         ReturnValueOffset;                                         // 0x00B8(0x0002) NOT AUTO-GENERATED PROPERTY
-	uint16_t                                         RPCId;                                                     // 0x00BA(0x0002) NOT AUTO-GENERATED PROPERTY
-	uint16_t                                         RPCResponseId;                                             // 0x00BC(0x0002) NOT AUTO-GENERATED PROPERTY
-	unsigned char                                      pad_BB5K9YJQJ8[0x02];                                      // 0x00BE(0x0002) NOT AUTO-GENERATED PROPERTY
-	class UProperty*                                   FirstPropertyToInit;                                       // 0x00C0(0x0008) NOT AUTO-GENERATED PROPERTY
-	class UFunction*                                   EventGraphFunction;                                        // 0x00C8(0x0008) NOT AUTO-GENERATED PROPERTY
-	int32_t                                            EventGraphCallOffset;                                      // 0x00D0(0x0004) NOT AUTO-GENERATED PROPERTY
-	unsigned char                                      pad_OUP2NRMR69[0x04];                                      // 0x00D4(0x0004) NOT AUTO-GENERATED PROPERTY
-	void*                                              Func;                                                      // 0x00D8(0x0008) NOT AUTO-GENERATED PROPERTY
+	int32_t                                            FunctionFlags;                                           // 0x00B0(0x0004) NOT AUTO-GENERATED PROPERTY
+	uint8_t                                            NumParms;                                                // 0x00B4(0x0001) NOT AUTO-GENERATED PROPERTY
+	uint16_t                                           ParmsSize;                                               // 0x00B5(0x0002) NOT AUTO-GENERATED PROPERTY
+	unsigned char                                      pad_9EEJ255TMB[0x01];                                    // 0x00B7(0x0001) NOT AUTO-GENERATED PROPERTY
+	uint16_t                                           ReturnValueOffset;                                       // 0x00B8(0x0002) NOT AUTO-GENERATED PROPERTY
+	uint16_t                                           RPCId;                                                   // 0x00BA(0x0002) NOT AUTO-GENERATED PROPERTY
+	uint16_t										   RPCResponseId;                                           // 0x00BC(0x0002) NOT AUTO-GENERATED PROPERTY
+	unsigned char                                      pad_BB5K9YJQJ8[0x02];                                    // 0x00BE(0x0002) NOT AUTO-GENERATED PROPERTY
+	class UProperty*                                   FirstPropertyToInit;                                     // 0x00C0(0x0008) NOT AUTO-GENERATED PROPERTY
+	class UFunction*                                   EventGraphFunction;                                      // 0x00C8(0x0008) NOT AUTO-GENERATED PROPERTY
+	int32_t                                            EventGraphCallOffset;                                    // 0x00D0(0x0004) NOT AUTO-GENERATED PROPERTY
+	unsigned char                                      pad_OUP2NRMR69[0x04];                                    // 0x00D4(0x0004) NOT AUTO-GENERATED PROPERTY
+	void*                                              Func;                                                    // 0x00D8(0x0008) NOT AUTO-GENERATED PROPERTY
 
 
 	static UClass* StaticClass()
@@ -368,8 +368,6 @@ public:
 		static UClass* ptr = UObject::FindClass("Class CoreUObject.Function");
 		return ptr;
 	}
-
-
 
 };
 

@@ -50,6 +50,20 @@ namespace EnderLilies.Randomizer
             }
         }
 
+        bool _shuffleEnemies = false;
+        public bool ShuffleEnemies
+        {
+            get
+            {
+                return _shuffleEnemies;
+            }
+            set
+            {
+                _shuffleEnemies = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         bool _shuffleTablets = true;
         public bool ShuffleTablets
         {
@@ -372,6 +386,20 @@ namespace EnderLilies.Randomizer
             }
         }
 
+        bool _minibosses_chapter = false;
+        public bool MinibossesChapter
+        {
+            get
+            {
+                return _minibosses_chapter;
+            }
+            set
+            {
+                _minibosses_chapter = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         int _currentSeed = 0;
         public int Seed
         {
@@ -465,6 +493,7 @@ namespace EnderLilies.Randomizer
             this.shuffleChains.DataBindings.Add("Checked", this, "ShuffleChains", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleFindings.DataBindings.Add("Checked", this, "ShuffleFindings", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleRelics.DataBindings.Add("Checked", this, "ShuffleRelics", false, DataSourceUpdateMode.OnPropertyChanged, true);
+            this.shuffleEnemies.DataBindings.Add("Checked", this, "ShuffleEnemies", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.shuffleSpirits.DataBindings.Add("Checked", this, "ShuffleSpirits", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleTablets.DataBindings.Add("Checked", this, "ShuffleTablets", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleWishes.DataBindings.Add("Checked", this, "ShuffleWishes", false, DataSourceUpdateMode.OnPropertyChanged, true);
@@ -473,7 +502,7 @@ namespace EnderLilies.Randomizer
             this.unusedRelics.DataBindings.Add("Checked", this, "UnusedRelics", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.uatserver.DataBindings.Add("Checked", this, "UATServer", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.shuffleRooms.DataBindings.Add("Checked", this, "ShuffleRooms", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            
+
             this.umbralWeapon.DataBindings.Add("Checked", this, "UmbralWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.gerrodWeapon.DataBindings.Add("Checked", this, "GerrodWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.silvaWeapon.DataBindings.Add("Checked", this, "SilvaWeapon", false, DataSourceUpdateMode.OnPropertyChanged, false);
@@ -488,6 +517,7 @@ namespace EnderLilies.Randomizer
             this.shuffleWeaponUpgrades.DataBindings.Add("Checked", this, "ShuffleWeaponUpgrades", false, DataSourceUpdateMode.OnPropertyChanged, false);
 
             this.metaprogression.DataBindings.Add("Checked", this, "MetaProgression", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.minibosses_chapter.DataBindings.Add("Checked", this, "MinibossesChapter", false, DataSourceUpdateMode.OnPropertyChanged, false);
 
             this.skinLevel.DataBindings.Add("Value", this, "SkinOverride", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             this.startChapter.DataBindings.Add("Value", this, "StartChapter", false, DataSourceUpdateMode.OnPropertyChanged, 0);
@@ -515,6 +545,7 @@ namespace EnderLilies.Randomizer
             ShuffleChains = SettingsHelper.ParseBool(element["ShuffleChains"], true);
             ShuffleFindings = SettingsHelper.ParseBool(element["ShuffleFindings"], true);
             ShuffleRelics = SettingsHelper.ParseBool(element["ShuffleRelics"], true);
+            ShuffleEnemies = SettingsHelper.ParseBool(element["ShuffleEnemies"], false);
             ShuffleSpirits = SettingsHelper.ParseBool(element["ShuffleSpirits"], true);
             ShuffleTablets = SettingsHelper.ParseBool(element["ShuffleTablets"], true);
             ShuffleWishes = SettingsHelper.ParseBool(element["ShuffleWishes"], true);
@@ -523,7 +554,7 @@ namespace EnderLilies.Randomizer
             UATServer = SettingsHelper.ParseBool(element["UATServer"], false);
             NGPlus = SettingsHelper.ParseBool(element["NGPlus"], false);
             ShuffleRooms = SettingsHelper.ParseBool(element["ShuffleRooms"], false);
-            
+
             UmbralWeapon = SettingsHelper.ParseBool(element["UmbralWeapon"], true);
             GerrodWeapon = SettingsHelper.ParseBool(element["GerrodWeapon"], true);
             SilvaWeapon = SettingsHelper.ParseBool(element["SilvaWeapon"], true);
@@ -534,8 +565,9 @@ namespace EnderLilies.Randomizer
             HoenirWeapon = SettingsHelper.ParseBool(element["HoenirWeapon"], false);
 
             MetaProgression = SettingsHelper.ParseBool(element["MetaProgression"], false);
+            MinibossesChapter = SettingsHelper.ParseBool(element["MinibossesChapter"], false);
             DashProgressive = SettingsHelper.ParseBool(element["DashProgressive"], true);
-            
+
             StartWeaponUsesAncientSouls = SettingsHelper.ParseBool(element["StartWeaponUsesAncientSouls"], true);
             ShuffleWeaponUpgrades = SettingsHelper.ParseBool(element["ShuffleWeaponUpgrades"], false);
 
@@ -551,6 +583,7 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleChains", ShuffleChains));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleFindings", ShuffleFindings));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleRelics", ShuffleRelics));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleEnemies", ShuffleEnemies));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleSpirits", ShuffleSpirits));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleTablets", ShuffleTablets));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleWishes", ShuffleWishes));
@@ -574,8 +607,9 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "HoenirWeapon", HoenirWeapon));
 
             settings_node.AppendChild(SettingsHelper.ToElement(document, "MetaProgression", MetaProgression));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "MinibossesChapter", MinibossesChapter));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "DashProgressive", DashProgressive));
-            
+
             settings_node.AppendChild(SettingsHelper.ToElement(document, "StartWeaponUsesAncientSouls", StartWeaponUsesAncientSouls));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleWeaponUpgrades", ShuffleWeaponUpgrades));
             return settings_node;
@@ -596,27 +630,8 @@ namespace EnderLilies.Randomizer
             var g = session.GameGraph;
             LogicPreviewGridview.Rows.Clear();
             shuffleGroup.Text = string.Format("Shuffled Items : {0}", session.ShufflePool);
-            foreach (var l in g.logic)
-            {
-                if (l.node == -1)
-                {
-                    LogicPreviewGridview.Rows.Add("END",
-                        "",
-                        string.Format("{0}/{1}", l.reachables, g.locations.Count));
-                    continue;
-                }
-                var node = g.GetNode(l.node);
-                var tooltip = node.ToString();
-                var item = session.result[node];
-                foreach (var k in g.aliases)
-                {
-                    if (k.Value == node)
-                        node = k.Key;
-                    if (k.Value == item)
-                        item = k.Key;
-                }
 
-                Dictionary<string, string> replacements = new Dictionary<string, string>
+            Dictionary<string, string> replacements = new Dictionary<string, string>
                 {
                     {"_GAMEPLAY.BP_", " | "},
                     {"_MAP.BP_", " | "},
@@ -635,12 +650,12 @@ namespace EnderLilies.Randomizer
                     {"Castle_", "Ruined Castle "},
                     {"SCR_LV1S_", "10 stagnant "},
                     {"SCR_LV1M_", "30 stagnant "},
-                    {"SCR_LV1L_", "100 stagnant "},
                     {"SCR_LV1LL_", "800 stagnant "},
+                    {"SCR_LV1L_", "100 stagnant "},
                     {"SCR_LV2S_", "10 furious "},
                     {"SCR_LV2M_", "30 furious "},
-                    {"SCR_LV2L_", "100 furious "},
                     {"SCR_LV2LL_", "800 furious "},
+                    {"SCR_LV2L_", "100 furious "},
                     {"SCR_LV3S_", "1 ancient soul"},
                     {"SCR_LV3M_", "2 ancient soul"},
                     {"Item_Tip_", "finding "},
@@ -654,17 +669,88 @@ namespace EnderLilies.Randomizer
                     {"Passives_Treasure_", "chest "},
                     {"Treasure_", "chest "},
                     {"Treasure", "chest "},
+                    {"starting_weapon", "Starting Spirit"},
                 };
+            Dictionary<string, string> key_replacements = new Dictionary<string, string>
+                {
+                    {"Generic.i_FinalPassivePart_Up", "stone tablet"},
+                    {"Generic.i_SpiritCurrencyLv1_S", "10 stagnant"},
+                    {"Generic.i_SpiritCurrencyLv1_M", "30 stagnant"},
+                    {"Generic.i_SpiritCurrencyLv1_LL", "800 stagnant"},
+                    {"Generic.i_SpiritCurrencyLv1_L", "100 stagnant"},
+                    {"Generic.i_SpiritCurrencyLv2_S", "10 furious"},
+                    {"Generic.i_SpiritCurrencyLv2_M", "30 furious"},
+                    {"Generic.i_SpiritCurrencyLv2_LL", "800 furious"},
+                    {"Generic.i_SpiritCurrencyLv2_L", "100 furious"},
+                    {"Generic.i_SpiritCurrencyLv3_1", "1 ancient soul"},
+                    {"Generic.i_SpiritCurrencyLv3_2", "2 ancient souls"},
+                    {"Generic.i_HealPower_Up", "priestress wish"},
+                    {"Generic.i_PassiveSlot_Up", "chain of sorcery"},
+                    {"Tip.tip_", "finding "},
+                    {"Parameter.i_maxHPUp_01", "amulet fragment"},
+                    {"Parameter.i_maxHPUp_02", "amulet gem"},
+                    {"Parameter.i_maxHPUp_03", "amulet jewel"},
+                    {"Passive.i_", "relic - "},
+                };
+
+            var nodes = new List<string>();
+            foreach (var l in g.logic)
+            {
+                if (l.node == -1)
+                    continue;
+                var node = g.GetNode(l.node);
+                nodes.Add(node);
+            }
+            foreach (var l in g.logic)
+            {
+                if (l.node == -1)
+                {
+                    LogicPreviewGridview.Rows.Add("End of Logic",
+                        "",
+                        string.Format("{0}/{1}", l.reachables, g.locations.Count));
+                    continue;
+                }
+                var node = g.GetNode(l.node);
+                var tooltip = node.ToString();
+                var item = session.result[node];
+                foreach (var k in g.aliases)
+                {
+                    if (k.Value == node)
+                        node = k.Key;
+                    if (k.Value == item)
+                        item = k.Key;
+                }
                 foreach (var r in replacements)
                     node = node.Replace(r.Key, r.Value);
                 if (node.Contains("|"))
-                {
                     node = node.TrimEnd("0123456789_ ".ToArray());
-                }
                 int rowid = LogicPreviewGridview.Rows.Add(node,
                     item,
                     string.Format("{0}/{1}", l.reachables, g.nodes.Count));
                 LogicPreviewGridview.Rows[rowid].Cells[0].ToolTipText = tooltip;
+            }
+            foreach (var pair in session.result)
+            {
+                var node = pair.Key;
+                if (nodes.Contains(node))
+                    continue;
+                var item = pair.Value;
+                foreach (var k in g.aliases)
+                {
+                    if (k.Value == node)
+                        node = k.Key;
+                    if (k.Value == item)
+                        item = k.Key;
+                }
+                foreach (var r in replacements)
+                    node = node.Replace(r.Key, r.Value);
+                foreach (var r in key_replacements)
+                    item = item.Replace(r.Key, r.Value);
+                if (node.Contains("|"))
+                    node = node.TrimEnd("0123456789_ ".ToArray());
+                int rowid = LogicPreviewGridview.Rows.Add(node,
+                    item,
+                    "");
             }
         }
 

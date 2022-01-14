@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
-  <update version="2.1.2">
+  <update version="2.1.3">
     <files>
       <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
       <file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
@@ -8,6 +8,19 @@
     </files>
     <changelog>
       <change>/!\ Make sure you close ENDER LILIES before Updating /!\</change>
+      <change>Added an option to increase chapter difficulty with each subspirit</change>
+      <change>Added an option to shuffle enemies spawn location (excluding subspirits)</change>
+      <change>Logic tab replaced by a full spoiler tab</change>
+      <change>Some logic improvements (thanks Seb)</change>
+    </changelog>
+  </update>
+  <update version="2.1.2">
+    <files>
+      <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+      <file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
+      <file path="Components/EnderLilies.Game.dll" status="changed"/>
+    </files>
+    <changelog>
       <change>Improved logic</change>
       <change>Added more options for starting weapon</change>
       <change>Added an option to shuffle what each spirit requires for upgrade</change>

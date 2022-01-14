@@ -167,6 +167,7 @@ namespace EnderLilies.Randomizer
             bool done = false;
 
             HashSet<int> missings = new HashSet<int>();
+            logic.Add(new LogicLog() { node = nodes.IndexOf("starting_weapon"), reachables = 1 });
             while (!done)
             {
                 done = true;
@@ -199,7 +200,7 @@ namespace EnderLilies.Randomizer
                     var pool = missings.ToArray();
                     int item = pool[RNG.stream.Next(pool.Length)];
                     result[node] = item;
-                    logic.Add(new LogicLog() { node = node, reachables = reachables.Count - 1});
+                    logic.Add(new LogicLog() { node = node, reachables = reachables.Count});
                     empty_nodes.Remove(node);
                 }
             }

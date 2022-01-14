@@ -112,6 +112,9 @@
     <ClCompile Include="SDK\BP_WorldTravelVolume_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\BP_EnemySpawnPoint_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EnderLilies.Game.rc" />

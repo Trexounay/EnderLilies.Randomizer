@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.seedText = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -42,6 +42,8 @@
             this.startChapterText = new System.Windows.Forms.Label();
             this.startChapter = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.hoenirWeapon = new System.Windows.Forms.CheckBox();
+            this.juliusWeapon = new System.Windows.Forms.CheckBox();
             this.eleineWeapon = new System.Windows.Forms.CheckBox();
             this.fadenWeapon = new System.Windows.Forms.CheckBox();
             this.gerrodWeapon = new System.Windows.Forms.CheckBox();
@@ -67,6 +69,7 @@
             this.path = new System.Windows.Forms.TextBox();
             this.chooseFile = new System.Windows.Forms.Button();
             this.OtherPage = new System.Windows.Forms.TabPage();
+            this.minibosses_chapter = new System.Windows.Forms.CheckBox();
             this.shuffleRooms = new System.Windows.Forms.CheckBox();
             this.uatserver = new System.Windows.Forms.CheckBox();
             this.ngPlusSetting = new System.Windows.Forms.CheckBox();
@@ -81,8 +84,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.metaprogressTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.juliusWeapon = new System.Windows.Forms.CheckBox();
-            this.hoenirWeapon = new System.Windows.Forms.CheckBox();
+            this.shuffleEnemies = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -246,6 +248,28 @@
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Randomize Starting Spirit";
+            // 
+            // hoenirWeapon
+            // 
+            this.hoenirWeapon.AutoSize = true;
+            this.hoenirWeapon.Location = new System.Drawing.Point(99, 47);
+            this.hoenirWeapon.Name = "hoenirWeapon";
+            this.hoenirWeapon.Size = new System.Drawing.Size(57, 17);
+            this.hoenirWeapon.TabIndex = 39;
+            this.hoenirWeapon.Text = "Hoenir";
+            this.hoenirWeapon.UseVisualStyleBackColor = true;
+            // 
+            // juliusWeapon
+            // 
+            this.juliusWeapon.AutoSize = true;
+            this.juliusWeapon.Checked = true;
+            this.juliusWeapon.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.juliusWeapon.Location = new System.Drawing.Point(307, 24);
+            this.juliusWeapon.Name = "juliusWeapon";
+            this.juliusWeapon.Size = new System.Drawing.Size(52, 17);
+            this.juliusWeapon.TabIndex = 38;
+            this.juliusWeapon.Text = "Julius";
+            this.juliusWeapon.UseVisualStyleBackColor = true;
             // 
             // eleineWeapon
             // 
@@ -532,6 +556,8 @@
             // 
             // OtherPage
             // 
+            this.OtherPage.Controls.Add(this.shuffleEnemies);
+            this.OtherPage.Controls.Add(this.minibosses_chapter);
             this.OtherPage.Controls.Add(this.shuffleRooms);
             this.OtherPage.Controls.Add(this.uatserver);
             this.OtherPage.Controls.Add(this.ngPlusSetting);
@@ -545,20 +571,30 @@
             this.OtherPage.Text = "Misc";
             this.OtherPage.UseVisualStyleBackColor = true;
             // 
+            // minibosses_chapter
+            // 
+            this.minibosses_chapter.AutoSize = true;
+            this.minibosses_chapter.Location = new System.Drawing.Point(25, 50);
+            this.minibosses_chapter.Name = "minibosses_chapter";
+            this.minibosses_chapter.Size = new System.Drawing.Size(156, 17);
+            this.minibosses_chapter.TabIndex = 35;
+            this.minibosses_chapter.Text = "Sub-spirits increase chapter";
+            this.minibosses_chapter.UseVisualStyleBackColor = true;
+            // 
             // shuffleRooms
             // 
             this.shuffleRooms.AutoSize = true;
-            this.shuffleRooms.Location = new System.Drawing.Point(25, 50);
+            this.shuffleRooms.Location = new System.Drawing.Point(25, 73);
             this.shuffleRooms.Name = "shuffleRooms";
-            this.shuffleRooms.Size = new System.Drawing.Size(90, 17);
+            this.shuffleRooms.Size = new System.Drawing.Size(158, 17);
             this.shuffleRooms.TabIndex = 34;
-            this.shuffleRooms.Text = "Shuffle rooms";
+            this.shuffleRooms.Text = "Shuffle rooms (experimental)";
             this.shuffleRooms.UseVisualStyleBackColor = true;
             // 
             // uatserver
             // 
             this.uatserver.AutoSize = true;
-            this.uatserver.Location = new System.Drawing.Point(25, 73);
+            this.uatserver.Location = new System.Drawing.Point(25, 119);
             this.uatserver.Name = "uatserver";
             this.uatserver.Size = new System.Drawing.Size(149, 17);
             this.uatserver.TabIndex = 33;
@@ -602,7 +638,7 @@
             this.LogicPage.Padding = new System.Windows.Forms.Padding(3);
             this.LogicPage.Size = new System.Drawing.Size(459, 485);
             this.LogicPage.TabIndex = 4;
-            this.LogicPage.Text = "Logic";
+            this.LogicPage.Text = "Spoiler";
             this.LogicPage.UseVisualStyleBackColor = true;
             // 
             // LogicPreviewGridview
@@ -610,11 +646,11 @@
             this.LogicPreviewGridview.AllowUserToAddRows = false;
             this.LogicPreviewGridview.AllowUserToDeleteRows = false;
             this.LogicPreviewGridview.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.LogicPreviewGridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.LogicPreviewGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LogicPreviewGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -668,27 +704,15 @@
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
             // 
-            // juliusWeapon
+            // shuffleEnemies
             // 
-            this.juliusWeapon.AutoSize = true;
-            this.juliusWeapon.Checked = true;
-            this.juliusWeapon.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.juliusWeapon.Location = new System.Drawing.Point(307, 24);
-            this.juliusWeapon.Name = "juliusWeapon";
-            this.juliusWeapon.Size = new System.Drawing.Size(52, 17);
-            this.juliusWeapon.TabIndex = 38;
-            this.juliusWeapon.Text = "Julius";
-            this.juliusWeapon.UseVisualStyleBackColor = true;
-            // 
-            // hoenirWeapon
-            // 
-            this.hoenirWeapon.AutoSize = true;
-            this.hoenirWeapon.Location = new System.Drawing.Point(99, 47);
-            this.hoenirWeapon.Name = "hoenirWeapon";
-            this.hoenirWeapon.Size = new System.Drawing.Size(57, 17);
-            this.hoenirWeapon.TabIndex = 39;
-            this.hoenirWeapon.Text = "Hoenir";
-            this.hoenirWeapon.UseVisualStyleBackColor = true;
+            this.shuffleEnemies.AutoSize = true;
+            this.shuffleEnemies.Location = new System.Drawing.Point(25, 96);
+            this.shuffleEnemies.Name = "shuffleEnemies";
+            this.shuffleEnemies.Size = new System.Drawing.Size(169, 17);
+            this.shuffleEnemies.TabIndex = 36;
+            this.shuffleEnemies.Text = "Shuffle enemies (experimental)";
+            this.shuffleEnemies.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 
@@ -776,5 +800,7 @@
         private System.Windows.Forms.TrackBar skinLevel;
         private System.Windows.Forms.CheckBox juliusWeapon;
         private System.Windows.Forms.CheckBox hoenirWeapon;
+        private System.Windows.Forms.CheckBox minibosses_chapter;
+        private System.Windows.Forms.CheckBox shuffleEnemies;
     }
 }

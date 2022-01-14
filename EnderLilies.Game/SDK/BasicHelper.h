@@ -364,15 +364,17 @@ public:
 
 		return reinterpret_cast<FNameEntry*>(Blocks[block] + ((uint64_t)offset * Stride));
 	}
+
 	inline bool IsValidIndex(int32_t key) const
 	{
 		uint32_t block = key >> 16;
 		uint16_t offset = key;
 		return IsValidIndex(key, block, offset);
 	}
+
 	inline bool IsValidIndex(int32_t key, uint32_t block, uint16_t offset) const
 	{
-		return (key >= 0 && block < (uint32_t)NumBlocks() && offset* Stride < 0x20000);
+		return (key >= 0 && block < (uint32_t)NumBlocks() && offset * Stride < 0x20000);
 	}
 };
 
@@ -383,7 +385,7 @@ public:
 	uint32_t AnsiCount;
 	uint32_t WideCount;
 
-	inline FNameEntry* GetNext(uintptr_t& nextFNameAddress)
+	inline FNameEntry* GetNext(uintptr_t& nextFNameAddress, int32_t& nextFNameComparisonId)
 	{
 		static int lastBlock = 0;
 		if (nextFNameAddress == NULL)
@@ -394,9 +396,9 @@ public:
 
 	RePlay:
 #ifdef FNamePool_WITH_CASE_PRESERVING_NAME
-		int32_t nextFNameComparisonId = *reinterpret_cast<int32_t*>(nextFNameAddress);
+		nextFNameComparisonId = *reinterpret_cast<int32_t*>(nextFNameAddress);
 #else
-		int32_t nextFNameComparisonId = MAKELONG((uint16_t)((nextFNameAddress - reinterpret_cast<uintptr_t>(Allocator.Blocks[lastBlock])) / 2), (uint16_t)lastBlock);
+		nextFNameComparisonId = MAKELONG((uint16_t)((nextFNameAddress - reinterpret_cast<uintptr_t>(Allocator.Blocks[lastBlock])) / 2), (uint16_t)lastBlock);
 #endif
 		int32_t block = nextFNameComparisonId >> 16;
 		int32_t offset = (uint16_t)nextFNameComparisonId;
@@ -452,6 +454,12 @@ public:
 		FNameEntry* ret = Allocator.GetById(nextFNameComparisonId);
 
 		return ret;
+	}
+
+	inline FNameEntry* GetNext(uintptr_t& nextFNameAddress)
+	{
+		int32_t nextFNameComparisonId = -1;
+		return GetNext(nextFNameAddress, nextFNameComparisonId);
 	}
 
 	inline size_t Num() const
@@ -782,6 +790,12 @@ struct FName
 	inline bool operator==(const FName& other) const
 	{
 		return ComparisonIndex == other.ComparisonIndex && Number == other.Number;
+	}
+
+	inline bool operator==(const char* other) const
+	{
+		CG::FNameEntry* entry = CG::FName::GetGlobalNames()[ComparisonIndex];
+		return strncmp(entry->AnsiName, other, entry->GetLength()) == 0;
 	}
 };
 
