@@ -11,21 +11,81 @@
 bool g_cancel = false;
 Randomizer* rando;
 
+typedef void (*OnEquipSpiritPtr)(CG::USummonerComponent*, void*);
+static OnEquipSpiritPtr onEquipSpirit;
+__declspec(noinline) void  OnEquipSpiritHook(CG::USummonerComponent* obj, void *param)
+{
+	onEquipSpirit(obj, param);
+}
+
+class ProcessEventCache
+{
+	int _objComparisonIndex;
+	int _fnComparisonIndex;
+
+	const char* _objName;
+	const char* _fnName;
+public:
+	ProcessEventCache(const char* objName, const char* fnName) :
+		_objName(objName), _fnName(fnName) { }
+
+	bool Match(CG::UObject* obj, CG::UFunction* fn)
+	{
+		if (_objComparisonIndex == 0)
+		{
+			if (obj->Name.GetAnsiName() != _objName)
+				return false;
+			_objComparisonIndex = obj->Name.ComparisonIndex;
+		}
+		if (_fnComparisonIndex == 0)
+		{
+			if (fn->Name.GetAnsiName() != _fnName)
+				return false;
+			_fnComparisonIndex = fn->Name.ComparisonIndex;
+		}
+		return obj->Name.ComparisonIndex == _objComparisonIndex && fn->Name.ComparisonIndex == _fnComparisonIndex;
+	}
+};
+
+
 typedef void (*ProcessEventPtr)(CG::UObject*, CG::UFunction*, void*);
 static ProcessEventPtr processEvent;
 __declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn, void* parms)
 {
-	static int pcName = 0;
-	static int tickFname = 0;
-	if (pcName == 0 && obj->GetName().compare(0, 9, "PC_Base_C") == 0)
-		pcName = obj->Name.ComparisonIndex;
-	if (tickFname == 0 && fn->GetName() == "ReceiveTick")
-		tickFname = fn->Name.ComparisonIndex;
-	if (rando->IsReady() && pcName == obj->Name.ComparisonIndex && tickFname == fn->Name.ComparisonIndex)
+	static ProcessEventCache controllerTick("PC_Base_C", "ReceiveTick");
+	static ProcessEventCache onEquipSpirit("SpiritCompanionComponent", "OnEquipSpirit");
+
+	if (rando->IsReady() && controllerTick.Match(obj, fn))
 		rando->Update();
+	else if (onEquipSpirit.Match(obj, fn))
+		rando->EquipSpirit((CG::USummonerComponent_OnEquipSpirit_Params*)parms);
 	processEvent(obj, fn, parms);
 }
 
+
+bool DoEquipDetour()
+{
+	if (rando->World() == nullptr || rando->World()->Name.ComparisonIndex <= 0)
+		return false;
+	CG::UFunction* fn = CG::UObject::FindObject<CG::UFunction>("Function Zenith.SummonerComponent.OnEquipSpirit");
+	if (fn == nullptr)
+		return false;
+	onEquipSpirit = reinterpret_cast<OnEquipSpiritPtr>(fn->Func);
+	DetourRestoreAfterWith();
+	DetourTransactionBegin();
+	DetourUpdateThread(GetCurrentThread());
+	DetourAttach(&(PVOID&)onEquipSpirit, OnEquipSpiritHook);
+	LONG error = DetourTransactionCommit();
+
+	if (error == NO_ERROR) {
+		std::cout << "No error detouring " << std::endl;
+		return true;
+	}
+	else {
+		std::cout << " Error detouring " << error << std::endl;
+		return false;
+	}
+}
 
 bool DoDetour()
 {

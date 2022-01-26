@@ -179,6 +179,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="SDK.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="SDK\BasicHelper.h" />
     <ClInclude Include="SDK\BP_Character_Boss_Base_classes.h" />
     <ClInclude Include="SDK\BP_Character_Boss_Base_parameters.h" />
     <ClInclude Include="SDK\BP_Character_Boss_Base_structs.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="SDK\CoreUObject_parameters.h" />
     <ClInclude Include="SDK\CoreUObject_structs.h" />
     <ClInclude Include="SDK\Engine_classes.h" />
+    <ClInclude Include="SDK\GameplayTasks_classes.h" />
     <ClInclude Include="SDK\Zenith_classes.h" />
     <ClInclude Include="SDK\Zenith_parameters.h" />
     <ClInclude Include="SDK\Zenith_structs.h" />

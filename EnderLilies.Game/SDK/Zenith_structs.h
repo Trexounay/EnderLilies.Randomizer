@@ -1431,7 +1431,8 @@ struct FActorArray
 // 0x0048 (0x0050 - 0x0008)
 struct FSpiritParameterLevelData : public FTableRowBase
 {
-	unsigned char                                      CommandSettingsData[0x28];                                 // 0x0008(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
+	struct FSoftObjectPtr							   CommandSettingsData;										  // 0x0008(0x0024) UNKNOWN PROPERTY: SoftObjectProperty
+	int													wtf;							  // 0x002C(0x0004) UNKNOWN PROPERTY: SoftObjectProperty
 	float                                              AttackFactor;                                              // 0x0030(0x0004) (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	Zenith_ECurrencyType                               CurrencyTypeForLevelUp;                                    // 0x0034(0x0001) (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	unsigned char                                      UnknownData_O5IQ[0x3];                                     // 0x0035(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)

@@ -80,7 +80,49 @@
     "anklet": "Passive.i_passive_move_speed_up",
     "heal1": "Passive.i_passive_heal_count_up_1",
     "heal2": "Passive.i_passive_heal_count_up_2",
-    "heal3": "Passive.i_passive_heal_count_up_3"
+    "heal3": "Passive.i_passive_heal_count_up_3",
+
+    "Soiled Prayer Beads": "Passive.i_passive_maxhpup_LV1",
+    "Royal Aegis Crest": "Passive.i_passive_maxhpup_LV2",
+    "Unused Relic 1": "Passive.i_passive_maxhpup_LV3",
+    "Broken Music Box": "Passive.i_passive_dmgcut_LV1",
+    "Cracked Familiar Stone": "Passive.i_passive_dmgcut_LV2",
+    "Snowdrop Bracelet": "Passive.i_passive_dmgcut_LV3",
+    "Blighted Appendage": "Passive.i_passive_dmgup",
+    "Giant's Ring": "Passive.i_passive_dmgup_grounded",
+    "Unused Relic 2": "Passive.i_passive_dmgup_grounded_LV2",
+    "Ancient Dragon Claw": "Passive.i_passive_dmgup_airborne",
+    "Unused Relic 3": "Passive.i_passive_dmgup_airborne_LV2",
+    "Rusted Blue Ornament": "Passive.i_passive_dmgup_swimming",
+    "Executioner's Gloves": "Passive.i_passive_dmgup_maxhp",
+    "Decayed Crown": "Passive.i_passive_stunstamina_damage_up",
+    "Weathered Necklace": "Passive.i_passive_regenHP_kill",
+    "Immortal's Crest": "Passive.i_passive_regenHP_attack",
+    "Manisa's Ring": "Passive.i_passive_spirit_maxcast_count_up_LV1",
+    "Aura's Ring": "Passive.i_passive_spirit_maxcast_count_up_LV2",
+    "Unused Relic 4": "Passive.i_passive_spirit_maxcast_count_up_LV3",
+    "Kilteus' Ring": "Passive.i_passive_recast_time_cut_LV1",
+    "Calivia's Ring": "Passive.i_passive_recast_time_cut_LV2",
+    "Unused Relic 5": "Passive.i_passive_recast_time_cut_LV3",
+    "White Priestess Statue": "Passive.i_passive_heal_count_up_1",
+    "Priestess' Doll": "Passive.i_passive_heal_count_up_3",
+    "White Priestess' Earrings": "Passive.i_passive_heal_count_up_2",
+    "Holy Spring Water": "Passive.i_passive_heal_power_up",
+    "Nymphilia's Ring": "Passive.i_passive_shortheal",
+    "Spellbound Anklet": "Passive.i_passive_move_speed_up",
+    "Vibrant Plume": "Passive.i_passive_jump_height_up",
+    "Ruined Witch's Book": "Passive.i_passive_swim_fast",
+    "Bloodstained Ribbon": "Passive.i_passive_expup_1",
+    "Blightwreathed Blade": "Passive.i_passive_expup_2",
+    "Heretic's Mask": "Passive.i_passive_ignore_damage_area",
+    "Unused Relic 6": "Passive.i_passive_stamina_up",
+    "Eldred's Ring": "Passive.i_passive_mp_restore_up_LV1",
+    "Ricorus' Ring": "Passive.i_passive_maxmpup",
+    "Iris' Ring": "Passive.i_passive_post_damage_invincibility",
+    "Luminant Aegis Curio": "Passive.i_passive_flag_ending_c",
+    "Lost Heirloom": "Passive.i_passive_override_skin_level",
+    "Blighted Phantom": "Passive.i_passive_override_skin_level_max",
+    "Fretia's Ring": "Passive.i_passive_parry"
   },
 
   "macros": {
@@ -1596,7 +1638,7 @@
     {
       "from": "Hoenir",
       "to": "Oubliette_16_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2",
-      "requires": "hook | FULLSILVA | silva + djump+ claw",
+      "requires": "hook | silva + djump + (claw | champion | dodge)",
       "twoways": true
     },
     {
@@ -1740,7 +1782,7 @@
     {
       "from": "Lab1",
       "to": "Swamp_09_GAMEPLAY.BP_SCR_LV2M_2170_2",
-      "requires": "LEDGE + HORIZONTAL",
+      "requires": "LEDGE + HORIZONTAL | 2LEDGE",
       "twoways": true
     },
     {

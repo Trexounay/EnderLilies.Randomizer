@@ -77,6 +77,12 @@
     <ClInclude Include="SDK\BP_WorldTravelVolume_classes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SDK\GameplayTasks_classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK\BasicHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

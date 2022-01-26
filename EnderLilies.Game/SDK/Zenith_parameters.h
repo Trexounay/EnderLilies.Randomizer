@@ -3398,6 +3398,7 @@ struct USummonerComponent_OnPossessed_Params
 struct USummonerComponent_OnEquipSpirit_Params
 {
 	Zenith_ESummonSet                                  SummonSet;                                                 // 0x0000(0x0001)  (Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	unsigned char pad[0x7];
 	struct FSpiritData                                 SpiritData;                                                // 0x0008(0x0148)  (ConstParm, Parm, OutParm, ReferenceParm, NativeAccessSpecifierPublic)
 };
 

@@ -90,11 +90,19 @@ namespace EnderLilies.Randomizer
             }
         }
 
+        Process _game = null;
         public void Update()
         {
             Process game = GetGameProcess();
-            if (game != null && !ProcessHasModule(game, _gameDLL))
-                InjectDLL(game, GetGameDLLPath());
+            if (game == null)
+                return;
+            if (_game == null || _game.Id != game.Id)
+            {
+                if (!ProcessHasModule(game, _gameDLL))
+                    InjectDLL(game, GetGameDLLPath());
+                else
+                    _game = game;
+            }
         }
     }
 }

@@ -91,22 +91,40 @@ namespace EnderLilies.Randomizer
         {
             GameGraph = GetGraph();
             RNG.stream = new Random(seed);
-            Dictionary<string, bool> settings = new Dictionary<string, bool>()
+            List<string> startingSpirits = new List<string>()
             {
-                { "umbral", _settings.UmbralWeapon },
-                { "gerrod", _settings.GerrodWeapon },
-                { "silva",  _settings.SilvaWeapon },
-                { "ulv",    _settings.UlvWeapon },
-                { "julius", _settings.JuliusWeapon },
-                { "faden",  _settings.FadenWeapon },
-                { "eleine", _settings.EleineWeapon },
-                { "hoenir", _settings.HoenirWeapon },
+                "umbral",
+                "gerrod",
+                "silva",
+                "julius",
+                "ulv",
+                "eleine",
+                "hoenir",
+                "faden",
+                "siegrid",
+                "youth",
+                "defender",
+                "bird",
+                "dog",
+                "archer",
+                "crypt",
+                "fungal",
+                "floral",
+                "sentinel",
+                "subject",
+                "executionner",
+                "sinner",
+                "champion",
+                "elder",
+                "chief",
+                "aegis",
+                "fellwyrm",
             };
 
             string weapon = "umbral";
-            var startingWeapons = settings.Where(p => p.Value).ToArray();
+            var startingWeapons = startingSpirits.Where((s, i) => _settings.HasSpirit(i)).ToArray();
             if (startingWeapons.Length > 0)
-                weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Length)].Key;
+                weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Length)];
             result = GameGraph.Solve("Start", weapon, _settings.MetaProgression);
             if (result == null)
                 return;

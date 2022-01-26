@@ -87,6 +87,56 @@ bool Randomizer::IsReady()
 	return true;
 }
 
+
+void  Randomizer::EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* params)
+{
+	if (!_cheat && _starting_weapon < 5)
+		return;
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	CG::FName spiritID = gm->ItemSpiritTable->Data[_starting_weapon].Name;
+
+	if (!_cheat && params->SpiritData.SpiritID != spiritID)
+		return;
+	auto command_class = params->SpiritData.CommandSettingsData->CommandSettings.CommandActionType;
+	auto count = CG::UObject::GetGlobalObjects().Num();
+	for (int i = count; i > 0; --i)
+	{
+		auto object = CG::UObject::GetGlobalObjects().GetByIndex(i);
+		if (object == nullptr)
+			continue;
+		if (object->Class == command_class)
+		{
+			if (object->IsA(CG::UCommandActionSummon::StaticClass()))
+			{
+				auto cas = ((CG::UCommandActionSummon*)object);
+				cas->SettingsSummonCastLimit.CastLimitType = CG::Zenith_ECommandSummonLimitType::ECommandSummonLimitType__None;
+				if (_cheat)
+				{
+					cas->RecastTime = 0;
+					cas->MaxAirborneExecutionCount = 0;
+				}
+				std::cout << "summon" << object->Name.GetAnsiName() << std::endl;
+			}
+			else if (object->IsA(CG::UCommandActionComboSummon::StaticClass()))
+			{
+				auto cas = ((CG::UCommandActionComboSummon*)object);
+				cas->SettingsSummonCastLimit.CastLimitType = CG::Zenith_ECommandSummonLimitType::ECommandSummonLimitType__None;
+				if (_cheat)
+				{
+					cas->RecastTime = 0;
+					cas->MaxAirborneExecutionCount = 0;
+				}
+				std::cout << "combo" << object->Name.GetAnsiName() << std::endl;
+			}
+			else
+				std::cout << "other " << object->Name.GetAnsiName() << std::endl;
+			return;
+		}
+	}
+	std::cout << "not found " << command_class->Name.GetAnsiName() << std::endl;
+}
+
+
 void Randomizer::NewGame()
 {
 	_new_game = false;
@@ -121,15 +171,17 @@ void Randomizer::NewMap()
 	for (int i = 0; i < CG::UObject::GetGlobalObjects().Num(); ++i)
 	{
 		auto object = CG::UObject::GetGlobalObjects().GetByIndex(i);
-		if (object == nullptr || object->Name.ComparisonIndex == 0)
+		if (object == nullptr || object->Name.ComparisonIndex == 0 || object->Class->SuperField == nullptr)
 			continue;
 		if (object->Class->Name.ComparisonIndex == BlueprintGeneratedClassIndex)
-			_bp_classes[object->Name.GetName()] = static_cast<CG::UClass*>(object);
+		{
+			_bp_classes[object->Name.GetAnsiName()] = static_cast<CG::UClass*>(object);
+		}
 		else if (object->Class->Name.ComparisonIndex == FunctionIndex)
 		{
 			CG::FNameEntry* entry = CG::FName::GetGlobalNames()[object->Outer->Name.ComparisonIndex];
 			if (entry->AnsiName[0] == 'B' && entry->AnsiName[1] == 'P')
-				_bp_funcs[object->Outer->Name.GetName() + "." + object->Name.GetName()] = static_cast<CG::UFunction*>(object);
+				_bp_funcs[object->Outer->Name.GetAnsiName() + "." + object->Name.GetAnsiName()] = static_cast<CG::UFunction*>(object);
 		}
 	}
 	if (_skin_override >= 0)
@@ -140,6 +192,16 @@ void Randomizer::NewMap()
 	}
 	if (_shuffle_enemies)
 		ShuffleEnnemies();
+
+
+#ifdef _DEBUG
+
+	std::fstream file("dataout.txt", std::ios::out);
+
+	for (const auto& elem : _data) {
+		file << elem.first << "\t" << elem.second << "\n";
+	}
+#endif
 }
 
 void Randomizer::ShuffleEnnemies()
@@ -151,22 +213,24 @@ void Randomizer::ShuffleEnnemies()
 	if (count > 0)
 	{
 		srand(_seed + count);
-		for (int i = count; i > 1;)
+		std::vector<int> shuffled;
+		for (int i = 0; i < count; ++i)
+		{
+			CG::ABP_EnemySpawnPoint_C* spawn1 = (CG::ABP_EnemySpawnPoint_C*)out[i];
+			if (spawn1->bHOOK_ConsiderAsBossSpawn)
+				continue;
+			spawn1->bShouldActivateByDefault = true;
+			shuffled.push_back(i);
+		}
+		for (int i = shuffled.size(); i > 1;)
 		{
 			int k = rand() % i;
 			i--;
-
-			CG::ABP_EnemySpawnPoint_C* spawn1 = (CG::ABP_EnemySpawnPoint_C*)out[i];
-			CG::ABP_EnemySpawnPoint_C* spawn2 = (CG::ABP_EnemySpawnPoint_C*)out[k];
-			if (spawn1->bHOOK_ConsiderAsBossSpawn || spawn2->bHOOK_ConsiderAsBossSpawn)
-				continue;
-
+			CG::ABP_EnemySpawnPoint_C* spawn1 = (CG::ABP_EnemySpawnPoint_C*)out[shuffled[i]];
+			CG::ABP_EnemySpawnPoint_C* spawn2 = (CG::ABP_EnemySpawnPoint_C*)out[shuffled[k]];
 			auto transform1 = spawn1->GetTransform();
 			spawn1->RootComponent->K2_SetWorldTransform(spawn2->GetTransform(), false, NULL, true);
 			spawn2->RootComponent->K2_SetWorldTransform(transform1, false, NULL, true);
-
-			spawn1->bShouldActivateByDefault = true;
-			spawn2->bShouldActivateByDefault = true;
 		}
 	}
 
@@ -337,12 +401,14 @@ void Randomizer::ReadSeedFile(std::string path)
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	_replacements.clear();
+	_aptitudes.clear();
 	std::fstream file(path, std::ios::in);
 	_force_ancient_souls = false;
 	_shuffle_relics = false;
 	_shuffle_upgrades = false;
 	_shuffle_enemies = false;
 	_shuffle_rooms = false;
+	_cheat = false;
 	_minibosses_chapter = false;
 	_skin_override = -1;
 	if (file.is_open())
@@ -366,6 +432,8 @@ void Randomizer::ReadSeedFile(std::string path)
 			{
 				if (item == "shuffle_slots")
 					_shuffle_relics = true;
+				if (item == "cheat")
+					_cheat = true;
 				else if (item == "shuffle_rooms")
 					_shuffle_rooms = true;
 				else if (item == "shuffle_upgrades")
@@ -452,6 +520,8 @@ bool Randomizer::FindTableRow(const std::string& item, FTableRowProxy& result)
 				{
 					result.datatable = offsets[i];
 					result.entry = j;
+					if (i == 0)
+						_aptitudes.insert(table->Data[j].Name.ComparisonIndex);
 					return true;
 				}
 		}
@@ -479,20 +549,28 @@ void Randomizer::ModifySpirits()
 	CG::FItemSpiritData* data = (CG::FItemSpiritData*)(table->Data[0].ptr);
 	CG::FDataTableRowHandle empty = data->AptitudeToUnlock;
 
-	int starting_weapon = 0;
+	_starting_weapon = 0;
 	auto entry = _replacements.find("starting_weapon");
 	if (entry != _replacements.end())
-		starting_weapon = entry->second.entry;
+		_starting_weapon = entry->second.entry;
+
 
 	for (int i = 0; i < table->Data.Num(); ++i)
 	{
 		CG::FItemSpiritData* data = (CG::FItemSpiritData*)(table->Data[i].ptr);
-		data->AptitudeToUnlock = empty;
-		data->AptitudeToUnlockTutorial = empty;
-		data->SecondaryAptitudeToUnlock = empty;
-		data->SecondaryAptitudeToUnlockTutorial = empty;
-		if (starting_weapon != 0)
-			data->bInitialSpirit = (i == starting_weapon);
+
+		if (_aptitudes.find(data->AptitudeToUnlock.RowName.ComparisonIndex) != _aptitudes.end())
+		{
+			data->AptitudeToUnlock = empty;
+			data->AptitudeToUnlockTutorial = empty;
+		}
+		if (_aptitudes.find(data->SecondaryAptitudeToUnlock.RowName.ComparisonIndex) != _aptitudes.end())
+		{
+			data->SecondaryAptitudeToUnlock = empty;
+			data->SecondaryAptitudeToUnlockTutorial = empty;
+		}
+		if (_starting_weapon != 0)
+			data->bInitialSpirit = (i == _starting_weapon);
 	}
 
 	if (_shuffle_upgrades)
@@ -519,7 +597,7 @@ void Randomizer::ModifySpirits()
 			}
 		}
 	}
-	int k = starting_weapon;
+	int k = _starting_weapon;
 	if (!_force_ancient_souls)
 		k = rand() % gm->ItemSpiritTable->Data.Num();
 	if ((_force_ancient_souls || _shuffle_upgrades) && k != 0)

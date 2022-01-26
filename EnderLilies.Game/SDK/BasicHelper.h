@@ -28,7 +28,6 @@
 namespace CG
 {
 
-
 #if defined(EXTERNAL_PROPS)
 extern MemoryManager* Mem;
 #else
@@ -226,7 +225,7 @@ public:
 		return ItemPtr;
 	}
 
-private:
+public:
 	FUObjectItem** Objects;
 	FUObjectItem* PreAllocatedObjects;
 	int32_t MaxElements;
@@ -765,6 +764,10 @@ struct FName
 		}
 		return GetGlobalNames()[ComparisonIndex]->GetAnsiName();
 	}
+	inline std::string GetAnsiName() const
+	{
+		return GetGlobalNames()[ComparisonIndex]->GetAnsiName();
+	}
 	inline std::wstring GetNameW() const
 	{
 		if (Number > 0)
@@ -790,6 +793,11 @@ struct FName
 	inline bool operator==(const FName& other) const
 	{
 		return ComparisonIndex == other.ComparisonIndex && Number == other.Number;
+	}
+
+	inline bool operator!=(const FName& other) const
+	{
+		return !(this->operator==(other));
 	}
 
 	inline bool operator==(const char* other) const
@@ -926,7 +934,7 @@ public:
 };
 
 template<class T, class TWeakObjectPtrBase = FWeakObjectPtr>
-struct TWeakObjectPtr : private TWeakObjectPtrBase
+struct TWeakObjectPtr : public TWeakObjectPtrBase
 {
 public:
 	inline T* Get() const
@@ -1000,6 +1008,18 @@ class FLazyObjectPtr : public TPersistentObjectPtr<FUniqueObjectGuid_>
 };
 
 class FAssetPtr : public TPersistentObjectPtr<FStringAssetReference_>
+{
+};
+
+class FSoftObjectPath_
+{
+public:
+	struct FName                                       AssetPathName;                                             // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	struct FString                                     SubPathString;
+};
+
+
+struct FSoftObjectPtr : public TPersistentObjectPtr<FSoftObjectPath_>
 {
 };
 

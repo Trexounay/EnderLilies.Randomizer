@@ -270,7 +270,7 @@ namespace EnderLilies.Randomizer
                 node = aliases[node];
             AddNode(node);
             AddKey(key);
-            _forced.Add(nodes.IndexOf(node), keys.IndexOf(key));
+            _forced[nodes.IndexOf(node)] = keys.IndexOf(key);
         }
 
         public void AddResults(Dictionary<string, string> forced)

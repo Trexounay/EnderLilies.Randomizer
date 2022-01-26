@@ -35,8 +35,9 @@ public:
 	Randomizer(std::string path, CG::UWorld** pworld);
 	~Randomizer();
 
-	bool IsReady();
-	void Update();
+	bool	IsReady();
+	void	Update();
+	void	EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* params);
 
 	static CG::UFunction* FindFunction(const std::string& name)
 	{
@@ -46,15 +47,18 @@ public:
 private:
 	static std::unordered_map<std::string, CG::UClass*>	_bp_classes;
 	static std::unordered_map<std::string, CG::UFunction*>	_bp_funcs;
+	std::unordered_map<std::string, std::string> _data;
 	CG::UWorld** _pworld;
 
 	bool _new_game = true;
 	bool _new_map = true;
 	bool _new_data = true;
 
+	int _starting_weapon = 0;
 	int _seed = -1;
 	int _skin_override = -1;
 	bool _shuffle_relics = false;
+	bool _cheat = false;
 	bool _shuffle_rooms = false;
 	bool _shuffle_upgrades = false;
 	bool _shuffle_enemies = false;
@@ -67,6 +71,7 @@ private:
 	std::string _path;
 
 
+	std::unordered_set<int> _aptitudes;
 	std::unordered_map<std::string, FTableRowProxy> _replacements;
 	std::unordered_set<CG::FDataTableRowHandle*> _done;
 

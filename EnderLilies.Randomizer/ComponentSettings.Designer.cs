@@ -36,23 +36,18 @@
             this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
-            this.shuffleWeaponUpgrades = new System.Windows.Forms.CheckBox();
-            this.maxChapterText = new System.Windows.Forms.Label();
+            this.shuffleEnemies = new System.Windows.Forms.CheckBox();
+            this.minibosses_chapter = new System.Windows.Forms.CheckBox();
+            this.shuffleRooms = new System.Windows.Forms.CheckBox();
+            this.uatserver = new System.Windows.Forms.CheckBox();
+            this.ngPlusSetting = new System.Windows.Forms.CheckBox();
+            this.skinLevelText = new System.Windows.Forms.Label();
+            this.skinLevel = new System.Windows.Forms.TrackBar();
             this.maxChapter = new System.Windows.Forms.TrackBar();
-            this.startChapterText = new System.Windows.Forms.Label();
+            this.chapterText = new System.Windows.Forms.Label();
             this.startChapter = new System.Windows.Forms.TrackBar();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.hoenirWeapon = new System.Windows.Forms.CheckBox();
-            this.juliusWeapon = new System.Windows.Forms.CheckBox();
-            this.eleineWeapon = new System.Windows.Forms.CheckBox();
-            this.fadenWeapon = new System.Windows.Forms.CheckBox();
-            this.gerrodWeapon = new System.Windows.Forms.CheckBox();
-            this.ulvWeapon = new System.Windows.Forms.CheckBox();
-            this.silvaWeapon = new System.Windows.Forms.CheckBox();
-            this.umbralWeapon = new System.Windows.Forms.CheckBox();
             this.metaprogression = new System.Windows.Forms.CheckBox();
             this.dashProgressive = new System.Windows.Forms.CheckBox();
-            this.startWeaponUsesAncientSouls = new System.Windows.Forms.CheckBox();
             this.unusedRelics = new System.Windows.Forms.CheckBox();
             this.shuffleSlots = new System.Windows.Forms.CheckBox();
             this.shuffleGroup = new System.Windows.Forms.GroupBox();
@@ -68,13 +63,37 @@
             this.open = new System.Windows.Forms.Button();
             this.path = new System.Windows.Forms.TextBox();
             this.chooseFile = new System.Windows.Forms.Button();
-            this.OtherPage = new System.Windows.Forms.TabPage();
-            this.minibosses_chapter = new System.Windows.Forms.CheckBox();
-            this.shuffleRooms = new System.Windows.Forms.CheckBox();
-            this.uatserver = new System.Windows.Forms.CheckBox();
-            this.ngPlusSetting = new System.Windows.Forms.CheckBox();
-            this.skinLevelText = new System.Windows.Forms.Label();
-            this.skinLevel = new System.Windows.Forms.TrackBar();
+            this.SpiritsPage = new System.Windows.Forms.TabPage();
+            this.shuffleWeaponUpgrades = new System.Windows.Forms.CheckBox();
+            this.startWeaponUsesAncientSouls = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.startingSpiritsBox = new System.Windows.Forms.FlowLayoutPanel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
+            this.checkBox18 = new System.Windows.Forms.CheckBox();
+            this.checkBox19 = new System.Windows.Forms.CheckBox();
+            this.checkBox20 = new System.Windows.Forms.CheckBox();
+            this.checkBox21 = new System.Windows.Forms.CheckBox();
+            this.checkBox22 = new System.Windows.Forms.CheckBox();
+            this.checkBox23 = new System.Windows.Forms.CheckBox();
+            this.checkBox24 = new System.Windows.Forms.CheckBox();
+            this.checkBox25 = new System.Windows.Forms.CheckBox();
+            this.checkBox26 = new System.Windows.Forms.CheckBox();
             this.LogicPage = new System.Windows.Forms.TabPage();
             this.LogicPreviewGridview = new System.Windows.Forms.DataGridView();
             this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,19 +102,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.metaprogressTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.shuffleEnemies = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startChapter)).BeginInit();
-            this.groupBox2.SuspendLayout();
             this.shuffleGroup.SuspendLayout();
-            this.OtherPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).BeginInit();
+            this.SpiritsPage.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.startingSpiritsBox.SuspendLayout();
             this.LogicPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.componentSettingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,6 +140,8 @@
             // 
             this.groupBox1.Controls.Add(this.Randomize);
             this.groupBox1.Controls.Add(this.tabSettings);
+            this.groupBox1.Controls.Add(this.skinLevelText);
+            this.groupBox1.Controls.Add(this.skinLevel);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.seedText);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -147,7 +172,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabSettings.Controls.Add(this.SettingsPage);
-            this.tabSettings.Controls.Add(this.OtherPage);
+            this.tabSettings.Controls.Add(this.SpiritsPage);
             this.tabSettings.Controls.Add(this.LogicPage);
             this.tabSettings.Location = new System.Drawing.Point(2, 44);
             this.tabSettings.Name = "tabSettings";
@@ -157,17 +182,10 @@
             // 
             // SettingsPage
             // 
-            this.SettingsPage.Controls.Add(this.shuffleWeaponUpgrades);
-            this.SettingsPage.Controls.Add(this.maxChapterText);
+            this.SettingsPage.Controls.Add(this.flowLayoutPanel2);
             this.SettingsPage.Controls.Add(this.maxChapter);
-            this.SettingsPage.Controls.Add(this.startChapterText);
+            this.SettingsPage.Controls.Add(this.chapterText);
             this.SettingsPage.Controls.Add(this.startChapter);
-            this.SettingsPage.Controls.Add(this.groupBox2);
-            this.SettingsPage.Controls.Add(this.metaprogression);
-            this.SettingsPage.Controls.Add(this.dashProgressive);
-            this.SettingsPage.Controls.Add(this.startWeaponUsesAncientSouls);
-            this.SettingsPage.Controls.Add(this.unusedRelics);
-            this.SettingsPage.Controls.Add(this.shuffleSlots);
             this.SettingsPage.Controls.Add(this.shuffleGroup);
             this.SettingsPage.Controls.Add(this.checkfile);
             this.SettingsPage.Controls.Add(this.open);
@@ -181,168 +199,118 @@
             this.SettingsPage.Text = "Settings";
             this.SettingsPage.UseVisualStyleBackColor = true;
             // 
-            // shuffleWeaponUpgrades
+            // shuffleEnemies
             // 
-            this.shuffleWeaponUpgrades.AutoSize = true;
-            this.shuffleWeaponUpgrades.Location = new System.Drawing.Point(44, 238);
-            this.shuffleWeaponUpgrades.Name = "shuffleWeaponUpgrades";
-            this.shuffleWeaponUpgrades.Size = new System.Drawing.Size(135, 17);
-            this.shuffleWeaponUpgrades.TabIndex = 41;
-            this.shuffleWeaponUpgrades.Text = "Shuffle spirits upgrades";
-            this.shuffleWeaponUpgrades.UseVisualStyleBackColor = true;
+            this.shuffleEnemies.AutoSize = true;
+            this.shuffleEnemies.Location = new System.Drawing.Point(3, 164);
+            this.shuffleEnemies.Name = "shuffleEnemies";
+            this.shuffleEnemies.Size = new System.Drawing.Size(169, 17);
+            this.shuffleEnemies.TabIndex = 48;
+            this.shuffleEnemies.Text = "Shuffle enemies (experimental)";
+            this.shuffleEnemies.UseVisualStyleBackColor = true;
             // 
-            // maxChapterText
+            // minibosses_chapter
             // 
-            this.maxChapterText.AutoSize = true;
-            this.maxChapterText.Location = new System.Drawing.Point(328, 311);
-            this.maxChapterText.Name = "maxChapterText";
-            this.maxChapterText.Size = new System.Drawing.Size(67, 13);
-            this.maxChapterText.TabIndex = 40;
-            this.maxChapterText.Text = "Max Chapter";
+            this.minibosses_chapter.AutoSize = true;
+            this.minibosses_chapter.Location = new System.Drawing.Point(3, 118);
+            this.minibosses_chapter.Name = "minibosses_chapter";
+            this.minibosses_chapter.Size = new System.Drawing.Size(156, 17);
+            this.minibosses_chapter.TabIndex = 47;
+            this.minibosses_chapter.Text = "Sub-spirits increase chapter";
+            this.minibosses_chapter.UseVisualStyleBackColor = true;
+            // 
+            // shuffleRooms
+            // 
+            this.shuffleRooms.AutoSize = true;
+            this.shuffleRooms.Location = new System.Drawing.Point(3, 141);
+            this.shuffleRooms.Name = "shuffleRooms";
+            this.shuffleRooms.Size = new System.Drawing.Size(158, 17);
+            this.shuffleRooms.TabIndex = 46;
+            this.shuffleRooms.Text = "Shuffle rooms (experimental)";
+            this.shuffleRooms.UseVisualStyleBackColor = true;
+            // 
+            // uatserver
+            // 
+            this.uatserver.AutoSize = true;
+            this.uatserver.Location = new System.Drawing.Point(3, 187);
+            this.uatserver.Name = "uatserver";
+            this.uatserver.Size = new System.Drawing.Size(149, 17);
+            this.uatserver.TabIndex = 45;
+            this.uatserver.Text = "Send items to PopTracker";
+            this.uatserver.UseVisualStyleBackColor = true;
+            // 
+            // ngPlusSetting
+            // 
+            this.ngPlusSetting.AutoSize = true;
+            this.ngPlusSetting.Location = new System.Drawing.Point(3, 95);
+            this.ngPlusSetting.Name = "ngPlusSetting";
+            this.ngPlusSetting.Size = new System.Drawing.Size(61, 17);
+            this.ngPlusSetting.TabIndex = 44;
+            this.ngPlusSetting.Text = "NG+ AI";
+            this.ngPlusSetting.UseVisualStyleBackColor = true;
+            // 
+            // skinLevelText
+            // 
+            this.skinLevelText.AutoSize = true;
+            this.skinLevelText.Location = new System.Drawing.Point(271, 11);
+            this.skinLevelText.Name = "skinLevelText";
+            this.skinLevelText.Size = new System.Drawing.Size(63, 13);
+            this.skinLevelText.TabIndex = 43;
+            this.skinLevelText.Text = "Lilly: Normal";
+            // 
+            // skinLevel
+            // 
+            this.skinLevel.BackColor = System.Drawing.SystemColors.Control;
+            this.skinLevel.LargeChange = 1;
+            this.skinLevel.Location = new System.Drawing.Point(211, 20);
+            this.skinLevel.Maximum = 12;
+            this.skinLevel.Name = "skinLevel";
+            this.skinLevel.Size = new System.Drawing.Size(174, 45);
+            this.skinLevel.TabIndex = 42;
             // 
             // maxChapter
             // 
             this.maxChapter.BackColor = System.Drawing.SystemColors.Window;
             this.maxChapter.LargeChange = 0;
-            this.maxChapter.Location = new System.Drawing.Point(301, 327);
+            this.maxChapter.Location = new System.Drawing.Point(334, 181);
+            this.maxChapter.Margin = new System.Windows.Forms.Padding(0);
             this.maxChapter.Maximum = 9;
             this.maxChapter.Name = "maxChapter";
-            this.maxChapter.Size = new System.Drawing.Size(135, 45);
+            this.maxChapter.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.maxChapter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.maxChapter.RightToLeftLayout = true;
+            this.maxChapter.Size = new System.Drawing.Size(45, 155);
             this.maxChapter.TabIndex = 39;
+            this.maxChapter.TickStyle = System.Windows.Forms.TickStyle.None;
             this.maxChapter.Value = 9;
             // 
-            // startChapterText
+            // chapterText
             // 
-            this.startChapterText.AutoSize = true;
-            this.startChapterText.Location = new System.Drawing.Point(328, 249);
-            this.startChapterText.Name = "startChapterText";
-            this.startChapterText.Size = new System.Drawing.Size(69, 13);
-            this.startChapterText.TabIndex = 38;
-            this.startChapterText.Text = "Start Chapter";
+            this.chapterText.AutoSize = true;
+            this.chapterText.Location = new System.Drawing.Point(309, 165);
+            this.chapterText.Name = "chapterText";
+            this.chapterText.Size = new System.Drawing.Size(80, 13);
+            this.chapterText.TabIndex = 38;
+            this.chapterText.Text = "Chapter 1 to 10";
             // 
             // startChapter
             // 
             this.startChapter.BackColor = System.Drawing.SystemColors.Window;
             this.startChapter.LargeChange = 1;
-            this.startChapter.Location = new System.Drawing.Point(301, 265);
+            this.startChapter.Location = new System.Drawing.Point(312, 181);
+            this.startChapter.Margin = new System.Windows.Forms.Padding(0);
             this.startChapter.Maximum = 9;
             this.startChapter.Name = "startChapter";
-            this.startChapter.Size = new System.Drawing.Size(135, 45);
+            this.startChapter.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.startChapter.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.startChapter.Size = new System.Drawing.Size(45, 155);
             this.startChapter.TabIndex = 37;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.hoenirWeapon);
-            this.groupBox2.Controls.Add(this.juliusWeapon);
-            this.groupBox2.Controls.Add(this.eleineWeapon);
-            this.groupBox2.Controls.Add(this.fadenWeapon);
-            this.groupBox2.Controls.Add(this.gerrodWeapon);
-            this.groupBox2.Controls.Add(this.ulvWeapon);
-            this.groupBox2.Controls.Add(this.silvaWeapon);
-            this.groupBox2.Controls.Add(this.umbralWeapon);
-            this.groupBox2.Location = new System.Drawing.Point(38, 144);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(385, 77);
-            this.groupBox2.TabIndex = 36;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Randomize Starting Spirit";
-            // 
-            // hoenirWeapon
-            // 
-            this.hoenirWeapon.AutoSize = true;
-            this.hoenirWeapon.Location = new System.Drawing.Point(99, 47);
-            this.hoenirWeapon.Name = "hoenirWeapon";
-            this.hoenirWeapon.Size = new System.Drawing.Size(57, 17);
-            this.hoenirWeapon.TabIndex = 39;
-            this.hoenirWeapon.Text = "Hoenir";
-            this.hoenirWeapon.UseVisualStyleBackColor = true;
-            // 
-            // juliusWeapon
-            // 
-            this.juliusWeapon.AutoSize = true;
-            this.juliusWeapon.Checked = true;
-            this.juliusWeapon.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.juliusWeapon.Location = new System.Drawing.Point(307, 24);
-            this.juliusWeapon.Name = "juliusWeapon";
-            this.juliusWeapon.Size = new System.Drawing.Size(52, 17);
-            this.juliusWeapon.TabIndex = 38;
-            this.juliusWeapon.Text = "Julius";
-            this.juliusWeapon.UseVisualStyleBackColor = true;
-            // 
-            // eleineWeapon
-            // 
-            this.eleineWeapon.AutoSize = true;
-            this.eleineWeapon.Location = new System.Drawing.Point(20, 47);
-            this.eleineWeapon.Name = "eleineWeapon";
-            this.eleineWeapon.Size = new System.Drawing.Size(55, 17);
-            this.eleineWeapon.TabIndex = 37;
-            this.eleineWeapon.Text = "Eleine";
-            this.eleineWeapon.UseVisualStyleBackColor = true;
-            // 
-            // fadenWeapon
-            // 
-            this.fadenWeapon.AutoSize = true;
-            this.fadenWeapon.Location = new System.Drawing.Point(176, 47);
-            this.fadenWeapon.Name = "fadenWeapon";
-            this.fadenWeapon.Size = new System.Drawing.Size(56, 17);
-            this.fadenWeapon.TabIndex = 36;
-            this.fadenWeapon.Text = "Faden";
-            this.fadenWeapon.UseVisualStyleBackColor = true;
-            // 
-            // gerrodWeapon
-            // 
-            this.gerrodWeapon.AutoSize = true;
-            this.gerrodWeapon.Checked = true;
-            this.gerrodWeapon.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.gerrodWeapon.Location = new System.Drawing.Point(99, 24);
-            this.gerrodWeapon.Name = "gerrodWeapon";
-            this.gerrodWeapon.Size = new System.Drawing.Size(58, 17);
-            this.gerrodWeapon.TabIndex = 33;
-            this.gerrodWeapon.Text = "Gerrod";
-            this.gerrodWeapon.UseVisualStyleBackColor = true;
-            // 
-            // ulvWeapon
-            // 
-            this.ulvWeapon.AutoSize = true;
-            this.ulvWeapon.Checked = true;
-            this.ulvWeapon.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ulvWeapon.Location = new System.Drawing.Point(248, 24);
-            this.ulvWeapon.Name = "ulvWeapon";
-            this.ulvWeapon.Size = new System.Drawing.Size(42, 17);
-            this.ulvWeapon.TabIndex = 35;
-            this.ulvWeapon.Text = "Ulv";
-            this.ulvWeapon.UseVisualStyleBackColor = true;
-            // 
-            // silvaWeapon
-            // 
-            this.silvaWeapon.AutoSize = true;
-            this.silvaWeapon.Checked = true;
-            this.silvaWeapon.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.silvaWeapon.Location = new System.Drawing.Point(176, 24);
-            this.silvaWeapon.Name = "silvaWeapon";
-            this.silvaWeapon.Size = new System.Drawing.Size(49, 17);
-            this.silvaWeapon.TabIndex = 34;
-            this.silvaWeapon.Text = "Silva";
-            this.silvaWeapon.UseVisualStyleBackColor = true;
-            // 
-            // umbralWeapon
-            // 
-            this.umbralWeapon.AutoSize = true;
-            this.umbralWeapon.Checked = true;
-            this.umbralWeapon.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.umbralWeapon.Location = new System.Drawing.Point(20, 24);
-            this.umbralWeapon.Name = "umbralWeapon";
-            this.umbralWeapon.Size = new System.Drawing.Size(59, 17);
-            this.umbralWeapon.TabIndex = 32;
-            this.umbralWeapon.Text = "Umbral";
-            this.umbralWeapon.UseVisualStyleBackColor = true;
+            this.startChapter.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // metaprogression
             // 
             this.metaprogression.AutoSize = true;
-            this.metaprogression.Location = new System.Drawing.Point(44, 353);
+            this.metaprogression.Location = new System.Drawing.Point(3, 72);
             this.metaprogression.Name = "metaprogression";
             this.metaprogression.Size = new System.Drawing.Size(108, 17);
             this.metaprogression.TabIndex = 31;
@@ -354,31 +322,19 @@
             this.dashProgressive.AutoSize = true;
             this.dashProgressive.Checked = true;
             this.dashProgressive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dashProgressive.Location = new System.Drawing.Point(44, 330);
+            this.dashProgressive.Location = new System.Drawing.Point(3, 49);
             this.dashProgressive.Name = "dashProgressive";
             this.dashProgressive.Size = new System.Drawing.Size(188, 17);
             this.dashProgressive.TabIndex = 30;
             this.dashProgressive.Text = "Dash always before piercing lance";
             this.dashProgressive.UseVisualStyleBackColor = true;
             // 
-            // startWeaponUsesAncientSouls
-            // 
-            this.startWeaponUsesAncientSouls.AutoSize = true;
-            this.startWeaponUsesAncientSouls.Checked = true;
-            this.startWeaponUsesAncientSouls.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.startWeaponUsesAncientSouls.Location = new System.Drawing.Point(44, 261);
-            this.startWeaponUsesAncientSouls.Name = "startWeaponUsesAncientSouls";
-            this.startWeaponUsesAncientSouls.Size = new System.Drawing.Size(176, 17);
-            this.startWeaponUsesAncientSouls.TabIndex = 29;
-            this.startWeaponUsesAncientSouls.Text = "Starting spirit uses ancient souls";
-            this.startWeaponUsesAncientSouls.UseVisualStyleBackColor = true;
-            // 
             // unusedRelics
             // 
             this.unusedRelics.AutoSize = true;
             this.unusedRelics.Checked = true;
             this.unusedRelics.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.unusedRelics.Location = new System.Drawing.Point(44, 307);
+            this.unusedRelics.Location = new System.Drawing.Point(3, 26);
             this.unusedRelics.Name = "unusedRelics";
             this.unusedRelics.Size = new System.Drawing.Size(110, 17);
             this.unusedRelics.TabIndex = 21;
@@ -390,7 +346,7 @@
             this.shuffleSlots.AutoSize = true;
             this.shuffleSlots.Checked = true;
             this.shuffleSlots.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleSlots.Location = new System.Drawing.Point(44, 284);
+            this.shuffleSlots.Location = new System.Drawing.Point(3, 3);
             this.shuffleSlots.Name = "shuffleSlots";
             this.shuffleSlots.Size = new System.Drawing.Size(109, 17);
             this.shuffleSlots.TabIndex = 20;
@@ -401,14 +357,7 @@
             // 
             this.shuffleGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.shuffleGroup.Controls.Add(this.shuffleWishes);
-            this.shuffleGroup.Controls.Add(this.shuffleSpirits);
-            this.shuffleGroup.Controls.Add(this.shuffleChains);
-            this.shuffleGroup.Controls.Add(this.shuffleTablets);
-            this.shuffleGroup.Controls.Add(this.shuffleAmulets);
-            this.shuffleGroup.Controls.Add(this.shuffleFindings);
-            this.shuffleGroup.Controls.Add(this.shuffleBlights);
-            this.shuffleGroup.Controls.Add(this.shuffleRelics);
+            this.shuffleGroup.Controls.Add(this.flowLayoutPanel1);
             this.shuffleGroup.Location = new System.Drawing.Point(38, 22);
             this.shuffleGroup.Name = "shuffleGroup";
             this.shuffleGroup.Size = new System.Drawing.Size(385, 116);
@@ -421,9 +370,10 @@
             this.shuffleWishes.AutoSize = true;
             this.shuffleWishes.Checked = true;
             this.shuffleWishes.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleWishes.Location = new System.Drawing.Point(6, 88);
+            this.shuffleWishes.Location = new System.Drawing.Point(3, 75);
             this.shuffleWishes.Name = "shuffleWishes";
-            this.shuffleWishes.Size = new System.Drawing.Size(114, 17);
+            this.shuffleWishes.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.shuffleWishes.Size = new System.Drawing.Size(144, 17);
             this.shuffleWishes.TabIndex = 15;
             this.shuffleWishes.Text = "Priestesses wishes";
             this.shuffleWishes.UseVisualStyleBackColor = true;
@@ -433,9 +383,10 @@
             this.shuffleSpirits.AutoSize = true;
             this.shuffleSpirits.Checked = true;
             this.shuffleSpirits.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleSpirits.Location = new System.Drawing.Point(6, 19);
+            this.shuffleSpirits.Location = new System.Drawing.Point(3, 6);
             this.shuffleSpirits.Name = "shuffleSpirits";
-            this.shuffleSpirits.Size = new System.Drawing.Size(54, 17);
+            this.shuffleSpirits.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.shuffleSpirits.Size = new System.Drawing.Size(84, 17);
             this.shuffleSpirits.TabIndex = 11;
             this.shuffleSpirits.Text = "Spirits";
             this.shuffleSpirits.UseVisualStyleBackColor = true;
@@ -445,9 +396,10 @@
             this.shuffleChains.AutoSize = true;
             this.shuffleChains.Checked = true;
             this.shuffleChains.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleChains.Location = new System.Drawing.Point(262, 19);
+            this.shuffleChains.Location = new System.Drawing.Point(153, 6);
             this.shuffleChains.Name = "shuffleChains";
-            this.shuffleChains.Size = new System.Drawing.Size(107, 17);
+            this.shuffleChains.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.shuffleChains.Size = new System.Drawing.Size(157, 17);
             this.shuffleChains.TabIndex = 14;
             this.shuffleChains.Text = "Chains of sorcery";
             this.shuffleChains.UseVisualStyleBackColor = true;
@@ -457,9 +409,10 @@
             this.shuffleTablets.AutoSize = true;
             this.shuffleTablets.Checked = true;
             this.shuffleTablets.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleTablets.Location = new System.Drawing.Point(6, 65);
+            this.shuffleTablets.Location = new System.Drawing.Point(3, 52);
             this.shuffleTablets.Name = "shuffleTablets";
-            this.shuffleTablets.Size = new System.Drawing.Size(88, 17);
+            this.shuffleTablets.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.shuffleTablets.Size = new System.Drawing.Size(118, 17);
             this.shuffleTablets.TabIndex = 7;
             this.shuffleTablets.Text = "Stone tablets";
             this.shuffleTablets.UseVisualStyleBackColor = true;
@@ -469,9 +422,10 @@
             this.shuffleAmulets.AutoSize = true;
             this.shuffleAmulets.Checked = true;
             this.shuffleAmulets.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleAmulets.Location = new System.Drawing.Point(262, 42);
+            this.shuffleAmulets.Location = new System.Drawing.Point(153, 29);
             this.shuffleAmulets.Name = "shuffleAmulets";
-            this.shuffleAmulets.Size = new System.Drawing.Size(107, 17);
+            this.shuffleAmulets.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.shuffleAmulets.Size = new System.Drawing.Size(157, 17);
             this.shuffleAmulets.TabIndex = 13;
             this.shuffleAmulets.Text = "Amulet fragments";
             this.shuffleAmulets.UseVisualStyleBackColor = true;
@@ -481,9 +435,10 @@
             this.shuffleFindings.AutoSize = true;
             this.shuffleFindings.Checked = true;
             this.shuffleFindings.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleFindings.Location = new System.Drawing.Point(262, 88);
+            this.shuffleFindings.Location = new System.Drawing.Point(153, 75);
             this.shuffleFindings.Name = "shuffleFindings";
-            this.shuffleFindings.Size = new System.Drawing.Size(65, 17);
+            this.shuffleFindings.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.shuffleFindings.Size = new System.Drawing.Size(115, 17);
             this.shuffleFindings.TabIndex = 8;
             this.shuffleFindings.Text = "Findings";
             this.shuffleFindings.UseVisualStyleBackColor = true;
@@ -493,9 +448,10 @@
             this.shuffleBlights.AutoSize = true;
             this.shuffleBlights.Checked = true;
             this.shuffleBlights.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleBlights.Location = new System.Drawing.Point(262, 65);
+            this.shuffleBlights.Location = new System.Drawing.Point(153, 52);
             this.shuffleBlights.Name = "shuffleBlights";
-            this.shuffleBlights.Size = new System.Drawing.Size(94, 17);
+            this.shuffleBlights.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.shuffleBlights.Size = new System.Drawing.Size(144, 17);
             this.shuffleBlights.TabIndex = 12;
             this.shuffleBlights.Text = "Blight deposits";
             this.shuffleBlights.UseVisualStyleBackColor = true;
@@ -505,9 +461,10 @@
             this.shuffleRelics.AutoSize = true;
             this.shuffleRelics.Checked = true;
             this.shuffleRelics.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleRelics.Location = new System.Drawing.Point(6, 42);
+            this.shuffleRelics.Location = new System.Drawing.Point(3, 29);
             this.shuffleRelics.Name = "shuffleRelics";
-            this.shuffleRelics.Size = new System.Drawing.Size(55, 17);
+            this.shuffleRelics.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.shuffleRelics.Size = new System.Drawing.Size(85, 17);
             this.shuffleRelics.TabIndex = 10;
             this.shuffleRelics.Text = "Relics";
             this.shuffleRelics.UseVisualStyleBackColor = true;
@@ -554,81 +511,385 @@
             this.chooseFile.UseVisualStyleBackColor = true;
             this.chooseFile.Click += new System.EventHandler(this.chooseFile_Click);
             // 
-            // OtherPage
+            // SpiritsPage
             // 
-            this.OtherPage.Controls.Add(this.shuffleEnemies);
-            this.OtherPage.Controls.Add(this.minibosses_chapter);
-            this.OtherPage.Controls.Add(this.shuffleRooms);
-            this.OtherPage.Controls.Add(this.uatserver);
-            this.OtherPage.Controls.Add(this.ngPlusSetting);
-            this.OtherPage.Controls.Add(this.skinLevelText);
-            this.OtherPage.Controls.Add(this.skinLevel);
-            this.OtherPage.Location = new System.Drawing.Point(4, 22);
-            this.OtherPage.Name = "OtherPage";
-            this.OtherPage.Padding = new System.Windows.Forms.Padding(3);
-            this.OtherPage.Size = new System.Drawing.Size(459, 485);
-            this.OtherPage.TabIndex = 5;
-            this.OtherPage.Text = "Misc";
-            this.OtherPage.UseVisualStyleBackColor = true;
+            this.SpiritsPage.Controls.Add(this.shuffleWeaponUpgrades);
+            this.SpiritsPage.Controls.Add(this.startWeaponUsesAncientSouls);
+            this.SpiritsPage.Controls.Add(this.groupBox2);
+            this.SpiritsPage.Location = new System.Drawing.Point(4, 22);
+            this.SpiritsPage.Name = "SpiritsPage";
+            this.SpiritsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SpiritsPage.Size = new System.Drawing.Size(459, 485);
+            this.SpiritsPage.TabIndex = 5;
+            this.SpiritsPage.Text = "Spirits";
+            this.SpiritsPage.UseVisualStyleBackColor = true;
             // 
-            // minibosses_chapter
+            // shuffleWeaponUpgrades
             // 
-            this.minibosses_chapter.AutoSize = true;
-            this.minibosses_chapter.Location = new System.Drawing.Point(25, 50);
-            this.minibosses_chapter.Name = "minibosses_chapter";
-            this.minibosses_chapter.Size = new System.Drawing.Size(156, 17);
-            this.minibosses_chapter.TabIndex = 35;
-            this.minibosses_chapter.Text = "Sub-spirits increase chapter";
-            this.minibosses_chapter.UseVisualStyleBackColor = true;
+            this.shuffleWeaponUpgrades.AutoSize = true;
+            this.shuffleWeaponUpgrades.Location = new System.Drawing.Point(44, 389);
+            this.shuffleWeaponUpgrades.Name = "shuffleWeaponUpgrades";
+            this.shuffleWeaponUpgrades.Size = new System.Drawing.Size(135, 17);
+            this.shuffleWeaponUpgrades.TabIndex = 43;
+            this.shuffleWeaponUpgrades.Text = "Shuffle spirits upgrades";
+            this.shuffleWeaponUpgrades.UseVisualStyleBackColor = true;
             // 
-            // shuffleRooms
+            // startWeaponUsesAncientSouls
             // 
-            this.shuffleRooms.AutoSize = true;
-            this.shuffleRooms.Location = new System.Drawing.Point(25, 73);
-            this.shuffleRooms.Name = "shuffleRooms";
-            this.shuffleRooms.Size = new System.Drawing.Size(158, 17);
-            this.shuffleRooms.TabIndex = 34;
-            this.shuffleRooms.Text = "Shuffle rooms (experimental)";
-            this.shuffleRooms.UseVisualStyleBackColor = true;
+            this.startWeaponUsesAncientSouls.AutoSize = true;
+            this.startWeaponUsesAncientSouls.Checked = true;
+            this.startWeaponUsesAncientSouls.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.startWeaponUsesAncientSouls.Location = new System.Drawing.Point(44, 412);
+            this.startWeaponUsesAncientSouls.Name = "startWeaponUsesAncientSouls";
+            this.startWeaponUsesAncientSouls.Size = new System.Drawing.Size(176, 17);
+            this.startWeaponUsesAncientSouls.TabIndex = 42;
+            this.startWeaponUsesAncientSouls.Text = "Starting spirit uses ancient souls";
+            this.startWeaponUsesAncientSouls.UseVisualStyleBackColor = true;
             // 
-            // uatserver
+            // groupBox2
             // 
-            this.uatserver.AutoSize = true;
-            this.uatserver.Location = new System.Drawing.Point(25, 119);
-            this.uatserver.Name = "uatserver";
-            this.uatserver.Size = new System.Drawing.Size(149, 17);
-            this.uatserver.TabIndex = 33;
-            this.uatserver.Text = "Send items to PopTracker";
-            this.uatserver.UseVisualStyleBackColor = true;
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.startingSpiritsBox);
+            this.groupBox2.Location = new System.Drawing.Point(38, 22);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(385, 342);
+            this.groupBox2.TabIndex = 37;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Randomize Starting Spirit";
             // 
-            // ngPlusSetting
+            // startingSpiritsBox
             // 
-            this.ngPlusSetting.AutoSize = true;
-            this.ngPlusSetting.Location = new System.Drawing.Point(25, 27);
-            this.ngPlusSetting.Name = "ngPlusSetting";
-            this.ngPlusSetting.Size = new System.Drawing.Size(61, 17);
-            this.ngPlusSetting.TabIndex = 32;
-            this.ngPlusSetting.Text = "NG+ AI";
-            this.ngPlusSetting.UseVisualStyleBackColor = true;
+            this.startingSpiritsBox.Controls.Add(this.checkBox1);
+            this.startingSpiritsBox.Controls.Add(this.checkBox2);
+            this.startingSpiritsBox.Controls.Add(this.checkBox3);
+            this.startingSpiritsBox.Controls.Add(this.checkBox4);
+            this.startingSpiritsBox.Controls.Add(this.checkBox5);
+            this.startingSpiritsBox.Controls.Add(this.checkBox6);
+            this.startingSpiritsBox.Controls.Add(this.checkBox7);
+            this.startingSpiritsBox.Controls.Add(this.checkBox8);
+            this.startingSpiritsBox.Controls.Add(this.checkBox9);
+            this.startingSpiritsBox.Controls.Add(this.checkBox10);
+            this.startingSpiritsBox.Controls.Add(this.checkBox11);
+            this.startingSpiritsBox.Controls.Add(this.checkBox12);
+            this.startingSpiritsBox.Controls.Add(this.checkBox13);
+            this.startingSpiritsBox.Controls.Add(this.checkBox14);
+            this.startingSpiritsBox.Controls.Add(this.checkBox15);
+            this.startingSpiritsBox.Controls.Add(this.checkBox16);
+            this.startingSpiritsBox.Controls.Add(this.checkBox17);
+            this.startingSpiritsBox.Controls.Add(this.checkBox18);
+            this.startingSpiritsBox.Controls.Add(this.checkBox19);
+            this.startingSpiritsBox.Controls.Add(this.checkBox20);
+            this.startingSpiritsBox.Controls.Add(this.checkBox21);
+            this.startingSpiritsBox.Controls.Add(this.checkBox22);
+            this.startingSpiritsBox.Controls.Add(this.checkBox23);
+            this.startingSpiritsBox.Controls.Add(this.checkBox24);
+            this.startingSpiritsBox.Controls.Add(this.checkBox26);
+            this.startingSpiritsBox.Controls.Add(this.checkBox25);
+            this.startingSpiritsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.startingSpiritsBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.startingSpiritsBox.Location = new System.Drawing.Point(3, 16);
+            this.startingSpiritsBox.Name = "startingSpiritsBox";
+            this.startingSpiritsBox.Padding = new System.Windows.Forms.Padding(0, 10, 10, 10);
+            this.startingSpiritsBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.startingSpiritsBox.Size = new System.Drawing.Size(379, 323);
+            this.startingSpiritsBox.TabIndex = 40;
             // 
-            // skinLevelText
+            // checkBox1
             // 
-            this.skinLevelText.AutoSize = true;
-            this.skinLevelText.Location = new System.Drawing.Point(285, 31);
-            this.skinLevelText.Name = "skinLevelText";
-            this.skinLevelText.Size = new System.Drawing.Size(63, 13);
-            this.skinLevelText.TabIndex = 27;
-            this.skinLevelText.Text = "Lilly: Normal";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(3, 13);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox1.Size = new System.Drawing.Size(122, 17);
+            this.checkBox1.TabIndex = 33;
+            this.checkBox1.Text = "Umbral Knight";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // skinLevel
+            // checkBox2
             // 
-            this.skinLevel.BackColor = System.Drawing.SystemColors.Window;
-            this.skinLevel.LargeChange = 1;
-            this.skinLevel.Location = new System.Drawing.Point(238, 47);
-            this.skinLevel.Maximum = 12;
-            this.skinLevel.Name = "skinLevel";
-            this.skinLevel.Size = new System.Drawing.Size(186, 45);
-            this.skinLevel.TabIndex = 26;
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(3, 36);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox2.Size = new System.Drawing.Size(173, 17);
+            this.checkBox2.TabIndex = 34;
+            this.checkBox2.Text = "Gerrod, the Elder Warrior";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Checked = true;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.Location = new System.Drawing.Point(3, 59);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox3.Size = new System.Drawing.Size(125, 17);
+            this.checkBox3.TabIndex = 35;
+            this.checkBox3.Text = "Guardian Silva";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Checked = true;
+            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox4.Location = new System.Drawing.Point(3, 82);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox4.Size = new System.Drawing.Size(154, 17);
+            this.checkBox4.TabIndex = 36;
+            this.checkBox4.Text = "Knight Captain Julius";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Checked = true;
+            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox5.Location = new System.Drawing.Point(3, 105);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox5.Size = new System.Drawing.Size(150, 17);
+            this.checkBox5.TabIndex = 37;
+            this.checkBox5.Text = "Ulv, the Mad Knight";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(3, 128);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox6.Size = new System.Drawing.Size(142, 17);
+            this.checkBox6.TabIndex = 38;
+            this.checkBox6.Text = "Dark Witch Eleine";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(3, 151);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox7.Size = new System.Drawing.Size(188, 17);
+            this.checkBox7.TabIndex = 39;
+            this.checkBox7.Text = "Hoenir, Keeper of the Abyss";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(3, 174);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox8.Size = new System.Drawing.Size(144, 17);
+            this.checkBox8.TabIndex = 40;
+            this.checkBox8.Text = "Faden, the Heretic";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Location = new System.Drawing.Point(3, 197);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox9.Size = new System.Drawing.Size(134, 17);
+            this.checkBox9.TabIndex = 41;
+            this.checkBox9.Text = "Guardian Siegrid";
+            this.checkBox9.UseVisualStyleBackColor = true;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(3, 220);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox10.Size = new System.Drawing.Size(159, 17);
+            this.checkBox10.TabIndex = 42;
+            this.checkBox10.Text = "Cliffside Hamlet Youth";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Location = new System.Drawing.Point(3, 243);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox11.Size = new System.Drawing.Size(147, 17);
+            this.checkBox11.TabIndex = 43;
+            this.checkBox11.Text = "Headless Defender";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(3, 266);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox12.Size = new System.Drawing.Size(144, 17);
+            this.checkBox12.TabIndex = 44;
+            this.checkBox12.Text = "Western Merchant";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Location = new System.Drawing.Point(3, 289);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox13.Size = new System.Drawing.Size(153, 17);
+            this.checkBox13.TabIndex = 45;
+            this.checkBox13.Text = "Castle Town Maiden";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            // 
+            // checkBox14
+            // 
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.Location = new System.Drawing.Point(197, 13);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox14.Size = new System.Drawing.Size(118, 17);
+            this.checkBox14.TabIndex = 46;
+            this.checkBox14.Text = "Fallen Archer";
+            this.checkBox14.UseVisualStyleBackColor = true;
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Location = new System.Drawing.Point(197, 36);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox15.Size = new System.Drawing.Size(144, 17);
+            this.checkBox15.TabIndex = 47;
+            this.checkBox15.Text = "Elder Crypt Keeper";
+            this.checkBox15.UseVisualStyleBackColor = true;
+            // 
+            // checkBox16
+            // 
+            this.checkBox16.AutoSize = true;
+            this.checkBox16.Location = new System.Drawing.Point(197, 59);
+            this.checkBox16.Name = "checkBox16";
+            this.checkBox16.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox16.Size = new System.Drawing.Size(131, 17);
+            this.checkBox16.TabIndex = 48;
+            this.checkBox16.Text = "Fungal Sorcerer";
+            this.checkBox16.UseVisualStyleBackColor = true;
+            // 
+            // checkBox17
+            // 
+            this.checkBox17.AutoSize = true;
+            this.checkBox17.Location = new System.Drawing.Point(197, 82);
+            this.checkBox17.Name = "checkBox17";
+            this.checkBox17.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox17.Size = new System.Drawing.Size(131, 17);
+            this.checkBox17.TabIndex = 49;
+            this.checkBox17.Text = "Floral Sorceress";
+            this.checkBox17.UseVisualStyleBackColor = true;
+            // 
+            // checkBox18
+            // 
+            this.checkBox18.AutoSize = true;
+            this.checkBox18.Location = new System.Drawing.Point(197, 105);
+            this.checkBox18.Name = "checkBox18";
+            this.checkBox18.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox18.Size = new System.Drawing.Size(125, 17);
+            this.checkBox18.TabIndex = 50;
+            this.checkBox18.Text = "Fallen Sentinel";
+            this.checkBox18.UseVisualStyleBackColor = true;
+            // 
+            // checkBox19
+            // 
+            this.checkBox19.AutoSize = true;
+            this.checkBox19.Location = new System.Drawing.Point(197, 128);
+            this.checkBox19.Name = "checkBox19";
+            this.checkBox19.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox19.Size = new System.Drawing.Size(153, 17);
+            this.checkBox19.TabIndex = 51;
+            this.checkBox19.Text = "Hidden Test Subject";
+            this.checkBox19.UseVisualStyleBackColor = true;
+            // 
+            // checkBox20
+            // 
+            this.checkBox20.AutoSize = true;
+            this.checkBox20.Location = new System.Drawing.Point(197, 151);
+            this.checkBox20.Name = "checkBox20";
+            this.checkBox20.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox20.Size = new System.Drawing.Size(138, 17);
+            this.checkBox20.TabIndex = 52;
+            this.checkBox20.Text = "Dark Executioner";
+            this.checkBox20.UseVisualStyleBackColor = true;
+            // 
+            // checkBox21
+            // 
+            this.checkBox21.AutoSize = true;
+            this.checkBox21.Location = new System.Drawing.Point(197, 174);
+            this.checkBox21.Name = "checkBox21";
+            this.checkBox21.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox21.Size = new System.Drawing.Size(148, 17);
+            this.checkBox21.TabIndex = 53;
+            this.checkBox21.Text = "Incompetent Sinner";
+            this.checkBox21.UseVisualStyleBackColor = true;
+            // 
+            // checkBox22
+            // 
+            this.checkBox22.AutoSize = true;
+            this.checkBox22.Location = new System.Drawing.Point(197, 197);
+            this.checkBox22.Name = "checkBox22";
+            this.checkBox22.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox22.Size = new System.Drawing.Size(149, 17);
+            this.checkBox22.TabIndex = 54;
+            this.checkBox22.Text = "Verboten Champion";
+            this.checkBox22.UseVisualStyleBackColor = true;
+            // 
+            // checkBox23
+            // 
+            this.checkBox23.AutoSize = true;
+            this.checkBox23.Location = new System.Drawing.Point(197, 220);
+            this.checkBox23.Name = "checkBox23";
+            this.checkBox23.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox23.Size = new System.Drawing.Size(155, 17);
+            this.checkBox23.TabIndex = 55;
+            this.checkBox23.Text = "Cliffside Hamlet Elder";
+            this.checkBox23.UseVisualStyleBackColor = true;
+            // 
+            // checkBox24
+            // 
+            this.checkBox24.AutoSize = true;
+            this.checkBox24.Location = new System.Drawing.Point(197, 243);
+            this.checkBox24.Name = "checkBox24";
+            this.checkBox24.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox24.Size = new System.Drawing.Size(126, 17);
+            this.checkBox24.TabIndex = 56;
+            this.checkBox24.Text = "Chief Guardian";
+            this.checkBox24.UseVisualStyleBackColor = true;
+            // 
+            // checkBox25
+            // 
+            this.checkBox25.AutoSize = true;
+            this.checkBox25.Location = new System.Drawing.Point(197, 289);
+            this.checkBox25.Name = "checkBox25";
+            this.checkBox25.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox25.Size = new System.Drawing.Size(143, 17);
+            this.checkBox25.TabIndex = 57;
+            this.checkBox25.Text = "Forsaken Fellwyrm";
+            this.checkBox25.UseVisualStyleBackColor = true;
+            // 
+            // checkBox26
+            // 
+            this.checkBox26.AutoSize = true;
+            this.checkBox26.Location = new System.Drawing.Point(197, 266);
+            this.checkBox26.Name = "checkBox26";
+            this.checkBox26.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox26.Size = new System.Drawing.Size(162, 17);
+            this.checkBox26.TabIndex = 58;
+            this.checkBox26.Text = "One-Eyed Royal Aegis";
+            this.checkBox26.UseVisualStyleBackColor = true;
             // 
             // LogicPage
             // 
@@ -700,19 +961,44 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Seed:";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.shuffleSpirits);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleRelics);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleTablets);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleWishes);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleChains);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleAmulets);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleBlights);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleFindings);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(379, 97);
+            this.flowLayoutPanel1.TabIndex = 49;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.shuffleSlots);
+            this.flowLayoutPanel2.Controls.Add(this.unusedRelics);
+            this.flowLayoutPanel2.Controls.Add(this.dashProgressive);
+            this.flowLayoutPanel2.Controls.Add(this.metaprogression);
+            this.flowLayoutPanel2.Controls.Add(this.ngPlusSetting);
+            this.flowLayoutPanel2.Controls.Add(this.minibosses_chapter);
+            this.flowLayoutPanel2.Controls.Add(this.shuffleRooms);
+            this.flowLayoutPanel2.Controls.Add(this.shuffleEnemies);
+            this.flowLayoutPanel2.Controls.Add(this.uatserver);
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(41, 165);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(201, 222);
+            this.flowLayoutPanel2.TabIndex = 49;
+            // 
             // componentSettingsBindingSource
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
-            // 
-            // shuffleEnemies
-            // 
-            this.shuffleEnemies.AutoSize = true;
-            this.shuffleEnemies.Location = new System.Drawing.Point(25, 96);
-            this.shuffleEnemies.Name = "shuffleEnemies";
-            this.shuffleEnemies.Size = new System.Drawing.Size(169, 17);
-            this.shuffleEnemies.TabIndex = 36;
-            this.shuffleEnemies.Text = "Shuffle enemies (experimental)";
-            this.shuffleEnemies.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 
@@ -729,17 +1015,21 @@
             this.tabSettings.ResumeLayout(false);
             this.SettingsPage.ResumeLayout(false);
             this.SettingsPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startChapter)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.shuffleGroup.ResumeLayout(false);
-            this.shuffleGroup.PerformLayout();
-            this.OtherPage.ResumeLayout(false);
-            this.OtherPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).EndInit();
+            this.SpiritsPage.ResumeLayout(false);
+            this.SpiritsPage.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.startingSpiritsBox.ResumeLayout(false);
+            this.startingSpiritsBox.PerformLayout();
             this.LogicPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.componentSettingsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -776,31 +1066,51 @@
         private System.Windows.Forms.CheckBox shuffleSlots;
         private System.Windows.Forms.CheckBox unusedRelics;
         private System.Windows.Forms.BindingSource componentSettingsBindingSource;
-        private System.Windows.Forms.CheckBox startWeaponUsesAncientSouls;
         private System.Windows.Forms.CheckBox dashProgressive;
         private System.Windows.Forms.CheckBox metaprogression;
         private System.Windows.Forms.ToolTip metaprogressTooltip;
-        private System.Windows.Forms.CheckBox shuffleWeaponUpgrades;
-        private System.Windows.Forms.Label maxChapterText;
         private System.Windows.Forms.TrackBar maxChapter;
-        private System.Windows.Forms.Label startChapterText;
+        private System.Windows.Forms.Label chapterText;
         private System.Windows.Forms.TrackBar startChapter;
+        private System.Windows.Forms.TabPage SpiritsPage;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox eleineWeapon;
-        private System.Windows.Forms.CheckBox fadenWeapon;
-        private System.Windows.Forms.CheckBox gerrodWeapon;
-        private System.Windows.Forms.CheckBox ulvWeapon;
-        private System.Windows.Forms.CheckBox silvaWeapon;
-        private System.Windows.Forms.CheckBox umbralWeapon;
-        private System.Windows.Forms.TabPage OtherPage;
+        private System.Windows.Forms.CheckBox shuffleEnemies;
+        private System.Windows.Forms.CheckBox minibosses_chapter;
         private System.Windows.Forms.CheckBox shuffleRooms;
         private System.Windows.Forms.CheckBox uatserver;
         private System.Windows.Forms.CheckBox ngPlusSetting;
         private System.Windows.Forms.Label skinLevelText;
         private System.Windows.Forms.TrackBar skinLevel;
-        private System.Windows.Forms.CheckBox juliusWeapon;
-        private System.Windows.Forms.CheckBox hoenirWeapon;
-        private System.Windows.Forms.CheckBox minibosses_chapter;
-        private System.Windows.Forms.CheckBox shuffleEnemies;
+        private System.Windows.Forms.CheckBox shuffleWeaponUpgrades;
+        private System.Windows.Forms.CheckBox startWeaponUsesAncientSouls;
+        private System.Windows.Forms.FlowLayoutPanel startingSpiritsBox;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.CheckBox checkBox15;
+        private System.Windows.Forms.CheckBox checkBox16;
+        private System.Windows.Forms.CheckBox checkBox17;
+        private System.Windows.Forms.CheckBox checkBox18;
+        private System.Windows.Forms.CheckBox checkBox19;
+        private System.Windows.Forms.CheckBox checkBox20;
+        private System.Windows.Forms.CheckBox checkBox21;
+        private System.Windows.Forms.CheckBox checkBox22;
+        private System.Windows.Forms.CheckBox checkBox23;
+        private System.Windows.Forms.CheckBox checkBox24;
+        private System.Windows.Forms.CheckBox checkBox25;
+        private System.Windows.Forms.CheckBox checkBox26;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }
