@@ -22,7 +22,6 @@
       <file path="Components/EnderLilies.Game.dll" status="changed"/>
     </files>
     <changelog>
-      <change>/!\ Make sure you close ENDER LILIES before Updating /!\</change>
       <change>Added an option to increase chapter difficulty with each subspirit</change>
       <change>Added an option to shuffle enemies spawn location (excluding subspirits)</change>
       <change>Logic tab replaced by a full spoiler tab</change>
