@@ -218,7 +218,9 @@ void Randomizer::ShuffleEnnemies()
 		{
 			CG::ABP_EnemySpawnPoint_C* spawn1 = (CG::ABP_EnemySpawnPoint_C*)out[i];
 			if (spawn1->bHOOK_ConsiderAsBossSpawn)
+			{
 				continue;
+			}
 			spawn1->bShouldActivateByDefault = true;
 			shuffled.push_back(i);
 		}
@@ -274,7 +276,7 @@ void Randomizer::FindItems(const std::string& type_name)
 	{
 		if (type_name == "BP_Character_Boss_Base_C")
 		{
-			CG::ABP_Character_Boss_Base_C* boss = (CG::ABP_Character_Boss_Base_C*)out[i];
+ 			CG::ABP_Character_Boss_Base_C* boss = (CG::ABP_Character_Boss_Base_C*)out[i];
 			ItemFound(out[i], &(boss)->Item);
 			if (_minibosses_chapter)
 				boss->SourceSpawnPoint->bAddDifficultyLevelOnClear = true;

@@ -8,24 +8,29 @@
 #include "lib/detours.h"
 #include "Randomizer.h"
 
+template<class T>
+T DoDetourFunction(const char* str, PVOID target);
+bool DoDetour();
+
+
 bool g_cancel = false;
 Randomizer* rando;
 
-typedef void (*OnEquipSpiritPtr)(CG::USummonerComponent*, void*);
-static OnEquipSpiritPtr onEquipSpirit;
-__declspec(noinline) void  OnEquipSpiritHook(CG::USummonerComponent* obj, void *param)
+typedef int (*AddDifficultyPtr)(CG::AGameModeZenithBase*, void*);
+static AddDifficultyPtr addDifficulty = nullptr;
+__declspec(noinline) int  AddDifficultyHook(CG::AGameModeZenithBase* obj, void *param)
 {
-	onEquipSpirit(obj, param);
+	return addDifficulty(obj, param);
 }
 
 class ProcessEventCache
 {
+public:
 	int _objComparisonIndex;
 	int _fnComparisonIndex;
 
 	const char* _objName;
 	const char* _fnName;
-public:
 	ProcessEventCache(const char* objName, const char* fnName) :
 		_objName(objName), _fnName(fnName) { }
 
@@ -54,36 +59,45 @@ __declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn,
 {
 	static ProcessEventCache controllerTick("PC_Base_C", "ReceiveTick");
 	static ProcessEventCache onEquipSpirit("SpiritCompanionComponent", "OnEquipSpirit");
+	static ProcessEventCache addDifficultyCache("GameModeZenithBase", "AddDifficultyLevel");
 
-	if (rando->IsReady() && controllerTick.Match(obj, fn))
-		rando->Update();
-	else if (onEquipSpirit.Match(obj, fn))
-		rando->EquipSpirit((CG::USummonerComponent_OnEquipSpirit_Params*)parms);
+	if (rando->IsReady())
+	{
+		if (addDifficulty == nullptr)
+			addDifficulty = DoDetourFunction<AddDifficultyPtr>("Function Zenith.GameModeZenithBase.AddDifficultyLevel", AddDifficultyHook);
+		if (controllerTick.Match(obj, fn))
+			rando->Update();
+		if (fn->Name.GetAnsiName().find("Difficulty") != std::string::npos || obj->Name.GetAnsiName().find("GameMode") != std::string::npos)
+			std::cout << fn->Name.GetAnsiName()  << obj->Name.GetAnsiName() << std::endl;
+		else if (onEquipSpirit.Match(obj, fn))
+			rando->EquipSpirit((CG::USummonerComponent_OnEquipSpirit_Params*)parms);
+	}
 	processEvent(obj, fn, parms);
 }
 
 
-bool DoEquipDetour()
+template<class T>
+T DoDetourFunction(const char *str, PVOID target)
 {
 	if (rando->World() == nullptr || rando->World()->Name.ComparisonIndex <= 0)
-		return false;
-	CG::UFunction* fn = CG::UObject::FindObject<CG::UFunction>("Function Zenith.SummonerComponent.OnEquipSpirit");
+		return nullptr;
+	CG::UFunction* fn = CG::UObject::FindObject<CG::UFunction>(str);
 	if (fn == nullptr)
-		return false;
-	onEquipSpirit = reinterpret_cast<OnEquipSpiritPtr>(fn->Func);
+		return nullptr;
+	T og = reinterpret_cast<T>(fn->Func);
 	DetourRestoreAfterWith();
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
-	DetourAttach(&(PVOID&)onEquipSpirit, OnEquipSpiritHook);
+	DetourAttach(&(PVOID&)og, target);
 	LONG error = DetourTransactionCommit();
 
 	if (error == NO_ERROR) {
-		std::cout << "No error detouring " << std::endl;
-		return true;
+		std::cout << "No error detouring " << str << std::endl;
+		return og;
 	}
 	else {
 		std::cout << " Error detouring " << error << std::endl;
-		return false;
+		return nullptr;
 	}
 }
 
