@@ -21,6 +21,37 @@ namespace EnderLilies.Randomizer
         public string FilePath { get; set; }
         public string CheckFileResult { get; set; }
         public DataTable Preview { get; set; }
+        
+        string _exePath;
+        public string ExePath {
+            get
+            {
+                return _exePath;
+            }
+            set
+            {
+                _exePath = value;
+                HasExePath = true;
+            }
+        }
+
+        const string disabledTooltip = "Ender Lilies's installation folder has not been detected yet.\nPlease manually launch the game once and save your LiveSplit Layout to enable this feature.";
+        const string enabledTooltip = "Launch the Game";
+
+        public bool HasExePath
+        {
+            get
+            {
+                return !String.IsNullOrEmpty(ExePath) && File.Exists(ExePath);
+            }
+            set
+            {
+                helpTooltip.SetToolTip(launchButton, HasExePath ? enabledTooltip : disabledTooltip);
+                launchButton.Cursor = HasExePath ? Cursors.Default : Cursors.No;
+                NotifyPropertyChanged();
+            }
+        }
+
 
         bool _shuffleSpirits = true;
         public bool ShuffleSpirits
@@ -400,8 +431,7 @@ namespace EnderLilies.Randomizer
         public ComponentSettings()
         {
             InitializeComponent();
-            this.metaprogressTooltip.SetToolTip(metaprogression, "Items for progression will always be placed on newly accessible checks");
-            this.path.DataBindings.Add("Text", this, "FilePath", false, DataSourceUpdateMode.OnPropertyChanged, "Components/EnderLilies.Randomizer.json");
+            //this.launchButton.DataBindings.Add("Enabled", this, "HasExePath", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.seedText.DataBindings.Add("Text", this, "Seed", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             this.checkfile.DataBindings.Add("Text", this, "CheckFileResult", false, DataSourceUpdateMode.OnPropertyChanged);
             this.shuffleAmulets.DataBindings.Add("Checked", this, "ShuffleAmulets", false, DataSourceUpdateMode.OnPropertyChanged, true);
@@ -427,7 +457,7 @@ namespace EnderLilies.Randomizer
             this.startChapter.DataBindings.Add("Value", this, "StartChapter", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             this.maxChapter.DataBindings.Add("Value", this, "MaxChapter", false, DataSourceUpdateMode.OnPropertyChanged, 9);
 
-            
+
             for (int i = 0; i < startingSpiritsBox.Controls.Count; ++i)
             {
                 var checkbox = (CheckBox)startingSpiritsBox.Controls[i];
@@ -451,6 +481,7 @@ namespace EnderLilies.Randomizer
         {
             var element = (XmlElement)node;
             Version version = SettingsHelper.ParseVersion(element["Version"]);
+            ExePath = SettingsHelper.ParseString(element["ExePath"], null); ;
             SkinOverride = SettingsHelper.ParseInt(element["SkinOverride"], 1);
             StartChapter = SettingsHelper.ParseInt(element["StartChapter"], 1);
             MaxChapter = SettingsHelper.ParseInt(element["MaxChapter"], 10);
@@ -476,14 +507,13 @@ namespace EnderLilies.Randomizer
             DashProgressive = SettingsHelper.ParseBool(element["DashProgressive"], true);
             StartWeaponUsesAncientSouls = SettingsHelper.ParseBool(element["StartWeaponUsesAncientSouls"], true);
             ShuffleWeaponUpgrades = SettingsHelper.ParseBool(element["ShuffleWeaponUpgrades"], false);
-
-            this.path.Text = FilePath;
         }
 
         public XmlNode GetSettings(XmlDocument document)
         {
             var settings_node = document.CreateElement("Settings");
             settings_node.AppendChild(SettingsHelper.ToElement(document, "FilePath", FilePath));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "ExePath", ExePath));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleAmulets", ShuffleAmulets));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleBlights", ShuffleBlights));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleChains", ShuffleChains));
@@ -509,16 +539,6 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "StartWeaponUsesAncientSouls", StartWeaponUsesAncientSouls));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleWeaponUpgrades", ShuffleWeaponUpgrades));
             return settings_node;
-        }
-
-        private void chooseFile_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                this.FilePath = openFileDialog1.FileName;
-                this.path.Text = FilePath;
-                CheckFile();
-            }
         }
 
         public void GeneratePreview(RandomSession session)
@@ -699,6 +719,13 @@ namespace EnderLilies.Randomizer
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public bool launchRequested;
+        private void launchButton_Click(object sender, EventArgs e)
+        {
+            if (HasExePath)
+                launchRequested = true;
         }
     }
 }

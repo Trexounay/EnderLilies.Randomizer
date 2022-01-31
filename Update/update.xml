@@ -1,5 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
+  <update version="2.1.5">
+    <files>
+      <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+      <file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
+      <file path="Components/EnderLilies.Game.dll" status="changed"/>
+    </files>
+    <changelog>
+      <change>/!\ Make sure you close ENDER LILIES before updating /!\</change>
+      <change>Added the option to launch Ender Lilies from LiveSplit</change>
+      <change>(You need to start the game manually at least once and save your LiveSplit loadout)</change>
+      <change>Fixed an issue with subspirit increasing difficulty chapter</change>
+      <change>Removed some breakable doors when spawning with one of the summon or a parry spirit</change>
+    </changelog>
+  </update>
   <update version="2.1.4">
     <files>
       <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
@@ -7,7 +21,6 @@
       <file path="Components/EnderLilies.Game.dll" status="changed"/>
     </files>
     <changelog>
-      <change>/!\ Make sure you close ENDER LILIES before Updating /!\</change>
       <change>Added all 26 spirits to the starting spirit options</change>
       <change>Starting spirit now has infinite uses</change>
       <change>Fixed a crash in LiveSplit</change>

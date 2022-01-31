@@ -95,13 +95,26 @@ void  Randomizer::EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* param
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::FName spiritID = gm->ItemSpiritTable->Data[_starting_weapon].Name;
 
+	if (!_has_normal_weapon)
+	{
+		_has_normal_weapon = true;
+		for (int i = 0; i < 4; i++)
+		{
+			if (params->SpiritData.SpiritID == gm->ItemSpiritTable->Data[passive_weapons[i]].Name)
+			{
+				_has_normal_weapon = false;
+				break;
+			}
+		}
+	}
+
 	if (!_cheat && params->SpiritData.SpiritID != spiritID)
 		return;
 	auto command_class = params->SpiritData.CommandSettingsData->CommandSettings.CommandActionType;
 	auto count = CG::UObject::GetGlobalObjects().Num();
 	for (int i = count; i > 0; --i)
 	{
-		auto object = CG::UObject::GetGlobalObjects().GetByIndex(i);
+		auto object = CG::UObject::GetGlobalObjects().GetByIndex(i - 1);
 		if (object == nullptr)
 			continue;
 		if (object->Class == command_class)
@@ -115,7 +128,6 @@ void  Randomizer::EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* param
 					cas->RecastTime = 0;
 					cas->MaxAirborneExecutionCount = 0;
 				}
-				std::cout << "summon" << object->Name.GetAnsiName() << std::endl;
 			}
 			else if (object->IsA(CG::UCommandActionComboSummon::StaticClass()))
 			{
@@ -126,10 +138,7 @@ void  Randomizer::EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* param
 					cas->RecastTime = 0;
 					cas->MaxAirborneExecutionCount = 0;
 				}
-				std::cout << "combo" << object->Name.GetAnsiName() << std::endl;
 			}
-			else
-				std::cout << "other " << object->Name.GetAnsiName() << std::endl;
 			return;
 		}
 	}
@@ -190,9 +199,12 @@ void Randomizer::NewMap()
 		if (parameter != nullptr)
 			parameter->SetSkinLevelOverride(_skin_override, true);
 	}
-	if (_shuffle_enemies)
-		ShuffleEnnemies();
 
+	ModifySpawnPoints();
+
+
+	if (!_has_normal_weapon)
+		RemoveBreakableDoors();
 
 #ifdef _DEBUG
 
@@ -204,48 +216,73 @@ void Randomizer::NewMap()
 #endif
 }
 
-void Randomizer::ShuffleEnnemies()
+void Randomizer::RemoveBreakableDoors()
 {
+	CG::UClass* type = _bp_classes["BP_Breakable_Door_C"];
+	if (type == nullptr)
+		return;
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
+	CG::TArray<CG::AActor*> out;
+	statics->STATIC_GetAllActorsOfClass(World(), type, &out);
+	for (int i = 0; i < out.Num(); ++i)
+	{
+		out[i]->InitialLifeSpan = 0.1f;
+		out[i]->SetLifeSpan(0.1f);
+	}
+}
+
+
+void Randomizer::ModifySpawnPoints()
+{
+	if (!_shuffle_enemies && !_minibosses_chapter)
+		return;
 	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
 	CG::TArray<CG::AActor*> out;
 	statics->STATIC_GetAllActorsOfClass(World(), _bp_classes["BP_EnemySpawnPoint_C"], &out);
 	int count = out.Num();
 	if (count > 0)
 	{
-		srand(_seed + count);
 		std::vector<int> shuffled;
 		for (int i = 0; i < count; ++i)
 		{
 			CG::ABP_EnemySpawnPoint_C* spawn1 = (CG::ABP_EnemySpawnPoint_C*)out[i];
 			if (spawn1->bHOOK_ConsiderAsBossSpawn)
 			{
+				if (_minibosses_chapter)
+				{
+					spawn1->bAddDifficultyLevelOnClear = true;
+					spawn1->LockDifficultyLevelOfAreasOnClear.Empty();
+				}
 				continue;
 			}
 			spawn1->bShouldActivateByDefault = true;
 			shuffled.push_back(i);
 		}
-		for (int i = shuffled.size(); i > 1;)
+		if (_shuffle_enemies)
 		{
-			int k = rand() % i;
-			i--;
-			CG::ABP_EnemySpawnPoint_C* spawn1 = (CG::ABP_EnemySpawnPoint_C*)out[shuffled[i]];
-			CG::ABP_EnemySpawnPoint_C* spawn2 = (CG::ABP_EnemySpawnPoint_C*)out[shuffled[k]];
-			auto transform1 = spawn1->GetTransform();
-			spawn1->RootComponent->K2_SetWorldTransform(spawn2->GetTransform(), false, NULL, true);
-			spawn2->RootComponent->K2_SetWorldTransform(transform1, false, NULL, true);
-		}
-	}
-
-	if (_bp_classes["BP_Condition_EnemyList_C"] != NULL)
-	{
-		CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
-		CG::TArray<CG::AActor*> out;
-		statics->STATIC_GetAllActorsOfClass(World(), _bp_classes["BP_Condition_EnemyList_C"], &out);
-		for (int i = 0; i < out.Num(); ++i)
-		{
-			CG::BP_Condition_EnemyList* condition = (CG::BP_Condition_EnemyList*)out[i];
-			if (!condition->ConditionResult)
-				condition->SetConditionResult(true, true);
+			srand(_seed + count);
+			for (int i = shuffled.size(); i > 1;)
+			{
+				int k = rand() % i;
+				i--;
+				CG::ABP_EnemySpawnPoint_C* spawn1 = (CG::ABP_EnemySpawnPoint_C*)out[shuffled[i]];
+				CG::ABP_EnemySpawnPoint_C* spawn2 = (CG::ABP_EnemySpawnPoint_C*)out[shuffled[k]];
+				auto transform1 = spawn1->GetTransform();
+				spawn1->RootComponent->K2_SetWorldTransform(spawn2->GetTransform(), false, NULL, true);
+				spawn2->RootComponent->K2_SetWorldTransform(transform1, false, NULL, true);
+			}
+			if (_bp_classes["BP_Condition_EnemyList_C"] != NULL)
+			{
+				CG::TArray<CG::AActor*> out;
+				statics->STATIC_GetAllActorsOfClass(World(), _bp_classes["BP_Condition_EnemyList_C"], &out);
+				for (int i = 0; i < out.Num(); ++i)
+				{
+					CG::BP_Condition_EnemyList* condition = (CG::BP_Condition_EnemyList*)out[i];
+					if (!condition->ConditionResult)
+						condition->SetConditionResult(true, true);
+				}
+			}
 		}
 	}
 }
@@ -276,10 +313,8 @@ void Randomizer::FindItems(const std::string& type_name)
 	{
 		if (type_name == "BP_Character_Boss_Base_C")
 		{
- 			CG::ABP_Character_Boss_Base_C* boss = (CG::ABP_Character_Boss_Base_C*)out[i];
+			CG::ABP_Character_Boss_Base_C* boss = (CG::ABP_Character_Boss_Base_C*)out[i];
 			ItemFound(out[i], &(boss)->Item);
-			if (_minibosses_chapter)
-				boss->SourceSpawnPoint->bAddDifficultyLevelOnClear = true;
 		}
 		else if (type_name == "BP_Interactable_Item_C")
 			ItemFound(out[i], &((CG::ABP_Interactable_Item_C*)out[i])->Item);
@@ -387,8 +422,9 @@ void Randomizer::ShuffleRooms()
 		table->Data[k].ptr = table->Data[i].ptr;
 		table->Data[i].ptr = map;
 	}
-	for (int i = table->Data.Num(); i > 1; --i)
+	for (int i = table->Data.Num(); i > 1; )
 	{
+		--i;
 		void* map = table->Data[i].ptr;
 		if (map == start_room)
 		{
@@ -411,6 +447,7 @@ void Randomizer::ReadSeedFile(std::string path)
 	_shuffle_enemies = false;
 	_shuffle_rooms = false;
 	_cheat = false;
+	_has_normal_weapon = true;
 	_minibosses_chapter = false;
 	_skin_override = -1;
 	if (file.is_open())
@@ -554,8 +591,17 @@ void Randomizer::ModifySpirits()
 	_starting_weapon = 0;
 	auto entry = _replacements.find("starting_weapon");
 	if (entry != _replacements.end())
+	{
 		_starting_weapon = entry->second.entry;
-
+		for (int i = 0; i < 4; i++)
+		{
+			if (_starting_weapon == passive_weapons[i])
+			{
+				_has_normal_weapon = false;
+				break;
+			}
+		}
+	}
 
 	for (int i = 0; i < table->Data.Num(); ++i)
 	{

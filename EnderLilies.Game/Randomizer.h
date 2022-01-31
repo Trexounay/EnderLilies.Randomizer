@@ -53,10 +53,12 @@ private:
 	bool _new_game = true;
 	bool _new_map = true;
 	bool _new_data = true;
+	static constexpr const int passive_weapons[] = { 10, 11, 12, 18 };
 
 	int _starting_weapon = 0;
 	int _seed = -1;
 	int _skin_override = -1;
+	bool _has_normal_weapon = true;
 	bool _shuffle_relics = false;
 	bool _cheat = false;
 	bool _shuffle_rooms = false;
@@ -80,7 +82,8 @@ private:
 	void RefreshAptitudes();
 	void ShuffleRelicSlots();
 	void ShuffleRooms();
-	void ShuffleEnnemies();
+	void ModifySpawnPoints();
+	void RemoveBreakableDoors();
 	void ReadSeedFile(std::string path);
 	void FindItems(const std::string &string);
 	void ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);

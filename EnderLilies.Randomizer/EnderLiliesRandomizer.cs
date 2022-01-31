@@ -1,6 +1,8 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -18,9 +20,13 @@ namespace EnderLilies.Randomizer
         public EnderLiliesRandomizer(LiveSplitState state)
         {
             _settings = new ComponentSettings();
-            _gameInjector = new GameInjector();
+            _gameInjector = new GameInjector(_settings);
             _tracker = new GameTracker();
             _session = new RandomSession(_settings);
+
+            ContextMenuControls = new Dictionary<string, Action>();
+            ContextMenuControls.Add("Launch Ender Lilies", () => _settings.launchRequested = _settings.HasExePath);
+            ContextMenuControls.Add("Reroll Seed", () => _settings.Seed = new System.Random().Next());
         }
 
         public override void Dispose()

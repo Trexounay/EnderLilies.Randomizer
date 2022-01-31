@@ -36,33 +36,30 @@
             this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
-            this.shuffleEnemies = new System.Windows.Forms.CheckBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.shuffleSlots = new System.Windows.Forms.CheckBox();
+            this.unusedRelics = new System.Windows.Forms.CheckBox();
+            this.dashProgressive = new System.Windows.Forms.CheckBox();
+            this.metaprogression = new System.Windows.Forms.CheckBox();
+            this.ngPlusSetting = new System.Windows.Forms.CheckBox();
             this.minibosses_chapter = new System.Windows.Forms.CheckBox();
             this.shuffleRooms = new System.Windows.Forms.CheckBox();
+            this.shuffleEnemies = new System.Windows.Forms.CheckBox();
             this.uatserver = new System.Windows.Forms.CheckBox();
-            this.ngPlusSetting = new System.Windows.Forms.CheckBox();
-            this.skinLevelText = new System.Windows.Forms.Label();
-            this.skinLevel = new System.Windows.Forms.TrackBar();
             this.maxChapter = new System.Windows.Forms.TrackBar();
             this.chapterText = new System.Windows.Forms.Label();
             this.startChapter = new System.Windows.Forms.TrackBar();
-            this.metaprogression = new System.Windows.Forms.CheckBox();
-            this.dashProgressive = new System.Windows.Forms.CheckBox();
-            this.unusedRelics = new System.Windows.Forms.CheckBox();
-            this.shuffleSlots = new System.Windows.Forms.CheckBox();
             this.shuffleGroup = new System.Windows.Forms.GroupBox();
-            this.shuffleWishes = new System.Windows.Forms.CheckBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.shuffleSpirits = new System.Windows.Forms.CheckBox();
-            this.shuffleChains = new System.Windows.Forms.CheckBox();
-            this.shuffleTablets = new System.Windows.Forms.CheckBox();
-            this.shuffleAmulets = new System.Windows.Forms.CheckBox();
-            this.shuffleFindings = new System.Windows.Forms.CheckBox();
-            this.shuffleBlights = new System.Windows.Forms.CheckBox();
             this.shuffleRelics = new System.Windows.Forms.CheckBox();
+            this.shuffleTablets = new System.Windows.Forms.CheckBox();
+            this.shuffleWishes = new System.Windows.Forms.CheckBox();
+            this.shuffleChains = new System.Windows.Forms.CheckBox();
+            this.shuffleAmulets = new System.Windows.Forms.CheckBox();
+            this.shuffleBlights = new System.Windows.Forms.CheckBox();
+            this.shuffleFindings = new System.Windows.Forms.CheckBox();
             this.checkfile = new System.Windows.Forms.Label();
-            this.open = new System.Windows.Forms.Button();
-            this.path = new System.Windows.Forms.TextBox();
-            this.chooseFile = new System.Windows.Forms.Button();
             this.SpiritsPage = new System.Windows.Forms.TabPage();
             this.shuffleWeaponUpgrades = new System.Windows.Forms.CheckBox();
             this.startWeaponUsesAncientSouls = new System.Windows.Forms.CheckBox();
@@ -92,33 +89,34 @@
             this.checkBox22 = new System.Windows.Forms.CheckBox();
             this.checkBox23 = new System.Windows.Forms.CheckBox();
             this.checkBox24 = new System.Windows.Forms.CheckBox();
-            this.checkBox25 = new System.Windows.Forms.CheckBox();
             this.checkBox26 = new System.Windows.Forms.CheckBox();
+            this.checkBox25 = new System.Windows.Forms.CheckBox();
             this.LogicPage = new System.Windows.Forms.TabPage();
             this.LogicPreviewGridview = new System.Windows.Forms.DataGridView();
             this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.skinLevelText = new System.Windows.Forms.Label();
+            this.skinLevel = new System.Windows.Forms.TrackBar();
+            this.launchButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.metaprogressTooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.helpTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).BeginInit();
+            this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startChapter)).BeginInit();
             this.shuffleGroup.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SpiritsPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.startingSpiritsBox.SuspendLayout();
             this.LogicPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.componentSettingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,6 +140,7 @@
             this.groupBox1.Controls.Add(this.tabSettings);
             this.groupBox1.Controls.Add(this.skinLevelText);
             this.groupBox1.Controls.Add(this.skinLevel);
+            this.groupBox1.Controls.Add(this.launchButton);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.seedText);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -163,6 +162,7 @@
             this.Randomize.Size = new System.Drawing.Size(50, 50);
             this.Randomize.TabIndex = 3;
             this.Randomize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.helpTooltip.SetToolTip(this.Randomize, "Roll a new seed\r\n");
             this.Randomize.UseVisualStyleBackColor = true;
             this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
             // 
@@ -174,10 +174,12 @@
             this.tabSettings.Controls.Add(this.SettingsPage);
             this.tabSettings.Controls.Add(this.SpiritsPage);
             this.tabSettings.Controls.Add(this.LogicPage);
-            this.tabSettings.Location = new System.Drawing.Point(2, 44);
+            this.tabSettings.Location = new System.Drawing.Point(4, 45);
+            this.tabSettings.Margin = new System.Windows.Forms.Padding(0);
             this.tabSettings.Name = "tabSettings";
+            this.tabSettings.Padding = new System.Drawing.Point(3, 3);
             this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(467, 511);
+            this.tabSettings.Size = new System.Drawing.Size(466, 470);
             this.tabSettings.TabIndex = 13;
             // 
             // SettingsPage
@@ -188,26 +190,95 @@
             this.SettingsPage.Controls.Add(this.startChapter);
             this.SettingsPage.Controls.Add(this.shuffleGroup);
             this.SettingsPage.Controls.Add(this.checkfile);
-            this.SettingsPage.Controls.Add(this.open);
-            this.SettingsPage.Controls.Add(this.path);
-            this.SettingsPage.Controls.Add(this.chooseFile);
             this.SettingsPage.Location = new System.Drawing.Point(4, 22);
             this.SettingsPage.Name = "SettingsPage";
             this.SettingsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SettingsPage.Size = new System.Drawing.Size(459, 485);
+            this.SettingsPage.Size = new System.Drawing.Size(458, 444);
             this.SettingsPage.TabIndex = 3;
             this.SettingsPage.Text = "Settings";
             this.SettingsPage.UseVisualStyleBackColor = true;
             // 
-            // shuffleEnemies
+            // flowLayoutPanel2
             // 
-            this.shuffleEnemies.AutoSize = true;
-            this.shuffleEnemies.Location = new System.Drawing.Point(3, 164);
-            this.shuffleEnemies.Name = "shuffleEnemies";
-            this.shuffleEnemies.Size = new System.Drawing.Size(169, 17);
-            this.shuffleEnemies.TabIndex = 48;
-            this.shuffleEnemies.Text = "Shuffle enemies (experimental)";
-            this.shuffleEnemies.UseVisualStyleBackColor = true;
+            this.flowLayoutPanel2.Controls.Add(this.shuffleSlots);
+            this.flowLayoutPanel2.Controls.Add(this.unusedRelics);
+            this.flowLayoutPanel2.Controls.Add(this.dashProgressive);
+            this.flowLayoutPanel2.Controls.Add(this.metaprogression);
+            this.flowLayoutPanel2.Controls.Add(this.ngPlusSetting);
+            this.flowLayoutPanel2.Controls.Add(this.minibosses_chapter);
+            this.flowLayoutPanel2.Controls.Add(this.shuffleRooms);
+            this.flowLayoutPanel2.Controls.Add(this.shuffleEnemies);
+            this.flowLayoutPanel2.Controls.Add(this.uatserver);
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(41, 165);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(201, 222);
+            this.flowLayoutPanel2.TabIndex = 49;
+            // 
+            // shuffleSlots
+            // 
+            this.shuffleSlots.AutoSize = true;
+            this.shuffleSlots.Checked = true;
+            this.shuffleSlots.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.shuffleSlots.Location = new System.Drawing.Point(3, 3);
+            this.shuffleSlots.Name = "shuffleSlots";
+            this.shuffleSlots.Size = new System.Drawing.Size(109, 17);
+            this.shuffleSlots.TabIndex = 20;
+            this.shuffleSlots.Text = "Shuffle relics cost";
+            this.helpTooltip.SetToolTip(this.shuffleSlots, "Cost of equipping relics are shuffled\r\nThe game will still have the same number o" +
+        "f relic of each cost\r\n");
+            this.shuffleSlots.UseVisualStyleBackColor = true;
+            // 
+            // unusedRelics
+            // 
+            this.unusedRelics.AutoSize = true;
+            this.unusedRelics.Checked = true;
+            this.unusedRelics.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.unusedRelics.Location = new System.Drawing.Point(3, 26);
+            this.unusedRelics.Name = "unusedRelics";
+            this.unusedRelics.Size = new System.Drawing.Size(110, 17);
+            this.unusedRelics.TabIndex = 21;
+            this.unusedRelics.Text = "Add unused relics";
+            this.helpTooltip.SetToolTip(this.unusedRelics, "Add 7 relics that ended up not being used in the game\r\n\r\n");
+            this.unusedRelics.UseVisualStyleBackColor = true;
+            // 
+            // dashProgressive
+            // 
+            this.dashProgressive.AutoSize = true;
+            this.dashProgressive.Checked = true;
+            this.dashProgressive.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dashProgressive.Location = new System.Drawing.Point(3, 49);
+            this.dashProgressive.Name = "dashProgressive";
+            this.dashProgressive.Size = new System.Drawing.Size(188, 17);
+            this.dashProgressive.TabIndex = 30;
+            this.dashProgressive.Text = "Dash always before piercing lance";
+            this.helpTooltip.SetToolTip(this.dashProgressive, "You will find Julius Dash before (faster horizontal movement) before \r\nJulius\' Pi" +
+        "ercing Lance (breaking vertical walls).\r\nPiercing Lance doesn\'t do anything with" +
+        "out Dash.\r\n");
+            this.dashProgressive.UseVisualStyleBackColor = true;
+            // 
+            // metaprogression
+            // 
+            this.metaprogression.AutoSize = true;
+            this.metaprogression.Location = new System.Drawing.Point(3, 72);
+            this.metaprogression.Name = "metaprogression";
+            this.metaprogression.Size = new System.Drawing.Size(108, 17);
+            this.metaprogression.TabIndex = 31;
+            this.metaprogression.Text = "Meta Progression";
+            this.helpTooltip.SetToolTip(this.metaprogression, "Items for progression will always be placed on newly accessible checks");
+            this.metaprogression.UseVisualStyleBackColor = true;
+            // 
+            // ngPlusSetting
+            // 
+            this.ngPlusSetting.AutoSize = true;
+            this.ngPlusSetting.Location = new System.Drawing.Point(3, 95);
+            this.ngPlusSetting.Name = "ngPlusSetting";
+            this.ngPlusSetting.Size = new System.Drawing.Size(61, 17);
+            this.ngPlusSetting.TabIndex = 44;
+            this.ngPlusSetting.Text = "NG+ AI";
+            this.helpTooltip.SetToolTip(this.ngPlusSetting, "Some enemies will use new attacks\r\nBosses will be faster and start in second phas" +
+        "e");
+            this.ngPlusSetting.UseVisualStyleBackColor = true;
             // 
             // minibosses_chapter
             // 
@@ -217,6 +288,8 @@
             this.minibosses_chapter.Size = new System.Drawing.Size(156, 17);
             this.minibosses_chapter.TabIndex = 47;
             this.minibosses_chapter.Text = "Sub-spirits increase chapter";
+            this.helpTooltip.SetToolTip(this.minibosses_chapter, "Killing a subspirit also increase the chapter difficulty\r\nthe highest difficulty " +
+        "chapter is still cap at 10\r\n");
             this.minibosses_chapter.UseVisualStyleBackColor = true;
             // 
             // shuffleRooms
@@ -227,7 +300,20 @@
             this.shuffleRooms.Size = new System.Drawing.Size(158, 17);
             this.shuffleRooms.TabIndex = 46;
             this.shuffleRooms.Text = "Shuffle rooms (experimental)";
+            this.helpTooltip.SetToolTip(this.shuffleRooms, "Transitions are randomized, this feature still needs some development and \r\ndoesn" +
+        "\'t have its own logic yet, meaning you could end up in a softlock");
             this.shuffleRooms.UseVisualStyleBackColor = true;
+            // 
+            // shuffleEnemies
+            // 
+            this.shuffleEnemies.AutoSize = true;
+            this.shuffleEnemies.Location = new System.Drawing.Point(3, 164);
+            this.shuffleEnemies.Name = "shuffleEnemies";
+            this.shuffleEnemies.Size = new System.Drawing.Size(169, 17);
+            this.shuffleEnemies.TabIndex = 48;
+            this.shuffleEnemies.Text = "Shuffle enemies (experimental)";
+            this.helpTooltip.SetToolTip(this.shuffleEnemies, "Enemies location will be shuffled in each room\r\n");
+            this.shuffleEnemies.UseVisualStyleBackColor = true;
             // 
             // uatserver
             // 
@@ -237,36 +323,9 @@
             this.uatserver.Size = new System.Drawing.Size(149, 17);
             this.uatserver.TabIndex = 45;
             this.uatserver.Text = "Send items to PopTracker";
+            this.helpTooltip.SetToolTip(this.uatserver, "Use this option to enable Auto Tracking in Pop Tracker\r\nIf everything is working " +
+        "Pop Tracker should show a green AT icon at the top");
             this.uatserver.UseVisualStyleBackColor = true;
-            // 
-            // ngPlusSetting
-            // 
-            this.ngPlusSetting.AutoSize = true;
-            this.ngPlusSetting.Location = new System.Drawing.Point(3, 95);
-            this.ngPlusSetting.Name = "ngPlusSetting";
-            this.ngPlusSetting.Size = new System.Drawing.Size(61, 17);
-            this.ngPlusSetting.TabIndex = 44;
-            this.ngPlusSetting.Text = "NG+ AI";
-            this.ngPlusSetting.UseVisualStyleBackColor = true;
-            // 
-            // skinLevelText
-            // 
-            this.skinLevelText.AutoSize = true;
-            this.skinLevelText.Location = new System.Drawing.Point(271, 11);
-            this.skinLevelText.Name = "skinLevelText";
-            this.skinLevelText.Size = new System.Drawing.Size(63, 13);
-            this.skinLevelText.TabIndex = 43;
-            this.skinLevelText.Text = "Lilly: Normal";
-            // 
-            // skinLevel
-            // 
-            this.skinLevel.BackColor = System.Drawing.SystemColors.Control;
-            this.skinLevel.LargeChange = 1;
-            this.skinLevel.Location = new System.Drawing.Point(211, 20);
-            this.skinLevel.Maximum = 12;
-            this.skinLevel.Name = "skinLevel";
-            this.skinLevel.Size = new System.Drawing.Size(174, 45);
-            this.skinLevel.TabIndex = 42;
             // 
             // maxChapter
             // 
@@ -282,6 +341,7 @@
             this.maxChapter.Size = new System.Drawing.Size(45, 155);
             this.maxChapter.TabIndex = 39;
             this.maxChapter.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.helpTooltip.SetToolTip(this.maxChapter, "Max difficulty chapter. Chapter increase by 1 everytime you kill a Boss\r\n");
             this.maxChapter.Value = 9;
             // 
             // chapterText
@@ -306,52 +366,7 @@
             this.startChapter.Size = new System.Drawing.Size(45, 155);
             this.startChapter.TabIndex = 37;
             this.startChapter.TickStyle = System.Windows.Forms.TickStyle.None;
-            // 
-            // metaprogression
-            // 
-            this.metaprogression.AutoSize = true;
-            this.metaprogression.Location = new System.Drawing.Point(3, 72);
-            this.metaprogression.Name = "metaprogression";
-            this.metaprogression.Size = new System.Drawing.Size(108, 17);
-            this.metaprogression.TabIndex = 31;
-            this.metaprogression.Text = "Meta Progression";
-            this.metaprogression.UseVisualStyleBackColor = true;
-            // 
-            // dashProgressive
-            // 
-            this.dashProgressive.AutoSize = true;
-            this.dashProgressive.Checked = true;
-            this.dashProgressive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dashProgressive.Location = new System.Drawing.Point(3, 49);
-            this.dashProgressive.Name = "dashProgressive";
-            this.dashProgressive.Size = new System.Drawing.Size(188, 17);
-            this.dashProgressive.TabIndex = 30;
-            this.dashProgressive.Text = "Dash always before piercing lance";
-            this.dashProgressive.UseVisualStyleBackColor = true;
-            // 
-            // unusedRelics
-            // 
-            this.unusedRelics.AutoSize = true;
-            this.unusedRelics.Checked = true;
-            this.unusedRelics.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.unusedRelics.Location = new System.Drawing.Point(3, 26);
-            this.unusedRelics.Name = "unusedRelics";
-            this.unusedRelics.Size = new System.Drawing.Size(110, 17);
-            this.unusedRelics.TabIndex = 21;
-            this.unusedRelics.Text = "Add unused relics";
-            this.unusedRelics.UseVisualStyleBackColor = true;
-            // 
-            // shuffleSlots
-            // 
-            this.shuffleSlots.AutoSize = true;
-            this.shuffleSlots.Checked = true;
-            this.shuffleSlots.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleSlots.Location = new System.Drawing.Point(3, 3);
-            this.shuffleSlots.Name = "shuffleSlots";
-            this.shuffleSlots.Size = new System.Drawing.Size(109, 17);
-            this.shuffleSlots.TabIndex = 20;
-            this.shuffleSlots.Text = "Shuffle relics cost";
-            this.shuffleSlots.UseVisualStyleBackColor = true;
+            this.helpTooltip.SetToolTip(this.startChapter, "Difficulty chapter at the start of the game");
             // 
             // shuffleGroup
             // 
@@ -360,23 +375,28 @@
             this.shuffleGroup.Controls.Add(this.flowLayoutPanel1);
             this.shuffleGroup.Location = new System.Drawing.Point(38, 22);
             this.shuffleGroup.Name = "shuffleGroup";
-            this.shuffleGroup.Size = new System.Drawing.Size(385, 116);
+            this.shuffleGroup.Size = new System.Drawing.Size(384, 116);
             this.shuffleGroup.TabIndex = 16;
             this.shuffleGroup.TabStop = false;
             this.shuffleGroup.Text = "Shuffled Items (140)";
             // 
-            // shuffleWishes
+            // flowLayoutPanel1
             // 
-            this.shuffleWishes.AutoSize = true;
-            this.shuffleWishes.Checked = true;
-            this.shuffleWishes.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleWishes.Location = new System.Drawing.Point(3, 75);
-            this.shuffleWishes.Name = "shuffleWishes";
-            this.shuffleWishes.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.shuffleWishes.Size = new System.Drawing.Size(144, 17);
-            this.shuffleWishes.TabIndex = 15;
-            this.shuffleWishes.Text = "Priestesses wishes";
-            this.shuffleWishes.UseVisualStyleBackColor = true;
+            this.flowLayoutPanel1.Controls.Add(this.shuffleSpirits);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleRelics);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleTablets);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleWishes);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleChains);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleAmulets);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleBlights);
+            this.flowLayoutPanel1.Controls.Add(this.shuffleFindings);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(378, 97);
+            this.flowLayoutPanel1.TabIndex = 49;
             // 
             // shuffleSpirits
             // 
@@ -391,18 +411,18 @@
             this.shuffleSpirits.Text = "Spirits";
             this.shuffleSpirits.UseVisualStyleBackColor = true;
             // 
-            // shuffleChains
+            // shuffleRelics
             // 
-            this.shuffleChains.AutoSize = true;
-            this.shuffleChains.Checked = true;
-            this.shuffleChains.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleChains.Location = new System.Drawing.Point(153, 6);
-            this.shuffleChains.Name = "shuffleChains";
-            this.shuffleChains.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.shuffleChains.Size = new System.Drawing.Size(157, 17);
-            this.shuffleChains.TabIndex = 14;
-            this.shuffleChains.Text = "Chains of sorcery";
-            this.shuffleChains.UseVisualStyleBackColor = true;
+            this.shuffleRelics.AutoSize = true;
+            this.shuffleRelics.Checked = true;
+            this.shuffleRelics.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.shuffleRelics.Location = new System.Drawing.Point(3, 29);
+            this.shuffleRelics.Name = "shuffleRelics";
+            this.shuffleRelics.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.shuffleRelics.Size = new System.Drawing.Size(85, 17);
+            this.shuffleRelics.TabIndex = 10;
+            this.shuffleRelics.Text = "Relics";
+            this.shuffleRelics.UseVisualStyleBackColor = true;
             // 
             // shuffleTablets
             // 
@@ -417,6 +437,32 @@
             this.shuffleTablets.Text = "Stone tablets";
             this.shuffleTablets.UseVisualStyleBackColor = true;
             // 
+            // shuffleWishes
+            // 
+            this.shuffleWishes.AutoSize = true;
+            this.shuffleWishes.Checked = true;
+            this.shuffleWishes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.shuffleWishes.Location = new System.Drawing.Point(3, 75);
+            this.shuffleWishes.Name = "shuffleWishes";
+            this.shuffleWishes.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.shuffleWishes.Size = new System.Drawing.Size(144, 17);
+            this.shuffleWishes.TabIndex = 15;
+            this.shuffleWishes.Text = "Priestesses wishes";
+            this.shuffleWishes.UseVisualStyleBackColor = true;
+            // 
+            // shuffleChains
+            // 
+            this.shuffleChains.AutoSize = true;
+            this.shuffleChains.Checked = true;
+            this.shuffleChains.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.shuffleChains.Location = new System.Drawing.Point(153, 6);
+            this.shuffleChains.Name = "shuffleChains";
+            this.shuffleChains.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.shuffleChains.Size = new System.Drawing.Size(157, 17);
+            this.shuffleChains.TabIndex = 14;
+            this.shuffleChains.Text = "Chains of sorcery";
+            this.shuffleChains.UseVisualStyleBackColor = true;
+            // 
             // shuffleAmulets
             // 
             this.shuffleAmulets.AutoSize = true;
@@ -429,19 +475,6 @@
             this.shuffleAmulets.TabIndex = 13;
             this.shuffleAmulets.Text = "Amulet fragments";
             this.shuffleAmulets.UseVisualStyleBackColor = true;
-            // 
-            // shuffleFindings
-            // 
-            this.shuffleFindings.AutoSize = true;
-            this.shuffleFindings.Checked = true;
-            this.shuffleFindings.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleFindings.Location = new System.Drawing.Point(153, 75);
-            this.shuffleFindings.Name = "shuffleFindings";
-            this.shuffleFindings.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.shuffleFindings.Size = new System.Drawing.Size(115, 17);
-            this.shuffleFindings.TabIndex = 8;
-            this.shuffleFindings.Text = "Findings";
-            this.shuffleFindings.UseVisualStyleBackColor = true;
             // 
             // shuffleBlights
             // 
@@ -456,60 +489,28 @@
             this.shuffleBlights.Text = "Blight deposits";
             this.shuffleBlights.UseVisualStyleBackColor = true;
             // 
-            // shuffleRelics
+            // shuffleFindings
             // 
-            this.shuffleRelics.AutoSize = true;
-            this.shuffleRelics.Checked = true;
-            this.shuffleRelics.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleRelics.Location = new System.Drawing.Point(3, 29);
-            this.shuffleRelics.Name = "shuffleRelics";
-            this.shuffleRelics.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.shuffleRelics.Size = new System.Drawing.Size(85, 17);
-            this.shuffleRelics.TabIndex = 10;
-            this.shuffleRelics.Text = "Relics";
-            this.shuffleRelics.UseVisualStyleBackColor = true;
+            this.shuffleFindings.AutoSize = true;
+            this.shuffleFindings.Checked = true;
+            this.shuffleFindings.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.shuffleFindings.Location = new System.Drawing.Point(153, 75);
+            this.shuffleFindings.Name = "shuffleFindings";
+            this.shuffleFindings.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.shuffleFindings.Size = new System.Drawing.Size(115, 17);
+            this.shuffleFindings.TabIndex = 8;
+            this.shuffleFindings.Text = "Findings";
+            this.shuffleFindings.UseVisualStyleBackColor = true;
             // 
             // checkfile
             // 
+            this.checkfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkfile.AutoSize = true;
-            this.checkfile.Location = new System.Drawing.Point(7, 440);
+            this.checkfile.Location = new System.Drawing.Point(6, 428);
             this.checkfile.Name = "checkfile";
             this.checkfile.Size = new System.Drawing.Size(65, 13);
             this.checkfile.TabIndex = 6;
             this.checkfile.Text = "File check...";
-            // 
-            // open
-            // 
-            this.open.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.open.Location = new System.Drawing.Point(395, 455);
-            this.open.Name = "open";
-            this.open.Size = new System.Drawing.Size(55, 24);
-            this.open.TabIndex = 5;
-            this.open.Text = "Open";
-            this.open.UseVisualStyleBackColor = true;
-            this.open.Click += new System.EventHandler(this.open_Click);
-            // 
-            // path
-            // 
-            this.path.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.path.Location = new System.Drawing.Point(6, 459);
-            this.path.Name = "path";
-            this.path.Size = new System.Drawing.Size(322, 20);
-            this.path.TabIndex = 0;
-            // 
-            // chooseFile
-            // 
-            this.chooseFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chooseFile.Location = new System.Drawing.Point(334, 456);
-            this.chooseFile.Name = "chooseFile";
-            this.chooseFile.Size = new System.Drawing.Size(55, 24);
-            this.chooseFile.TabIndex = 1;
-            this.chooseFile.Text = "Browse";
-            this.chooseFile.UseVisualStyleBackColor = true;
-            this.chooseFile.Click += new System.EventHandler(this.chooseFile_Click);
             // 
             // SpiritsPage
             // 
@@ -519,7 +520,7 @@
             this.SpiritsPage.Location = new System.Drawing.Point(4, 22);
             this.SpiritsPage.Name = "SpiritsPage";
             this.SpiritsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SpiritsPage.Size = new System.Drawing.Size(459, 485);
+            this.SpiritsPage.Size = new System.Drawing.Size(458, 444);
             this.SpiritsPage.TabIndex = 5;
             this.SpiritsPage.Text = "Spirits";
             this.SpiritsPage.UseVisualStyleBackColor = true;
@@ -532,6 +533,8 @@
             this.shuffleWeaponUpgrades.Size = new System.Drawing.Size(135, 17);
             this.shuffleWeaponUpgrades.TabIndex = 43;
             this.shuffleWeaponUpgrades.Text = "Shuffle spirits upgrades";
+            this.helpTooltip.SetToolTip(this.shuffleWeaponUpgrades, "Each spirit upgrade requirement (Stagnant Blight, Furious Blight, Ancient soul) w" +
+        "ill be shuffled\r\n");
             this.shuffleWeaponUpgrades.UseVisualStyleBackColor = true;
             // 
             // startWeaponUsesAncientSouls
@@ -544,6 +547,7 @@
             this.startWeaponUsesAncientSouls.Size = new System.Drawing.Size(176, 17);
             this.startWeaponUsesAncientSouls.TabIndex = 42;
             this.startWeaponUsesAncientSouls.Text = "Starting spirit uses ancient souls";
+            this.helpTooltip.SetToolTip(this.startWeaponUsesAncientSouls, "Force the starting spirit to use Ancient Souls for upgrade\r\n");
             this.startWeaponUsesAncientSouls.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -553,7 +557,7 @@
             this.groupBox2.Controls.Add(this.startingSpiritsBox);
             this.groupBox2.Location = new System.Drawing.Point(38, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(385, 342);
+            this.groupBox2.Size = new System.Drawing.Size(384, 342);
             this.groupBox2.TabIndex = 37;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Randomize Starting Spirit";
@@ -592,7 +596,7 @@
             this.startingSpiritsBox.Name = "startingSpiritsBox";
             this.startingSpiritsBox.Padding = new System.Windows.Forms.Padding(0, 10, 10, 10);
             this.startingSpiritsBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.startingSpiritsBox.Size = new System.Drawing.Size(379, 323);
+            this.startingSpiritsBox.Size = new System.Drawing.Size(378, 323);
             this.startingSpiritsBox.TabIndex = 40;
             // 
             // checkBox1
@@ -869,17 +873,6 @@
             this.checkBox24.Text = "Chief Guardian";
             this.checkBox24.UseVisualStyleBackColor = true;
             // 
-            // checkBox25
-            // 
-            this.checkBox25.AutoSize = true;
-            this.checkBox25.Location = new System.Drawing.Point(197, 289);
-            this.checkBox25.Name = "checkBox25";
-            this.checkBox25.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.checkBox25.Size = new System.Drawing.Size(143, 17);
-            this.checkBox25.TabIndex = 57;
-            this.checkBox25.Text = "Forsaken Fellwyrm";
-            this.checkBox25.UseVisualStyleBackColor = true;
-            // 
             // checkBox26
             // 
             this.checkBox26.AutoSize = true;
@@ -891,13 +884,24 @@
             this.checkBox26.Text = "One-Eyed Royal Aegis";
             this.checkBox26.UseVisualStyleBackColor = true;
             // 
+            // checkBox25
+            // 
+            this.checkBox25.AutoSize = true;
+            this.checkBox25.Location = new System.Drawing.Point(197, 289);
+            this.checkBox25.Name = "checkBox25";
+            this.checkBox25.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox25.Size = new System.Drawing.Size(143, 17);
+            this.checkBox25.TabIndex = 57;
+            this.checkBox25.Text = "Forsaken Fellwyrm";
+            this.checkBox25.UseVisualStyleBackColor = true;
+            // 
             // LogicPage
             // 
             this.LogicPage.Controls.Add(this.LogicPreviewGridview);
             this.LogicPage.Location = new System.Drawing.Point(4, 22);
             this.LogicPage.Name = "LogicPage";
             this.LogicPage.Padding = new System.Windows.Forms.Padding(3);
-            this.LogicPage.Size = new System.Drawing.Size(459, 485);
+            this.LogicPage.Size = new System.Drawing.Size(458, 444);
             this.LogicPage.TabIndex = 4;
             this.LogicPage.Text = "Spoiler";
             this.LogicPage.UseVisualStyleBackColor = true;
@@ -924,7 +928,7 @@
             this.LogicPreviewGridview.ReadOnly = true;
             this.LogicPreviewGridview.RowHeadersVisible = false;
             this.LogicPreviewGridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.LogicPreviewGridview.Size = new System.Drawing.Size(453, 479);
+            this.LogicPreviewGridview.Size = new System.Drawing.Size(452, 438);
             this.LogicPreviewGridview.TabIndex = 0;
             // 
             // LocationColumn
@@ -952,6 +956,46 @@
             this.ReachablesColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ReachablesColumn.Width = 5;
             // 
+            // skinLevelText
+            // 
+            this.skinLevelText.AutoSize = true;
+            this.skinLevelText.Location = new System.Drawing.Point(271, 11);
+            this.skinLevelText.Name = "skinLevelText";
+            this.skinLevelText.Size = new System.Drawing.Size(63, 13);
+            this.skinLevelText.TabIndex = 43;
+            this.skinLevelText.Text = "Lilly: Normal";
+            // 
+            // skinLevel
+            // 
+            this.skinLevel.BackColor = System.Drawing.SystemColors.Control;
+            this.skinLevel.LargeChange = 1;
+            this.skinLevel.Location = new System.Drawing.Point(211, 20);
+            this.skinLevel.Maximum = 12;
+            this.skinLevel.Name = "skinLevel";
+            this.skinLevel.Size = new System.Drawing.Size(174, 45);
+            this.skinLevel.TabIndex = 42;
+            this.helpTooltip.SetToolTip(this.skinLevel, "Change Lilly appearence");
+            // 
+            // launchButton
+            // 
+            this.launchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.launchButton.BackColor = System.Drawing.SystemColors.Window;
+            this.launchButton.Cursor = System.Windows.Forms.Cursors.No;
+            this.launchButton.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this.launchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.launchButton.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.launchButton.Location = new System.Drawing.Point(4, 517);
+            this.launchButton.Margin = new System.Windows.Forms.Padding(0);
+            this.launchButton.Name = "launchButton";
+            this.launchButton.Size = new System.Drawing.Size(464, 35);
+            this.launchButton.TabIndex = 50;
+            this.launchButton.Text = "Launch Ender Lilies";
+            this.helpTooltip.SetToolTip(this.launchButton, "Ender Lilies\'s installation folder has not been detected yet.\r\nPlease manually la" +
+        "unch the game once and save your LiveSplit Layout to enable this feature.\r\n");
+            this.launchButton.UseVisualStyleBackColor = false;
+            this.launchButton.Click += new System.EventHandler(this.launchButton_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -960,41 +1004,6 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Seed:";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.shuffleSpirits);
-            this.flowLayoutPanel1.Controls.Add(this.shuffleRelics);
-            this.flowLayoutPanel1.Controls.Add(this.shuffleTablets);
-            this.flowLayoutPanel1.Controls.Add(this.shuffleWishes);
-            this.flowLayoutPanel1.Controls.Add(this.shuffleChains);
-            this.flowLayoutPanel1.Controls.Add(this.shuffleAmulets);
-            this.flowLayoutPanel1.Controls.Add(this.shuffleBlights);
-            this.flowLayoutPanel1.Controls.Add(this.shuffleFindings);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(379, 97);
-            this.flowLayoutPanel1.TabIndex = 49;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.shuffleSlots);
-            this.flowLayoutPanel2.Controls.Add(this.unusedRelics);
-            this.flowLayoutPanel2.Controls.Add(this.dashProgressive);
-            this.flowLayoutPanel2.Controls.Add(this.metaprogression);
-            this.flowLayoutPanel2.Controls.Add(this.ngPlusSetting);
-            this.flowLayoutPanel2.Controls.Add(this.minibosses_chapter);
-            this.flowLayoutPanel2.Controls.Add(this.shuffleRooms);
-            this.flowLayoutPanel2.Controls.Add(this.shuffleEnemies);
-            this.flowLayoutPanel2.Controls.Add(this.uatserver);
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(41, 165);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(201, 222);
-            this.flowLayoutPanel2.TabIndex = 49;
             // 
             // componentSettingsBindingSource
             // 
@@ -1015,10 +1024,13 @@
             this.tabSettings.ResumeLayout(false);
             this.SettingsPage.ResumeLayout(false);
             this.SettingsPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).EndInit();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startChapter)).EndInit();
             this.shuffleGroup.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.SpiritsPage.ResumeLayout(false);
             this.SpiritsPage.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1026,10 +1038,7 @@
             this.startingSpiritsBox.PerformLayout();
             this.LogicPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.componentSettingsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -1045,9 +1054,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabSettings;
         private System.Windows.Forms.TabPage SettingsPage;
-        private System.Windows.Forms.Button open;
-        private System.Windows.Forms.TextBox path;
-        private System.Windows.Forms.Button chooseFile;
         private System.Windows.Forms.Label checkfile;
         private System.Windows.Forms.TabPage LogicPage;
         private System.Windows.Forms.DataGridView LogicPreviewGridview;
@@ -1068,7 +1074,7 @@
         private System.Windows.Forms.BindingSource componentSettingsBindingSource;
         private System.Windows.Forms.CheckBox dashProgressive;
         private System.Windows.Forms.CheckBox metaprogression;
-        private System.Windows.Forms.ToolTip metaprogressTooltip;
+        private System.Windows.Forms.ToolTip helpTooltip;
         private System.Windows.Forms.TrackBar maxChapter;
         private System.Windows.Forms.Label chapterText;
         private System.Windows.Forms.TrackBar startChapter;
@@ -1112,5 +1118,6 @@
         private System.Windows.Forms.CheckBox checkBox26;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button launchButton;
     }
 }

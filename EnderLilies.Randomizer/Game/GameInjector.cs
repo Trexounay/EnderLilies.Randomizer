@@ -14,6 +14,13 @@ namespace EnderLilies.Randomizer
     class GameInjector
     {
         private const string _gameDLL = "EnderLilies.Game.dll";
+        ComponentSettings _settings;
+
+        public GameInjector(ComponentSettings settings)
+            : base()
+        {
+            _settings = settings;
+        }
 
         static Process GetGameProcess()
         {
@@ -94,6 +101,17 @@ namespace EnderLilies.Randomizer
         public void Update()
         {
             Process game = GetGameProcess();
+            if (_settings.launchRequested)
+            {
+                if (game != null)
+                {
+                    game.CloseMainWindow();
+                    game.Close();
+                    return;
+                }
+                _settings.launchRequested = false;
+                Process.Start(_settings.ExePath);
+            }
             if (game == null)
                 return;
             if (_game == null || _game.Id != game.Id)
@@ -101,7 +119,10 @@ namespace EnderLilies.Randomizer
                 if (!ProcessHasModule(game, _gameDLL))
                     InjectDLL(game, GetGameDLLPath());
                 else
+                {
                     _game = game;
+                    _settings.ExePath = _game.MainModule.FileName;
+                }
             }
         }
     }

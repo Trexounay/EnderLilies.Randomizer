@@ -59,19 +59,14 @@ __declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn,
 {
 	static ProcessEventCache controllerTick("PC_Base_C", "ReceiveTick");
 	static ProcessEventCache onEquipSpirit("SpiritCompanionComponent", "OnEquipSpirit");
-	static ProcessEventCache addDifficultyCache("GameModeZenithBase", "AddDifficultyLevel");
 
 	if (rando->IsReady())
 	{
-		if (addDifficulty == nullptr)
-			addDifficulty = DoDetourFunction<AddDifficultyPtr>("Function Zenith.GameModeZenithBase.AddDifficultyLevel", AddDifficultyHook);
 		if (controllerTick.Match(obj, fn))
 			rando->Update();
-		if (fn->Name.GetAnsiName().find("Difficulty") != std::string::npos || obj->Name.GetAnsiName().find("GameMode") != std::string::npos)
-			std::cout << fn->Name.GetAnsiName()  << obj->Name.GetAnsiName() << std::endl;
-		else if (onEquipSpirit.Match(obj, fn))
-			rando->EquipSpirit((CG::USummonerComponent_OnEquipSpirit_Params*)parms);
 	}
+	if (onEquipSpirit.Match(obj, fn))
+		rando->EquipSpirit((CG::USummonerComponent_OnEquipSpirit_Params*)parms);
 	processEvent(obj, fn, parms);
 }
 
