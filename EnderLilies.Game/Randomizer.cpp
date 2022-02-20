@@ -204,7 +204,7 @@ void Randomizer::NewMap()
 
 
 	if (!_has_normal_weapon)
-		RemoveBreakableDoors();
+		RemoveBreakable();
 
 #ifdef _DEBUG
 
@@ -216,19 +216,20 @@ void Randomizer::NewMap()
 #endif
 }
 
-void Randomizer::RemoveBreakableDoors()
+void Randomizer::RemoveBreakable()
 {
-	CG::UClass* type = _bp_classes["BP_Breakable_Door_C"];
-	if (type == nullptr)
-		return;
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
-	CG::TArray<CG::AActor*> out;
-	statics->STATIC_GetAllActorsOfClass(World(), type, &out);
-	for (int i = 0; i < out.Num(); ++i)
+	CG::UClass* type = _bp_classes["BP_Breakable_Base_C"];
+	if (type != nullptr)
 	{
-		out[i]->InitialLifeSpan = 0.1f;
-		out[i]->SetLifeSpan(0.1f);
+		CG::TArray<CG::AActor*> out;
+		statics->STATIC_GetAllActorsOfClass(World(), type, &out);
+		for (int i = 0; i < out.Num(); ++i)
+		{
+			CG::ABreakable* door = (CG::ABreakable*)out[i];
+			door->HPComponent->DoDamage(nullptr, 1000, false, false);
+		}
 	}
 }
 

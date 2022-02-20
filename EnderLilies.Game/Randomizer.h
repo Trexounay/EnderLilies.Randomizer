@@ -83,7 +83,7 @@ private:
 	void ShuffleRelicSlots();
 	void ShuffleRooms();
 	void ModifySpawnPoints();
-	void RemoveBreakableDoors();
+	void RemoveBreakable();
 	void ReadSeedFile(std::string path);
 	void FindItems(const std::string &string);
 	void ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);

@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
+  <update version="2.1.6">
+    <files>
+      <file path="Components/EnderLilies.Game.dll" status="changed"/>
+    </files>
+    <changelog>
+      <change>/!\ Make sure you close ENDER LILIES before updating /!\</change>
+      <change>Fixed some area staying in the dark if you're playing with a summon/parry spirit only</change>
+      <change>With summon/parry spirit as starting weapon breakable pots/doors will start destroyed until you equip something else</change>
+    </changelog>
+  </update>
   <update version="2.1.5">
     <files>
       <file path="Components/EnderLilies.Randomizer.json" status="changed"/>
@@ -7,7 +17,6 @@
       <file path="Components/EnderLilies.Game.dll" status="changed"/>
     </files>
     <changelog>
-      <change>/!\ Make sure you close ENDER LILIES before updating /!\</change>
       <change>Added the option to launch Ender Lilies from LiveSplit</change>
       <change>(You need to start the game manually at least once and save your LiveSplit loadout)</change>
       <change>Fixed an issue with subspirit increasing difficulty chapter</change>
