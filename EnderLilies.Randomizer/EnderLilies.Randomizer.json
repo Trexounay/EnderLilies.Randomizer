@@ -666,7 +666,13 @@
     {
       "from": "Silva",
       "to": "Cave_14_GAMEPLAY.BP_SCR_LV1S_2020_7",
-      "requires": "hook",
+      "requires": "hook | claw | 2LEDGE | LEDGE + HORIZONTAL",
+      "twoways": true
+    },
+    {
+      "from": "Sentinel",
+      "to": "Cave_14_GAMEPLAY.BP_SCR_LV1S_2020_7",
+      "requires": "2LEDGE | LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
@@ -726,7 +732,7 @@
     {
       "from": "Archer",
       "to": "Cave_19_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
-      "requires": "hook",
+      "requires": "hook | LEDGE | HORIZONTAL",
       "twoways": true
     },
     {
@@ -882,7 +888,7 @@
     {
       "from": "Start",
       "to": "Church_13_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "unlock + ( djump | champion | silva + dodge )",
+      "requires": "unlock + ( djump | champion | silva + dodge | claw )",
       "twoways": true
     },
     {
@@ -966,7 +972,7 @@
     {
       "from": "Youth",
       "to": "Forest_07_GAMEPLAY.BP_SCR_LV1S_2121_1",
-      "requires": "LEDGE + HORIZONTAL + (claw | hook)",
+      "requires": "hook | claw + (2LEDGE | LEDGE + HORIZONTAL)",
       "twoways": true
     },
     {
@@ -1038,7 +1044,7 @@
     {
       "from": "Youth",
       "to": "Forest_11_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
-      "requires": "swim + LEDGE + HORIZONTAL",
+      "requires": "swim + (LEDGE | HORIZONTAL)",
       "twoways": true
     },
     {
@@ -1108,9 +1114,9 @@
       "twoways": true
     },
     {
-      "from": "Youth",
+      "from": "AnkletRoom",
       "to": "Forest_17_GAMEPLAY.BP_Interactable_Item_Tip4",
-      "requires": "hook | LEDGE + claw | silva + djump | sinner + (djump | champion) | 2HORIZONTAL + LEDGE | 2LEDGE + HORIZONTAL",
+      "requires": "claw | LEDGE + hook | silva + djump",
       "twoways": true
     },
     {
@@ -1120,9 +1126,9 @@
       "twoways": true
     },
     {
-      "from": "AnkletRoom",
+      "from": "Youth",
       "to": "Forest_17_Map.BP_Interactable_Item_Tip5",
-      "requires": "claw | LEDGE + hook | silva + djump",
+      "requires": "hook | LEDGE + claw | silva + djump | sinner + (djump | champion) | 2HORIZONTAL + LEDGE | 2LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
@@ -1152,13 +1158,13 @@
     {
       "from": "Silva",
       "to": "Fort_02_GAMEPLAY.BP_SCR_LV2S_2021_2",
-      "requires": "LEDGE + HORIZONTAL | 2LEDGE",
+      "requires": "LEDGE + HORIZONTAL | djump + (silva | champion)",
       "twoways": true
     },
     {
       "from": "Silva",
       "to": "Fort_03_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "LEDGE + HORIZONTAL | 2LEDGE",
+      "requires": "LEDGE + HORIZONTAL | djump + (silva | champion)",
       "twoways": true
     },
     {
@@ -1182,7 +1188,7 @@
     {
       "from": "BastionGates",
       "to": "Fort_05_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
-      "requires": "hook",
+      "requires": "LEDGE + hook",
       "twoways": true
     },
     {
@@ -1200,7 +1206,7 @@
     {
       "from": "BastionGates",
       "to": "Fort_06_GAMEPLAY.BP_SCR_LV1M_2190_4",
-      "requires": "LEDGE + HORIZONTAL + claw",
+      "requires": "LEDGE +  claw",
       "twoways": true
     },
     {
@@ -1392,13 +1398,13 @@
     {
       "from": "Ulv",
       "to": "Fort_21_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2",
-      "requires": "claw",
+      "requires": "claw | (silva + djump + (champion | dodge))",
       "twoways": true
     },
     {
       "from": "Ulv",
       "to": "Fort_21_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "claw",
+      "requires": "claw | (silva + djump + (champion | dodge))",
       "twoways": true
     },
     {
@@ -1632,7 +1638,7 @@
     {
       "from": "Gerrod",
       "to": "Oubliette_15_GAMEPLAY.BP_e5060_Assassin",
-      "requires": "swim + (HORIZONTAL | hook)",
+      "requires": "swim + (HORIZONTAL | 2LEDGE | hook)",
       "twoways": true
     },
     {
@@ -1806,7 +1812,7 @@
     {
       "from": "Lab3",
       "to": "Swamp_11_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "claw  +  HORIZONTAL + 2LEDGE",
+      "requires": "LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
@@ -1828,7 +1834,7 @@
       "twoways": true
     },
     {
-      "from": "Lab3",
+      "from": "Lab1",
       "to": "Swamp_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
       "requires": "",
       "twoways": true
