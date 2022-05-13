@@ -11945,7 +11945,7 @@ public:
 
 	static UClass* StaticClass()
 	{
-		static UClass* ptr = UObject::FindClass("Class Engine.KismetTextLibrary");
+		UClass* ptr = UObject::FindClass("Class Engine.KismetTextLibrary");
 		return ptr;
 	}
 

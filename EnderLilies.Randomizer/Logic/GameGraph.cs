@@ -85,6 +85,7 @@ namespace EnderLilies.Randomizer
                 done = true;
                 missing_progress.Clear();
                 missing_no_progress.Clear();
+                int min = keys.Count;
                 List<Edge> connections = new List<Edge>(unsolved);
                 foreach (Edge e in connections)
                 {
@@ -115,8 +116,8 @@ namespace EnderLilies.Randomizer
                     }
                     else
                     {
-                        if (requires.Contains(dash) && requires.Contains(pierce))
-                            requires.Remove(pierce);
+                        /*if (requires.Contains(dash) && requires.Contains(pierce))
+                            requires.Remove(pierce);*/
                         if (result.ContainsKey(other))
                         {
                             if (requires.Count < missing_progress.Count || missing_progress.Count == 0)
@@ -124,8 +125,15 @@ namespace EnderLilies.Randomizer
                         }
                         else
                         {
-                            if (requires.Count < missing_no_progress.Count || missing_no_progress.Count == 0)
-                                missing_no_progress = requires;
+                            if (requires.Count <= min || missing_no_progress.Count == 0)
+                            {
+                                if (requires.Count < min || missing_no_progress.Count == 0)
+                                {
+                                    missing_no_progress.Clear();
+                                    min = requires.Count;
+                                }
+                                missing_no_progress.UnionWith(requires);
+                            }
                         }
                     }
                 }

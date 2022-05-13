@@ -17,7 +17,7 @@ namespace EnderLilies.Randomizer
         public RandomSession(ComponentSettings settings)
         {
             _settings = settings;
-            _settings.PropertyChanged += _settings_PropertyChanged;
+            _settings.PropertyChangedEnded += _settings_PropertyChanged;
         }
 
         private void _settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -151,7 +151,7 @@ namespace EnderLilies.Randomizer
 
             foreach (var k in loc)
             {
-                if (!result.ContainsKey(k))
+                if (!result.ContainsKey(k) && items.Count > 0)
                 {
                     result[k] = items[0];
                     items.RemoveAt(0);

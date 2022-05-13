@@ -23141,7 +23141,7 @@ bool UInventoryComponent::AddItem(const struct FDataTableRowHandle& ItemToAdd)
 //		int                                                ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 int UInventoryComponent::AddCurrency(Zenith_ECurrencyType CurrencyType, int CurrencyToAdd)
 {
-	static UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.InventoryComponent.AddCurrency");
+	UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.InventoryComponent.AddCurrency");
 
 	UInventoryComponent_AddCurrency_Params params;
 	params.CurrencyType = CurrencyType;
@@ -23152,7 +23152,6 @@ int UInventoryComponent::AddCurrency(Zenith_ECurrencyType CurrencyType, int Curr
 
 	UObject::ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
-
 
 	return params.ReturnValue;
 }

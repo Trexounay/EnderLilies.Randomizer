@@ -12,6 +12,8 @@ using System.ComponentModel;
 using System.Linq;
 using LiveSplit.UI;
 using System.Runtime.CompilerServices;
+using System.Globalization;
+using EnderLilies.Randomizer.Tools;
 
 namespace EnderLilies.Randomizer
 {
@@ -21,9 +23,10 @@ namespace EnderLilies.Randomizer
         public string FilePath { get; set; }
         public string CheckFileResult { get; set; }
         public DataTable Preview { get; set; }
-        
+
         string _exePath;
-        public string ExePath {
+        public string ExePath
+        {
             get
             {
                 return _exePath;
@@ -62,8 +65,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleSpirits = value;
-                NotifyPropertyChanged();
+                if (_shuffleSpirits != value)
+                {
+                    _shuffleSpirits = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -76,8 +82,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleRelics = value;
-                NotifyPropertyChanged();
+                if (_shuffleRelics != value)
+                {
+                    _shuffleRelics = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -90,8 +99,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleEnemies = value;
-                NotifyPropertyChanged();
+                if (_shuffleEnemies != value)
+                {
+                    _shuffleEnemies = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -104,8 +116,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleTablets = value;
-                NotifyPropertyChanged();
+                if (_shuffleTablets != value)
+                {
+                    _shuffleTablets = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -118,8 +133,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleChains = value;
-                NotifyPropertyChanged();
+                if (_shuffleChains != value)
+                {
+                    _shuffleChains = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -132,8 +150,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleAmulets = value;
-                NotifyPropertyChanged();
+                if (_shuffleAmulets != value)
+                {
+                    _shuffleAmulets = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -146,8 +167,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleBlights = value;
-                NotifyPropertyChanged();
+                if (_shuffleBlights != value)
+                {
+                    _shuffleBlights = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -160,8 +184,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleFindings = value;
-                NotifyPropertyChanged();
+                if (_shuffleFindings != value)
+                {
+                    _shuffleFindings = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -174,8 +201,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleWishes = value;
-                NotifyPropertyChanged();
+                if (_shuffleWishes != value)
+                {
+                    _shuffleWishes = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -188,8 +218,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleSlots = value;
-                NotifyPropertyChanged();
+                if (_shuffleSlots != value)
+                {
+                    _shuffleSlots = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -202,8 +235,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleRooms = value;
-                NotifyPropertyChanged();
+                if (_shuffleRooms != value)
+                {
+                    _shuffleRooms = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -216,8 +252,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _ngPlus = value;
-                NotifyPropertyChanged();
+                if (_ngPlus != value)
+                {
+                    _ngPlus = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -230,8 +269,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _unusedRelics = value;
-                NotifyPropertyChanged();
+                if (_unusedRelics != value)
+                {
+                    _unusedRelics = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -244,8 +286,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _uatServer = value;
-                NotifyPropertyChanged();
+                if (_uatServer != value)
+                {
+                    _uatServer = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -258,8 +303,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _dashProgressive = value;
-                NotifyPropertyChanged();
+                if (_dashProgressive != value)
+                {
+                    _dashProgressive = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -272,8 +320,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _startWeaponUsesAncientSouls = value;
-                NotifyPropertyChanged();
+                if (_startWeaponUsesAncientSouls != value)
+                {
+                    _startWeaponUsesAncientSouls = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -286,8 +337,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _shuffleWeaponUpgrades = value;
-                NotifyPropertyChanged();
+                if (_shuffleWeaponUpgrades != value)
+                {
+                    _shuffleWeaponUpgrades = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -300,8 +354,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _metaprogression = value;
-                NotifyPropertyChanged();
+                if (_metaprogression != value)
+                {
+                    _metaprogression = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -314,8 +371,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _minibosses_chapter = value;
-                NotifyPropertyChanged();
+                if (_minibosses_chapter != value)
+                {
+                    _minibosses_chapter = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -328,8 +388,11 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _currentSeed = value;
-                NotifyPropertyChanged();
+                if (_currentSeed != value)
+                {
+                    _currentSeed = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -342,11 +405,15 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _startChapter = Math.Max(0, Math.Min(9, value));
-                chapterText.Text = "Chapter " + (_startChapter + 1).ToString() + " to " + (_maxChapter + 1).ToString();
-                if (_startChapter > _maxChapter)
-                    maxChapter.Value = _startChapter;
-                NotifyPropertyChanged();
+                if (_startChapter != value)
+                {
+                    _startChapter = Math.Max(0, Math.Min(9, value));
+                    chapterText.Text = "Chapter " + (_startChapter + 1).ToString() + " to " + (_maxChapter + 1).ToString();
+                    if (_startChapter > _maxChapter)
+                        MaxChapter = _startChapter;
+                    //maxChapter.Value = _startChapter;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -359,11 +426,14 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _maxChapter = Math.Max(0, Math.Min(9, value));
-                chapterText.Text = "Chapter " + (_startChapter + 1).ToString() + " to " + (_maxChapter + 1).ToString();
-                if (_maxChapter < _startChapter)
-                    startChapter.Value = _maxChapter;
-                NotifyPropertyChanged();
+                if (_maxChapter != value)
+                {
+                    _maxChapter = Math.Max(0, Math.Min(9, value));
+                    chapterText.Text = "Chapter " + (_startChapter + 1).ToString() + " to " + (_maxChapter + 1).ToString();
+                    if (_maxChapter < _startChapter)
+                        StartChapter = _maxChapter;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -377,8 +447,10 @@ namespace EnderLilies.Randomizer
             set
             {
                 _skinOverride = Math.Max(0, Math.Min(12, value));
-                string[] lilyLevel =
-                    {
+                if (_skinOverride != value)
+                {
+                    string[] lilyLevel =
+                        {
                     "Normal",
                     "Pure",
                     "Blighted 1",
@@ -393,9 +465,22 @@ namespace EnderLilies.Randomizer
                     "Blighted 10",
                     "Fully Blighted",
                 };
-                skinLevelText.Text = "Lilly: " + lilyLevel[value];
-                NotifyPropertyChanged();
+                    skinLevelText.Text = "Lilly: " + lilyLevel[value];
+                    NotifyPropertyChanged();
+                }
             }
+        }
+
+        int RecalcStartingSpirit()
+        {
+            int startingSpirits = 0;
+            for (int i = 0; i < startingSpiritsBox.Controls.Count; ++i)
+            {
+                var checkbox = (CheckBox)startingSpiritsBox.Controls[i];
+                if (checkbox.Checked)
+                    startingSpirits |= 1 << i;
+            }
+            return startingSpirits;
         }
 
         int _startingSpirits = 0;
@@ -403,36 +488,127 @@ namespace EnderLilies.Randomizer
         {
             get
             {
-                _startingSpirits = 0;
-                for (int i = 0; i < startingSpiritsBox.Controls.Count; ++i)
-                {
-                    var checkbox = (CheckBox)startingSpiritsBox.Controls[i];
-                    if (checkbox.Checked)
-                        _startingSpirits |= 1 << i;
-                }
                 return _startingSpirits;
             }
             set
             {
-                _startingSpirits = value;
-                for (int i = 0; i < startingSpiritsBox.Controls.Count; ++i)
+                if (_startingSpirits != value || value != RecalcStartingSpirit())
                 {
-                    var checkbox = (CheckBox)startingSpiritsBox.Controls[i];
-                    checkbox.Checked = (_startingSpirits & (1 << i)) > 0;
+                    _startingSpirits = value;
+                    bool _tmp = _internalInteraction;
+                    _internalInteraction = true;
+                    for (int i = 0; i < startingSpiritsBox.Controls.Count; ++i)
+                    {
+                        var checkbox = (CheckBox)startingSpiritsBox.Controls[i];
+                        bool isChecked = (_startingSpirits & (1 << i)) > 0;
+                        if (checkbox.Checked != isChecked)
+                            checkbox.Checked = isChecked;
+                    }
+                    if ((_startingSpirits & ((1 << 8) - 1)) == (1 << 8) - 1)
+                        checkBoxMainSpirits.CheckState = CheckState.Checked;
+                    else if ((_startingSpirits & ((1 << 8) - 1)) > 0)
+                        checkBoxMainSpirits.CheckState = CheckState.Indeterminate;
+                    else
+                        checkBoxMainSpirits.CheckState = CheckState.Unchecked;
+                    checkBoxMainSpirits.Checked = (checkBoxMainSpirits.CheckState != CheckState.Unchecked);
+
+                    if (_startingSpirits == ((1 << startingSpiritsBox.Controls.Count) - 1))
+                        checkBoxAll.CheckState = CheckState.Checked;
+                    else if (_startingSpirits > 0)
+                        checkBoxAll.CheckState = CheckState.Indeterminate;
+                    else
+                        checkBoxAll.CheckState = CheckState.Unchecked;
+                    checkBoxAll.Checked = (checkBoxAll.CheckState != CheckState.Unchecked);
+                    _internalInteraction = _tmp;
+                    NotifyPropertyChanged();
                 }
             }
         }
+
         public bool HasSpirit(int i)
         {
             var checkbox = (CheckBox)startingSpiritsBox.Controls[i];
             return checkbox.Checked;
         }
 
+        StringSettings stringSettings = new StringSettings();
+        public string SeedText
+        {
+            get
+            {
+                if (!_internalInteraction)
+                {
+                    stringSettings = new StringSettings();
+                    stringSettings.Push(new object[] {
+                                  ShuffleRooms, NGPlus, MinibossesChapter,
+                                  MetaProgression, ShuffleEnemies,
+                                  StartChapter, MaxChapter, StartingSpirits,
+                                  StartWeaponUsesAncientSouls, ShuffleWeaponUpgrades,
+                                  UnusedRelics, DashProgressive,
+                                  ShuffleSlots, ShuffleTablets, ShuffleWishes,
+                                  ShuffleAmulets, ShuffleBlights, ShuffleChains,
+                                  ShuffleFindings, ShuffleRelics, ShuffleSpirits},
+                           new int[]    { 1, 1, 1,
+                                  1, 1,
+                                  10, 10, (1 << 26)-1,
+                                  1, 1,
+                                  1, 1,
+                                  1, 1, 1,
+                                  1, 1, 1,
+                                  1, 1, 1});
+                }
+                return Seed.ToString() + "_" + stringSettings.ToString();
+            }
+            set
+            {
+                if (value != Seed.ToString() + "_" + stringSettings.ToString())
+                {
+                    string seed = value;
+                    if (seed.Contains<char>('_'))
+                    {
+                        var parts = seed.Split('_');
+                        seed = parts[0];
+                        string conf = parts[1];
+                        _internalInteraction = true;
+                        StringSettings stringSettings = new StringSettings(conf);
+                        ShuffleSpirits = stringSettings.PullBool();
+                        ShuffleRelics = stringSettings.PullBool();
+                        ShuffleFindings = stringSettings.PullBool();
+                        ShuffleChains = stringSettings.PullBool();
+                        ShuffleBlights = stringSettings.PullBool();
+                        ShuffleAmulets = stringSettings.PullBool();
+                        ShuffleWishes = stringSettings.PullBool();
+                        ShuffleTablets = stringSettings.PullBool();
+                        ShuffleSlots = stringSettings.PullBool();
+                        DashProgressive = stringSettings.PullBool();
+                        UnusedRelics = stringSettings.PullBool();
+                        ShuffleWeaponUpgrades = stringSettings.PullBool();
+                        StartWeaponUsesAncientSouls = stringSettings.PullBool();
+                        StartingSpirits = stringSettings.PullInt((1 << 26) - 1);
+                        MaxChapter = stringSettings.PullInt(10);
+                        StartChapter = stringSettings.PullInt(10);
+                        ShuffleEnemies = stringSettings.PullBool();
+                        MetaProgression = stringSettings.PullBool();
+                        MinibossesChapter = stringSettings.PullBool();
+                        NGPlus = stringSettings.PullBool();
+                        ShuffleRooms = stringSettings.PullBool();
+
+                        this.stringSettings = stringSettings;
+                        _internalInteraction = false;
+                        NotifyPropertyChanged();
+                    }
+                    _currentSeed = 0;
+                    int.TryParse(seed, out _currentSeed);
+                }
+            }
+        }
+
         public ComponentSettings()
         {
             InitializeComponent();
             //this.launchButton.DataBindings.Add("Enabled", this, "HasExePath", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            this.seedText.DataBindings.Add("Text", this, "Seed", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            var b = this.seedText.DataBindings.Add("Text", this, "SeedText", false, DataSourceUpdateMode.OnValidation, "0");
+            b.ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
             this.checkfile.DataBindings.Add("Text", this, "CheckFileResult", false, DataSourceUpdateMode.OnPropertyChanged);
             this.shuffleAmulets.DataBindings.Add("Checked", this, "ShuffleAmulets", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleBlights.DataBindings.Add("Checked", this, "ShuffleBlights", false, DataSourceUpdateMode.OnPropertyChanged, true);
@@ -461,9 +637,16 @@ namespace EnderLilies.Randomizer
             for (int i = 0; i < startingSpiritsBox.Controls.Count; ++i)
             {
                 var checkbox = (CheckBox)startingSpiritsBox.Controls[i];
+                var j = i;
                 checkbox.CheckedChanged += (a, e) =>
                 {
-                    NotifyPropertyChanged();
+                    if (_internalInteraction)
+                        return;
+                    var c = (CheckBox)a;
+                    if (c.Checked)
+                        StartingSpirits = _startingSpirits | (1 << j);
+                    else
+                        StartingSpirits = _startingSpirits & ~(1 << j);
                 };
             }
 
@@ -477,6 +660,8 @@ namespace EnderLilies.Randomizer
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        public event PropertyChangedEventHandler PropertyChangedEnded = delegate { };
+
         public void SetSettings(XmlNode node)
         {
             var element = (XmlElement)node;
@@ -507,6 +692,8 @@ namespace EnderLilies.Randomizer
             DashProgressive = SettingsHelper.ParseBool(element["DashProgressive"], true);
             StartWeaponUsesAncientSouls = SettingsHelper.ParseBool(element["StartWeaponUsesAncientSouls"], true);
             ShuffleWeaponUpgrades = SettingsHelper.ParseBool(element["ShuffleWeaponUpgrades"], false);
+
+
         }
 
         public XmlNode GetSettings(XmlDocument document)
@@ -718,7 +905,17 @@ namespace EnderLilies.Randomizer
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             if (PropertyChanged != null)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                if (!_internalInteraction)
+                {
+                    if (propertyName != "SeedText")
+                        NotifyPropertyChanged("SeedText");
+                    else
+                        PropertyChangedEnded(this, new PropertyChangedEventArgs(propertyName));
+                }
+                
+            }
         }
 
         public bool launchRequested;
@@ -726,6 +923,28 @@ namespace EnderLilies.Randomizer
         {
             if (HasExePath)
                 launchRequested = true;
+        }
+
+        bool _internalInteraction;
+        private void checkBoxAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_internalInteraction)
+                return;
+            if (checkBoxAll.Checked)
+                this.StartingSpirits = (1 << startingSpiritsBox.Controls.Count) - 1;
+            else
+                this.StartingSpirits = 0;
+        }
+
+        private void checkBoxMainSpirits_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_internalInteraction)
+                return;
+            int mask = (1 << 8) - 1;
+            if (checkBoxMainSpirits.Checked)
+                this.StartingSpirits |= mask;
+            else
+                this.StartingSpirits &= ~mask;
         }
     }
 }

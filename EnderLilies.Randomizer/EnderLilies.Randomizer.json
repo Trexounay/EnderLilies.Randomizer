@@ -126,6 +126,7 @@
   },
 
   "macros": {
+    "3LEDGE": "djump + silva + champion",
     "2LEDGE": "djump + silva | djump + champion | silva + champion",
     "LEDGE": "djump | silva | champion",
     "2HORIZONTAL": "dodge + sinner",
@@ -372,7 +373,7 @@
     {
       "from": "Dog",
       "to": "Castle_14_GAMEPLAY.BP_SCR_LV2LL_0000_2",
-      "requires": "FULLSILVA + champion + claw",
+      "requires": "claw + (3LEDGE | dodge + silva + (champion | djump) | sinner + 2LEDGE | silva + 2HORIZONTAL)",
       "twoways": true
     },
     {

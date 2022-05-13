@@ -604,6 +604,7 @@ void Randomizer::ModifySpirits()
 		}
 	}
 
+	//auto ksmt = (CG::UKismetTextLibrary*)CG::UKismetTextLibrary::StaticClass();
 	for (int i = 0; i < table->Data.Num(); ++i)
 	{
 		CG::FItemSpiritData* data = (CG::FItemSpiritData*)(table->Data[i].ptr);
@@ -612,6 +613,9 @@ void Randomizer::ModifySpirits()
 		{
 			data->AptitudeToUnlock = empty;
 			data->AptitudeToUnlockTutorial = empty;
+			//auto d = CG::FString(L"HELLO WORLD")
+			//CG::FText text = ksmt->STATIC_Conv_StringToText();
+			//data->Description = text;
 		}
 		if (_aptitudes.find(data->SecondaryAptitudeToUnlock.RowName.ComparisonIndex) != _aptitudes.end())
 		{
@@ -643,6 +647,12 @@ void Randomizer::ModifySpirits()
 				oldLevel->NecessaryCurrencyForLevelUp = newLevel->NecessaryCurrencyForLevelUp;
 				newLevel->CurrencyTypeForLevelUp = tmpType;
 				newLevel->NecessaryCurrencyForLevelUp = tmpCount;
+#ifdef _DEBUG
+				oldLevel->CurrencyTypeForLevelUp = CG::Zenith_ECurrencyType::ECurrencyType__Spirit_Lv1;
+				oldLevel->NecessaryCurrencyForLevelUp = 0;
+				newLevel->CurrencyTypeForLevelUp = CG::Zenith_ECurrencyType::ECurrencyType__Spirit_Lv1;
+				newLevel->NecessaryCurrencyForLevelUp = 0;
+#endif
 			}
 		}
 	}
@@ -685,7 +695,6 @@ void Randomizer::RefreshAptitudes()
 #ifdef _DEBUG
 
 	pc->UnlockAllAptitudes();
-
 
 	for (int i = 0; i < gm->InitialCommonSpiritLevel->Data.Num(); ++i)
 	{

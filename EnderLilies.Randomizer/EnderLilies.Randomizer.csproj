@@ -107,6 +107,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\RNG.cs" />
     <Compile Include="Tools\SafeNativeMethods.cs" />
+    <Compile Include="Tools\StringSettings.cs" />
     <Compile Include="websocket-sharp\websocket-sharp\ByteOrder.cs" />
     <Compile Include="websocket-sharp\websocket-sharp\CloseEventArgs.cs" />
     <Compile Include="websocket-sharp\websocket-sharp\CloseStatusCode.cs" />
