@@ -253,7 +253,7 @@
     {
       "from": "Dog",
       "to": "Castle_03_GAMEPLAY.BP_SCR_LV1M_2001_2",
-      "requires": "LEDGE + HORIZONTAL",
+      "requires": "hook | LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
@@ -991,7 +991,7 @@
     {
       "from": "Youth",
       "to": "Forest_08_GAMEPLAY.BP_Interactable_Passive_Treasure2",
-      "requires": "2LEDGE | LEDGE + hook",
+      "requires": "2LEDGE | LEDGE + HORIZONTAL | hook",
       "twoways": true
     },
     {
@@ -1639,7 +1639,7 @@
     {
       "from": "Gerrod",
       "to": "Oubliette_15_GAMEPLAY.BP_e5060_Assassin",
-      "requires": "swim + (HORIZONTAL | 2LEDGE | hook)",
+      "requires": "swim + (dodge + (LEDGE | dash)  | 2LEDGE | hook | sinner)",
       "twoways": true
     },
     {
@@ -1987,7 +1987,7 @@
     {
       "from": "Youth",
       "to": "Village_04_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
-      "requires": "hook | LEDGE + HORIZONTAL | 2LEDGE",
+      "requires": "hook | LEDGE + HORIZONTAL | 2LEDGE | LEDGE + claw",
       "twoways": true
     },
     {
