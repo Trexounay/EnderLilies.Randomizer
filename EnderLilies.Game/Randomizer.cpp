@@ -236,11 +236,28 @@ void Randomizer::RemoveBreakable()
 	}
 }
 
+struct FActorSpawnParameters
+{
+public:
+	CG::FName Name;
+	CG::AActor* Template;
+	CG::AActor* Owner;
+	CG::APawn* Instigator;
+	CG::ULevel* OverrideLevel;
+	CG::Engine_ESpawnActorCollisionHandlingMethod SpawnCollisionHandlingOverride;
+	uint8_t bRemoteOwned : 1;
+	uint8_t bNoFail : 1;
+	uint8_t bDeferConstruction : 1;
+	uint8_t	bAllowDuringConstructionScript : 1;
+	uint8_t NameMode;
+	CG::EObjectFlags ObjectFlags;
+};
+
 
 void Randomizer::ModifySpawnPoints()
 {
 	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
-	if (_shuffle_bgm)
+	if (_shuffle_bgm && _musics.size() > 0)
 	{
 		CG::UGameInstanceZenithBase* GameInstance = (CG::UGameInstanceZenithBase*)(World()->OwningGameInstance);
 		CG::UWorldLoaderSubsystem* loader = (CG::UWorldLoaderSubsystem*)GameInstance->SubSystems[0x1F];
@@ -274,6 +291,25 @@ void Randomizer::ModifySpawnPoints()
 				}
 				continue;
 			}
+			/*
+			CG::FRotator r = spawn1->K2_GetActorRotation();
+			CG::FTransform t = spawn1->GetTransform();
+			t.Translation.Y += 200;
+			uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
+			FActorSpawnParameters spawn_params;
+			((void(__fastcall*)(FActorSpawnParameters*)) (base + 0x2945840))(&spawn_params);
+			spawn_params.ObjectFlags = (CG::EObjectFlags)0x48;
+			spawn_params.OverrideLevel = (CG::ULevel*)spawn1->Outer;
+			spawn_params.Owner = spawn1;
+			spawn_params.SpawnCollisionHandlingOverride = CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AdjustIfPossibleButDontSpawnIfColliding;
+			auto a = (CG::APawn*)((CG::AActor * (__fastcall*)(CG::UWorld*, CG::UClass*, CG::FVector*, CG::FRotator*, FActorSpawnParameters*))(base + 0x25FE600))
+				(World(), spawn1->CharacterToSpawn, &t.Translation, &r, &spawn_params);
+			if (a != nullptr)
+			{
+				a->SetActorScale3D(CG::FVector(2, 2, 2));
+				a->SpawnDefaultController();
+			}
+			*/
 			spawn1->bShouldActivateByDefault = true;
 			shuffled.push_back(i);
 		}
@@ -431,6 +467,8 @@ void Randomizer::ShuffleRelicSlots()
 
 void Randomizer::ShuffleMusic()
 {
+	if (_musics.size() <= 0)
+		return;
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UDataTable* table = gm->GameMapTable;
 	std::vector<int> musics(_musics.begin(), _musics.end());
