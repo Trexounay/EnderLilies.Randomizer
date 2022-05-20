@@ -83,6 +83,15 @@
     <ClInclude Include="SDK\BasicHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SDK\BP_EnemySpawnPoint_Boss_parameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK\BP_EnemySpawnPoint_Boss_classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK\BP_EnemySpawnPoint_Boss_structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -119,6 +128,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SDK\BP_EnemySpawnPoint_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\BP_EnemySpawnPoint_Boss_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

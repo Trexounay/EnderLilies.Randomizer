@@ -1431,8 +1431,7 @@ struct FActorArray
 // 0x0048 (0x0050 - 0x0008)
 struct FSpiritParameterLevelData : public FTableRowBase
 {
-	struct FSoftObjectPtr							   CommandSettingsData;										  // 0x0008(0x0024) UNKNOWN PROPERTY: SoftObjectProperty
-	int													wtf;							  // 0x002C(0x0004) UNKNOWN PROPERTY: SoftObjectProperty
+	struct FSoftObjectPtr							   CommandSettingsData;										  // 0x0008(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 	float                                              AttackFactor;                                              // 0x0030(0x0004) (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	Zenith_ECurrencyType                               CurrencyTypeForLevelUp;                                    // 0x0034(0x0001) (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	unsigned char                                      UnknownData_O5IQ[0x3];                                     // 0x0035(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
@@ -1816,8 +1815,8 @@ struct FGameMapData : public FTableRowBase
 	struct FDataTableRowHandle                         AreaData;                                                  // 0x0048(0x0010) (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnInstance, NoDestructor, NativeAccessSpecifierPublic)
 	bool                                               bContainsRestPoint;                                        // 0x0058(0x0001) (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	unsigned char                                      UnknownData_8HTB[0x7];                                     // 0x0059(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
-	unsigned char                                      BGMEvent[0x28];                                            // 0x0059(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
-	unsigned char                                      AmbienceEvent[0x28];                                       // 0x0088(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
+	CG::FSoftObjectPtr                                 BGMEvent;                                            // 0x0059(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
+	CG::FSoftObjectPtr                                 AmbienceEvent;                                       // 0x0088(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 	struct FMapCompleteData                            MapCompleteData;                                           // 0x00B0(0x0018) (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnInstance, NativeAccessSpecifierPublic)
 	unsigned char                                      MapTexture[0x28];                                          // 0x00C8(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 	struct FMinimapData                                MinimapData;                                               // 0x00F0(0x0040) (Edit, BlueprintVisible, DisableEditOnInstance, NativeAccessSpecifierPublic)

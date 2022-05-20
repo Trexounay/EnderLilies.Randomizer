@@ -1,5 +1,6 @@
 ﻿// Name: enderlilies, Version: 1.1.3
 
+#include "pch.h"
 #include "../pch.h"
 
 /*!!DEFINE!!*/
@@ -124,7 +125,7 @@ void ABP_EnemySpawnPoint_Boss_C::TryStopBGM()
 
 	auto flags = fn->FunctionFlags;
 
-	UObject::ProcessEvent(fn, &params);
+	this->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 }

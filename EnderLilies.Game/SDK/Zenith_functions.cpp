@@ -23777,7 +23777,7 @@ void USoundSubsystem::StopBGM()
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	this->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 }
@@ -23929,7 +23929,7 @@ void USoundSubsystem::PlayBGM(class UFMODEvent* SoundEvent)
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	this->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 }

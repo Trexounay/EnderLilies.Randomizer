@@ -78,13 +78,11 @@ namespace EnderLilies.Randomizer
                 if (reachables.Contains(n.Key))
                     items.Add(n.Value);
             bool done = false;
-            HashSet<int> missing_progress = new HashSet<int>();
-            HashSet<int> missing_no_progress = new HashSet<int>();
+            HashSet<int> missing = new HashSet<int>();
             while (!done)
             {
                 done = true;
-                missing_progress.Clear();
-                missing_no_progress.Clear();
+                missing.Clear();
                 int min = keys.Count;
                 List<Edge> connections = new List<Edge>(unsolved);
                 foreach (Edge e in connections)
@@ -116,43 +114,31 @@ namespace EnderLilies.Randomizer
                     }
                     else
                     {
-                        /*if (requires.Contains(dash) && requires.Contains(pierce))
-                            requires.Remove(pierce);*/
-                        if (result.ContainsKey(other))
+                        if (requires.Count <= min || missing.Count == 0)
                         {
-                            if (requires.Count < missing_progress.Count || missing_progress.Count == 0)
-                                missing_progress = requires;
-                        }
-                        else
-                        {
-                            if (requires.Count <= min || missing_no_progress.Count == 0)
+                            if (requires.Count < min || missing.Count == 0)
                             {
-                                if (requires.Count < min || missing_no_progress.Count == 0)
-                                {
-                                    missing_no_progress.Clear();
-                                    min = requires.Count;
-                                }
-                                missing_no_progress.UnionWith(requires);
+                                missing.Clear();
+                                min = requires.Count;
                             }
+                            missing.UnionWith(requires);
                         }
                     }
                 }
             }
-            if (missing_progress.Count > 0)
-                return missing_progress;
-            else
-                return missing_no_progress;
+            missing.ExceptWith(result.Values);
+            return missing;
         }
 
         int dash = -1;
         int pierce = -1;
 
-        public Dictionary<string, string> Solve(string start, string weapon = "umbral", bool metaprogression=false)
+        public Dictionary<string, string> Solve(string start, string weapon = "umbral", bool metaprogression = false)
         {
             AddResult("starting_weapon", weapon);
             Dictionary<int, int> result = new Dictionary<int, int>(_forced);
             logic.Clear();
-            
+
             dash = keys.IndexOf(aliases["dash"]);
             pierce = keys.IndexOf(aliases["pierce"]);
 
@@ -208,7 +194,7 @@ namespace EnderLilies.Randomizer
                     var pool = missings.ToArray();
                     int item = pool[RNG.stream.Next(pool.Length)];
                     result[node] = item;
-                    logic.Add(new LogicLog() { node = node, reachables = reachables.Count});
+                    logic.Add(new LogicLog() { node = node, reachables = reachables.Count });
                     empty_nodes.Remove(node);
                 }
             }
@@ -216,6 +202,11 @@ namespace EnderLilies.Randomizer
             Dictionary<string, string> data = new Dictionary<string, string>();
             foreach (KeyValuePair<int, int> pair in result)
                 data.Add(nodes[pair.Key], keys[pair.Value]);
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                if (!reachables.Contains(i))
+                    Console.WriteLine(nodes[i]);
+            }
             logic.Add(new LogicLog() { node = -1, reachables = reachables.Count, items = data.Count() });
             return data;
         }

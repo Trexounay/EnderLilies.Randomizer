@@ -14,13 +14,18 @@ namespace EnderLilies.Randomizer.Tools
     {
         //Convert number in string representation from base:from to base:to. 
         //Return result as a string
-        public static String Convert(String from, String to, String s)
+        public static String Convert(String from, String to, String source)
         {
+            String s = "";
+            foreach (var c in source)
+                if (from.Contains(c))
+                    s += c;
             //Return error if input is empty
             if (String.IsNullOrEmpty(s))
             {
                 return ("Error: Nothing in Input String");
             }
+            
             //convert string to an array of integer digits representing number in base:from
             int il = s.Length;
             int[] fs = new int[il];

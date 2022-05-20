@@ -658,32 +658,17 @@ struct FName
 #endif
 		Number(0)
 	{
-		static std::unordered_set<int> cache;
-
-		for (auto i : cache)
-		{
-			if (GetGlobalNames()[i]->GetAnsiName() == nameToFind)
-			{
-				ComparisonIndex = i;
-#ifdef FNamePool_WITH_CASE_PRESERVING_NAME
-				DisplayIndex = i;
-#endif
-				return;
-			}
-		}
-
 #ifdef FNAME_POOL
 		uintptr_t lastFNameAddress = NULL;
 
-		for (FNameEntry* name = GetGlobalNames().GetNext(lastFNameAddress); name != nullptr; name = GetGlobalNames().GetNext(lastFNameAddress))
+		int compid = -1;
+		for (FNameEntry* name = GetGlobalNames().GetNext(lastFNameAddress, compid);
+			name != nullptr;
+			name = GetGlobalNames().GetNext(lastFNameAddress, compid))
 		{
 			if (name->GetAnsiName() == nameToFind)
 			{
-				cache.insert(name->GetId());
-				ComparisonIndex = name->GetId();
-#ifdef FNamePool_WITH_CASE_PRESERVING_NAME
-				DisplayIndex = name->GetId();
-#endif
+				ComparisonIndex = compid;
 				return;
 			}
 		}
@@ -1013,6 +998,7 @@ class FAssetPtr : public TPersistentObjectPtr<FStringAssetReference_>
 
 class FSoftObjectPath_
 {
+	unsigned char padding[0x4];
 public:
 	struct FName                                       AssetPathName;                                             // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	struct FString                                     SubPathString;

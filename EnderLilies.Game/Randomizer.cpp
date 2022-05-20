@@ -32,6 +32,7 @@ void Randomizer::FindNames()
 		return;
 
 	BlueprintGeneratedClassIndex = -1;
+	const char* music = "/Game/FMOD/Events/Music/";
 	FunctionIndex = -1;
 	for (CG::FNameEntry* name = pool.GetNext(lastFNameAddress, nextFNameComparisonId);
 		name != nullptr && lastFNameAddress != 0;
@@ -42,7 +43,9 @@ void Randomizer::FindNames()
 			BlueprintGeneratedClassIndex = nextFNameComparisonId;
 		else if (str == "Function")
 			FunctionIndex = nextFNameComparisonId;
-		if (BlueprintGeneratedClassIndex > 0 && FunctionIndex > 0)
+		else if (_shuffle_bgm && !strncmp(str.c_str(), music, strlen(music)) && str.find('.', strlen(music)) != std::string::npos)
+			_musics.insert(nextFNameComparisonId);
+		if (!_shuffle_bgm && BlueprintGeneratedClassIndex > 0 && FunctionIndex > 0)
 			return;
 	}
 }
@@ -150,9 +153,11 @@ void Randomizer::NewGame()
 {
 	_new_game = false;
 	std::cout << "NEWGAME" << std::endl;
+	ReadSeedFile(_path + "/EnderLiliesSeed.txt");
 	FindNames();
 	RemoveHasItemCheck();
-	ReadSeedFile(_path + "/EnderLiliesSeed.txt");
+	if (_shuffle_bgm)
+		ShuffleMusic();
 	if (_shuffle_rooms)
 		ShuffleRooms();
 	if (_shuffle_relics)
@@ -199,20 +204,18 @@ void Randomizer::NewMap()
 		if (parameter != nullptr)
 			parameter->SetSkinLevelOverride(_skin_override, true);
 	}
-
 	ModifySpawnPoints();
-
 
 	if (!_has_normal_weapon)
 		RemoveBreakable();
 
 #ifdef _DEBUG
-
+	/*
 	std::fstream file("dataout.txt", std::ios::out);
 
 	for (const auto& elem : _data) {
 		file << elem.first << "\t" << elem.second << "\n";
-	}
+	}*/
 #endif
 }
 
@@ -236,9 +239,23 @@ void Randomizer::RemoveBreakable()
 
 void Randomizer::ModifySpawnPoints()
 {
+	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
+	if (_shuffle_bgm)
+	{
+		CG::UGameInstanceZenithBase* GameInstance = (CG::UGameInstanceZenithBase*)(World()->OwningGameInstance);
+		CG::UWorldLoaderSubsystem* loader = (CG::UWorldLoaderSubsystem*)GameInstance->SubSystems[0x1F];
+		CG::USoundSubsystem* sound = (CG::USoundSubsystem*)GameInstance->SubSystems[25];
+		CG::TArray<CG::AActor*> out;
+		statics->STATIC_GetAllActorsOfClass(World(), _bp_classes["BP_EnemySpawnPoint_Boss_C"], &out);
+		for (int i = 0; i < out.Num(); ++i)
+		{
+			CG::ABP_EnemySpawnPoint_Boss_C* spawn1 = (CG::ABP_EnemySpawnPoint_Boss_C*)out[i];
+			sound->StopBGM();
+			spawn1->BGMEvent = (CG::UFMODEvent*)loader->CurrentGameMapData.BGMEvent.WeakPtr.Get();
+		}
+	}
 	if (!_shuffle_enemies && !_minibosses_chapter)
 		return;
-	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
 	CG::TArray<CG::AActor*> out;
 	statics->STATIC_GetAllActorsOfClass(World(), _bp_classes["BP_EnemySpawnPoint_C"], &out);
 	int count = out.Num();
@@ -348,6 +365,7 @@ void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandl
 		name = actor->Class->GetName();
 		name.erase(name.length() - 2, 2);
 	}
+
 	name = map + "." + name;
 	auto entry = _replacements.find(name);
 	if (entry != _replacements.end())
@@ -368,7 +386,8 @@ void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandl
 	else
 		_done.insert(itemhandle);
 #ifdef _DEBUG
-	std::cout << name << std::endl;
+	auto v = actor->K2_GetActorLocation();
+	std::cout << v.X << " : " << v.Y << " : " << v.Z << name << std::endl;
 #endif
 }
 
@@ -410,6 +429,19 @@ void Randomizer::ShuffleRelicSlots()
 	}
 }
 
+void Randomizer::ShuffleMusic()
+{
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	CG::UDataTable* table = gm->GameMapTable;
+	std::vector<int> musics(_musics.begin(), _musics.end());
+	for (int i = table->Data.Num(); i > 0;)
+	{
+		i--;
+		CG::FGameMapData* map = (CG::FGameMapData*)table->Data[i].ptr;
+		map->BGMEvent.ObjectID.AssetPathName = CG::FName(musics[rand() % musics.size()]);
+	}
+}
+
 void Randomizer::ShuffleRooms()
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
@@ -447,6 +479,7 @@ void Randomizer::ReadSeedFile(std::string path)
 	_shuffle_upgrades = false;
 	_shuffle_enemies = false;
 	_shuffle_rooms = false;
+	_shuffle_bgm = false;
 	_cheat = false;
 	_has_normal_weapon = true;
 	_minibosses_chapter = false;
@@ -476,6 +509,8 @@ void Randomizer::ReadSeedFile(std::string path)
 					_cheat = true;
 				else if (item == "shuffle_rooms")
 					_shuffle_rooms = true;
+				else if (item == "shuffle_bgm")
+					_shuffle_bgm = true;
 				else if (item == "shuffle_upgrades")
 					_shuffle_upgrades = true;
 				else if (item == "shuffle_enemies")

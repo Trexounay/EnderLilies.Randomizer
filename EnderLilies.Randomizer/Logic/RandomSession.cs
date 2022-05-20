@@ -219,6 +219,8 @@ namespace EnderLilies.Randomizer
                     writer.WriteLine("SETTINGS:shuffle_slots");
                 if (_settings.ShuffleRooms)
                     writer.WriteLine("SETTINGS:shuffle_rooms");
+                if (_settings.ShuffleBGM)
+                    writer.WriteLine("SETTINGS:shuffle_bgm");
                 if (_settings.ShuffleEnemies)
                     writer.WriteLine("SETTINGS:shuffle_enemies");
                 if (_settings.NGPlus)

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
-	<update version="2.1.7">
+	<update version="2.1.8">
 		<files>
 			<file path="Components/EnderLilies.Randomizer.json" status="changed"/>
 			<file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
@@ -8,6 +8,17 @@
 		</files>
 		<changelog>
 			<change>/!\ Make sure you close ENDER LILIES before updating /!\</change>
+			<change>Added a background music randomize option</change>
+			<change>More logic updates</change>
+		</changelog>
+	</update>
+	<update version="2.1.7">
+		<files>
+			<file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+			<file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
+			<file path="Components/EnderLilies.Game.dll" status="changed"/>
+		</files>
+		<changelog>
 			<change>Logic update</change>
 			<change>Added a string setting alongside the seed number to share your settings</change>
 			<change>Few UI adjustment to accommodate for different windows fonts</change>

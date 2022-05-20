@@ -6,7 +6,8 @@
     "Lab3": "Swamp_10_GAMEPLAY.BP_Interactable_Item_Tip3",
     "Lab4": "Swamp_12_GAMEPLAY.BP_Interactable_Item_Tip3",
     "BastionGates": "Fort_03_GAMEPLAY.BP_Interactable_Item_Tip3",
-    "AnkletRoom": "Forest_17_GAMEPLAY.BP_Interactable_Item_Tip4",
+    "AnkletRoom": "Forest_17_Map.BP_Interactable_Item_Tip5",
+    "Aqueduct": "Oubliette_02_GAMEPLAY.BP_Interactable_Item_Tip3",
 
     "Gerrod": "Village_10_GAMEPLAY.BP_e5050_Giant",
     "Silva": "Cave_23_GAMEPLAY.BP_e5021_OlderSister",
@@ -151,7 +152,7 @@
     {
       "from": "Faden",
       "to": "Abyss_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "unlock + ((claw + 2LEDGE | LEDGE + HORIZONTAL) | (silva + djump + dodge + ulv))",
+      "requires": "unlock + (claw + 2LEDGE | LEDGE + HORIZONTAL)",
       "twoways": true
     },
     {
@@ -205,7 +206,13 @@
     {
       "from": "Gerrod",
       "to": "Castle_01_GAMEPLAY.BP_e2082_Dog",
-      "requires": "claw | FULLSILVA + hook + swim",
+      "requires": "claw",
+      "twoways": true
+    },
+    {
+      "from": "Sentinel",
+      "to": "Castle_01_GAMEPLAY.BP_e2082_Dog",
+      "requires": "hook",
       "twoways": true
     },
     {
@@ -253,7 +260,7 @@
     {
       "from": "Dog",
       "to": "Castle_03_GAMEPLAY.BP_SCR_LV1M_2001_2",
-      "requires": "hook | LEDGE + HORIZONTAL",
+      "requires": "hook | claw + (LEDGE | HORIZONTAL) | LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
@@ -373,7 +380,7 @@
     {
       "from": "Dog",
       "to": "Castle_14_GAMEPLAY.BP_SCR_LV2LL_0000_2",
-      "requires": "claw + (3LEDGE | dodge + silva + (champion | djump) | sinner + 2LEDGE | silva + 2HORIZONTAL)",
+      "requires": "claw + (3LEDGE | FULLSILVA | sinner + 2LEDGE | silva + 2HORIZONTAL)",
       "twoways": true
     },
     {
@@ -522,14 +529,26 @@
     },
     {
       "from": "Silva",
+      "to": "Cave_01_GAMEPLAY.BP_Interactable_Passive_Parry_2",
+      "requires": "claw",
+      "twoways": true
+    },
+    {
+      "from": "Silva",
       "to": "Cave_01_GAMEPLAY.BP_SCR_LV2LL_0000_2",
-      "requires": "claw + FULLSILVA + (sinner | dash | champion)",
+      "requires": "claw + (FULLSILVA + dash | 3LEDGE + (HORIZONTAL | dash) | 2LEDGE + 2HORIZONTAL)",
+      "twoways": true
+    },
+    {
+      "from": "Gerrod",
+      "to": "Cave_01_GAMEPLAY.BP_SCR_LV2LL_0000_2",
+      "requires": "swim + slam + 3LEDGE + 2HORIZONTAL",
       "twoways": true
     },
     {
       "from": "Silva",
       "to": "Cave_02_GAMEPLAY.BP_SCR_LV1M_2160_1",
-      "requires": "hook",
+      "requires": "hook | claw + (HORIZONTAL | djump | champ)",
       "twoways": true
     },
     {
@@ -601,19 +620,19 @@
     {
       "from": "Silva",
       "to": "Cave_09_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
-      "requires": "",
-      "twoways": true
-    },
-    {
-      "from": "Silva",
-      "to": "Cave_09_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
       "requires": "claw | LEDGE",
       "twoways": true
     },
     {
       "from": "Silva",
+      "to": "Cave_09_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
+      "requires": "",
+      "twoways": true
+    },
+    {
+      "from": "Silva",
       "to": "Cave_10_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
-      "requires": "hook",
+      "requires": "hook | claw | 2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
@@ -631,7 +650,7 @@
     {
       "from": "Silva",
       "to": "Cave_11_GAMEPLAY.BP_SCR_LV1M_2161_2",
-      "requires": "LEDGE",
+      "requires": "LEDGE | hook ",
       "twoways": true
     },
     {
@@ -691,7 +710,7 @@
     {
       "from": "Silva",
       "to": "Cave_15_GAMEPLAY.BP_SCR_LV1S_2020_2",
-      "requires": "LEDGE | hook",
+      "requires": "",
       "twoways": true
     },
     {
@@ -703,7 +722,7 @@
     {
       "from": "Silva",
       "to": "Cave_16_GAMEPLAY.BP_SCR_LV1L_2091_5",
-      "requires": "hook",
+      "requires": "hook | claw + (2LEDGE | LEDGE + HORIZONTAL)",
       "twoways": true
     },
     {
@@ -715,7 +734,7 @@
     {
       "from": "Silva",
       "to": "Cave_18_GAMEPLAY.BP_Interactable_Passive_healpowerup_2",
-      "requires": "hook | swim",
+      "requires": "hook | claw + LEDGE | 2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
@@ -757,7 +776,7 @@
     {
       "from": "Archer",
       "to": "Cave_21_GAMEPLAY.BP_Interactable_Passive_healcountup_2",
-      "requires": "claw",
+      "requires": "claw | 2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
@@ -931,7 +950,7 @@
     {
       "from": "Youth",
       "to": "Forest_04_GAMEPLAY.BP_Interactable_Passive_dmgup_swimming_2",
-      "requires": "LEDGE",
+      "requires": "LEDGE | claw + HORIZONTAL",
       "twoways": true
     },
     {
@@ -1129,7 +1148,7 @@
     {
       "from": "Youth",
       "to": "Forest_17_Map.BP_Interactable_Item_Tip5",
-      "requires": "hook | LEDGE + claw | silva + djump | sinner + (djump | champion) | 2HORIZONTAL + LEDGE | 2LEDGE + HORIZONTAL",
+      "requires": "hook | claw + (djump | champion) | silva + djump | sinner + (djump | champion) | 2HORIZONTAL + LEDGE | 2LEDGE + HORIZONTAL",
       "twoways": true
     },
     {
@@ -1409,243 +1428,243 @@
       "twoways": true
     },
     {
-      "from": "Gerrod",
+      "from": "Aqueduct",
       "to": "Oubliette_01_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_5",
-      "requires": "swim + (HORIZONTAL | 2LEDGE | hook)",
+      "requires": "",
       "twoways": true
     },
     {
-      "from": "Gerrod",
+      "from": "Aqueduct",
       "to": "Oubliette_01_GAMEPLAY.BP_SCR_LV1S_2010_3",
-      "requires": "swim + (HORIZONTAL | 2LEDGE | hook)",
+      "requires": "",
       "twoways": true
     },
     {
-      "from": "Gerrod",
+      "from": "Youth",
       "to": "Oubliette_02_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "swim + (HORIZONTAL | 2LEDGE | hook)",
+      "requires": "swim + (dodge + (LEDGE | dash) | 2LEDGE | hook | sinner | djump + dash)",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_03_GAMEPLAY.BP_SCR_LV1M_2050_2",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_03_GAMEPLAY.BP_SCR_LV1S_2081_2",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_03_GEO.BP_SCR_LV1LL_0000_2",
       "requires": "CHARGE",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_04_GAMEPLAY.BP_SCR_LV1S_2020_2",
       "requires": "FULLSILVA | hook",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_04_GAMEPLAY.BP_SCR_LV2S_2010_3",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_05_1_GAMEPLAY.BP_SCR_LV2S_2021_2",
-      "requires": "",
+      "requires": "LEDGE",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_05_2_GAMEPLAY.BP_SCR_LV1S_2010_3",
-      "requires": "claw + hook",
+      "requires": "LEDGE + claw + hook",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_05_3_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_05_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_2",
-      "requires": "claw + hook",
+      "requires": "LEDGE + claw + hook",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_05_GAMEPLAY.BP_SCR_LV1L_2220_3",
-      "requires": "CHARGE",
+      "requires": "LEDGE + CHARGE",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_05_GAMEPLAY.BP_SCR_LV1S_2021_2",
-      "requires": "claw + hook",
+      "requires": "LEDGE + claw + hook",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_06_1_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "",
+      "requires": "LEDGE | hook",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_06_2_GAMEPLAY.BP_Interactable_Passive_dmgup_maxHP_2",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_06_3_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2",
-      "requires": "hook | FULLSILVA",
+      "requires": "hook + (LEDGE | HORIZONTAL) | FULLSILVA",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_06_4_GAMEPLAY.BP_Interactable_Item_FinalPassivePart_2",
       "requires": "unlock + ( hook | FULLSILVA + claw)",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_06_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_06_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2",
       "requires": "hook",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_06_GAMEPLAY.BP_SCR_LV1S_2021_2",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_07_1_GAMEPLAY.BP_Interactable_Item_Tip3",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Hoenir",
+      "from": "Aqueduct",
       "to": "Oubliette_07_2_GAMEPLAY.BP_e2072_Mimic",
-      "requires": "",
+      "requires": "LEDGE",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_08_GAMEPLAY.BP_SCR_LV2M_2050_3",
       "requires": "slam",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_08_GAMEPLAY.BP_SCR_LV2S_2081_2",
       "requires": "hook",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_09_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
       "requires": "claw",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_09_GAMEPLAY.BP_Interactable_Item_MaxHPUp_5",
       "requires": "claw",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_09_GAMEPLAY.BP_SCR_LV1M_2050_2",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_10_GAMEPLAY.BP_Interactable_Item_Tip3",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_11_GAMEPLAY.BP_SCR_LV2S_2020_2",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Hoenir",
+      "from": "Aqueduct",
       "to": "Oubliette_12_GAMEPLAY.BP_e2182_Shadow",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_13_1_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
       "requires": " claw + (FULLSILVA | hook)",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_13_2_GAMEPLAY.BP_SCR_LV3S_5000_1",
       "requires": "slam",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_13_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2",
-      "requires": "claw | 2LEDGE | hook",
+      "requires": "claw + LEDGE | 2LEDGE | hook",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_13_GAMEPLAY.BP_Interactable_Item_Tip3",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_13_GAMEPLAY.BP_SCR_LV1M_2001_3",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Subject",
+      "from": "Aqueduct",
       "to": "Oubliette_13_GAMEPLAY.BP_SCR_LV1M_2180_2",
       "requires": "CHARGE",
       "twoways": true
     },
     {
-      "from": "Hoenir",
+      "from": "Aqueduct",
       "to": "Oubliette_14_GAMEPLAY.BP_Interactable_Item_Tip3",
       "requires": "",
       "twoways": true
     },
     {
-      "from": "Gerrod",
+      "from": "Aqueduct",
       "to": "Oubliette_15_GAMEPLAY.BP_e5060_Assassin",
-      "requires": "swim + (dodge + (LEDGE | dash)  | 2LEDGE | hook | sinner)",
+      "requires": "",
       "twoways": true
     },
     {
       "from": "Hoenir",
       "to": "Oubliette_16_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2",
-      "requires": "hook | silva + djump + (claw | champion | dodge)",
+      "requires": "hook + ((sinner + LEDGE) | 2HORIZONTAL | silva + (djump | dodge) | djump + (dodge | champion)) | silva + djump + (claw | champion | dodge)",
       "twoways": true
     },
     {
@@ -1717,13 +1736,13 @@
     {
       "from": "Lab2",
       "to": "Swamp_05_GAMEPLAY.BP_SCR_LV2M_2171_2",
-      "requires": "swim + mask",
+      "requires": "swim",
       "twoways": true
     },
     {
       "from": "Lab2",
       "to": "Swamp_05_GEO.BP_SCR_LV1M_2051_2",
-      "requires": "swim + mask",
+      "requires": "swim",
       "twoways": true
     },
     {
@@ -1753,7 +1772,7 @@
     {
       "from": "Lab2",
       "to": "Swamp_07_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2",
-      "requires": "claw + LEDGE + CHARGE + mask",
+      "requires": "claw + LEDGE + CHARGE",
       "twoways": true
     },
     {
@@ -2149,19 +2168,19 @@
     {
       "from": "Gerrod",
       "to": "Village_14_GAMEPLAY.BP_e2112_Ork",
-      "requires": "hook | LEDGE + sinner | dodge + silva | 2HORIZONTAL + plume | djump + (silva | champion)",
+      "requires": "hook | LEDGE + sinner | djump + (dodge | silva | champion) | dodge + (silva | champion + dash)",
       "twoways": true
     },
     {
       "from": "Elder",
       "to": "Village_14_GAMEPLAY.BP_SCR_LV1L_2111_2",
-      "requires": "slam + hook",
+      "requires": "slam + (hook | LEDGE + sinner | silva + (djump | dodge) champion + (dash | claw) + (silva | djump))",
       "twoways": true
     },
     {
       "from": "Elder",
       "to": "Village_14_GAMEPLAY.BP_SCR_LV2L_2110_3",
-      "requires": "slam + hook",
+      "requires": "slam + (hook | 3LEDGE | FULLSILVA | claw + LEDGE) ",
       "twoways": true
     },
     {

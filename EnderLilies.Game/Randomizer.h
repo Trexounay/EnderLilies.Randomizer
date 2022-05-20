@@ -48,6 +48,7 @@ private:
 	static std::unordered_map<std::string, CG::UClass*>	_bp_classes;
 	static std::unordered_map<std::string, CG::UFunction*>	_bp_funcs;
 	std::unordered_map<std::string, std::string> _data;
+	std::unordered_set<int> _musics;
 	CG::UWorld** _pworld;
 
 	bool _new_game = true;
@@ -64,6 +65,7 @@ private:
 	bool _shuffle_rooms = false;
 	bool _shuffle_upgrades = false;
 	bool _shuffle_enemies = false;
+	bool _shuffle_bgm = false;
 	bool _force_ancient_souls = false;
 	bool _minibosses_chapter = false;
 
@@ -82,6 +84,7 @@ private:
 	void RefreshAptitudes();
 	void ShuffleRelicSlots();
 	void ShuffleRooms();
+	void ShuffleMusic();
 	void ModifySpawnPoints();
 	void RemoveBreakable();
 	void ReadSeedFile(std::string path);
@@ -139,8 +142,7 @@ namespace CG
 			params.CallFunc_NotEqual_BoolBool_ReturnValue = CallFunc_NotEqual_BoolBool_ReturnValue;
 
 			auto flags = fn->FunctionFlags;
-
-			UObject::ProcessEvent(fn, &params);
+			this->ProcessEvent(fn, &params);
 			fn->FunctionFlags = flags;
 		}
 

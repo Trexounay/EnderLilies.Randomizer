@@ -105,6 +105,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.helpTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.shuffleBGM = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -210,11 +211,12 @@
             this.flowLayoutPanel2.Controls.Add(this.minibosses_chapter);
             this.flowLayoutPanel2.Controls.Add(this.shuffleRooms);
             this.flowLayoutPanel2.Controls.Add(this.shuffleEnemies);
+            this.flowLayoutPanel2.Controls.Add(this.shuffleBGM);
             this.flowLayoutPanel2.Controls.Add(this.uatserver);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(41, 165);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(201, 222);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(201, 244);
             this.flowLayoutPanel2.TabIndex = 49;
             // 
             // shuffleSlots
@@ -251,9 +253,9 @@
             this.dashProgressive.CheckState = System.Windows.Forms.CheckState.Checked;
             this.dashProgressive.Location = new System.Drawing.Point(3, 49);
             this.dashProgressive.Name = "dashProgressive";
-            this.dashProgressive.Size = new System.Drawing.Size(188, 17);
+            this.dashProgressive.Size = new System.Drawing.Size(193, 17);
             this.dashProgressive.TabIndex = 30;
-            this.dashProgressive.Text = "Dash always before piercing lance";
+            this.dashProgressive.Text = "Dash always before Piercing Lance";
             this.helpTooltip.SetToolTip(this.dashProgressive, "You will find Julius Dash before (faster horizontal movement) before \r\nJulius\' Pi" +
         "ercing Lance (breaking vertical walls).\r\nPiercing Lance doesn\'t do anything with" +
         "out Dash.\r\n");
@@ -264,9 +266,9 @@
             this.metaprogression.AutoSize = true;
             this.metaprogression.Location = new System.Drawing.Point(3, 72);
             this.metaprogression.Name = "metaprogression";
-            this.metaprogression.Size = new System.Drawing.Size(108, 17);
+            this.metaprogression.Size = new System.Drawing.Size(107, 17);
             this.metaprogression.TabIndex = 31;
-            this.metaprogression.Text = "Meta Progression";
+            this.metaprogression.Text = "Meta progression";
             this.helpTooltip.SetToolTip(this.metaprogression, "Items for progression will always be placed on newly accessible checks");
             this.metaprogression.UseVisualStyleBackColor = true;
             // 
@@ -320,7 +322,7 @@
             // uatserver
             // 
             this.uatserver.AutoSize = true;
-            this.uatserver.Location = new System.Drawing.Point(3, 187);
+            this.uatserver.Location = new System.Drawing.Point(3, 210);
             this.uatserver.Name = "uatserver";
             this.uatserver.Size = new System.Drawing.Size(149, 17);
             this.uatserver.TabIndex = 45;
@@ -1071,6 +1073,17 @@
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
             // 
+            // shuffleBGM
+            // 
+            this.shuffleBGM.AutoSize = true;
+            this.shuffleBGM.Location = new System.Drawing.Point(3, 187);
+            this.shuffleBGM.Name = "shuffleBGM";
+            this.shuffleBGM.Size = new System.Drawing.Size(169, 17);
+            this.shuffleBGM.TabIndex = 49;
+            this.shuffleBGM.Text = "Randomize background music";
+            this.helpTooltip.SetToolTip(this.shuffleBGM, "Each room will play a random song from the game");
+            this.shuffleBGM.UseVisualStyleBackColor = true;
+            // 
             // ComponentSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1184,5 +1197,6 @@
         private System.Windows.Forms.Button launchButton;
         private System.Windows.Forms.CheckBox checkBoxAll;
         private System.Windows.Forms.CheckBox checkBoxMainSpirits;
+        private System.Windows.Forms.CheckBox shuffleBGM;
     }
 }
