@@ -27,10 +27,6 @@ void Randomizer::FindNames()
 	int32_t nextFNameComparisonId = -1;
 	CG::FNamePool pool = CG::FName::GetGlobalNames();
 
-	if (pool[BlueprintGeneratedClassIndex]->GetAnsiName() == "BlueprintGeneratedClass" &&
-		pool[FunctionIndex]->GetAnsiName() == "Function")
-		return;
-
 	BlueprintGeneratedClassIndex = -1;
 	const char* music = "/Game/FMOD/Events/Music/";
 	FunctionIndex = -1;
@@ -210,12 +206,11 @@ void Randomizer::NewMap()
 		RemoveBreakable();
 
 #ifdef _DEBUG
-	/*
 	std::fstream file("dataout.txt", std::ios::out);
 
 	for (const auto& elem : _data) {
-		file << elem.first << "\t" << elem.second << "\n";
-	}*/
+		;
+	}
 #endif
 }
 
@@ -471,7 +466,19 @@ void Randomizer::ShuffleMusic()
 		return;
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UDataTable* table = gm->GameMapTable;
+	std::unordered_set<int> room_bgm;
+	for (int i = table->Data.Num(); i > 0;)
+	{
+		i--;
+		CG::FGameMapData* map = (CG::FGameMapData*)table->Data[i].ptr;
+		if (map->BGMEvent.ObjectID.AssetPathName.ComparisonIndex != 0)
+			room_bgm.insert(map->BGMEvent.ObjectID.AssetPathName.ComparisonIndex);
+	}
 	std::vector<int> musics(_musics.begin(), _musics.end());
+	for (auto e : room_bgm)
+	{
+		musics.push_back(e);
+	}
 	for (int i = table->Data.Num(); i > 0;)
 	{
 		i--;
