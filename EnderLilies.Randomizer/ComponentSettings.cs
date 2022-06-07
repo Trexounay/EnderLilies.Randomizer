@@ -55,7 +55,6 @@ namespace EnderLilies.Randomizer
             }
         }
 
-
         bool _shuffleSpirits = true;
         public bool ShuffleSpirits
         {
@@ -106,6 +105,24 @@ namespace EnderLilies.Randomizer
                 }
             }
         }
+
+        bool _startingRoom = false;
+        public bool StartingRoom
+        {
+            get
+            {
+                return _startingRoom;
+            }
+            set
+            {
+                if (_startingRoom != value)
+                {
+                    _startingRoom = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
 
         bool _shuffleTablets = true;
         public bool ShuffleTablets
@@ -463,9 +480,9 @@ namespace EnderLilies.Randomizer
             }
             set
             {
-                _skinOverride = Math.Max(0, Math.Min(12, value));
                 if (_skinOverride != value)
                 {
+                    _skinOverride = Math.Max(0, Math.Min(12, value));
                     string[] lilyLevel =
                         {
                     "Normal",
@@ -482,7 +499,7 @@ namespace EnderLilies.Randomizer
                     "Blighted 10",
                     "Fully Blighted",
                 };
-                    skinLevelText.Text = "Lilly: " + lilyLevel[value];
+                    skinLevelText.Text = "Lily: " + lilyLevel[value];
                     NotifyPropertyChanged();
                 }
             }
@@ -557,7 +574,7 @@ namespace EnderLilies.Randomizer
                 {
                     stringSettings = new StringSettings();
                     stringSettings.Push(new object[] {
-                                  ShuffleRooms, NGPlus, MinibossesChapter,
+                                  StartingRoom, ShuffleRooms, NGPlus, MinibossesChapter,
                                   MetaProgression, ShuffleEnemies,
                                   StartChapter, MaxChapter, StartingSpirits,
                                   StartWeaponUsesAncientSouls, ShuffleWeaponUpgrades,
@@ -565,7 +582,7 @@ namespace EnderLilies.Randomizer
                                   ShuffleSlots, ShuffleTablets, ShuffleWishes,
                                   ShuffleAmulets, ShuffleBlights, ShuffleChains,
                                   ShuffleFindings, ShuffleRelics, ShuffleSpirits},
-                           new int[]    { 1, 1, 1,
+                           new int[]    {1, 1, 1, 1,
                                   1, 1,
                                   10, 10, (1 << 26)-1,
                                   1, 1,
@@ -609,6 +626,7 @@ namespace EnderLilies.Randomizer
                         MinibossesChapter = stringSettings.PullBool();
                         NGPlus = stringSettings.PullBool();
                         ShuffleRooms = stringSettings.PullBool();
+                        StartingRoom = stringSettings.PullBool();
 
                         this.stringSettings = stringSettings;
                         _internalInteraction = false;
@@ -633,6 +651,7 @@ namespace EnderLilies.Randomizer
             this.shuffleFindings.DataBindings.Add("Checked", this, "ShuffleFindings", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleRelics.DataBindings.Add("Checked", this, "ShuffleRelics", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleEnemies.DataBindings.Add("Checked", this, "ShuffleEnemies", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.startingRoom.DataBindings.Add("Checked", this, "StartingRoom", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.shuffleSpirits.DataBindings.Add("Checked", this, "ShuffleSpirits", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleTablets.DataBindings.Add("Checked", this, "ShuffleTablets", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleWishes.DataBindings.Add("Checked", this, "ShuffleWishes", false, DataSourceUpdateMode.OnPropertyChanged, true);
@@ -696,6 +715,7 @@ namespace EnderLilies.Randomizer
             ShuffleFindings = SettingsHelper.ParseBool(element["ShuffleFindings"], true);
             ShuffleRelics = SettingsHelper.ParseBool(element["ShuffleRelics"], true);
             ShuffleEnemies = SettingsHelper.ParseBool(element["ShuffleEnemies"], false);
+            StartingRoom = SettingsHelper.ParseBool(element["StartingRoom"], false);
             ShuffleSpirits = SettingsHelper.ParseBool(element["ShuffleSpirits"], true);
             ShuffleTablets = SettingsHelper.ParseBool(element["ShuffleTablets"], true);
             ShuffleWishes = SettingsHelper.ParseBool(element["ShuffleWishes"], true);
@@ -726,6 +746,7 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleFindings", ShuffleFindings));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleRelics", ShuffleRelics));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleEnemies", ShuffleEnemies));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "StartingRoom", StartingRoom));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleSpirits", ShuffleSpirits));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleTablets", ShuffleTablets));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleWishes", ShuffleWishes));
@@ -966,5 +987,6 @@ namespace EnderLilies.Randomizer
             else
                 this.StartingSpirits &= ~mask;
         }
+
     }
 }

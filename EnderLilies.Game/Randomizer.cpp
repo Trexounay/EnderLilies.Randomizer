@@ -9,10 +9,9 @@ std::unordered_map<std::string, CG::UClass*>	Randomizer::_bp_classes;
 std::unordered_map<std::string, CG::UFunction*>	Randomizer::_bp_funcs;
 
 
-Randomizer::Randomizer(std::string path, CG::UWorld** pworld)
+Randomizer::Randomizer(std::string path)
 {
 	_path = path;
-	_pworld = pworld;
 }
 
 
@@ -41,8 +40,8 @@ void Randomizer::FindNames()
 			FunctionIndex = nextFNameComparisonId;
 		else if (_shuffle_bgm && !strncmp(str.c_str(), music, strlen(music)) && str.find('.', strlen(music)) != std::string::npos)
 			_musics.insert(nextFNameComparisonId);
-		if (!_shuffle_bgm && BlueprintGeneratedClassIndex > 0 && FunctionIndex > 0)
-			return;
+		else if (str == "RestPoint")
+			RestPointTag = nextFNameComparisonId;
 	}
 }
 
@@ -145,13 +144,29 @@ void  Randomizer::EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* param
 }
 
 
+void Randomizer::ChangeStartingRoom(int room)
+{
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	CG::UDataTable* table = gm->GameMapTable;
+	CG::FDataTableRowHandle handle;
+	handle.DataTable = table;
+	handle.RowName = handle.DataTable->Data[room].Name;
+	auto pc = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController);
+	pc->DefaultGameMap = handle;
+	pc->DefaultPlayerStartTag = CG::FName(RestPointTag);
+}
+
 void Randomizer::NewGame()
 {
 	_new_game = false;
 	std::cout << "NEWGAME" << std::endl;
+
 	ReadSeedFile(_path + "/EnderLiliesSeed.txt");
 	FindNames();
 	RemoveHasItemCheck();
+
+	if (_starting_room > 0)
+		ChangeStartingRoom(_starting_room);
 	if (_shuffle_bgm)
 		ShuffleMusic();
 	if (_shuffle_rooms)
@@ -196,7 +211,8 @@ void Randomizer::NewMap()
 	}
 	if (_skin_override >= 0)
 	{
-		auto parameter = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController)->ParameterPlayerComponent;
+		auto pc = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController);
+		auto parameter = pc->ParameterPlayerComponent;
 		if (parameter != nullptr)
 			parameter->SetSkinLevelOverride(_skin_override, true);
 	}
@@ -204,6 +220,8 @@ void Randomizer::NewMap()
 
 	if (!_has_normal_weapon)
 		RemoveBreakable();
+
+
 
 #ifdef _DEBUG
 	std::fstream file("dataout.txt", std::ios::out);
@@ -231,24 +249,6 @@ void Randomizer::RemoveBreakable()
 	}
 }
 
-struct FActorSpawnParameters
-{
-public:
-	CG::FName Name;
-	CG::AActor* Template;
-	CG::AActor* Owner;
-	CG::APawn* Instigator;
-	CG::ULevel* OverrideLevel;
-	CG::Engine_ESpawnActorCollisionHandlingMethod SpawnCollisionHandlingOverride;
-	uint8_t bRemoteOwned : 1;
-	uint8_t bNoFail : 1;
-	uint8_t bDeferConstruction : 1;
-	uint8_t	bAllowDuringConstructionScript : 1;
-	uint8_t NameMode;
-	CG::EObjectFlags ObjectFlags;
-};
-
-
 void Randomizer::ModifySpawnPoints()
 {
 	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
@@ -262,7 +262,7 @@ void Randomizer::ModifySpawnPoints()
 		for (int i = 0; i < out.Num(); ++i)
 		{
 			CG::ABP_EnemySpawnPoint_Boss_C* spawn1 = (CG::ABP_EnemySpawnPoint_Boss_C*)out[i];
-			sound->StopBGM();
+			//sound->StopBGM();
 			spawn1->BGMEvent = (CG::UFMODEvent*)loader->CurrentGameMapData.BGMEvent.WeakPtr.Get();
 		}
 	}
@@ -286,19 +286,17 @@ void Randomizer::ModifySpawnPoints()
 				}
 				continue;
 			}
-			/*
+
+			/* double boss
 			CG::FRotator r = spawn1->K2_GetActorRotation();
 			CG::FTransform t = spawn1->GetTransform();
 			t.Translation.Y += 200;
-			uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
-			FActorSpawnParameters spawn_params;
-			((void(__fastcall*)(FActorSpawnParameters*)) (base + 0x2945840))(&spawn_params);
+			CG::FActorSpawnParameters spawn_params;
 			spawn_params.ObjectFlags = (CG::EObjectFlags)0x48;
 			spawn_params.OverrideLevel = (CG::ULevel*)spawn1->Outer;
 			spawn_params.Owner = spawn1;
 			spawn_params.SpawnCollisionHandlingOverride = CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AdjustIfPossibleButDontSpawnIfColliding;
-			auto a = (CG::APawn*)((CG::AActor * (__fastcall*)(CG::UWorld*, CG::UClass*, CG::FVector*, CG::FRotator*, FActorSpawnParameters*))(base + 0x25FE600))
-				(World(), spawn1->CharacterToSpawn, &t.Translation, &r, &spawn_params);
+			auto a = World()->SpawnActor<CG::APawn>(spawn1->CharacterToSpawn, &t.Translation, &r, spawn_params);
 			if (a != nullptr)
 			{
 				a->SetActorScale3D(CG::FVector(2, 2, 2));
@@ -363,6 +361,23 @@ void Randomizer::FindItems(const std::string& type_name)
 		if (type_name == "BP_Character_Boss_Base_C")
 		{
 			CG::ABP_Character_Boss_Base_C* boss = (CG::ABP_Character_Boss_Base_C*)out[i];
+			/* double boss
+			CG::ABP_EnemySpawnPoint_Boss_C* spawn = (CG::ABP_EnemySpawnPoint_Boss_C*)boss->SourceSpawnPoint;
+			auto c = boss->Controller;
+			if (out.Num() == 1 && c != nullptr && boss->IsActivated())
+			{
+				CG::FRotator r = boss->K2_GetActorRotation();
+				CG::FTransform t = boss->GetTransform();
+				t.Translation.Y += 200;
+				CG::FActorSpawnParameters spawn_params;
+				spawn_params.ObjectFlags = (CG::EObjectFlags)0x48;
+				spawn_params.OverrideLevel = (CG::ULevel*)spawn->Outer;
+				spawn_params.Owner = spawn;
+				spawn_params.SpawnCollisionHandlingOverride = CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AdjustIfPossibleButDontSpawnIfColliding;
+				auto a = World()->SpawnActor<CG::APawn>(boss->Class, &t.Translation, &r, spawn_params);
+				if (a != nullptr)
+					a->SpawnDefaultController();
+			}*/
 			ItemFound(out[i], &(boss)->Item);
 		}
 		else if (type_name == "BP_Interactable_Item_C")
@@ -466,6 +481,7 @@ void Randomizer::ShuffleMusic()
 		return;
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UDataTable* table = gm->GameMapTable;
+
 	std::unordered_set<int> room_bgm;
 	for (int i = table->Data.Num(); i > 0;)
 	{
@@ -476,9 +492,7 @@ void Randomizer::ShuffleMusic()
 	}
 	std::vector<int> musics(_musics.begin(), _musics.end());
 	for (auto e : room_bgm)
-	{
 		musics.push_back(e);
-	}
 	for (int i = table->Data.Num(); i > 0;)
 	{
 		i--;
@@ -525,6 +539,7 @@ void Randomizer::ReadSeedFile(std::string path)
 	_shuffle_enemies = false;
 	_shuffle_rooms = false;
 	_shuffle_bgm = false;
+	_starting_room = 0;
 	_cheat = false;
 	_has_normal_weapon = true;
 	_minibosses_chapter = false;
@@ -566,6 +581,8 @@ void Randomizer::ReadSeedFile(std::string path)
 					_force_ancient_souls = true;
 				else if (item == "minibosses_chapter")
 					_minibosses_chapter = true;
+				else if (item.find("starting_room") != std::string::npos)
+					_starting_room = atoi(item.substr(sizeof("starting_room"), item.length()).c_str());
 				else if (item.find("start_chapter") != std::string::npos)
 				{
 					int chapter = atoi(item.substr(sizeof("start_chapter"), item.length()).c_str());
@@ -693,9 +710,11 @@ void Randomizer::ModifySpirits()
 		{
 			data->AptitudeToUnlock = empty;
 			data->AptitudeToUnlockTutorial = empty;
-			//auto d = CG::FString(L"HELLO WORLD")
-			//CG::FText text = ksmt->STATIC_Conv_StringToText();
-			//data->Description = text;
+			/*auto d = CG::FString(L"HELLO WORLD");
+			CG::UFunction* fn = CG::UObject::FindObject<CG::UFunction>("Function Engine.KismetTextLibrary.Conv_StringToText");
+			(CG::FText, CG::)fn->Func()
+			CG::FText text = ksmt->STATIC_Conv_StringToText(d);
+			data->Description = text;*/
 		}
 		if (_aptitudes.find(data->SecondaryAptitudeToUnlock.RowName.ComparisonIndex) != _aptitudes.end())
 		{

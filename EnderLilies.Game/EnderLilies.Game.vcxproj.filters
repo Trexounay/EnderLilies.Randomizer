@@ -133,6 +133,9 @@
     <ClCompile Include="SDK\BP_EnemySpawnPoint_Boss_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\BP_Character_Boss_Base_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EnderLilies.Game.rc" />

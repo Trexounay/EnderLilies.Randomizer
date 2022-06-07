@@ -30,9 +30,9 @@ struct FTableRowProxy
 class Randomizer
 {
 public:
-	CG::UWorld* World() { return *_pworld; }
+	CG::UWorld* World() { return *(CG::UWorld::GWorld); }
 
-	Randomizer(std::string path, CG::UWorld** pworld);
+	Randomizer(std::string path);
 	~Randomizer();
 
 	bool	IsReady();
@@ -49,7 +49,6 @@ private:
 	static std::unordered_map<std::string, CG::UFunction*>	_bp_funcs;
 	std::unordered_map<std::string, std::string> _data;
 	std::unordered_set<int> _musics;
-	CG::UWorld** _pworld;
 
 	bool _new_game = true;
 	bool _new_map = true;
@@ -59,6 +58,7 @@ private:
 	int _starting_weapon = 0;
 	int _seed = -1;
 	int _skin_override = -1;
+	int _starting_room = 0;
 	bool _has_normal_weapon = true;
 	bool _shuffle_relics = false;
 	bool _cheat = false;
@@ -69,11 +69,12 @@ private:
 	bool _force_ancient_souls = false;
 	bool _minibosses_chapter = false;
 
+	int32_t RestPointTag;
 	int32_t BlueprintGeneratedClassIndex = 348039;
 	int32_t FunctionIndex = 395;
 
 	std::string _path;
-
+	
 
 	std::unordered_set<int> _aptitudes;
 	std::unordered_map<std::string, FTableRowProxy> _replacements;
@@ -94,6 +95,7 @@ private:
 	void FindNames();
 	void NewGame();
 	void NewMap();
+	void ChangeStartingRoom(int room);
 	void GameDataReady();
 	bool FindTableRow(const std::string &item, FTableRowProxy& result);
 	bool PlayerHasItem(const FTableRowProxy proxy);

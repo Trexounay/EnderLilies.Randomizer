@@ -45,6 +45,7 @@
             this.minibosses_chapter = new System.Windows.Forms.CheckBox();
             this.shuffleRooms = new System.Windows.Forms.CheckBox();
             this.shuffleEnemies = new System.Windows.Forms.CheckBox();
+            this.shuffleBGM = new System.Windows.Forms.CheckBox();
             this.uatserver = new System.Windows.Forms.CheckBox();
             this.maxChapter = new System.Windows.Forms.TrackBar();
             this.chapterText = new System.Windows.Forms.Label();
@@ -105,7 +106,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.helpTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.shuffleBGM = new System.Windows.Forms.CheckBox();
+            this.startingRoom = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -209,14 +210,15 @@
             this.flowLayoutPanel2.Controls.Add(this.metaprogression);
             this.flowLayoutPanel2.Controls.Add(this.ngPlusSetting);
             this.flowLayoutPanel2.Controls.Add(this.minibosses_chapter);
+            this.flowLayoutPanel2.Controls.Add(this.shuffleBGM);
             this.flowLayoutPanel2.Controls.Add(this.shuffleRooms);
             this.flowLayoutPanel2.Controls.Add(this.shuffleEnemies);
-            this.flowLayoutPanel2.Controls.Add(this.shuffleBGM);
+            this.flowLayoutPanel2.Controls.Add(this.startingRoom);
             this.flowLayoutPanel2.Controls.Add(this.uatserver);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(41, 165);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(41, 141);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(201, 244);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(201, 284);
             this.flowLayoutPanel2.TabIndex = 49;
             // 
             // shuffleSlots
@@ -299,7 +301,7 @@
             // shuffleRooms
             // 
             this.shuffleRooms.AutoSize = true;
-            this.shuffleRooms.Location = new System.Drawing.Point(3, 141);
+            this.shuffleRooms.Location = new System.Drawing.Point(3, 164);
             this.shuffleRooms.Name = "shuffleRooms";
             this.shuffleRooms.Size = new System.Drawing.Size(158, 17);
             this.shuffleRooms.TabIndex = 46;
@@ -311,7 +313,7 @@
             // shuffleEnemies
             // 
             this.shuffleEnemies.AutoSize = true;
-            this.shuffleEnemies.Location = new System.Drawing.Point(3, 164);
+            this.shuffleEnemies.Location = new System.Drawing.Point(3, 187);
             this.shuffleEnemies.Name = "shuffleEnemies";
             this.shuffleEnemies.Size = new System.Drawing.Size(169, 17);
             this.shuffleEnemies.TabIndex = 48;
@@ -319,10 +321,21 @@
             this.helpTooltip.SetToolTip(this.shuffleEnemies, "Enemies location will be shuffled in each room\r\n");
             this.shuffleEnemies.UseVisualStyleBackColor = true;
             // 
+            // shuffleBGM
+            // 
+            this.shuffleBGM.AutoSize = true;
+            this.shuffleBGM.Location = new System.Drawing.Point(3, 141);
+            this.shuffleBGM.Name = "shuffleBGM";
+            this.shuffleBGM.Size = new System.Drawing.Size(169, 17);
+            this.shuffleBGM.TabIndex = 49;
+            this.shuffleBGM.Text = "Randomize background music";
+            this.helpTooltip.SetToolTip(this.shuffleBGM, "Each room will play a random song from the game");
+            this.shuffleBGM.UseVisualStyleBackColor = true;
+            // 
             // uatserver
             // 
             this.uatserver.AutoSize = true;
-            this.uatserver.Location = new System.Drawing.Point(3, 210);
+            this.uatserver.Location = new System.Drawing.Point(3, 233);
             this.uatserver.Name = "uatserver";
             this.uatserver.Size = new System.Drawing.Size(149, 17);
             this.uatserver.TabIndex = 45;
@@ -1025,9 +1038,9 @@
             this.skinLevelText.AutoSize = true;
             this.skinLevelText.Location = new System.Drawing.Point(296, 11);
             this.skinLevelText.Name = "skinLevelText";
-            this.skinLevelText.Size = new System.Drawing.Size(63, 13);
+            this.skinLevelText.Size = new System.Drawing.Size(61, 13);
             this.skinLevelText.TabIndex = 43;
-            this.skinLevelText.Text = "Lilly: Normal";
+            this.skinLevelText.Text = "Lily: Normal";
             // 
             // skinLevel
             // 
@@ -1073,16 +1086,17 @@
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
             // 
-            // shuffleBGM
+            // startingRoom
             // 
-            this.shuffleBGM.AutoSize = true;
-            this.shuffleBGM.Location = new System.Drawing.Point(3, 187);
-            this.shuffleBGM.Name = "shuffleBGM";
-            this.shuffleBGM.Size = new System.Drawing.Size(169, 17);
-            this.shuffleBGM.TabIndex = 49;
-            this.shuffleBGM.Text = "Randomize background music";
-            this.helpTooltip.SetToolTip(this.shuffleBGM, "Each room will play a random song from the game");
-            this.shuffleBGM.UseVisualStyleBackColor = true;
+            this.startingRoom.AutoSize = true;
+            this.startingRoom.Location = new System.Drawing.Point(3, 210);
+            this.startingRoom.Name = "startingRoom";
+            this.startingRoom.Size = new System.Drawing.Size(182, 17);
+            this.startingRoom.TabIndex = 50;
+            this.startingRoom.Text = "Start at crossroads (experimental)";
+            this.helpTooltip.SetToolTip(this.startingRoom, "Use this option to enable Auto Tracking in Pop Tracker\r\nIf everything is working " +
+        "Pop Tracker should show a green AT icon at the top");
+            this.startingRoom.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 
@@ -1198,5 +1212,6 @@
         private System.Windows.Forms.CheckBox checkBoxAll;
         private System.Windows.Forms.CheckBox checkBoxMainSpirits;
         private System.Windows.Forms.CheckBox shuffleBGM;
+        private System.Windows.Forms.CheckBox startingRoom;
     }
 }

@@ -32,7 +32,8 @@ namespace CG
 extern MemoryManager* Mem;
 #else
 bool InitSdk(const std::string& moduleName, uintptr_t gObjectsOffset, uintptr_t gNamesOffset);
-bool InitSdk();
+bool InitSdk115();
+bool InitSdk116();
 #endif
 
 template<typename Fn>

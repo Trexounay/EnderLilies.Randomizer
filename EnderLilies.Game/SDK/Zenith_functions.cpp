@@ -17161,7 +17161,7 @@ void AZenithPlayerController::MarkTutorialAsSeen(const struct FName& TutorialID)
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	this->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 }

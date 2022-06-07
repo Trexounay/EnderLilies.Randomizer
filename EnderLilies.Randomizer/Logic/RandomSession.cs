@@ -125,7 +125,10 @@ namespace EnderLilies.Randomizer
             var startingWeapons = startingSpirits.Where((s, i) => _settings.HasSpirit(i)).ToArray();
             if (startingWeapons.Length > 0)
                 weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Length)];
-            result = GameGraph.Solve("Start", weapon, _settings.MetaProgression);
+            string startingRoom = "Start";
+            if (_settings.StartingRoom)
+                startingRoom = "Youth";
+            result = GameGraph.Solve(startingRoom, weapon, _settings.MetaProgression);
             if (result == null)
                 return;
             items = new List<string>(GameGraph.locations.Values);
@@ -229,6 +232,8 @@ namespace EnderLilies.Randomizer
                     writer.WriteLine("SETTINGS:force_ancient_souls");
                 if (_settings.MinibossesChapter)
                     writer.WriteLine("SETTINGS:minibosses_chapter");
+                if (_settings.StartingRoom)
+                    writer.WriteLine("SETTINGS:starting_room=12");
                 if (_settings.ShuffleWeaponUpgrades)
                     writer.WriteLine("SETTINGS:shuffle_upgrades");
                 if (_settings.MaxChapter < 9)

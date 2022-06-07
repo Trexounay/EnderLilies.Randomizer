@@ -380,7 +380,7 @@
     {
       "from": "Dog",
       "to": "Castle_14_GAMEPLAY.BP_SCR_LV2LL_0000_2",
-      "requires": "claw + (3LEDGE | FULLSILVA | sinner + 2LEDGE | silva + 2HORIZONTAL)",
+      "requires": "claw + (3LEDGE | FULLSILVA | sinner + 2LEDGE | silva + 2HORIZONTAL | Dodge + Dash + 2LEDGE)",
       "twoways": true
     },
     {
@@ -398,7 +398,7 @@
     {
       "from": "Julius",
       "to": "Castle_16_GAMEPLAY.BP_e2032_BigKnight",
-      "requires": "claw + (hook | FULLSILVA + (sinner | champion))",
+      "requires": "claw + (hook | FULLSILVA + sinner | 3LEDGE)",
       "twoways": true
     },
     {
@@ -548,7 +548,7 @@
     {
       "from": "Silva",
       "to": "Cave_02_GAMEPLAY.BP_SCR_LV1M_2160_1",
-      "requires": "hook | claw + (HORIZONTAL | djump | champ)",
+      "requires": "hook | claw + (HORIZONTAL | djump | champ + dash | silva + dash)",
       "twoways": true
     },
     {
@@ -1112,19 +1112,19 @@
     {
       "from": "Youth",
       "to": "Forest_16_GAMEPLAY.BP_Interactable_Item_Tip3",
-      "requires": "LEDGE + HORIZONTAL + claw + unlock",
+      "requires": "claw + unlock + (LEDGE + HORIZONTAL | 2LEDGE)",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Forest_16_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
-      "requires": "LEDGE + HORIZONTAL + claw + unlock",
+      "requires": "claw + unlock + (LEDGE + HORIZONTAL | 2LEDGE)",
       "twoways": true
     },
     {
       "from": "Youth",
       "to": "Forest_16_GAMEPLAY.BP_SCR_LV1LL_0000_2",
-      "requires": "LEDGE + HORIZONTAL + claw + unlock",
+      "requires": "claw + unlock + (LEDGE + HORIZONTAL | 2LEDGE)",
       "twoways": true
     },
     {
@@ -1160,7 +1160,7 @@
     {
       "from": "Gerrod",
       "to": "Fort_01_GAMEPLAY.BP_e2192_Gargoyle",
-      "requires": "swim + (claw + 2LEDGE + HORIZONTAL | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL))",
+      "requires": "swim + (claw + (sinner + (djump | champion) | dodge + silva | 2LEDGE + HORIZONTAL) | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL))",
       "twoways": true
     },
     {
@@ -1196,7 +1196,7 @@
     {
       "from": "BastionGates",
       "to": "Fort_04_GAMEPLAY.BP_SCR_LV1L_2230_8",
-      "requires": "CHARGE + LEDGE",
+      "requires": "CHARGE + (LEDGE | claw)",
       "twoways": true
     },
     {
@@ -1208,7 +1208,7 @@
     {
       "from": "BastionGates",
       "to": "Fort_05_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
-      "requires": "LEDGE + hook",
+      "requires": "LEDGE + (hook | claw)",
       "twoways": true
     },
     {
@@ -1380,9 +1380,9 @@
       "twoways": true
     },
     {
-      "from": "BastionGates",
+      "from": "Ulv",
       "to": "Fort_18_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_Treasure_2",
-      "requires": "LEDGE + claw + HORIZONTAL",
+      "requires": "claw + (sinner | dodge + LEDGE | 2LEDGE | djump + dash)",
       "twoways": true
     },
     {
@@ -2186,13 +2186,19 @@
     {
       "from": "Gerrod",
       "to": "Village_15_GAMEPLAY.BP_SCR_LV1LL_0000_2",
-      "requires": "swim + (claw + 2LEDGE + HORIZONTAL | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL))",
+      "requires": "swim + (claw + (sinner + (djump | champion) | dodge + silva | 2LEDGE + HORIZONTAL) | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL))",
+      "twoways": true
+    },
+    {
+      "from": "Sentinel",
+      "to": "Village_15_GAMEPLAY.BP_SCR_LV1LL_0000_2",
+      "requires": "swim + claw + djump + silva",
       "twoways": true
     },
     {
       "from": "Gerrod",
       "to": "Village_15_GAMEPLAY.BP_SCR_LV1M_2050_3",
-      "requires": "swim + (claw + 2LEDGE + HORIZONTAL | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL))",
+      "requires": "swim + (claw + (sinner + (djump | champion) | dodge + silva | 2LEDGE + HORIZONTAL) | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL))",
       "twoways": true
     },
     {

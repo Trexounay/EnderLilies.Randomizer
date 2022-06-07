@@ -22860,11 +22860,39 @@ public:
 
 };
 
+struct FActorSpawnParameters
+{
+public:
+	CG::FName Name;
+	CG::AActor* Template;
+	CG::AActor* Owner;
+	CG::APawn* Instigator;
+	CG::ULevel* OverrideLevel;
+	CG::Engine_ESpawnActorCollisionHandlingMethod SpawnCollisionHandlingOverride;
+	uint8_t bRemoteOwned : 1;
+	uint8_t bNoFail : 1;
+	uint8_t bDeferConstruction : 1;
+	uint8_t	bAllowDuringConstructionScript : 1;
+	uint8_t NameMode;
+	char pad;
+
+	/* Flags used to describe the spawned actor/object instance. */
+	CG::EObjectFlags ObjectFlags;
+
+
+	FActorSpawnParameters()
+	{
+		uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
+		((void(__fastcall*)(FActorSpawnParameters*)) (base + 0x2945840))(this);
+	}
+};
+
 // Class Engine.World
 // 0x0760 (FullSize[0x0788] - InheritedSize[0x0028])
 class UWorld : public UObject
 {
 public:
+	static class UWorld**							   GWorld;
 	unsigned char                                      UnknownData_7XMO[0x8];                                     // 0x0028(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 	class ULevel*                                      PersistentLevel;                                           // 0x0030(0x0008) (ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	class UNetDriver*                                  NetDriver;                                                 // 0x0038(0x0008) (ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
@@ -22914,6 +22942,19 @@ public:
 	{
 		static UClass* ptr = UObject::FindClass("Class Engine.World");
 		return ptr;
+	}
+
+	template<class T>
+	T* SpawnActor(UClass* InClass, FVector const* Location, FRotator const* Rotation, const FActorSpawnParameters& SpawnParameter)
+	{
+		return reinterpret_cast<T*>(this->SpawnActor(InClass, Location, Rotation, SpawnParameter));
+	}
+
+	AActor* SpawnActor(UClass* InClass, FVector const* Location, FRotator const* Rotation, const FActorSpawnParameters& SpawnParameter)
+	{
+		uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
+		auto ptr = ((CG::AActor * (__fastcall*)(CG::UWorld*, CG::UClass*, const CG::FVector*, const CG::FRotator*, const CG::FActorSpawnParameters*))(base + 0x25FE600));
+		return ptr(this, InClass, Location, Rotation, &SpawnParameter);
 	}
 
 

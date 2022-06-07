@@ -212,6 +212,7 @@
     </ClCompile>
     <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="SDK\BasicHelper.cpp" />
+    <ClCompile Include="SDK\BP_Character_Boss_Base_functions.cpp" />
     <ClCompile Include="SDK\BP_EnemySpawnPoint_Boss_functions.cpp" />
     <ClCompile Include="SDK\BP_EnemySpawnPoint_functions.cpp" />
     <ClCompile Include="SDK\BP_Interactable_Event_functions.cpp" />
