@@ -610,7 +610,7 @@ namespace EnderLilies.Randomizer
             "Generic.i_SpiritCurrencyLv2_NG+_L",
             "Generic.i_SpiritCurrencyLv2_NG+_LL",
         };
-        static int GEngine = 0x4651CC0;
+        static int GEngine = 0x4651D00;
         static int GameViewport = 0x780;
         static int World = 0x78;
         static int GameMode = 0x118;
