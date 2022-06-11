@@ -2176,7 +2176,7 @@
     {
       "from": "Elder",
       "to": "Village_14_GAMEPLAY.BP_SCR_LV1L_2111_2",
-      "requires": "slam + (hook | LEDGE + sinner | silva + (djump | dodge) champion + (dash | claw) + (silva | djump))",
+      "requires": "slam + (hook | LEDGE + sinner | silva + (djump | dodge) | champion + (dash | claw) + (silva | djump))",
       "twoways": true
     },
     {

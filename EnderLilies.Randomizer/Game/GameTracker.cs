@@ -611,6 +611,8 @@ namespace EnderLilies.Randomizer
             "Generic.i_SpiritCurrencyLv2_NG+_LL",
         };
         static int GEngine = 0x4651D00;
+        static int GenericCrashData = 0x040EF540;
+
         static int GameViewport = 0x780;
         static int World = 0x78;
         static int GameMode = 0x118;
@@ -649,7 +651,7 @@ namespace EnderLilies.Randomizer
                 { "Game.DifficultyLevel", new DeepPointer(GEngine, GameViewport, World, GameMode, 0x390) },
             }));
             _inventories.Add(new TabletTracker(new DeepPointer(GEngine, GameInstance, LocalPlayers, 0x0, PlayerController, ParameterComponent, 0xF8),
-                                new DeepPointer(0x40EF4F0, 0x88, 0x0)));
+                                new DeepPointer(GenericCrashData, 0x88, 0x0)));
             foreach (var inv in _inventories)
                 inv.OnItemsModified += NewItemReceived;
         }
