@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
+	<update version="2.2.1">
+		<files>
+			<file path="Components/EnderLilies.Randomizer.json" status="changed"/>
+			<file path="Components/EnderLilies.Randomizer.dll" status="changed"/>
+			<file path="Components/EnderLilies.Game.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>Added support for version 1.1.6 of the game</change>
+			<change>Added an option to spawn at crossroad</change>
+		</changelog>
+	</update>
 	<update version="2.1.9">
 		<files>
 			<file path="Components/EnderLilies.Randomizer.json" status="changed"/>
