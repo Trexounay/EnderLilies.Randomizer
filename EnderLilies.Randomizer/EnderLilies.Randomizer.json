@@ -1442,7 +1442,7 @@
       "twoways": true
     },
     {
-      "from": "Youth",
+      "from": "DryadLake",
       "to": "Oubliette_02_GAMEPLAY.BP_Interactable_Item_Tip3",
       "requires": "swim + (dodge + (LEDGE | dash) | 2LEDGE | hook | sinner | djump + dash)",
       "twoways": true
