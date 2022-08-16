@@ -35,7 +35,7 @@ public:
 
 	void OnInteract(class AController* Controller)
 	{
-		static UFunction* fn = UObject::FindObject<UFunction>("Function BP_Interactable_WorldTravel.BP_Interactable_WorldTravel_C.OnInteract");
+		UFunction* fn = UObject::FindObject<UFunction>("Function BP_Interactable_WorldTravel.BP_Interactable_WorldTravel_C.OnInteract");
 
 		ABP_Interactable_WorldTravel_C_Params params;
 		params.Controller = Controller;
@@ -43,7 +43,7 @@ public:
 		auto flags = fn->FunctionFlags;
 		fn->FunctionFlags |= 0x00000400;
 
-		UObject::ProcessEvent(fn, &params);
+		this->ProcessEvent(fn, &params);
 		fn->FunctionFlags = flags;
 
 	}

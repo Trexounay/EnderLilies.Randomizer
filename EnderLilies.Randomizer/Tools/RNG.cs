@@ -38,5 +38,17 @@ namespace EnderLilies.Randomizer
             }
             return list[list.Count - 1];
         }
+        public static Dictionary<int, float> GetWeights(int[] weights)
+        {
+            Dictionary<int, float> ret = new Dictionary<int, float>();
+            float sum = 0;
+            for (int i = 0; i < weights.Length; ++i)
+                if (weights[i] > 0)
+                    sum += 1.0f / weights[i];
+            for (int i = 0; i < weights.Length; ++i)
+                if (weights[i] > 0)
+                    ret[i] = (1.0f / weights[i]) / sum;
+            return ret;
+        }
     }
 }

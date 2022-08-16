@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnderLilies.Randomizer.Logic;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -87,6 +88,8 @@ namespace EnderLilies.Randomizer
                 i = items.IndexOf("Generic.i_FinalPassivePart_Up");
             }
         }
+
+        (int, string) _startingRoom = (0, "Start");
         public void Generate(int seed, bool write = true)
         {
             GameGraph = GetGraph();
@@ -120,37 +123,77 @@ namespace EnderLilies.Randomizer
                 "aegis",
                 "fellwyrm",
             };
+            List<(int, string)> rooms = new List<(int, string)>()
+        {
+            ( 0, "Start" ),
+            ( 3, "Cellar" ),
+            ( 5, "CathedralCloister" ),
+            ( 9, "SaintsPassage" ),
+            ( 12, "Crossroads" ),
+            ( 19, "CollapsedShack" ),
+            ( 23, "BridgeHead" ),
+            ( 35, "RuinedCastleCellar" ),
+            ( 38, "GuestChamber" ),
+            ( 41, "MaelstromRemparts" ),
+            //( 48, "KingsChamber" ),
+            //( 51, "TowerAlcove" ),
+            ( 55, "BastionGates" ),
+            ( 61, "Courtyard" ),
+            ( 62, "SecondSpireChamber" ),
+            //( 68, "MonumentOfTheWind" ),
+            ( 72, "MourningHall" ),
+            ( 78, "DryadLake" ),
+            ( 83, "WitchsHermitage" ),
+            ( 87, "CovenHalls" ),
+            ( 91, "BottomOfTheWell" ),
+            ( 93, "Charnel" ),
+            ( 103, "Ossuary" ),
+            ( 106, "GreatHall" ),
+            ( 115, "Aqueduct" ),
+            ( 123, "Cells" ),
+            ( 132, "DarkChamber" ),
+            ( 138, "ExecutionGrounds" ),
+            ( 145, "Lab1" ),
+            ( 150, "Lab2" ),
+            //new MapItem(154, "Lab3"),
+            //new MapItem(156, "Lab4"),
+            //new MapItem(166, "BlightedHeart"),
+        };
 
-            string weapon = "umbral";
-            var startingWeapons = startingSpirits.Where((s, i) => _settings.HasSpirit(i)).ToArray();
-            if (startingWeapons.Length > 0)
-                weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Length)];
-            string startingRoom = "Start";
-            if (_settings.StartingRoom)
-                startingRoom = "Youth";
-            result = GameGraph.Solve(startingRoom, weapon, _settings.MetaProgression);
-            if (result == null)
-                return;
-            items = new List<string>(GameGraph.locations.Values);
-
-            items.AddRange(GameGraph.extra_items);
-            foreach (string v in result.Values)
-                items.Remove(v);
-            if (_settings.MetaProgression)
-                foreach (string v in GameGraph.keys)
-                    if (items.Contains(v))
-                        items.Remove(v);
-            var loc = new List<string>(GameGraph.locations.Keys);
-            items.Sort(new CompareItems());
-            loc.Shuffle();
-
-            if (_settings.ShuffleTablets)
-                ShuffleTablets(loc);
             Dictionary<string, string> progressItem = new Dictionary<string, string>()
             {
                 {"Aptitude.dash_attack", "Aptitude.dash,Aptitude.dash_attack"},
                 {"Aptitude.dash", "Aptitude.dash,Aptitude.dash_attack"},
             };
+
+            string weapon = "umbral";
+            var startingWeapons = startingSpirits.Where((s, i) => _settings.HasSpirit(i)).ToArray();
+            if (startingWeapons.Length > 0)
+                weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Length)];
+            _startingRoom = (0, "Start");
+            if (_settings.StartingRooms > 0)
+            {
+                var startingRooms = rooms.Where((s, i) => _settings.HasRoom(i)).ToArray();
+                _startingRoom = startingRooms[RNG.stream.Next(0, startingRooms.Length)];
+            }
+            result = GameGraph.Solve(_startingRoom.Item2, weapon, _settings.MetaProgression, _settings.ShuffleRooms);
+            if (result == null)
+                return;
+            items = new List<string>(GameGraph.checks.Values);
+
+            items.AddRange(GameGraph.extra_items);
+            foreach (var pair in result)
+                items.Remove(pair.Value);
+            if (_settings.MetaProgression)
+                foreach (string v in GameGraph.keys)
+                    if (items.Contains(v))
+                        items.Remove(v);
+            var loc = new List<string>(GameGraph.checks.Keys.Select<int, string>(i => GameGraph.nodes[i]));
+            items.Sort(new CompareItems());
+            loc.Shuffle();
+
+            if (_settings.ShuffleTablets)
+                ShuffleTablets(loc);
 
             foreach (var k in loc)
             {
@@ -159,7 +202,7 @@ namespace EnderLilies.Randomizer
                     result[k] = items[0];
                     items.RemoveAt(0);
                 }
-                if (_settings.DashProgressive && progressItem.ContainsKey(result[k]))
+                if (_settings.DashProgressive && result.ContainsKey(k) && progressItem.ContainsKey(result[k]))
                     result[k] = progressItem[result[k]];
             }
             if (write)
@@ -189,22 +232,22 @@ namespace EnderLilies.Randomizer
                 "Passive.i_passive_stamina_up"
             };
 
-            GameGraph g = SerializableGraph.Import(_settings.FilePath);
+            GameGraph g = LogicParser.FromJson(_settings.FilePath);
             if (!_settings.UnusedRelics)
                 foreach (var relic in unused_relics)
                     g.extra_items.Remove(relic);
-            foreach (var k in g.locations)
+            foreach (var k in g.checks)
             {
                 foreach (var filter in pool)
                 {
                     if (k.Value.StartsWith(filter.Key) && !filter.Value)
                     {
-                        g.AddResult(k.Key, k.Value);
+                        g.AddResult(g.Node(k.Key), k.Value);
                         break;
                     }
                 }
             }
-            ShufflePool = g.locations.Count - g._forced.Count;
+            ShufflePool = g.checks.Count - g.results.Count;
             return g;
         }
 
@@ -220,8 +263,8 @@ namespace EnderLilies.Randomizer
                     writer.WriteLine("SETTINGS:override_skin=" + (_settings.SkinOverride - 1).ToString());
                 if (_settings.ShuffleSlots)
                     writer.WriteLine("SETTINGS:shuffle_slots");
-                if (_settings.ShuffleRooms)
-                    writer.WriteLine("SETTINGS:shuffle_rooms");
+                //if (_settings.ShuffleRooms)
+                    //writer.WriteLine("SETTINGS:shuffle_rooms");
                 if (_settings.ShuffleBGM)
                     writer.WriteLine("SETTINGS:shuffle_bgm");
                 if (_settings.ShuffleEnemies)
@@ -232,8 +275,8 @@ namespace EnderLilies.Randomizer
                     writer.WriteLine("SETTINGS:force_ancient_souls");
                 if (_settings.MinibossesChapter)
                     writer.WriteLine("SETTINGS:minibosses_chapter");
-                if (_settings.StartingRoom)
-                    writer.WriteLine("SETTINGS:starting_room=12");
+                if (_startingRoom.Item1 > 0)
+                    writer.WriteLine("SETTINGS:starting_room=" + _startingRoom.Item1.ToString());
                 if (_settings.ShuffleWeaponUpgrades)
                     writer.WriteLine("SETTINGS:shuffle_upgrades");
                 if (_settings.MaxChapter < 9)
@@ -244,8 +287,12 @@ namespace EnderLilies.Randomizer
                     keys.Sort();
                 foreach (var k in keys)
                 {
-                    if (result[k] != GameGraph.locations[k])
-                        writer.WriteLine(k + ":" + result[k]);
+                    int id = GameGraph.nodes.IndexOf(k);
+                    if (GameGraph.checks.ContainsKey(id) && result[k] == GameGraph.checks[id])
+                        continue;
+                    if (GameGraph.transitions.ContainsKey(id) && result[k] == GameGraph.transitions[id])
+                        continue;
+                    writer.WriteLine(k + ":" + result[k]);
                 }
             }
         }

@@ -108,6 +108,13 @@ public:
 		Count = 0;
 	}
 
+	void Add(T obj)
+	{
+		//Data = static_cast<T*>(realloc(Data, sizeof(T) * Count + 1));
+		Data[Count] = obj;
+		Count += 1;
+	}
+
 	int Num() const
 	{
 		return Count;

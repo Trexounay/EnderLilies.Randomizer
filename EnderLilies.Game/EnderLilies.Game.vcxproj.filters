@@ -136,8 +136,16 @@
     <ClCompile Include="SDK\BP_Character_Boss_Base_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="xinput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EnderLilies.Game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="xinput1_3.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

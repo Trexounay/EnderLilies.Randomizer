@@ -24,6 +24,7 @@ struct FTableRowProxy
 {
 	int datatable;
 	int entry;
+	std::string tag;
 	FTableRowProxy* progress = nullptr;
 };
 
@@ -68,6 +69,11 @@ private:
 	bool _shuffle_bgm = false;
 	bool _force_ancient_souls = false;
 	bool _minibosses_chapter = false;
+	int _min_chapter = 0;
+	int _max_chapter = 10;
+
+	float time_travel = 0;
+	int room = 0;
 
 	int32_t RestPointTag;
 	int32_t BlueprintGeneratedClassIndex = 348039;
@@ -78,6 +84,8 @@ private:
 
 	std::unordered_set<int> _aptitudes;
 	std::unordered_map<std::string, FTableRowProxy> _replacements;
+	std::unordered_map<std::string, int32_t> _player_start_tags;
+	std::unordered_map<std::string, int32_t> _events;
 	std::unordered_set<CG::FDataTableRowHandle*> _done;
 
 	void RemoveHasItemCheck();
@@ -91,7 +99,7 @@ private:
 	void ReadSeedFile(std::string path);
 	void FindItems(const std::string &string);
 	void ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);
-	void TransitionFound(CG::FDataTableRowHandle* handle, CG::FName* PlayerStartTag);
+	void TransitionFound(CG::AActor* actor, CG::FDataTableRowHandle* handle, CG::FName* PlayerStartTag, bool test);
 	void FindNames();
 	void NewGame();
 	void NewMap();

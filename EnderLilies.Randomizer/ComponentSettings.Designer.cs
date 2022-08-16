@@ -37,19 +37,49 @@
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.shuffleSlots = new System.Windows.Forms.CheckBox();
-            this.unusedRelics = new System.Windows.Forms.CheckBox();
-            this.dashProgressive = new System.Windows.Forms.CheckBox();
-            this.metaprogression = new System.Windows.Forms.CheckBox();
             this.ngPlusSetting = new System.Windows.Forms.CheckBox();
             this.minibosses_chapter = new System.Windows.Forms.CheckBox();
+            this.shuffleBGM = new System.Windows.Forms.CheckBox();
             this.shuffleRooms = new System.Windows.Forms.CheckBox();
             this.shuffleEnemies = new System.Windows.Forms.CheckBox();
-            this.shuffleBGM = new System.Windows.Forms.CheckBox();
             this.uatserver = new System.Windows.Forms.CheckBox();
             this.maxChapter = new System.Windows.Forms.TrackBar();
             this.chapterText = new System.Windows.Forms.Label();
             this.startChapter = new System.Windows.Forms.TrackBar();
+            this.checkfile = new System.Windows.Forms.Label();
+            this.StartsPage = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.startingRoomsBox = new System.Windows.Forms.FlowLayoutPanel();
+            this.checkBox27 = new System.Windows.Forms.CheckBox();
+            this.checkBox28 = new System.Windows.Forms.CheckBox();
+            this.checkBox29 = new System.Windows.Forms.CheckBox();
+            this.checkBox30 = new System.Windows.Forms.CheckBox();
+            this.checkBox31 = new System.Windows.Forms.CheckBox();
+            this.checkBox32 = new System.Windows.Forms.CheckBox();
+            this.checkBox33 = new System.Windows.Forms.CheckBox();
+            this.checkBox34 = new System.Windows.Forms.CheckBox();
+            this.checkBox35 = new System.Windows.Forms.CheckBox();
+            this.checkBox36 = new System.Windows.Forms.CheckBox();
+            this.checkBox37 = new System.Windows.Forms.CheckBox();
+            this.checkBox38 = new System.Windows.Forms.CheckBox();
+            this.checkBox39 = new System.Windows.Forms.CheckBox();
+            this.checkBox40 = new System.Windows.Forms.CheckBox();
+            this.checkBox41 = new System.Windows.Forms.CheckBox();
+            this.checkBox42 = new System.Windows.Forms.CheckBox();
+            this.checkBox43 = new System.Windows.Forms.CheckBox();
+            this.checkBox44 = new System.Windows.Forms.CheckBox();
+            this.checkBox45 = new System.Windows.Forms.CheckBox();
+            this.checkBox46 = new System.Windows.Forms.CheckBox();
+            this.checkBox47 = new System.Windows.Forms.CheckBox();
+            this.checkBox54 = new System.Windows.Forms.CheckBox();
+            this.checkBox48 = new System.Windows.Forms.CheckBox();
+            this.checkBox49 = new System.Windows.Forms.CheckBox();
+            this.checkBox50 = new System.Windows.Forms.CheckBox();
+            this.checkBox51 = new System.Windows.Forms.CheckBox();
+            this.checkBox52 = new System.Windows.Forms.CheckBox();
+            this.checkBoxStartAll = new System.Windows.Forms.CheckBox();
+            this.ItemsPage = new System.Windows.Forms.TabPage();
+            this.unusedRelics = new System.Windows.Forms.CheckBox();
             this.shuffleGroup = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.shuffleSpirits = new System.Windows.Forms.CheckBox();
@@ -60,7 +90,6 @@
             this.shuffleAmulets = new System.Windows.Forms.CheckBox();
             this.shuffleBlights = new System.Windows.Forms.CheckBox();
             this.shuffleFindings = new System.Windows.Forms.CheckBox();
-            this.checkfile = new System.Windows.Forms.Label();
             this.SpiritsPage = new System.Windows.Forms.TabPage();
             this.shuffleWeaponUpgrades = new System.Windows.Forms.CheckBox();
             this.startWeaponUsesAncientSouls = new System.Windows.Forms.CheckBox();
@@ -106,13 +135,19 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.helpTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.startingRoom = new System.Windows.Forms.CheckBox();
+            this.shuffleSlots = new System.Windows.Forms.CheckBox();
+            this.dashProgressive = new System.Windows.Forms.CheckBox();
+            this.metaprogression = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startChapter)).BeginInit();
+            this.StartsPage.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.startingRoomsBox.SuspendLayout();
+            this.ItemsPage.SuspendLayout();
             this.shuffleGroup.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SpiritsPage.SuspendLayout();
@@ -176,6 +211,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabSettings.Controls.Add(this.SettingsPage);
+            this.tabSettings.Controls.Add(this.StartsPage);
+            this.tabSettings.Controls.Add(this.ItemsPage);
             this.tabSettings.Controls.Add(this.SpiritsPage);
             this.tabSettings.Controls.Add(this.LogicPage);
             this.tabSettings.Location = new System.Drawing.Point(4, 45);
@@ -192,7 +229,6 @@
             this.SettingsPage.Controls.Add(this.maxChapter);
             this.SettingsPage.Controls.Add(this.chapterText);
             this.SettingsPage.Controls.Add(this.startChapter);
-            this.SettingsPage.Controls.Add(this.shuffleGroup);
             this.SettingsPage.Controls.Add(this.checkfile);
             this.SettingsPage.Location = new System.Drawing.Point(4, 22);
             this.SettingsPage.Name = "SettingsPage";
@@ -204,80 +240,22 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.shuffleSlots);
-            this.flowLayoutPanel2.Controls.Add(this.unusedRelics);
-            this.flowLayoutPanel2.Controls.Add(this.dashProgressive);
-            this.flowLayoutPanel2.Controls.Add(this.metaprogression);
             this.flowLayoutPanel2.Controls.Add(this.ngPlusSetting);
             this.flowLayoutPanel2.Controls.Add(this.minibosses_chapter);
             this.flowLayoutPanel2.Controls.Add(this.shuffleBGM);
             this.flowLayoutPanel2.Controls.Add(this.shuffleRooms);
             this.flowLayoutPanel2.Controls.Add(this.shuffleEnemies);
-            this.flowLayoutPanel2.Controls.Add(this.startingRoom);
             this.flowLayoutPanel2.Controls.Add(this.uatserver);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(41, 141);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(35, 25);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(201, 284);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(201, 227);
             this.flowLayoutPanel2.TabIndex = 49;
-            // 
-            // shuffleSlots
-            // 
-            this.shuffleSlots.AutoSize = true;
-            this.shuffleSlots.Checked = true;
-            this.shuffleSlots.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleSlots.Location = new System.Drawing.Point(3, 3);
-            this.shuffleSlots.Name = "shuffleSlots";
-            this.shuffleSlots.Size = new System.Drawing.Size(109, 17);
-            this.shuffleSlots.TabIndex = 20;
-            this.shuffleSlots.Text = "Shuffle relics cost";
-            this.helpTooltip.SetToolTip(this.shuffleSlots, "Cost of equipping relics are shuffled\r\nThe game will still have the same number o" +
-        "f relic of each cost\r\n");
-            this.shuffleSlots.UseVisualStyleBackColor = true;
-            // 
-            // unusedRelics
-            // 
-            this.unusedRelics.AutoSize = true;
-            this.unusedRelics.Checked = true;
-            this.unusedRelics.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.unusedRelics.Location = new System.Drawing.Point(3, 26);
-            this.unusedRelics.Name = "unusedRelics";
-            this.unusedRelics.Size = new System.Drawing.Size(110, 17);
-            this.unusedRelics.TabIndex = 21;
-            this.unusedRelics.Text = "Add unused relics";
-            this.helpTooltip.SetToolTip(this.unusedRelics, "Add 7 relics that ended up not being used in the game\r\n\r\n");
-            this.unusedRelics.UseVisualStyleBackColor = true;
-            // 
-            // dashProgressive
-            // 
-            this.dashProgressive.AutoSize = true;
-            this.dashProgressive.Checked = true;
-            this.dashProgressive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dashProgressive.Location = new System.Drawing.Point(3, 49);
-            this.dashProgressive.Name = "dashProgressive";
-            this.dashProgressive.Size = new System.Drawing.Size(193, 17);
-            this.dashProgressive.TabIndex = 30;
-            this.dashProgressive.Text = "Dash always before Piercing Lance";
-            this.helpTooltip.SetToolTip(this.dashProgressive, "You will find Julius Dash before (faster horizontal movement) before \r\nJulius\' Pi" +
-        "ercing Lance (breaking vertical walls).\r\nPiercing Lance doesn\'t do anything with" +
-        "out Dash.\r\n");
-            this.dashProgressive.UseVisualStyleBackColor = true;
-            // 
-            // metaprogression
-            // 
-            this.metaprogression.AutoSize = true;
-            this.metaprogression.Location = new System.Drawing.Point(3, 72);
-            this.metaprogression.Name = "metaprogression";
-            this.metaprogression.Size = new System.Drawing.Size(107, 17);
-            this.metaprogression.TabIndex = 31;
-            this.metaprogression.Text = "Meta progression";
-            this.helpTooltip.SetToolTip(this.metaprogression, "Items for progression will always be placed on newly accessible checks");
-            this.metaprogression.UseVisualStyleBackColor = true;
             // 
             // ngPlusSetting
             // 
             this.ngPlusSetting.AutoSize = true;
-            this.ngPlusSetting.Location = new System.Drawing.Point(3, 95);
+            this.ngPlusSetting.Location = new System.Drawing.Point(3, 3);
             this.ngPlusSetting.Name = "ngPlusSetting";
             this.ngPlusSetting.Size = new System.Drawing.Size(61, 17);
             this.ngPlusSetting.TabIndex = 44;
@@ -289,7 +267,7 @@
             // minibosses_chapter
             // 
             this.minibosses_chapter.AutoSize = true;
-            this.minibosses_chapter.Location = new System.Drawing.Point(3, 118);
+            this.minibosses_chapter.Location = new System.Drawing.Point(3, 26);
             this.minibosses_chapter.Name = "minibosses_chapter";
             this.minibosses_chapter.Size = new System.Drawing.Size(156, 17);
             this.minibosses_chapter.TabIndex = 47;
@@ -298,10 +276,21 @@
         "chapter is still cap at 10\r\n");
             this.minibosses_chapter.UseVisualStyleBackColor = true;
             // 
+            // shuffleBGM
+            // 
+            this.shuffleBGM.AutoSize = true;
+            this.shuffleBGM.Location = new System.Drawing.Point(3, 49);
+            this.shuffleBGM.Name = "shuffleBGM";
+            this.shuffleBGM.Size = new System.Drawing.Size(169, 17);
+            this.shuffleBGM.TabIndex = 49;
+            this.shuffleBGM.Text = "Randomize background music";
+            this.helpTooltip.SetToolTip(this.shuffleBGM, "Each room will play a random song from the game");
+            this.shuffleBGM.UseVisualStyleBackColor = true;
+            // 
             // shuffleRooms
             // 
             this.shuffleRooms.AutoSize = true;
-            this.shuffleRooms.Location = new System.Drawing.Point(3, 164);
+            this.shuffleRooms.Location = new System.Drawing.Point(3, 72);
             this.shuffleRooms.Name = "shuffleRooms";
             this.shuffleRooms.Size = new System.Drawing.Size(158, 17);
             this.shuffleRooms.TabIndex = 46;
@@ -313,7 +302,7 @@
             // shuffleEnemies
             // 
             this.shuffleEnemies.AutoSize = true;
-            this.shuffleEnemies.Location = new System.Drawing.Point(3, 187);
+            this.shuffleEnemies.Location = new System.Drawing.Point(3, 95);
             this.shuffleEnemies.Name = "shuffleEnemies";
             this.shuffleEnemies.Size = new System.Drawing.Size(169, 17);
             this.shuffleEnemies.TabIndex = 48;
@@ -321,21 +310,10 @@
             this.helpTooltip.SetToolTip(this.shuffleEnemies, "Enemies location will be shuffled in each room\r\n");
             this.shuffleEnemies.UseVisualStyleBackColor = true;
             // 
-            // shuffleBGM
-            // 
-            this.shuffleBGM.AutoSize = true;
-            this.shuffleBGM.Location = new System.Drawing.Point(3, 141);
-            this.shuffleBGM.Name = "shuffleBGM";
-            this.shuffleBGM.Size = new System.Drawing.Size(169, 17);
-            this.shuffleBGM.TabIndex = 49;
-            this.shuffleBGM.Text = "Randomize background music";
-            this.helpTooltip.SetToolTip(this.shuffleBGM, "Each room will play a random song from the game");
-            this.shuffleBGM.UseVisualStyleBackColor = true;
-            // 
             // uatserver
             // 
             this.uatserver.AutoSize = true;
-            this.uatserver.Location = new System.Drawing.Point(3, 233);
+            this.uatserver.Location = new System.Drawing.Point(3, 118);
             this.uatserver.Name = "uatserver";
             this.uatserver.Size = new System.Drawing.Size(149, 17);
             this.uatserver.TabIndex = 45;
@@ -348,7 +326,7 @@
             // 
             this.maxChapter.BackColor = System.Drawing.SystemColors.Window;
             this.maxChapter.LargeChange = 0;
-            this.maxChapter.Location = new System.Drawing.Point(334, 181);
+            this.maxChapter.Location = new System.Drawing.Point(348, 51);
             this.maxChapter.Margin = new System.Windows.Forms.Padding(0);
             this.maxChapter.Maximum = 9;
             this.maxChapter.Name = "maxChapter";
@@ -364,7 +342,7 @@
             // chapterText
             // 
             this.chapterText.AutoSize = true;
-            this.chapterText.Location = new System.Drawing.Point(309, 165);
+            this.chapterText.Location = new System.Drawing.Point(322, 25);
             this.chapterText.Name = "chapterText";
             this.chapterText.Size = new System.Drawing.Size(80, 13);
             this.chapterText.TabIndex = 38;
@@ -374,7 +352,7 @@
             // 
             this.startChapter.BackColor = System.Drawing.SystemColors.Window;
             this.startChapter.LargeChange = 1;
-            this.startChapter.Location = new System.Drawing.Point(312, 181);
+            this.startChapter.Location = new System.Drawing.Point(326, 51);
             this.startChapter.Margin = new System.Windows.Forms.Padding(0);
             this.startChapter.Maximum = 9;
             this.startChapter.Name = "startChapter";
@@ -385,15 +363,456 @@
             this.startChapter.TickStyle = System.Windows.Forms.TickStyle.None;
             this.helpTooltip.SetToolTip(this.startChapter, "Difficulty chapter at the start of the game");
             // 
+            // checkfile
+            // 
+            this.checkfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkfile.AutoSize = true;
+            this.checkfile.Location = new System.Drawing.Point(6, 428);
+            this.checkfile.Name = "checkfile";
+            this.checkfile.Size = new System.Drawing.Size(65, 13);
+            this.checkfile.TabIndex = 6;
+            this.checkfile.Text = "File check...";
+            // 
+            // StartsPage
+            // 
+            this.StartsPage.Controls.Add(this.groupBox3);
+            this.StartsPage.Location = new System.Drawing.Point(4, 22);
+            this.StartsPage.Name = "StartsPage";
+            this.StartsPage.Size = new System.Drawing.Size(458, 444);
+            this.StartsPage.TabIndex = 7;
+            this.StartsPage.Text = "Start";
+            this.StartsPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox3.Controls.Add(this.startingRoomsBox);
+            this.groupBox3.Controls.Add(this.checkBoxStartAll);
+            this.groupBox3.Location = new System.Drawing.Point(35, 25);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
+            this.groupBox3.Size = new System.Drawing.Size(384, 353);
+            this.groupBox3.TabIndex = 38;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Randomize Starting Location";
+            // 
+            // startingRoomsBox
+            // 
+            this.startingRoomsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.startingRoomsBox.AutoSize = true;
+            this.startingRoomsBox.Controls.Add(this.checkBox27);
+            this.startingRoomsBox.Controls.Add(this.checkBox28);
+            this.startingRoomsBox.Controls.Add(this.checkBox29);
+            this.startingRoomsBox.Controls.Add(this.checkBox30);
+            this.startingRoomsBox.Controls.Add(this.checkBox31);
+            this.startingRoomsBox.Controls.Add(this.checkBox32);
+            this.startingRoomsBox.Controls.Add(this.checkBox33);
+            this.startingRoomsBox.Controls.Add(this.checkBox34);
+            this.startingRoomsBox.Controls.Add(this.checkBox35);
+            this.startingRoomsBox.Controls.Add(this.checkBox36);
+            this.startingRoomsBox.Controls.Add(this.checkBox37);
+            this.startingRoomsBox.Controls.Add(this.checkBox38);
+            this.startingRoomsBox.Controls.Add(this.checkBox39);
+            this.startingRoomsBox.Controls.Add(this.checkBox40);
+            this.startingRoomsBox.Controls.Add(this.checkBox41);
+            this.startingRoomsBox.Controls.Add(this.checkBox42);
+            this.startingRoomsBox.Controls.Add(this.checkBox43);
+            this.startingRoomsBox.Controls.Add(this.checkBox44);
+            this.startingRoomsBox.Controls.Add(this.checkBox45);
+            this.startingRoomsBox.Controls.Add(this.checkBox46);
+            this.startingRoomsBox.Controls.Add(this.checkBox47);
+            this.startingRoomsBox.Controls.Add(this.checkBox54);
+            this.startingRoomsBox.Controls.Add(this.checkBox48);
+            this.startingRoomsBox.Controls.Add(this.checkBox49);
+            this.startingRoomsBox.Controls.Add(this.checkBox50);
+            this.startingRoomsBox.Controls.Add(this.checkBox51);
+            this.startingRoomsBox.Controls.Add(this.checkBox52);
+            this.startingRoomsBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.startingRoomsBox.Location = new System.Drawing.Point(0, 41);
+            this.startingRoomsBox.Margin = new System.Windows.Forms.Padding(0, 50, 0, 0);
+            this.startingRoomsBox.Name = "startingRoomsBox";
+            this.startingRoomsBox.Padding = new System.Windows.Forms.Padding(0, 5, 10, 5);
+            this.startingRoomsBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.startingRoomsBox.Size = new System.Drawing.Size(384, 312);
+            this.startingRoomsBox.TabIndex = 40;
+            // 
+            // checkBox27
+            // 
+            this.checkBox27.AutoSize = true;
+            this.checkBox27.Location = new System.Drawing.Point(2, 7);
+            this.checkBox27.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox27.Name = "checkBox27";
+            this.checkBox27.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox27.Size = new System.Drawing.Size(78, 17);
+            this.checkBox27.TabIndex = 47;
+            this.checkBox27.Text = "Start";
+            this.checkBox27.UseVisualStyleBackColor = true;
+            // 
+            // checkBox28
+            // 
+            this.checkBox28.AutoSize = true;
+            this.checkBox28.Location = new System.Drawing.Point(2, 28);
+            this.checkBox28.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox28.Name = "checkBox28";
+            this.checkBox28.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox28.Size = new System.Drawing.Size(82, 17);
+            this.checkBox28.TabIndex = 48;
+            this.checkBox28.Text = "Cellar";
+            this.checkBox28.UseVisualStyleBackColor = true;
+            // 
+            // checkBox29
+            // 
+            this.checkBox29.AutoSize = true;
+            this.checkBox29.Location = new System.Drawing.Point(2, 49);
+            this.checkBox29.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox29.Name = "checkBox29";
+            this.checkBox29.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox29.Size = new System.Drawing.Size(138, 17);
+            this.checkBox29.TabIndex = 49;
+            this.checkBox29.Text = "Cahtedral Cloister";
+            this.checkBox29.UseVisualStyleBackColor = true;
+            // 
+            // checkBox30
+            // 
+            this.checkBox30.AutoSize = true;
+            this.checkBox30.Location = new System.Drawing.Point(2, 70);
+            this.checkBox30.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox30.Name = "checkBox30";
+            this.checkBox30.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox30.Size = new System.Drawing.Size(131, 17);
+            this.checkBox30.TabIndex = 50;
+            this.checkBox30.Text = "Saint\'s Passage";
+            this.checkBox30.UseVisualStyleBackColor = true;
+            // 
+            // checkBox31
+            // 
+            this.checkBox31.AutoSize = true;
+            this.checkBox31.Location = new System.Drawing.Point(2, 91);
+            this.checkBox31.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox31.Name = "checkBox31";
+            this.checkBox31.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox31.Size = new System.Drawing.Size(108, 17);
+            this.checkBox31.TabIndex = 51;
+            this.checkBox31.Text = "Crossroads";
+            this.checkBox31.UseVisualStyleBackColor = true;
+            // 
+            // checkBox32
+            // 
+            this.checkBox32.AutoSize = true;
+            this.checkBox32.Location = new System.Drawing.Point(2, 112);
+            this.checkBox32.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox32.Name = "checkBox32";
+            this.checkBox32.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox32.Size = new System.Drawing.Size(136, 17);
+            this.checkBox32.TabIndex = 52;
+            this.checkBox32.Text = "Collapsed Shack";
+            this.checkBox32.UseVisualStyleBackColor = true;
+            // 
+            // checkBox33
+            // 
+            this.checkBox33.AutoSize = true;
+            this.checkBox33.Location = new System.Drawing.Point(2, 133);
+            this.checkBox33.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox33.Name = "checkBox33";
+            this.checkBox33.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox33.Size = new System.Drawing.Size(110, 17);
+            this.checkBox33.TabIndex = 53;
+            this.checkBox33.Text = "Bridgehead";
+            this.checkBox33.UseVisualStyleBackColor = true;
+            // 
+            // checkBox34
+            // 
+            this.checkBox34.AutoSize = true;
+            this.checkBox34.Location = new System.Drawing.Point(2, 154);
+            this.checkBox34.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox34.Name = "checkBox34";
+            this.checkBox34.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox34.Size = new System.Drawing.Size(151, 17);
+            this.checkBox34.TabIndex = 54;
+            this.checkBox34.Text = "Ruined Castle Cellar";
+            this.checkBox34.UseVisualStyleBackColor = true;
+            // 
+            // checkBox35
+            // 
+            this.checkBox35.AutoSize = true;
+            this.checkBox35.Location = new System.Drawing.Point(2, 175);
+            this.checkBox35.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox35.Name = "checkBox35";
+            this.checkBox35.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox35.Size = new System.Drawing.Size(134, 17);
+            this.checkBox35.TabIndex = 55;
+            this.checkBox35.Text = "Guest Chambers";
+            this.checkBox35.UseVisualStyleBackColor = true;
+            // 
+            // checkBox36
+            // 
+            this.checkBox36.AutoSize = true;
+            this.checkBox36.Location = new System.Drawing.Point(2, 196);
+            this.checkBox36.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox36.Name = "checkBox36";
+            this.checkBox36.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox36.Size = new System.Drawing.Size(152, 17);
+            this.checkBox36.TabIndex = 56;
+            this.checkBox36.Text = "Maelstrom Ramparts";
+            this.checkBox36.UseVisualStyleBackColor = true;
+            // 
+            // checkBox37
+            // 
+            this.checkBox37.AutoSize = true;
+            this.checkBox37.Location = new System.Drawing.Point(2, 217);
+            this.checkBox37.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox37.Name = "checkBox37";
+            this.checkBox37.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox37.Size = new System.Drawing.Size(122, 17);
+            this.checkBox37.TabIndex = 57;
+            this.checkBox37.Text = "Bastion Gates";
+            this.checkBox37.UseVisualStyleBackColor = true;
+            // 
+            // checkBox38
+            // 
+            this.checkBox38.AutoSize = true;
+            this.checkBox38.Location = new System.Drawing.Point(2, 238);
+            this.checkBox38.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox38.Name = "checkBox38";
+            this.checkBox38.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox38.Size = new System.Drawing.Size(101, 17);
+            this.checkBox38.TabIndex = 58;
+            this.checkBox38.Text = "Courtyard";
+            this.checkBox38.UseVisualStyleBackColor = true;
+            // 
+            // checkBox39
+            // 
+            this.checkBox39.AutoSize = true;
+            this.checkBox39.Location = new System.Drawing.Point(2, 259);
+            this.checkBox39.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox39.Name = "checkBox39";
+            this.checkBox39.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox39.Size = new System.Drawing.Size(165, 17);
+            this.checkBox39.TabIndex = 59;
+            this.checkBox39.Text = "Second Spire Chamber";
+            this.checkBox39.UseVisualStyleBackColor = true;
+            // 
+            // checkBox40
+            // 
+            this.checkBox40.AutoSize = true;
+            this.checkBox40.Location = new System.Drawing.Point(2, 280);
+            this.checkBox40.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox40.Name = "checkBox40";
+            this.checkBox40.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox40.Size = new System.Drawing.Size(121, 17);
+            this.checkBox40.TabIndex = 60;
+            this.checkBox40.Text = "Mourning Hall";
+            this.checkBox40.UseVisualStyleBackColor = true;
+            // 
+            // checkBox41
+            // 
+            this.checkBox41.AutoSize = true;
+            this.checkBox41.Location = new System.Drawing.Point(171, 7);
+            this.checkBox41.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox41.Name = "checkBox41";
+            this.checkBox41.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox41.Size = new System.Drawing.Size(111, 17);
+            this.checkBox41.TabIndex = 61;
+            this.checkBox41.Text = "Dryad Lake";
+            this.checkBox41.UseVisualStyleBackColor = true;
+            // 
+            // checkBox42
+            // 
+            this.checkBox42.AutoSize = true;
+            this.checkBox42.Location = new System.Drawing.Point(171, 28);
+            this.checkBox42.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox42.Name = "checkBox42";
+            this.checkBox42.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox42.Size = new System.Drawing.Size(142, 17);
+            this.checkBox42.TabIndex = 62;
+            this.checkBox42.Text = "Witch\'s Hermitage";
+            this.checkBox42.UseVisualStyleBackColor = true;
+            // 
+            // checkBox43
+            // 
+            this.checkBox43.AutoSize = true;
+            this.checkBox43.Location = new System.Drawing.Point(171, 49);
+            this.checkBox43.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox43.Name = "checkBox43";
+            this.checkBox43.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox43.Size = new System.Drawing.Size(113, 17);
+            this.checkBox43.TabIndex = 63;
+            this.checkBox43.Text = "Coven Halls";
+            this.checkBox43.UseVisualStyleBackColor = true;
+            // 
+            // checkBox44
+            // 
+            this.checkBox44.AutoSize = true;
+            this.checkBox44.Location = new System.Drawing.Point(171, 70);
+            this.checkBox44.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox44.Name = "checkBox44";
+            this.checkBox44.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox44.Size = new System.Drawing.Size(143, 17);
+            this.checkBox44.TabIndex = 64;
+            this.checkBox44.Text = "Bottom of the Well";
+            this.checkBox44.UseVisualStyleBackColor = true;
+            // 
+            // checkBox45
+            // 
+            this.checkBox45.AutoSize = true;
+            this.checkBox45.Location = new System.Drawing.Point(171, 91);
+            this.checkBox45.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox45.Name = "checkBox45";
+            this.checkBox45.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox45.Size = new System.Drawing.Size(92, 17);
+            this.checkBox45.TabIndex = 65;
+            this.checkBox45.Text = "Charnel";
+            this.checkBox45.UseVisualStyleBackColor = true;
+            // 
+            // checkBox46
+            // 
+            this.checkBox46.AutoSize = true;
+            this.checkBox46.Location = new System.Drawing.Point(171, 112);
+            this.checkBox46.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox46.Name = "checkBox46";
+            this.checkBox46.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox46.Size = new System.Drawing.Size(94, 17);
+            this.checkBox46.TabIndex = 66;
+            this.checkBox46.Text = "Ossuary";
+            this.checkBox46.UseVisualStyleBackColor = true;
+            // 
+            // checkBox47
+            // 
+            this.checkBox47.AutoSize = true;
+            this.checkBox47.Location = new System.Drawing.Point(171, 133);
+            this.checkBox47.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox47.Name = "checkBox47";
+            this.checkBox47.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox47.Size = new System.Drawing.Size(103, 17);
+            this.checkBox47.TabIndex = 67;
+            this.checkBox47.Text = "Great Hall";
+            this.checkBox47.UseVisualStyleBackColor = true;
+            // 
+            // checkBox54
+            // 
+            this.checkBox54.AutoSize = true;
+            this.checkBox54.Location = new System.Drawing.Point(171, 154);
+            this.checkBox54.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox54.Name = "checkBox54";
+            this.checkBox54.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox54.Size = new System.Drawing.Size(102, 17);
+            this.checkBox54.TabIndex = 73;
+            this.checkBox54.Text = "Aqueduct";
+            this.checkBox54.UseVisualStyleBackColor = true;
+            // 
+            // checkBox48
+            // 
+            this.checkBox48.AutoSize = true;
+            this.checkBox48.Location = new System.Drawing.Point(171, 175);
+            this.checkBox48.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox48.Name = "checkBox48";
+            this.checkBox48.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox48.Size = new System.Drawing.Size(78, 17);
+            this.checkBox48.TabIndex = 68;
+            this.checkBox48.Text = "Cells";
+            this.checkBox48.UseVisualStyleBackColor = true;
+            // 
+            // checkBox49
+            // 
+            this.checkBox49.AutoSize = true;
+            this.checkBox49.Location = new System.Drawing.Point(171, 196);
+            this.checkBox49.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox49.Name = "checkBox49";
+            this.checkBox49.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox49.Size = new System.Drawing.Size(124, 17);
+            this.checkBox49.TabIndex = 69;
+            this.checkBox49.Text = "Dark Chamber";
+            this.checkBox49.UseVisualStyleBackColor = true;
+            // 
+            // checkBox50
+            // 
+            this.checkBox50.AutoSize = true;
+            this.checkBox50.Location = new System.Drawing.Point(171, 217);
+            this.checkBox50.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox50.Name = "checkBox50";
+            this.checkBox50.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox50.Size = new System.Drawing.Size(146, 17);
+            this.checkBox50.TabIndex = 70;
+            this.checkBox50.Text = "Execution Grounds";
+            this.checkBox50.UseVisualStyleBackColor = true;
+            // 
+            // checkBox51
+            // 
+            this.checkBox51.AutoSize = true;
+            this.checkBox51.Location = new System.Drawing.Point(171, 238);
+            this.checkBox51.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox51.Name = "checkBox51";
+            this.checkBox51.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox51.Size = new System.Drawing.Size(157, 17);
+            this.checkBox51.TabIndex = 71;
+            this.checkBox51.Text = "Subterranean Lab B1";
+            this.checkBox51.UseVisualStyleBackColor = true;
+            // 
+            // checkBox52
+            // 
+            this.checkBox52.AutoSize = true;
+            this.checkBox52.Location = new System.Drawing.Point(171, 259);
+            this.checkBox52.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox52.Name = "checkBox52";
+            this.checkBox52.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox52.Size = new System.Drawing.Size(157, 17);
+            this.checkBox52.TabIndex = 72;
+            this.checkBox52.Text = "Subterranean Lab B2";
+            this.checkBox52.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxStartAll
+            // 
+            this.checkBoxStartAll.AutoSize = true;
+            this.checkBoxStartAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxStartAll.Location = new System.Drawing.Point(32, 17);
+            this.checkBoxStartAll.Name = "checkBoxStartAll";
+            this.checkBoxStartAll.Size = new System.Drawing.Size(37, 17);
+            this.checkBoxStartAll.TabIndex = 41;
+            this.checkBoxStartAll.Text = "All";
+            this.checkBoxStartAll.UseVisualStyleBackColor = true;
+            this.checkBoxStartAll.CheckedChanged += new System.EventHandler(this.checkBoxStartAll_CheckedChanged);
+            // 
+            // ItemsPage
+            // 
+            this.ItemsPage.Controls.Add(this.metaprogression);
+            this.ItemsPage.Controls.Add(this.dashProgressive);
+            this.ItemsPage.Controls.Add(this.shuffleSlots);
+            this.ItemsPage.Controls.Add(this.unusedRelics);
+            this.ItemsPage.Controls.Add(this.shuffleGroup);
+            this.ItemsPage.Location = new System.Drawing.Point(4, 22);
+            this.ItemsPage.Name = "ItemsPage";
+            this.ItemsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ItemsPage.Size = new System.Drawing.Size(458, 444);
+            this.ItemsPage.TabIndex = 6;
+            this.ItemsPage.Text = "Items";
+            this.ItemsPage.UseVisualStyleBackColor = true;
+            // 
+            // unusedRelics
+            // 
+            this.unusedRelics.AutoSize = true;
+            this.unusedRelics.Checked = true;
+            this.unusedRelics.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.unusedRelics.Location = new System.Drawing.Point(49, 156);
+            this.unusedRelics.Name = "unusedRelics";
+            this.unusedRelics.Size = new System.Drawing.Size(110, 17);
+            this.unusedRelics.TabIndex = 22;
+            this.unusedRelics.Text = "Add unused relics";
+            this.helpTooltip.SetToolTip(this.unusedRelics, "Add 7 relics that ended up not being used in the game\r\n\r\n");
+            this.unusedRelics.UseVisualStyleBackColor = true;
+            // 
             // shuffleGroup
             // 
             this.shuffleGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shuffleGroup.Controls.Add(this.flowLayoutPanel1);
-            this.shuffleGroup.Location = new System.Drawing.Point(38, 22);
+            this.shuffleGroup.Location = new System.Drawing.Point(35, 25);
             this.shuffleGroup.Name = "shuffleGroup";
             this.shuffleGroup.Size = new System.Drawing.Size(384, 116);
-            this.shuffleGroup.TabIndex = 16;
+            this.shuffleGroup.TabIndex = 17;
             this.shuffleGroup.TabStop = false;
             this.shuffleGroup.Text = "Shuffled Items (140)";
             // 
@@ -519,16 +938,6 @@
             this.shuffleFindings.Text = "Findings";
             this.shuffleFindings.UseVisualStyleBackColor = true;
             // 
-            // checkfile
-            // 
-            this.checkfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkfile.AutoSize = true;
-            this.checkfile.Location = new System.Drawing.Point(6, 428);
-            this.checkfile.Name = "checkfile";
-            this.checkfile.Size = new System.Drawing.Size(65, 13);
-            this.checkfile.TabIndex = 6;
-            this.checkfile.Text = "File check...";
-            // 
             // SpiritsPage
             // 
             this.SpiritsPage.Controls.Add(this.shuffleWeaponUpgrades);
@@ -546,7 +955,7 @@
             // 
             this.shuffleWeaponUpgrades.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.shuffleWeaponUpgrades.AutoSize = true;
-            this.shuffleWeaponUpgrades.Location = new System.Drawing.Point(58, 361);
+            this.shuffleWeaponUpgrades.Location = new System.Drawing.Point(52, 369);
             this.shuffleWeaponUpgrades.Name = "shuffleWeaponUpgrades";
             this.shuffleWeaponUpgrades.Size = new System.Drawing.Size(135, 17);
             this.shuffleWeaponUpgrades.TabIndex = 43;
@@ -561,7 +970,7 @@
             this.startWeaponUsesAncientSouls.AutoSize = true;
             this.startWeaponUsesAncientSouls.Checked = true;
             this.startWeaponUsesAncientSouls.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.startWeaponUsesAncientSouls.Location = new System.Drawing.Point(58, 384);
+            this.startWeaponUsesAncientSouls.Location = new System.Drawing.Point(52, 392);
             this.startWeaponUsesAncientSouls.Name = "startWeaponUsesAncientSouls";
             this.startWeaponUsesAncientSouls.Size = new System.Drawing.Size(176, 17);
             this.startWeaponUsesAncientSouls.TabIndex = 42;
@@ -577,7 +986,7 @@
             this.groupBox2.Controls.Add(this.startingSpiritsBox);
             this.groupBox2.Controls.Add(this.checkBoxAll);
             this.groupBox2.Controls.Add(this.checkBoxMainSpirits);
-            this.groupBox2.Location = new System.Drawing.Point(54, 17);
+            this.groupBox2.Location = new System.Drawing.Point(35, 25);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
@@ -1086,17 +1495,45 @@
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
             // 
-            // startingRoom
+            // shuffleSlots
             // 
-            this.startingRoom.AutoSize = true;
-            this.startingRoom.Location = new System.Drawing.Point(3, 210);
-            this.startingRoom.Name = "startingRoom";
-            this.startingRoom.Size = new System.Drawing.Size(182, 17);
-            this.startingRoom.TabIndex = 50;
-            this.startingRoom.Text = "Start at crossroads (experimental)";
-            this.helpTooltip.SetToolTip(this.startingRoom, "Use this option to enable Auto Tracking in Pop Tracker\r\nIf everything is working " +
-        "Pop Tracker should show a green AT icon at the top");
-            this.startingRoom.UseVisualStyleBackColor = true;
+            this.shuffleSlots.AutoSize = true;
+            this.shuffleSlots.Checked = true;
+            this.shuffleSlots.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.shuffleSlots.Location = new System.Drawing.Point(49, 179);
+            this.shuffleSlots.Name = "shuffleSlots";
+            this.shuffleSlots.Size = new System.Drawing.Size(109, 17);
+            this.shuffleSlots.TabIndex = 23;
+            this.shuffleSlots.Text = "Shuffle relics cost";
+            this.helpTooltip.SetToolTip(this.shuffleSlots, "Cost of equipping relics are shuffled\r\nThe game will still have the same number o" +
+        "f relic of each cost\r\n");
+            this.shuffleSlots.UseVisualStyleBackColor = true;
+            // 
+            // dashProgressive
+            // 
+            this.dashProgressive.AutoSize = true;
+            this.dashProgressive.Checked = true;
+            this.dashProgressive.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dashProgressive.Location = new System.Drawing.Point(49, 202);
+            this.dashProgressive.Name = "dashProgressive";
+            this.dashProgressive.Size = new System.Drawing.Size(193, 17);
+            this.dashProgressive.TabIndex = 31;
+            this.dashProgressive.Text = "Dash always before Piercing Lance";
+            this.helpTooltip.SetToolTip(this.dashProgressive, "You will find Julius Dash before (faster horizontal movement) before \r\nJulius\' Pi" +
+        "ercing Lance (breaking vertical walls).\r\nPiercing Lance doesn\'t do anything with" +
+        "out Dash.\r\n");
+            this.dashProgressive.UseVisualStyleBackColor = true;
+            // 
+            // metaprogression
+            // 
+            this.metaprogression.AutoSize = true;
+            this.metaprogression.Location = new System.Drawing.Point(49, 225);
+            this.metaprogression.Name = "metaprogression";
+            this.metaprogression.Size = new System.Drawing.Size(107, 17);
+            this.metaprogression.TabIndex = 32;
+            this.metaprogression.Text = "Meta progression";
+            this.helpTooltip.SetToolTip(this.metaprogression, "Items for progression will always be placed on newly accessible checks");
+            this.metaprogression.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 
@@ -1117,6 +1554,13 @@
             this.flowLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxChapter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startChapter)).EndInit();
+            this.StartsPage.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.startingRoomsBox.ResumeLayout(false);
+            this.startingRoomsBox.PerformLayout();
+            this.ItemsPage.ResumeLayout(false);
+            this.ItemsPage.PerformLayout();
             this.shuffleGroup.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
@@ -1147,23 +1591,10 @@
         private System.Windows.Forms.Label checkfile;
         private System.Windows.Forms.TabPage LogicPage;
         private System.Windows.Forms.DataGridView LogicPreviewGridview;
-        private System.Windows.Forms.GroupBox shuffleGroup;
-        private System.Windows.Forms.CheckBox shuffleSpirits;
-        private System.Windows.Forms.CheckBox shuffleChains;
-        private System.Windows.Forms.CheckBox shuffleTablets;
-        private System.Windows.Forms.CheckBox shuffleAmulets;
-        private System.Windows.Forms.CheckBox shuffleFindings;
-        private System.Windows.Forms.CheckBox shuffleBlights;
-        private System.Windows.Forms.CheckBox shuffleRelics;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReachablesColumn;
-        private System.Windows.Forms.CheckBox shuffleWishes;
-        private System.Windows.Forms.CheckBox shuffleSlots;
-        private System.Windows.Forms.CheckBox unusedRelics;
         private System.Windows.Forms.BindingSource componentSettingsBindingSource;
-        private System.Windows.Forms.CheckBox dashProgressive;
-        private System.Windows.Forms.CheckBox metaprogression;
         private System.Windows.Forms.ToolTip helpTooltip;
         private System.Windows.Forms.TrackBar maxChapter;
         private System.Windows.Forms.Label chapterText;
@@ -1206,12 +1637,56 @@
         private System.Windows.Forms.CheckBox checkBox24;
         private System.Windows.Forms.CheckBox checkBox25;
         private System.Windows.Forms.CheckBox checkBox26;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button launchButton;
         private System.Windows.Forms.CheckBox checkBoxAll;
         private System.Windows.Forms.CheckBox checkBoxMainSpirits;
         private System.Windows.Forms.CheckBox shuffleBGM;
-        private System.Windows.Forms.CheckBox startingRoom;
+        private System.Windows.Forms.TabPage StartsPage;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.FlowLayoutPanel startingRoomsBox;
+        private System.Windows.Forms.CheckBox checkBox27;
+        private System.Windows.Forms.CheckBox checkBoxStartAll;
+        private System.Windows.Forms.TabPage ItemsPage;
+        private System.Windows.Forms.CheckBox unusedRelics;
+        private System.Windows.Forms.GroupBox shuffleGroup;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.CheckBox shuffleSpirits;
+        private System.Windows.Forms.CheckBox shuffleRelics;
+        private System.Windows.Forms.CheckBox shuffleTablets;
+        private System.Windows.Forms.CheckBox shuffleWishes;
+        private System.Windows.Forms.CheckBox shuffleChains;
+        private System.Windows.Forms.CheckBox shuffleAmulets;
+        private System.Windows.Forms.CheckBox shuffleBlights;
+        private System.Windows.Forms.CheckBox shuffleFindings;
+        private System.Windows.Forms.CheckBox checkBox28;
+        private System.Windows.Forms.CheckBox checkBox29;
+        private System.Windows.Forms.CheckBox checkBox30;
+        private System.Windows.Forms.CheckBox checkBox31;
+        private System.Windows.Forms.CheckBox checkBox32;
+        private System.Windows.Forms.CheckBox checkBox33;
+        private System.Windows.Forms.CheckBox checkBox34;
+        private System.Windows.Forms.CheckBox checkBox35;
+        private System.Windows.Forms.CheckBox checkBox36;
+        private System.Windows.Forms.CheckBox checkBox37;
+        private System.Windows.Forms.CheckBox checkBox38;
+        private System.Windows.Forms.CheckBox checkBox39;
+        private System.Windows.Forms.CheckBox checkBox40;
+        private System.Windows.Forms.CheckBox checkBox41;
+        private System.Windows.Forms.CheckBox checkBox42;
+        private System.Windows.Forms.CheckBox checkBox43;
+        private System.Windows.Forms.CheckBox checkBox44;
+        private System.Windows.Forms.CheckBox checkBox45;
+        private System.Windows.Forms.CheckBox checkBox46;
+        private System.Windows.Forms.CheckBox checkBox47;
+        private System.Windows.Forms.CheckBox checkBox54;
+        private System.Windows.Forms.CheckBox checkBox48;
+        private System.Windows.Forms.CheckBox checkBox49;
+        private System.Windows.Forms.CheckBox checkBox50;
+        private System.Windows.Forms.CheckBox checkBox51;
+        private System.Windows.Forms.CheckBox checkBox52;
+        private System.Windows.Forms.CheckBox metaprogression;
+        private System.Windows.Forms.CheckBox dashProgressive;
+        private System.Windows.Forms.CheckBox shuffleSlots;
     }
 }

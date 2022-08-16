@@ -28,6 +28,7 @@ void Randomizer::FindNames()
 
 	BlueprintGeneratedClassIndex = -1;
 	const char* music = "/Game/FMOD/Events/Music/";
+	const char* evt = "EVT_";
 	FunctionIndex = -1;
 	for (CG::FNameEntry* name = pool.GetNext(lastFNameAddress, nextFNameComparisonId);
 		name != nullptr && lastFNameAddress != 0;
@@ -42,6 +43,10 @@ void Randomizer::FindNames()
 			_musics.insert(nextFNameComparisonId);
 		else if (str == "RestPoint")
 			RestPointTag = nextFNameComparisonId;
+		else if (!strncmp(str.c_str(), evt, strlen(evt)))
+			_events[str] = nextFNameComparisonId;
+		else if (_player_start_tags.find(str) != _player_start_tags.end())
+			_player_start_tags[str] = nextFNameComparisonId;
 	}
 }
 
@@ -178,9 +183,18 @@ void Randomizer::NewGame()
 
 void Randomizer::GameDataReady()
 {
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	_new_data = false;
 	std::cout << "NEWDATA" << std::endl;
 	RefreshAptitudes();
+
+	if (gm->DifficultyLevel > _max_chapter)
+	{
+		gm->MaxDifficultyLevel = _max_chapter;
+		gm->SetDifficultyLevel(_max_chapter);
+	}
+	else if (gm->DifficultyLevel < _min_chapter)
+		gm->SetDifficultyLevel(_min_chapter);
 }
 
 void Randomizer::NewMap()
@@ -216,20 +230,39 @@ void Randomizer::NewMap()
 		if (parameter != nullptr)
 			parameter->SetSkinLevelOverride(_skin_override, true);
 	}
+
+	{
+		auto pc = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController);
+
+		//"EVT_ev02"
+		//pc->MarkTutorialAsSeen(CG::FName(_events["EVT_ev02"]))
+		bool has_fast_travel = true;
+		for (int i = 0; i < pc->PlayedEvents.Num(); ++i)
+		{
+			has_fast_travel = false;
+			if (pc->PlayedEvents[i].ComparisonIndex == _events["EVT_ev02"])
+			{
+				has_fast_travel = true;
+				break;
+			}
+		}
+		if (!has_fast_travel)
+			pc->PlayedEvents[0].ComparisonIndex = _events["EVT_ev02"];
+	}
+
+
+#ifdef _DEBUG
+	std::fstream file("dataout.txt", std::ios_base::app);
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	for (int i = 0; i < gm->GameMapTable->Data.Num(); ++i)
+		file << i << "\t" << gm->GameMapTable->Data[i].Name.GetNameA() << std::endl;
+	file.close();
+#endif
+
 	ModifySpawnPoints();
 
 	if (!_has_normal_weapon)
 		RemoveBreakable();
-
-
-
-#ifdef _DEBUG
-	std::fstream file("dataout.txt", std::ios::out);
-
-	for (const auto& elem : _data) {
-		;
-	}
-#endif
 }
 
 void Randomizer::RemoveBreakable()
@@ -340,6 +373,8 @@ void Randomizer::Update()
 	FindItems("BP_Character_Boss_Base_C");
 	FindItems("BP_Interactable_Item_C");
 	FindItems("BP_Interactable_Treasure_C");
+	FindItems("BP_WorldTravelVolume_C");
+	FindItems("BP_Interactable_WorldTravel_C");
 }
 
 
@@ -384,15 +419,70 @@ void Randomizer::FindItems(const std::string& type_name)
 			ItemFound(out[i], &((CG::ABP_Interactable_Item_C*)out[i])->Item);
 		else if (type_name == "BP_Interactable_Treasure_C")
 			ItemFound(out[i], &((CG::ABP_Interactable_Treasure_C*)out[i])->UniqueItem);
+		else if (type_name == "BP_WorldTravelVolume_C")
+			TransitionFound(out[i], &((CG::ABP_WorldTravelVolume_C*)out[i])->GameMapToLoad, &((CG::ABP_WorldTravelVolume_C*)out[i])->PlayerStartTag, true);
+		else if (type_name == "BP_Interactable_WorldTravel_C")
+			TransitionFound(out[i], &((CG::ABP_Interactable_WorldTravel_C*)out[i])->GameMapToLoad, &((CG::ABP_Interactable_WorldTravel_C*)out[i])->PlayerStartTag, false);
+
 	}
 }
 
-void Randomizer::TransitionFound(CG::FDataTableRowHandle* handle, CG::FName* PlayerStartTag)
+void Randomizer::TransitionFound(CG::AActor* actor, CG::FDataTableRowHandle* handle, CG::FName* PlayerStartTag, bool test)
 {
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	/*if (gm->GetGameTimeSinceCreation() - time_travel > 1)
+	{
+		auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
+		time_travel = gm->GetGameTimeSinceCreation();
+		room += 1;
+		handle->DataTable = *(CG::UDataTable**)(&((char*)gm)[0x320]);
+		handle->RowName = handle->DataTable->Data[room].Name;
+		if (test)
+			((CG::ABP_WorldTravelVolume_C*)actor)->OnPlayerEnter();
+		else
+			((CG::ABP_Interactable_WorldTravel_C*)actor)->OnInteract(pc);
+	}
+
+	*/
 	if (_done.find(handle) != _done.end())
 		return;
-	std::cout << handle->RowName.GetName() << "\t" << PlayerStartTag->GetName() << std::endl;
-	_done.insert(handle);
+
+	if (handle == nullptr || PlayerStartTag == nullptr)
+		return;
+	auto result = _done.find(handle);
+	if (result != _done.end())
+		return;
+
+	auto map = actor->Outer->Outer->GetName();
+	auto name = actor->GetName();
+	if (name.find("_C") != std::string::npos)
+	{
+		name = actor->Class->GetName();
+		name.erase(name.length() - 2, 2);
+	}
+
+	name = map + "." + name;
+	std::cout << name << "\t" << handle->RowName.GetName() << "." << PlayerStartTag->GetName() << std::endl;
+
+#ifdef _DEBUG
+	//std::fstream file("dataout.txt", std::ios_base::app);
+	//file << name << "\t" << handle->RowName.GetName() << "." << PlayerStartTag->GetName() << std::endl;
+
+	//file.close();
+#endif
+
+	auto entry = _replacements.find(name);
+	if (entry != _replacements.end())
+	{
+		FTableRowProxy replacement = entry->second;
+		handle->DataTable = *(CG::UDataTable**)(&((char*)gm)[replacement.datatable]);
+		handle->RowName = handle->DataTable->Data[replacement.entry].Name;
+		PlayerStartTag->ComparisonIndex = _player_start_tags[replacement.tag];
+		if (replacement.progress == nullptr)
+			_done.insert(handle);
+	}
+	else
+		_done.insert(handle);
 }
 
 void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle)
@@ -544,6 +634,8 @@ void Randomizer::ReadSeedFile(std::string path)
 	_has_normal_weapon = true;
 	_minibosses_chapter = false;
 	_skin_override = -1;
+	_min_chapter = 0;
+	_max_chapter = 10;
 	if (file.is_open())
 	{
 		std::string line;
@@ -584,18 +676,9 @@ void Randomizer::ReadSeedFile(std::string path)
 				else if (item.find("starting_room") != std::string::npos)
 					_starting_room = atoi(item.substr(sizeof("starting_room"), item.length()).c_str());
 				else if (item.find("start_chapter") != std::string::npos)
-				{
-					int chapter = atoi(item.substr(sizeof("start_chapter"), item.length()).c_str());
-					if (gm->DifficultyLevel < chapter)
-						gm->SetDifficultyLevel(chapter);
-				}
+					_min_chapter = atoi(item.substr(sizeof("start_chapter"), item.length()).c_str());
 				else if (item.find("max_chapter") != std::string::npos)
-				{
-					int chapter = atoi(item.substr(sizeof("max_chapter"), item.length()).c_str());
-					gm->MaxDifficultyLevel = chapter;
-					if (gm->DifficultyLevel > chapter)
-						gm->SetDifficultyLevel(chapter);
-				}
+					_max_chapter = atoi(item.substr(sizeof("max_chapter"), item.length()).c_str());
 				else if (item.find("override_skin") != std::string::npos)
 					this->_skin_override = atoi(item.substr(sizeof("override_skin"), item.length()).c_str());
 			}
@@ -628,39 +711,55 @@ void Randomizer::ReadSeedFile(std::string path)
 
 bool Randomizer::FindTableRow(const std::string& item, FTableRowProxy& result)
 {
-	const char* tableNames[6] = {
+	const int table_count = 7;
+
+	const char* tableNames[table_count] = {
 		"Aptitude",
 		"Generic",
 		"Parameter",
 		"Passive",
 		"Spirit",
 		"Tip",
+		"Map",
 	};
-	int offsets[6] = {
+	int offsets[table_count] = {
 		0x338,
 		0x328,
 		0x330,
 		0x348,
 		0x340,
 		0x350,
+		0x320,
 	};
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
-	for (char i = 0; i < 6; ++i)
+	for (char i = 0; i < table_count; ++i)
 	{
 		if (item.compare(0, strlen(tableNames[i]), tableNames[i]) == 0)
 		{
 			auto entry = item.substr(strlen(tableNames[i]) + 1, item.length());
+
+			auto sep = entry.find(".");
+			if (sep > 0)
+			{
+				result.tag = entry.substr(sep + 1, entry.length());
+				entry = entry.substr(0, sep);
+			}
 			DWORD_PTR ptr = (DWORD_PTR)gm;
 			CG::UDataTable* table = *(CG::UDataTable**)(&((char*)gm)[offsets[i]]);
 			for (int j = 0; j < table->Data.Num(); ++j)
-				if (table->Data[j].Name.GetName() == entry)
+			{
+				std::string row = table->Data[j].Name.GetName();
+				if (row == entry)
 				{
 					result.datatable = offsets[i];
 					result.entry = j;
+					if (i == 6)
+						_player_start_tags[result.tag] = -1;
 					if (i == 0)
 						_aptitudes.insert(table->Data[j].Name.ComparisonIndex);
 					return true;
 				}
+			}
 		}
 	}
 	return false;

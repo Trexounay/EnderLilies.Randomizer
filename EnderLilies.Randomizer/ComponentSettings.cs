@@ -14,6 +14,7 @@ using LiveSplit.UI;
 using System.Runtime.CompilerServices;
 using System.Globalization;
 using EnderLilies.Randomizer.Tools;
+using EnderLilies.Randomizer.Logic;
 
 namespace EnderLilies.Randomizer
 {
@@ -106,23 +107,57 @@ namespace EnderLilies.Randomizer
             }
         }
 
-        bool _startingRoom = false;
-        public bool StartingRoom
+        int RecalcStartingRooms()
+        {
+            int startingRooms = 0;
+            for (int i = 0; i < startingRoomsBox.Controls.Count; ++i)
+            {
+                var checkbox = (CheckBox)startingRoomsBox.Controls[i];
+                if (checkbox.Checked)
+                    startingRooms |= 1 << i;
+            }
+            return startingRooms;
+        }
+
+        int _startingRooms = 0;
+        public int StartingRooms
         {
             get
             {
-                return _startingRoom;
+                return _startingRooms;
             }
             set
             {
-                if (_startingRoom != value)
+                if (_startingRooms != value || value != RecalcStartingRooms())
                 {
-                    _startingRoom = value;
+                    _startingRooms = value;
+                    bool _tmp = _internalInteraction;
+                    _internalInteraction = true;
+                    for (int i = 0; i < startingRoomsBox.Controls.Count; ++i)
+                    {
+                        var checkbox = (CheckBox)startingRoomsBox.Controls[i];
+                        bool isChecked = (_startingRooms & (1 << i)) > 0;
+                        if (checkbox.Checked != isChecked)
+                            checkbox.Checked = isChecked;
+                    }
+                    if (_startingRooms == ((1 << startingRoomsBox.Controls.Count) - 1))
+                        checkBoxStartAll.CheckState = CheckState.Checked;
+                    else if (_startingRooms > 0)
+                        checkBoxStartAll.CheckState = CheckState.Indeterminate;
+                    else
+                        checkBoxStartAll.CheckState = CheckState.Unchecked;
+                    checkBoxStartAll.Checked = (checkBoxStartAll.CheckState != CheckState.Unchecked);
+                    _internalInteraction = _tmp;
                     NotifyPropertyChanged();
                 }
             }
         }
 
+        public bool HasRoom(int i)
+        {
+            var checkbox = (CheckBox)startingRoomsBox.Controls[i];
+            return checkbox.Checked;
+        }
 
         bool _shuffleTablets = true;
         public bool ShuffleTablets
@@ -574,7 +609,7 @@ namespace EnderLilies.Randomizer
                 {
                     stringSettings = new StringSettings();
                     stringSettings.Push(new object[] {
-                                  StartingRoom, ShuffleRooms, NGPlus, MinibossesChapter,
+                                  StartingRooms, ShuffleRooms, NGPlus, MinibossesChapter,
                                   MetaProgression, ShuffleEnemies,
                                   StartChapter, MaxChapter, StartingSpirits,
                                   StartWeaponUsesAncientSouls, ShuffleWeaponUpgrades,
@@ -582,7 +617,7 @@ namespace EnderLilies.Randomizer
                                   ShuffleSlots, ShuffleTablets, ShuffleWishes,
                                   ShuffleAmulets, ShuffleBlights, ShuffleChains,
                                   ShuffleFindings, ShuffleRelics, ShuffleSpirits},
-                           new int[]    {1, 1, 1, 1,
+                           new int[]    {(1 << 27)-1, 1, 1, 1,
                                   1, 1,
                                   10, 10, (1 << 26)-1,
                                   1, 1,
@@ -626,7 +661,7 @@ namespace EnderLilies.Randomizer
                         MinibossesChapter = stringSettings.PullBool();
                         NGPlus = stringSettings.PullBool();
                         ShuffleRooms = stringSettings.PullBool();
-                        StartingRoom = stringSettings.PullBool();
+                        StartingRooms = stringSettings.PullInt((1 << 27) - 1);
 
                         this.stringSettings = stringSettings;
                         _internalInteraction = false;
@@ -638,12 +673,20 @@ namespace EnderLilies.Randomizer
             }
         }
 
+        public class MapItem
+        {
+            public MapItem(int id, string name) { Value = name; Key = id; }
+            public int Key { get; set; }
+            public string Value { get; set; }
+        }
+
         public ComponentSettings()
         {
             InitializeComponent();
             //this.launchButton.DataBindings.Add("Enabled", this, "HasExePath", false, DataSourceUpdateMode.OnPropertyChanged, false);
             var b = this.seedText.DataBindings.Add("Text", this, "SeedText", false, DataSourceUpdateMode.OnValidation, "0");
             b.ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
+
             this.checkfile.DataBindings.Add("Text", this, "CheckFileResult", false, DataSourceUpdateMode.OnPropertyChanged);
             this.shuffleAmulets.DataBindings.Add("Checked", this, "ShuffleAmulets", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleBlights.DataBindings.Add("Checked", this, "ShuffleBlights", false, DataSourceUpdateMode.OnPropertyChanged, true);
@@ -651,7 +694,6 @@ namespace EnderLilies.Randomizer
             this.shuffleFindings.DataBindings.Add("Checked", this, "ShuffleFindings", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleRelics.DataBindings.Add("Checked", this, "ShuffleRelics", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleEnemies.DataBindings.Add("Checked", this, "ShuffleEnemies", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            this.startingRoom.DataBindings.Add("Checked", this, "StartingRoom", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.shuffleSpirits.DataBindings.Add("Checked", this, "ShuffleSpirits", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleTablets.DataBindings.Add("Checked", this, "ShuffleTablets", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleWishes.DataBindings.Add("Checked", this, "ShuffleWishes", false, DataSourceUpdateMode.OnPropertyChanged, true);
@@ -686,6 +728,21 @@ namespace EnderLilies.Randomizer
                         StartingSpirits = _startingSpirits & ~(1 << j);
                 };
             }
+            for (int i = 0; i < startingRoomsBox.Controls.Count; ++i)
+            {
+                var checkbox = (CheckBox)startingRoomsBox.Controls[i];
+                var j = i;
+                checkbox.CheckedChanged += (a, e) =>
+                {
+                    if (_internalInteraction)
+                        return;
+                    var c = (CheckBox)a;
+                    if (c.Checked)
+                        StartingRooms = _startingRooms | (1 << j);
+                    else
+                        StartingRooms = _startingRooms & ~(1 << j);
+                };
+            }
 
 
             FilePath = "Components/EnderLilies.Randomizer.json";
@@ -715,7 +772,7 @@ namespace EnderLilies.Randomizer
             ShuffleFindings = SettingsHelper.ParseBool(element["ShuffleFindings"], true);
             ShuffleRelics = SettingsHelper.ParseBool(element["ShuffleRelics"], true);
             ShuffleEnemies = SettingsHelper.ParseBool(element["ShuffleEnemies"], false);
-            StartingRoom = SettingsHelper.ParseBool(element["StartingRoom"], false);
+            StartingRooms = SettingsHelper.ParseInt(element["StartingRooms"], 0);
             ShuffleSpirits = SettingsHelper.ParseBool(element["ShuffleSpirits"], true);
             ShuffleTablets = SettingsHelper.ParseBool(element["ShuffleTablets"], true);
             ShuffleWishes = SettingsHelper.ParseBool(element["ShuffleWishes"], true);
@@ -746,7 +803,7 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleFindings", ShuffleFindings));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleRelics", ShuffleRelics));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleEnemies", ShuffleEnemies));
-            settings_node.AppendChild(SettingsHelper.ToElement(document, "StartingRoom", StartingRoom));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "StartingRooms", StartingRooms));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleSpirits", ShuffleSpirits));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleTablets", ShuffleTablets));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleWishes", ShuffleWishes));
@@ -778,6 +835,7 @@ namespace EnderLilies.Randomizer
             Dictionary<string, string> replacements = new Dictionary<string, string>
                 {
                     {"_GAMEPLAY.BP_", " | "},
+                    {"_GAMEPLAY.", " | "},
                     {"_MAP.BP_", " | "},
                     {"_GEO.BP_", " | "},
                     {"Interactable_", ""},
@@ -836,13 +894,19 @@ namespace EnderLilies.Randomizer
                     {"Parameter.i_maxHPUp_03", "amulet jewel"},
                     {"Passive.i_", "relic - "},
                 };
+            Dictionary<string, string> progressItem = new Dictionary<string, string>()
+            {
+                {"Aptitude.dash_attack", "Aptitude.dash,Aptitude.dash_attack"},
+                {"Aptitude.dash", "Aptitude.dash,Aptitude.dash_attack"},
+            };
 
             var nodes = new List<string>();
+            nodes.Add("starting_weapon");
             foreach (var l in g.logic)
             {
                 if (l.node == -1)
                     continue;
-                var node = g.GetNode(l.node);
+                var node = g.Node(l.node);
                 nodes.Add(node);
             }
             foreach (var l in g.logic)
@@ -851,13 +915,20 @@ namespace EnderLilies.Randomizer
                 {
                     LogicPreviewGridview.Rows.Add("End of Logic",
                         "",
-                        string.Format("{0}/{1}", l.reachables, g.locations.Count));
+                        string.Format("{0}/{1}", l.reachables, g.checks.Count));
                     continue;
                 }
-                var node = g.GetNode(l.node);
-                var tooltip = node.ToString();
-                var item = session.result[node];
+                var node = g.Node(l.node);
+                var item = g.Key(l.item);
+                var tooltip = g.Node(l.node);
+                //session.result[node];
 
+                if (DashProgressive)
+                    foreach (var k in progressItem)
+                    {
+                        if (k.Key == item)
+                            item = k.Value;
+                    }
                 foreach (var k in g.aliases)
                 {
                     if (k.Value == node)
@@ -867,11 +938,21 @@ namespace EnderLilies.Randomizer
                 }
                 foreach (var r in replacements)
                     node = node.Replace(r.Key, r.Value);
+
                 if (node.Contains("|"))
                     node = node.TrimEnd("0123456789_ ".ToArray());
+
+                if (LogicPreviewGridview.Rows.Count == 0)
+                {
+                    LogicPreviewGridview.Rows.Add($"Start: {node}",
+                        $"Spirit: {item}",
+                        string.Format("{0}/{1}", l.reachables, g.checks.Count));
+                    continue;
+                }
                 int rowid = LogicPreviewGridview.Rows.Add(node,
                     item,
-                    string.Format("{0}/{1}", l.reachables, g.nodes.Count));
+                    string.Format("{0}/{1}", l.reachables, g.checks.Count));
+
                 LogicPreviewGridview.Rows[rowid].Cells[0].ToolTipText = tooltip;
             }
             foreach (var pair in session.result)
@@ -909,9 +990,9 @@ namespace EnderLilies.Randomizer
             }
             try
             {
-                GameGraph g = SerializableGraph.Import(FilePath);
-                CheckFileResult = String.Format("Config file contains {0} nodes {1} keys and {2} connections",
-                    g.nodes.Count, g.keys.Count, g.edges.Count);
+                GameGraph g = LogicParser.FromJson(FilePath);
+                CheckFileResult = String.Format("Config file contains {0} checks {1} items and {2} connections",
+                    g.checks.Count, g.keys.Count, g.nodes.Count);
                 this.checkfile.ForeColor = Color.Green;
             }
             catch (Exception e)
@@ -955,7 +1036,7 @@ namespace EnderLilies.Randomizer
                     else
                         PropertyChangedEnded(this, new PropertyChangedEventArgs(propertyName));
                 }
-                
+
             }
         }
 
@@ -988,5 +1069,14 @@ namespace EnderLilies.Randomizer
                 this.StartingSpirits &= ~mask;
         }
 
+        private void checkBoxStartAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_internalInteraction)
+                return;
+            if (checkBoxStartAll.Checked)
+                this.StartingRooms = (1 << startingRoomsBox.Controls.Count) - 1;
+            else
+                this.StartingRooms = 0;
+        }
     }
 }

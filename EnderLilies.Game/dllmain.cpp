@@ -3,10 +3,14 @@
 
 #include <Windows.h>
 #include <iostream>
-#include "SDK.h"
+#include <Xinput.h>
 #include <thread>
+#include <fstream>
+
+#include "SDK.h"
 #include "lib/detours.h"
 #include "Randomizer.h"
+
 
 template<class T>
 T DoDetourFunction(const char* str, PVOID target);
@@ -155,7 +159,13 @@ void CleanUp()
 	g_cancel = true;
 }
 
-BOOL APIENTRY DllMain(HMODULE hModule,
+
+namespace
+{
+	HMODULE xinput;
+}
+
+BOOL DllMain(HMODULE hModule,
 	DWORD  ul_reason_for_call,
 	LPVOID lpReserved
 )
@@ -168,6 +178,11 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 	{
 	case DLL_PROCESS_ATTACH:
 		second = new std::thread(HackMain, hModule);
+		/*
+		xinput = LoadLibrary(L"C:\\Windows\\System32\\xinput1_3-orig.dll");
+		if (xinput == 0)
+			xinput = LoadLibrary(L"C:\\Windows\\System32\\xinput1_3.dll");
+			*/
 		break;
 	case DLL_THREAD_ATTACH:
 		break;
@@ -180,3 +195,82 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 	return TRUE;
 }
 
+template<class T>
+T set_call(T& ptr, const char* name) {
+	if (ptr == 0)
+		ptr = (T)GetProcAddress(xinput, name);
+	return ptr;
+}
+
+template<class T>
+T set_call(T& ptr, int ord) {
+	if (ptr == 0)
+		ptr = (T)GetProcAddress(xinput, (const char*)ord);
+	return ptr;
+}
+
+void WINAPI XInputEnable(BOOL state) WIN_NOEXCEPT
+{
+	static void (WINAPI * orig)(BOOL state);
+	return set_call(orig, __FUNCTION__)(state);
+}
+
+DWORD WINAPI XInputGetBatteryInformation(DWORD dwUserIndex, BYTE devType, XINPUT_BATTERY_INFORMATION* pBatteryInformation) WIN_NOEXCEPT
+{
+	static DWORD(WINAPI * orig)(DWORD dwUserIndex, BYTE devType, XINPUT_BATTERY_INFORMATION * pBatteryInformation);
+	return set_call(orig, __FUNCTION__)(dwUserIndex, devType, pBatteryInformation);
+}
+
+DWORD WINAPI XInputGetCapabilities(DWORD dwUserIndex, DWORD dwFlags, XINPUT_CAPABILITIES* pCapabilities) WIN_NOEXCEPT
+{
+	static DWORD(WINAPI * orig)(DWORD dwUserIndex, DWORD dwFlags, XINPUT_CAPABILITIES * pCapabilities);
+	return set_call(orig, __FUNCTION__)(dwUserIndex, dwFlags, pCapabilities);
+}
+
+DWORD WINAPI XInputGetDSoundAudioDeviceGuids(DWORD dwUserIndex, GUID* pDSoundRenderGuid, GUID* pDSoundCaptureGuid)
+{
+	static DWORD(WINAPI * orig)(DWORD dwUserIndex, GUID * pDSoundRenderGuid, GUID * pDSoundCaptureGuid);
+	return set_call(orig, __FUNCTION__)(dwUserIndex, pDSoundRenderGuid, pDSoundCaptureGuid);
+}
+
+DWORD WINAPI XInputGetKeystroke(DWORD dwUserIndex, DWORD dwReserved, PXINPUT_KEYSTROKE pKeystroke) WIN_NOEXCEPT
+{
+	static DWORD(WINAPI * orig)(DWORD dwUserIndex, DWORD dwReserved, PXINPUT_KEYSTROKE pKeystroke);
+	return set_call(orig, __FUNCTION__)(dwUserIndex, dwReserved, pKeystroke);
+}
+
+DWORD WINAPI XInputGetState(DWORD dwUserIndex, XINPUT_STATE* pState) WIN_NOEXCEPT
+{
+	static DWORD(WINAPI * orig)(DWORD dwUserIndex, XINPUT_STATE * pState);
+	return set_call(orig, __FUNCTION__)(dwUserIndex, pState);
+}
+
+DWORD WINAPI XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration) WIN_NOEXCEPT
+{
+	static DWORD(WINAPI * orig)(DWORD dwUserIndex, XINPUT_VIBRATION * pVibration);
+	return set_call(orig, __FUNCTION__)(dwUserIndex, pVibration);
+}
+
+DWORD WINAPI XInputOrd100(DWORD dwUserIndex, XINPUT_STATE* pState)
+{
+	static DWORD(WINAPI * orig)(DWORD dwUserIndex, XINPUT_STATE * pState);
+	return set_call(orig, "XInputGetState")(dwUserIndex, pState);
+}
+
+DWORD WINAPI XInputOrd101(DWORD dwUserIndex, DWORD unk, void* ptr)
+{
+	static DWORD(WINAPI * orig)(DWORD dwUserIndex, DWORD unk, void* ptr);
+	return set_call(orig, 101)(dwUserIndex, unk, ptr);
+}
+
+DWORD WINAPI XInputOrd102(DWORD dwUserIndex)
+{
+	static DWORD(WINAPI * orig)(DWORD dwUserIndex);
+	return set_call(orig, 102)(dwUserIndex);
+}
+
+DWORD WINAPI XInputOrd103(DWORD dwUserIndex)
+{
+	static DWORD(WINAPI * orig)(DWORD dwUserIndex);
+	return set_call(orig, 103)(dwUserIndex);
+}

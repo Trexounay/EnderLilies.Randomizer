@@ -10787,7 +10787,7 @@ int AGameModeZenithBase::SetNewGamePlusGeneration(int NewNewGamePlusGeneration)
 //		int                                                ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 int AGameModeZenithBase::SetDifficultyLevel(int NewDifficultyLevel)
 {
-	static UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.GameModeZenithBase.SetDifficultyLevel");
+	UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.GameModeZenithBase.SetDifficultyLevel");
 
 	AGameModeZenithBase_SetDifficultyLevel_Params params;
 	params.NewDifficultyLevel = NewDifficultyLevel;

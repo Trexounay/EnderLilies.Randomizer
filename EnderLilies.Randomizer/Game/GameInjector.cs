@@ -5,8 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EnderLilies.Randomizer
@@ -54,6 +52,8 @@ namespace EnderLilies.Randomizer
             return path;
         }
 
+
+
         static void InjectDLL(Process process, string path)
         {
             IntPtr loadLibraryAddr = SafeNativeMethods.GetProcAddress(SafeNativeMethods.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
@@ -71,7 +71,9 @@ namespace EnderLilies.Randomizer
                 if ((mem = SafeNativeMethods.VirtualAllocEx(process.Handle, IntPtr.Zero, (uint)path.Length,
                     SafeNativeMethods.AllocationType.Commit | SafeNativeMethods.AllocationType.Reserve,
                     SafeNativeMethods.MemoryProtection.ReadWrite)) == IntPtr.Zero)
+                {
                     throw new Exception("cannot allocate");
+                }
 
                 byte[] bytes = Encoding.ASCII.GetBytes(path + "\0");
                 len = (uint)bytes.Length;
@@ -117,7 +119,15 @@ namespace EnderLilies.Randomizer
             if (_game == null || _game.Id != game.Id)
             {
                 if (!ProcessHasModule(game, _gameDLL))
-                    InjectDLL(game, GetGameDLLPath());
+                    try
+                    {
+                        InjectDLL(game, GetGameDLLPath());
+                    }
+                    catch(Exception e)
+                    {
+                        var response = MessageBox.Show(e.Message, "Error during dll injection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        throw e;
+                    }
                 else
                 {
                     _game = game;
