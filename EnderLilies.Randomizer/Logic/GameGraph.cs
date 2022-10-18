@@ -223,7 +223,7 @@ namespace EnderLilies.Randomizer
             }
             else
                 foreach (var trans in transitions)
-                    AddRule(Node(tags[trans.Value]), Node(trans.Key));
+                    AddRule(trans.Value, Node(trans.Key));
 
             if (aliases.ContainsKey(start))
                 start = aliases[start];
@@ -291,6 +291,10 @@ namespace EnderLilies.Randomizer
                             meta.Xor(new_nodes);
                             meta_locations.Shuffle();
                             empty_locations.AddRange(meta_locations);
+                            //for (int i = 0; i < meta_locations.Count; i++)
+                            //{
+                                //Console.WriteLine(i.ToString() + " " + Node(meta_locations[i]));
+                            //}
 
                             foreach (int key in subitems)
                             {

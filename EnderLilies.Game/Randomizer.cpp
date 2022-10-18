@@ -167,8 +167,10 @@ void Randomizer::NewGame()
 	std::cout << "NEWGAME" << std::endl;
 
 	ReadSeedFile(_path + "/EnderLiliesSeed.txt");
+
 	FindNames();
 	RemoveHasItemCheck();
+	std::cout << _seed << std::endl;
 
 	if (_starting_room > 0)
 		ChangeStartingRoom(_starting_room);
@@ -553,6 +555,7 @@ bool Randomizer::PlayerHasItem(const FTableRowProxy proxy)
 
 void Randomizer::ShuffleRelicSlots()
 {
+	srand(_seed);
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UDataTable* table = gm->ItemPassiveTable;
 	for (int i = table->Data.Num(); i > 1;)
@@ -569,6 +572,7 @@ void Randomizer::ShuffleMusic()
 {
 	if (_musics.size() <= 0)
 		return;
+	srand(_seed);
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UDataTable* table = gm->GameMapTable;
 
@@ -593,6 +597,7 @@ void Randomizer::ShuffleMusic()
 
 void Randomizer::ShuffleRooms()
 {
+	srand(_seed);
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UDataTable* table = gm->GameMapTable;
 	void* start_room = table->Data[12].ptr;
@@ -649,10 +654,7 @@ void Randomizer::ReadSeedFile(std::string path)
 			trim(location);
 			trim(item);
 			if (location == "SEED")
-			{
 				_seed = atoi(item.c_str());
-				srand(_seed);
-			}
 			else if (location == "SETTINGS")
 			{
 				if (item == "shuffle_slots")
@@ -824,6 +826,7 @@ void Randomizer::ModifySpirits()
 			data->bInitialSpirit = (i == _starting_weapon);
 	}
 
+	srand(_seed);
 	if (_shuffle_upgrades)
 	{
 		for (int i = gm->ItemSpiritTable->Data.Num(); i > 2;)

@@ -187,7 +187,10 @@ namespace EnderLilies.Randomizer
             if (_settings.MetaProgression)
                 foreach (string v in GameGraph.keys)
                     if (items.Contains(v))
+                    {
                         items.Remove(v);
+                        result.Add(v, v);
+                    }
             var loc = new List<string>(GameGraph.checks.Keys.Select<int, string>(i => GameGraph.nodes[i]));
             items.Sort(new CompareItems());
             loc.Shuffle();

@@ -123,439 +123,430 @@
     "Parameter.i_maxHPUp_03"
   ],
   "tags": {
-    "Map.map_abyss_01.2": "Abyss_01_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_abyss_01.S18": "Abyss_01_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_abyss_02.1": "Abyss_02_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_abyss_02.3": "Abyss_02_GAMEPLAY.BP_WorldTravelVolume",
-    "Map.map_abyss_03.2": "Abyss_03_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Map.map_abyss_04.2": "Abyss_04_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_abyss_04.5": "Abyss_04_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_abyss_05.4": "Abyss_05_GAMEPLAY.BP_WorldTravelVolume",
-    "Map.map_castle_01.0": "Castle_01_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_castle_01.10": "Castle_01_GAMEPLAY.BP_WorldTravelVolume6",
-    "Map.map_castle_01.2": "Castle_01_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_castle_01.2B": "Castle_01_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_castle_02.1": "Castle_02_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_02.1B": "Castle_02_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_castle_02.4": "Castle_02_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_castle_02.5": "Castle_02_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Map.map_castle_03.11A": "Castle_03_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_castle_03.11B": "Castle_03_GAMEPLAY.BP_WorldTravelVolume6",
-    "Map.map_castle_03.5": "Castle_03_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_castle_04.2": "Castle_04_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_05.2": "Castle_05_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Map.map_castle_05.3": "Castle_05_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_castle_05.6": "Castle_05_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_05.8": "Castle_05_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_06.12": "Castle_06_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Map.map_castle_06.5": "Castle_06_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_06.7": "Castle_06_GAMEPLAY.BP_Interactable_WorldTravel2",
-    "Map.map_castle_07.6": "Castle_07_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_07.F1": "Castle_07_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_08.5": "Castle_08_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_08.9": "Castle_08_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_09.10": "Castle_09_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_castle_09.11": "Castle_09_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_09.8": "Castle_09_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_10.1": "Castle_10_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_10.9": "Castle_10_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_11.12": "Castle_11_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_11.13": "Castle_11_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_castle_11.3A": "Castle_11_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_castle_11.3B": "Castle_11_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_castle_11.9": "Castle_11_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_12.11": "Castle_12_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_12.21": "Castle_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_castle_12.6": "Castle_12_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Map.map_castle_13.11": "Castle_13_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_castle_13.14": "Castle_13_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_castle_13.17": "Castle_13_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_14.13": "Castle_14_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_14.15": "Castle_14_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_castle_15.14": "Castle_15_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_15.16": "Castle_15_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_16.15": "Castle_16_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_17.13": "Castle_17_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_17.18": "Castle_17_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_castle_18.16": "Castle_18_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_18.17": "Castle18Top",
-    "Map.map_castle_18.19": "Castle_18_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_19.18": "Castle_19_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_castle_19.20": "Castle_19_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_20.19": "Castle_20_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_castle_21.12": "Castle_21_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_cave_01.2": "Cave_01_Bottom2",
-    "Map.map_cave_01.V12": "Cave_01_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_02.1": "Cave_02_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_cave_02.5": "Cave_02_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_02.7": "Cave_02_GAMEPLAY.BP_WorldTravelVolume4_1",
-    "Map.map_cave_03.6": "Cave_03_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_cave_03.7": "Cave_03_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_03.8": "Cave_03_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_04.12": "Cave_04_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_04.16": "Cave_04_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_04.5": "Cave_04_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_05.10": "Cave_05_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_05.2": "Cave_05_GAMEPLAY.BP_WorldTravelVolume_0",
-    "Map.map_cave_05.4": "Cave_05_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_05.6": "Cave_05_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_06.3": "Cave_06_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_06.5": "Cave_06_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_07.2": "Cave_07_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_07.3": "Cave_07_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_08.11": "Cave_08_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_cave_08.17": "Cave_08_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_08.3": "Cave_08_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_08.9": "Cave_08_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_09.10": "Cave_09_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_09.21": "Cave_09_GAMEPLAY.BP_WorldTravelVolume6",
-    "Map.map_cave_09.8": "Cave_09_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_cave_10.16": "Cave_10_GAMEPLAY.BP_WorldTravelVolume6",
-    "Map.map_cave_10.23": "Cave_10_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_10.5": "Cave_10_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_10.9": "Cave_10_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_cave_11.13": "Cave_11_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_11.18": "Cave_11_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_cave_11.18B": "Cave_11_GAMEPLAY.BP_SCR_LV2M_2050_2",
-    "Map.map_cave_11.8": "Cave_11_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_12.4": "Cave_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_13.11": "Cave_13_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_13.14": "Cave_13_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_13.20": "Cave_13_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_cave_13.23": "Cave_13_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_14.13": "Cave_14_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_14.15": "Cave_14_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_14.22": "Cave_14_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_cave_15.14": "Cave_15_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_15.16": "Cave_15_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_16.10": "Cave_16_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_16.15": "Cave_16_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_16.4": "Cave_16_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_17.8": "Cave_17_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_18.11": "Cave_18_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_19.20": "Cave_19_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_19.21": "Cave_19_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_20.13": "Cave_20_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_cave_20.19": "Cave_20_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_20.22": "Cave_20_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_21.19": "Cave_21_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_21.9": "Cave_21_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_22.14": "Cave_22_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_cave_22.20": "Cave_22_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_22.F2": "Cave_22_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_cave_23.10": "Cave_23_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_cave_23.13": "Cave_23_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_church_01.1": "Church_01_GAMEPLAY.BP_Interactable_WorldTravel",
-    "Map.map_church_01.12": "Church_01_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_church_01.2": "Church01Top",
-    "Map.map_church_02.0": "Church_02_GAMEPLAY.BP_Interactable_WorldTravel",
-    "Map.map_church_02.10": "Church_02_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_church_03.0": "Church_03_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_church_03.1": "Church_03_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_church_04.0": "Church_04_GAMEPLAY.BP_WorldTravelVolume",
-    "Map.map_church_04.1": "Church_04_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_church_05.1": "Church_05_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_church_05.11": "Church_05_GAMEPLAY.BP_Interactable_WorldTravel",
-    "Map.map_church_05.9": "Church_05_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_church_06.0": "Church_06_GAMEPLAY.BP_WorldTravelVolume",
-    "Map.map_church_06.1": "Church_06_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_church_07.0": "Church_07_GAMEPLAY.BP_WorldTravelVolume_3",
-    "Map.map_church_07.1": "Church_07_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_church_08.0": "Church_08_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_church_08.1": "Church_08_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_church_08.2": "Church_08_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_church_09.14": "Church_09_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_church_09.5": "Church_09_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_church_10.11": "Church_10_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_church_10.2": "Church_10_GAMEPLAY.BP_WorldTravelVolume_4",
-    "Map.map_church_11.10": "Church_11_GAMEPLAY.BP_WorldTravelVolume_4",
-    "Map.map_church_11.5": "Church_11_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Map.map_church_12.1": "Church_12_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_church_12.3": "Church_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_church_13.6": "Church_13_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_church_14.9": "Church_14_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_forest_01.2": "Forest_01_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_forest_01.C8": "Forest_01_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_forest_02.1": "Forest_02_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_forest_02.3": "Forest_02_GAMEPLAY.BP_WorldTravelVolume7",
-    "Map.map_forest_02.4": "Forest_02_GAMEPLAY.BP_WorldTravelVolume6",
-    "Map.map_forest_03.2": "Forest_03_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_forest_03.5": "Forest_03_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_forest_04.2": "Forest_04_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_forest_04.6": "Forest_04_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_forest_05.3": "Forest_05_GAMEPLAY.BP_WorldTravelVolume6",
-    "Map.map_forest_05.4": "Forest_05_GAMEPLAY.BP_WorldTravelVolume7",
-    "Map.map_forest_05.7": "Forest_05_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_forest_06.7": "Forest_06_GAMEPLAY.BP_WorldTravelVolume8",
-    "Map.map_forest_07.5": "Forest_07_GAMEPLAY.BP_WorldTravelVolume9_1",
-    "Map.map_forest_07.6": "Forest_07_GEO.BP_WorldTravelVolume11",
-    "Map.map_forest_07.8": "Forest_07_GAMEPLAY.BP_WorldTravelVolume12",
-    "Map.map_forest_07.O1": "Forest_07_GAMEPLAY.BP_WorldTravelVolume10_2",
-    "Map.map_forest_08.10": "Forest_08_GAMEPLAY.BP_WorldTravelVolume13",
-    "Map.map_forest_08.7": "Forest_08_GAMEPLAY.BP_WorldTravelVolume12",
-    "Map.map_forest_09.10": "Forest_09_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Map.map_forest_09.S2": "Forest_09_GAMEPLAY.BP_WorldTravelVolume13",
-    "Map.map_forest_10.11": "Forest_10_DESIGN.BP_Interactable_WorldTravel10",
-    "Map.map_forest_10.12": "Forest_10_GAMEPLAY.BP_WorldTravelVolume13",
-    "Map.map_forest_10.8": "Forest_10_GAMEPLAY.BP_WorldTravelVolume12",
-    "Map.map_forest_10.9": "Forest_10_DESIGN.BP_Interactable_WorldTravel9",
-    "Map.map_forest_11.10": "Forest_11_GAMEPLAY.BP_Interactable_WorldTravel11",
-    "Map.map_forest_11.14": "Forest_11_GAMEPLAY.BP_WorldTravelVolume12",
-    "Map.map_forest_12.10": "Forest_12_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_forest_12.13": "Forest_12_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_forest_12.17": "Forest_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_forest_13.12": "Forest_13_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_forest_13.14": "Forest_13_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_forest_13.16": "Forest_13_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_forest_14.11": "Forest_14_GAMEPLAY.BP_WorldTravelVolume12",
-    "Map.map_forest_14.13": "Forest_14_GAMEPLAY.BP_WorldTravelVolume11",
-    "Map.map_forest_14.15": "Forest_14_GAMEPLAY.BP_WorldTravelVolume10",
-    "Map.map_forest_15.14": "Forest_15_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_forest_16.13": "Forest_16_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_forest_17.12": "Forest_17_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_01.3": "Fort_01_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_01.C7": "Fort_01_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_01.V15": "Fort_01_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_fort_02.3": "Fort_02_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_02.C22": "Fort_02_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Map.map_fort_03.1": "Fort_03_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_03.2": "Fort_03_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Map.map_fort_03.4": "Fort_03_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_03.5": "Fort_03_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_fort_04.3": "Fort_04_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_04.5": "Fort_04_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_05.15": "Fort_05_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_fort_05.3": "Fort_05_GAMEPLAY.BP_SCR_LV1S_2020_6",
-    "Map.map_fort_05.4": "Fort_05_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_05.6": "Fort_05_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_06.10": "Fort_06_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_06.5": "Fort_06_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_06.7": "Fort_06_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_07.11": "Fort_07_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_fort_07.6": "Fort_07_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_07.8": "Fort_07_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_07.9": "Fort_07_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_07.9B": "Fort_07_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_fort_08.7": "Fort_08_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_09.10": "Fort_09_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_09.7": "Fort_09_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_fort_09.7B": "Fort_09_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_fort_09.O3": "Fort_09_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_10.6": "Fort_10_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_10.9": "Fort_10_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_11.12": "Fort_11_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_11.13": "Fort_11_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_fort_11.53": "Fort_11_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_fort_11.7": "Fort_11_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_12.11": "Fort_12_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_12.14": "Fort_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_12.16": "Fort_12_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_fort_13.11": "Fort_13_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_13.11B": "Fort_13_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_fort_13.14": "Fort_13_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_13.19": "Fort_13_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_fort_14.12": "Fort_14_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_14.13": "Fort_14_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Map.map_fort_14.15": "Fort_14_GAMEPLAY.BP_WorldTravelVolume_0",
-    "Map.map_fort_15.14": "Fort_15_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_15.16": "Fort_15_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_15.16B": "Fort_15_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_fort_15.17": "Fort_15_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_fort_15.5": "Fort_15_GAMEPLAY.BP_SCR_LV1M_2190_2",
-    "Map.map_fort_16.12": "Fort_16_GAMEPLAY.BP_WorldTravelVolume7",
-    "Map.map_fort_16.15": "Fort_16_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_fort_16.15B": "Fort_16_GAMEPLAY.BP_WorldTravelVolume6",
-    "Map.map_fort_16.18": "Fort_16_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_fort_17.15": "Fort_17_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_17.18": "Fort_17_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_18.16": "Fort_18_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_18.17": "Fort_18_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_18.19": "Fort_18_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_19.13": "Fort_19_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_fort_19.18": "Fort_19_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_fort_19.20": "Fort_19_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_fort_20.19": "Fort_20_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_fort_20.21": "Fort_20_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_fort_21.20": "Fort_21_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_oubliette_01.2": "Oubliette_01_GAMEPLAY.BP_WorldTravelVolume12",
-    "Map.map_oubliette_01.F7": "Oubliette_01_GAMEPLAY.BP_WorldTravelVolume11",
-    "Map.map_oubliette_02.1": "Oubliette_02_GAMEPLAY.BP_WorldTravelVolume11",
-    "Map.map_oubliette_02.4": "Oubliette_02_GAMEPLAY.BP_WorldTravelVolume13",
-    "Map.map_oubliette_02.5": "Oubliette_02_GAMEPLAY.BP_WorldTravelVolume12",
-    "Map.map_oubliette_03.10": "Oubliette_03_GAMEPLAY.BP_WorldTravelVolume14",
-    "Map.map_oubliette_03.4": "Oubliette_03_GAMEPLAY.BP_WorldTravelVolume13",
-    "Map.map_oubliette_03.5": "Oubliette_03_GAMEPLAY.BP_WorldTravelVolume15",
-    "Map.map_oubliette_04.2": "Oubliette_04_GAMEPLAY.BP_WorldTravelVolume16",
-    "Map.map_oubliette_04.3": "Oubliette_04_GAMEPLAY.BP_WorldTravelVolume14",
-    "Map.map_oubliette_05.2": "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume15",
-    "Map.map_oubliette_05.3": "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume17",
-    "Map.map_oubliette_05.5_1": "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel13",
-    "Map.map_oubliette_05.5_2": "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel10",
-    "Map.map_oubliette_05.5_2B": "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume18",
-    "Map.map_oubliette_05.5_3": "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel11",
-    "Map.map_oubliette_05.6": "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume16",
-    "Map.map_oubliette_05.7_1": "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel14",
-    "Map.map_oubliette_05.7_2": "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel12",
-    "Map.map_oubliette_05_1.5": "Oubliette_05_1_GAMEPLAY.BP_Interactable_WorldTravel13",
-    "Map.map_oubliette_05_2.5": "Oubliette_05_2_GAMEPLAY.BP_Interactable_WorldTravel12",
-    "Map.map_oubliette_05_2.5B": "Oubliette_05_2_GAMEPLAY.BP_WorldTravelVolume18",
-    "Map.map_oubliette_05_3.5": "Oubliette_05_3_GAMEPLAY.BP_Interactable_WorldTravel16",
-    "Map.map_oubliette_06.10": "Oubliette_06_GAMEPLAY.BP_WorldTravelVolume22",
-    "Map.map_oubliette_06.5": "Oubliette_06_GAMEPLAY.BP_WorldTravelVolume20",
-    "Map.map_oubliette_06.7": "Oubliette_06_GAMEPLAY.BP_WorldTravelVolume21",
-    "Map.map_oubliette_06_1.7": "Oubliette_06_1_GAMEPLAY.BP_Interactable_WorldTravel14",
-    "Map.map_oubliette_06_2.7": "Oubliette_06_2_GAMEPLAY.BP_Interactable_WorldTravel13",
-    "Map.map_oubliette_06_3.7": "Oubliette_06_3_GAMEPLAY.BP_WorldTravelVolume16",
-    "Map.map_oubliette_06_4.7": "Oubliette_06_4_GAMEPLAY.BP_Interactable_WorldTravel16",
-    "Map.map_oubliette_07.13": "Oubliette_07_GAMEPLAY.BP_WorldTravelVolume20",
-    "Map.map_oubliette_07.6": "Oubliette_07_GAMEPLAY.BP_WorldTravelVolume19",
-    "Map.map_oubliette_07.6_1": "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel17",
-    "Map.map_oubliette_07.6_2": "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel19",
-    "Map.map_oubliette_07.6_3": "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel18",
-    "Map.map_oubliette_07.6_4": "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel20",
-    "Map.map_oubliette_07.9": "Oubliette_07_GAMEPLAY.BP_WorldTravelVolume21",
-    "Map.map_oubliette_07_1.5": "Oubliette_07_1_GAMEPLAY.BP_Interactable_WorldTravel14",
-    "Map.map_oubliette_07_2.5": "Oubliette_07_2_GAMEPLAY.BP_Interactable_WorldTravel14",
-    "Map.map_oubliette_08.11": "Oubliette_08_GAMEPLAY.BP_WorldTravelVolume15",
-    "Map.map_oubliette_08.13": "Oubliette_08_GAMEPLAY.BP_WorldTravelVolume17",
-    "Map.map_oubliette_08.9": "Oubliette_08_GAMEPLAY.BP_WorldTravelVolume16",
-    "Map.map_oubliette_09.10": "Oubliette_09_GAMEPLAY.BP_WorldTravelVolume18",
-    "Map.map_oubliette_09.7": "Oubliette_09_GAMEPLAY.BP_WorldTravelVolume19",
-    "Map.map_oubliette_09.8": "Oubliette_09_GAMEPLAY.BP_WorldTravelVolume17",
-    "Map.map_oubliette_10.17": "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume19",
-    "Map.map_oubliette_10.3": "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume18",
-    "Map.map_oubliette_10.6": "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume20",
-    "Map.map_oubliette_10.9": "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume17",
-    "Map.map_oubliette_11.12": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume19",
-    "Map.map_oubliette_11.13": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume22",
-    "Map.map_oubliette_11.13_1": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume24",
-    "Map.map_oubliette_11.13_2": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume23",
-    "Map.map_oubliette_11.14": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume21",
-    "Map.map_oubliette_11.8": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume20",
-    "Map.map_oubliette_12.11": "Oubliette_12_GAMEPLAY.BP_WorldTravelVolume22_0",
-    "Map.map_oubliette_13.11": "Oubliette_13_GAMEPLAY.BP_WorldTravelVolume22",
-    "Map.map_oubliette_13.7": "Oubliette_13_GAMEPLAY.BP_WorldTravelVolume23",
-    "Map.map_oubliette_13.8": "Oubliette_13_GAMEPLAY.BP_WorldTravelVolume21",
-    "Map.map_oubliette_13_1.11": "Oubliette_13_1_GAMEPLAY.BP_WorldTravelVolume24",
-    "Map.map_oubliette_13_2.11": "Oubliette_13_2_GAMEPLAY.BP_WorldTravelVolume23",
-    "Map.map_oubliette_14.11": "Oubliette_14_GAMEPLAY.BP_WorldTravelVolume13",
-    "Map.map_oubliette_14.15": "Oubliette_14_GAMEPLAY.BP_WorldTravelVolume14",
-    "Map.map_oubliette_15.14": "Oubliette_15_GAMEPLAY.BP_WorldTravelVolume15",
-    "Map.map_oubliette_15.16": "Oubliette_15_GAMEPLAY.BP_WorldTravelVolume16",
-    "Map.map_oubliette_16.15": "Oubliette_16_GAMEPLAY.BP_WorldTravelVolume17",
-    "Map.map_oubliette_16.O1": "Oubliette_16_GAMEPLAY.BP_WorldTravelVolume18",
-    "Map.map_oubliette_17.10": "Oubliette_17_GAMEPLAY.BP_WorldTravelVolume19",
-    "Map.map_oubliette_17.S6": "Oubliette_17_GAMEPLAY.BP_WorldTravelVolume20",
-    "Map.map_outside_01.2": "Outside_01_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_outside_01.3": "Outside_01_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Map.map_outside_01.O16": "Outside_01_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_outside_02.1": "Outside_02_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Map.map_outside_03.1": "Outside_03_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_outside_03.F9": "Outside_03_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Map.map_swamp_01.2": "Swamp_1_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_01.3": "Swamp_1_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_02.1": "Swamp_2_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_02.F9": "Swamp_2_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_03.1": "Swamp_3_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_03.4": "Swamp_3_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_03.7": "Swamp_3_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_swamp_03.9": "Swamp_3_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_04.3": "Swamp_04_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_04.5": "Swamp_04_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_05.4": "Swamp_05_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_05.6": "Swamp_05_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_05.7": "Swamp_05_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_05.9": "Swamp_05_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_swamp_06.5": "Swamp_06_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_06.O17": "Swamp_06_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_07.16": "Swamp_07_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_07.3": "Swamp_07_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_swamp_07.5": "Swamp_07_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_07.8": "Swamp_07_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_08.14": "Swamp_08_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_08.15": "Swamp_08_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_08.7": "Swamp_08_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_09.13": "Swamp_09_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_09.13B": "Swamp_09_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_09.3": "Swamp_09_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_09.5": "Swamp_09_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_swamp_10.13": "Swamp_10_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_11.14": "Swamp_11_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_11.15": "Swamp_11_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_12.15": "Swamp_12_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_12.4": "Swamp_12_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_12.A5": "Lab4",
-    "Map.map_swamp_13.10": "Swamp_13_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_13.14": "Swamp_13_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_swamp_13.9": "Swamp_13_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_13.9B": "Swamp_13_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_14.11": "Swamp_14_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_14.13": "Swamp_14_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_14.8": "Swamp_14_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_15.11": "Swamp_15_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_15.12": "Swamp_15_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_swamp_15.8": "Swamp_15_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_16.17": "Swamp_16_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_16.7": "Swamp_16_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_17.16": "Swamp_17_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_swamp_17.18": "Swamp_17_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_swamp_18.17": "Swamp_18_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_swamp_18.A1": "Swamp_18_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_01.0": "Village_01_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_village_01.1": "Village_01_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_02.0": "Village_02_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_village_02.1": "Village_02_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_02.13": "Village_02_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_village_03.0": "Village_03_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_03.2": "Village_03_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_village_03.5": "Village_03_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_village_04.2": "Village_04_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Map.map_village_04.5": "Village_04_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_04_1.0": "Village_04_1_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_05.1": "Village_05_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_village_05.3": "Village_05_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_05.4": "Village_05_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Map.map_village_06.0": "Village_06_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_06.1": "Village_06_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_village_06.12": "Village_06_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_village_06.8": "Village_06_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_village_07.0": "Village_07_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_07.14": "Village_07_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Map.map_village_07.9": "Village_07_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_village_08.6": "Village_08_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_08.9": "Village_08_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_village_09.1": "Village_09_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_09.2": "Village_09_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_village_09.7": "Village_09_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_village_09.8": "Village_09_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_village_10.0": "Village_10_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_10.1": "Village_10_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_village_11.0": "Village_11_GAMEPLAY.BP_WorldTravelVolume_4",
-    "Map.map_village_11.1": "Village_11_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_village_11.2": "Village_11_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Map.map_village_11_1.0": "Village_11_1_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_12.13": "Village_12_GAMEPLAY.BP_WorldTravelVolume2",
-    "Map.map_village_12.16": "Village_12_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_village_12.6": "Village_12_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_12.C1": "Village_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Map.map_village_13.0": "Village_13_GAMEPLAY.BP_WorldTravelVolume4",
-    "Map.map_village_13.12": "Village_13_GAMEPLAY.BP_WorldTravelVolume6",
-    "Map.map_village_13.2": "Village_13_GAMEPLAY.BP_WorldTravelVolume5",
-    "Map.map_village_14.7": "Village_14_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_15.0": "Village_15_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Map.map_village_15.F1": "Village_15_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Map.map_village_16.12": "Village_16_GAMEPLAY.BP_WorldTravelVolume3"
+    "Abyss01Bottom": "Map.map_abyss_01.2",
+    "Abyss01Top": "Map.map_abyss_01.S18",
+    "Abyss02Right": "Map.map_abyss_02.3",
+    "Abyss02Top": "Map.map_abyss_02.1",
+    "Abyss03Left": "Map.map_abyss_03.2",
+    "Abyss04Bottom": "Map.map_abyss_04.5",
+    "Abyss04Top": "Map.map_abyss_04.2",
+    "Abyss05Top": "Map.map_abyss_05.4",
+    "Castle01Left": "Map.map_castle_01.0",
+    "Castle01Right1": "Map.map_castle_01.2B",
+    "Castle01Right2": "Map.map_castle_01.2",
+    "Castle01Top": "Map.map_castle_01.10",
+    "Castle02Bottom": "Map.map_castle_02.4",
+    "Castle02Left1": "Map.map_castle_02.1B",
+    "Castle02Left2": "Map.map_castle_02.1",
+    "Castle02Top": "Map.map_castle_02.5",
+    "Castle03Bottom": "Map.map_castle_03.5",
+    "Castle03Top1": "Map.map_castle_03.11A",
+    "Castle03Top2": "Map.map_castle_03.11B",
+    "Castle04Top": "Map.map_castle_04.2",
+    "Castle05Bottom": "Map.map_castle_05.2",
+    "Castle05Left": "Map.map_castle_05.8",
+    "Castle05Right": "Map.map_castle_05.6",
+    "Castle05Top": "Map.map_castle_05.3",
+    "Castle06Left": "Map.map_castle_06.5",
+    "Castle06Right": "Map.map_castle_06.7",
+    "Castle06Top": "Map.map_castle_06.12",
+    "Castle07Left": "Map.map_castle_07.6",
+    "Castle07Right": "Map.map_castle_07.F1",
+    "Castle08Right": "Map.map_castle_08.5",
+    "Castle08Top": "Map.map_castle_08.9",
+    "Castle09Bottom": "Map.map_castle_09.8",
+    "Castle09Left": "Map.map_castle_09.10",
+    "Castle09Right": "Map.map_castle_09.11",
+    "Castle10Bottom": "Map.map_castle_10.1",
+    "Castle10Right": "Map.map_castle_10.9",
+    "Castle11Bottom1": "Map.map_castle_11.3A",
+    "Castle11Bottom2": "Map.map_castle_11.3B",
+    "Castle11Left": "Map.map_castle_11.9",
+    "Castle11Right": "Map.map_castle_11.12",
+    "Castle11Top": "Map.map_castle_11.13",
+    "Castle12Bottom": "Map.map_castle_12.6",
+    "Castle12Left": "Map.map_castle_12.11",
+    "Castle12Right": "Map.map_castle_12.21",
+    "Castle13Bottom": "Map.map_castle_13.11",
+    "Castle13Left": "Map.map_castle_13.17",
+    "Castle13Right": "Map.map_castle_13.14",
+    "Castle14Left": "Map.map_castle_14.13",
+    "Castle14Top": "Map.map_castle_14.15",
+    "Castle15Bottom": "Map.map_castle_15.14",
+    "Castle15Left": "Map.map_castle_15.16",
+    "Castle16Right": "Map.map_castle_16.15",
+    "Castle17Right": "Map.map_castle_17.13",
+    "Castle17Top": "Map.map_castle_17.18",
+    "Castle18Bottom": "Map.map_castle_18.16",
+    "Castle18Right": "Map.map_castle_18.19",
+    "Castle18Top": "Map.map_castle_18.17",
+    "Castle19Left": "Map.map_castle_19.18",
+    "Castle19Right": "Map.map_castle_19.20",
+    "Castle20Left": "Map.map_castle_20.19",
+    "Castle21Left": "Map.map_castle_21.12",
+    "Cave01Bottom": "Map.map_cave_01.2",
+    "Cave01Left": "Map.map_cave_01.V12",
+    "Cave02Bottom": "Map.map_cave_02.7",
+    "Cave02Right": "Map.map_cave_02.5",
+    "Cave02Top": "Map.map_cave_02.1",
+    "Cave03Left": "Map.map_cave_03.7",
+    "Cave03Right": "Map.map_cave_03.8",
+    "Cave03Top": "Map.map_cave_03.6",
+    "Cave04Bottom": "Map.map_cave_04.5",
+    "Cave04Left": "Map.map_cave_04.12",
+    "Cave04Right": "Map.map_cave_04.16",
+    "Cave05Bottom": "Map.map_cave_05.6",
+    "Cave05Left": "Map.map_cave_05.2",
+    "Cave05Right": "Map.map_cave_05.10",
+    "Cave05Top": "Map.map_cave_05.4",
+    "Cave06Bottom": "Map.map_cave_06.3",
+    "Cave06Top": "Map.map_cave_06.5",
+    "Cave07Right": "Map.map_cave_07.3",
+    "Cave07Top": "Map.map_cave_07.2",
+    "Cave08Bottom": "Map.map_cave_08.17",
+    "Cave08Left": "Map.map_cave_08.3",
+    "Cave08Right": "Map.map_cave_08.11",
+    "Cave08Top": "Map.map_cave_08.9",
+    "Cave09Bottom": "Map.map_cave_09.8",
+    "Cave09Right": "Map.map_cave_09.21",
+    "Cave09Top": "Map.map_cave_09.10",
+    "Cave10Bottom": "Map.map_cave_10.9",
+    "Cave10Left": "Map.map_cave_10.5",
+    "Cave10Right": "Map.map_cave_10.23",
+    "Cave10Top": "Map.map_cave_10.16",
+    "Cave11Left": "Map.map_cave_11.8",
+    "Cave11Right1": "Map.map_cave_11.18",
+    "Cave11Right2": "Map.map_cave_11.18B",
+    "Cave11Top": "Map.map_cave_11.13",
+    "Cave12Right": "Map.map_cave_12.4",
+    "Cave13Bottom": "Map.map_cave_13.11",
+    "Cave13Left": "Map.map_cave_13.23",
+    "Cave13Right": "Map.map_cave_13.20",
+    "Cave13Top": "Map.map_cave_13.14",
+    "Cave14Bottom": "Map.map_cave_14.13",
+    "Cave14Left": "Map.map_cave_14.15",
+    "Cave14Right": "Map.map_cave_14.22",
+    "Cave15Left": "Map.map_cave_15.16",
+    "Cave15Right": "Map.map_cave_15.14",
+    "Cave16Bottom": "Map.map_cave_16.10",
+    "Cave16Left": "Map.map_cave_16.4",
+    "Cave16Right": "Map.map_cave_16.15",
+    "Cave17Top": "Map.map_cave_17.8",
+    "Cave18Left1": "Map.map_cave_18.11",
+    "Cave19Left": "Map.map_cave_19.21",
+    "Cave19Top": "Map.map_cave_19.20",
+    "Cave20Bottom": "Map.map_cave_20.19",
+    "Cave20Left": "Map.map_cave_20.13",
+    "Cave20Top": "Map.map_cave_20.22",
+    "Cave21Left": "Map.map_cave_21.9",
+    "Cave21Right": "Map.map_cave_21.19",
+    "Cave22Bottom": "Map.map_cave_22.20",
+    "Cave22Left": "Map.map_cave_22.14",
+    "Cave22Right": "Map.map_cave_22.F2",
+    "Cave23Left": "Map.map_cave_23.10",
+    "Cave23Right": "Map.map_cave_23.13",
+    "Church01Bottom": "Map.map_church_01.1",
+    "Church01Left": "Map.map_church_01.12",
+    "Church01Top": "Map.map_church_01.2",
+    "Church02Right": "Map.map_church_02.10",
+    "Church02Top": "Map.map_church_02.0",
+    "Church03Left": "Map.map_church_03.0",
+    "Church03Right": "Map.map_church_03.1",
+    "Church04Left": "Map.map_church_04.0",
+    "Church04Right": "Map.map_church_04.1",
+    "Church05Bottom": "Map.map_church_05.11",
+    "Church05Right": "Map.map_church_05.1",
+    "Church05Top": "Map.map_church_05.9",
+    "Church06Left": "Map.map_church_06.0",
+    "Church06Right": "Map.map_church_06.1",
+    "Church07Left": "Map.map_church_07.0",
+    "Church07Right": "Map.map_church_07.1",
+    "Church08Bottom": "Map.map_church_08.2",
+    "Church08Left": "Map.map_church_08.0",
+    "Church08Top": "Map.map_church_08.1",
+    "Church09Bottom": "Map.map_church_09.5",
+    "Church09Top": "Map.map_church_09.14",
+    "Church10Left": "Map.map_church_10.2",
+    "Church10Right": "Map.map_church_10.11",
+    "Church11Left": "Map.map_church_11.10",
+    "Church11Top": "Map.map_church_11.5",
+    "Church12Bottom": "Map.map_church_12.3",
+    "Church12Right": "Map.map_church_12.1",
+    "Church13Top": "Map.map_church_13.6",
+    "Church14Bottom": "Map.map_church_14.9",
+    "Forest01Right": "Map.map_forest_01.2",
+    "Forest01Top": "Map.map_forest_01.C8",
+    "Forest02Left": "Map.map_forest_02.1",
+    "Forest02Right1": "Map.map_forest_02.4",
+    "Forest02Right2": "Map.map_forest_02.3",
+    "Forest03Left": "Map.map_forest_03.2",
+    "Forest03Right": "Map.map_forest_03.5",
+    "Forest04Left": "Map.map_forest_04.2",
+    "Forest04Right": "Map.map_forest_04.6",
+    "Forest05Left": "Map.map_forest_05.3",
+    "Forest05Right": "Map.map_forest_05.7",
+    "Forest05Top": "Map.map_forest_05.4",
+    "Forest06Bottom": "Map.map_forest_06.7",
+    "Forest07Bottom": "Map.map_forest_07.8",
+    "Forest07Left": "Map.map_forest_07.5",
+    "Forest07Right": "Map.map_forest_07.O1",
+    "Forest07Top": "Map.map_forest_07.6",
+    "Forest08Right": "Map.map_forest_08.10",
+    "Forest08Top": "Map.map_forest_08.7",
+    "Forest09Left": "Map.map_forest_09.S2",
+    "Forest09Top": "Map.map_forest_09.10",
+    "Forest10Bottom1": "Map.map_forest_10.9",
+    "Forest10Bottom2": "Map.map_forest_10.11",
+    "Forest10Left": "Map.map_forest_10.8",
+    "Forest10Right": "Map.map_forest_10.12",
+    "Forest11Right": "Map.map_forest_11.14",
+    "Forest11Top": "Map.map_forest_11.10",
+    "Forest12Bottom": "Map.map_forest_12.13",
+    "Forest12Left": "Map.map_forest_12.10",
+    "Forest12Right": "Map.map_forest_12.17",
+    "Forest13Bottom": "Map.map_forest_13.14",
+    "Forest13Right": "Map.map_forest_13.16",
+    "Forest13Top": "Map.map_forest_13.12",
+    "Forest14Bottom": "Map.map_forest_14.15",
+    "Forest14Left": "Map.map_forest_14.11",
+    "Forest14Top": "Map.map_forest_14.13",
+    "Forest15Top": "Map.map_forest_15.14",
+    "Forest16Left": "Map.map_forest_16.13",
+    "Forest17Left": "Map.map_forest_17.12",
+    "Fort01Left1": "Map.map_fort_01.C7",
+    "Fort01Left2": "Map.map_fort_01.V15",
+    "Fort01Right": "Map.map_fort_01.3",
+    "Fort02Left": "Map.map_fort_02.C22",
+    "Fort02Right": "Map.map_fort_02.3",
+    "Fort03Left1": "Map.map_fort_03.1",
+    "Fort03Left2": "Map.map_fort_03.2",
+    "Fort03Right": "Map.map_fort_03.4",
+    "Fort03Top": "Map.map_fort_03.5",
+    "Fort04Left": "Map.map_fort_04.3",
+    "Fort04Top": "Map.map_fort_04.5",
+    "Fort05Bottom1": "Map.map_fort_05.3",
+    "Fort05Bottom2": "Map.map_fort_05.4",
+    "Fort05Right": "Map.map_fort_05.6",
+    "Fort05Top": "Map.map_fort_05.15",
+    "Fort06Bottom": "Map.map_fort_06.10",
+    "Fort06Left": "Map.map_fort_06.5",
+    "Fort06Right": "Map.map_fort_06.7",
+    "Fort07Bottom1": "Map.map_fort_07.9",
+    "Fort07Bottom2": "Map.map_fort_07.9B",
+    "Fort07Left": "Map.map_fort_07.6",
+    "Fort07Right": "Map.map_fort_07.8",
+    "Fort07Top": "Map.map_fort_07.11",
+    "Fort08Left": "Map.map_fort_08.7",
+    "Fort09Left": "Map.map_fort_09.10",
+    "Fort09Right": "Map.map_fort_09.O3",
+    "Fort09Top1": "Map.map_fort_09.7",
+    "Fort09Top2": "Map.map_fort_09.7B",
+    "Fort10Right": "Map.map_fort_10.9",
+    "Fort10Top": "Map.map_fort_10.6",
+    "Fort11Bottom": "Map.map_fort_11.7",
+    "Fort11Left": "Map.map_fort_11.12",
+    "Fort11Top1": "Map.map_fort_11.13",
+    "Fort11Top2": "Map.map_fort_11.53",
+    "Fort12Left": "Map.map_fort_12.16",
+    "Fort12Right": "Map.map_fort_12.11",
+    "Fort12Top": "Map.map_fort_12.14",
+    "Fort13Bottom1": "Map.map_fort_13.11",
+    "Fort13Bottom2": "Map.map_fort_13.11B",
+    "Fort13Left": "Map.map_fort_13.14",
+    "Fort13Top": "Map.map_fort_13.19",
+    "Fort14Bottom": "Map.map_fort_14.12",
+    "Fort14Left": "Map.map_fort_14.15",
+    "Fort14Right": "Map.map_fort_14.13",
+    "Fort15Bottom": "Map.map_fort_15.5",
+    "Fort15Right1": "Map.map_fort_15.14",
+    "Fort15Right2": "Map.map_fort_15.16",
+    "Fort15Right3": "Map.map_fort_15.16B",
+    "Fort15Top": "Map.map_fort_15.17",
+    "Fort16Left1": "Map.map_fort_16.15",
+    "Fort16Left2": "Map.map_fort_16.15B",
+    "Fort16Right": "Map.map_fort_16.12",
+    "Fort16Top": "Map.map_fort_16.18",
+    "Fort17Bottom": "Map.map_fort_17.15",
+    "Fort17Right": "Map.map_fort_17.18",
+    "Fort18Bottom": "Map.map_fort_18.16",
+    "Fort18Left": "Map.map_fort_18.17",
+    "Fort18Right": "Map.map_fort_18.19",
+    "Fort19Bottom": "Map.map_fort_19.13",
+    "Fort19Left": "Map.map_fort_19.18",
+    "Fort19Top": "Map.map_fort_19.20",
+    "Fort20Bottom": "Map.map_fort_20.19",
+    "Fort20Top": "Map.map_fort_20.21",
+    "Fort21Bottom": "Map.map_fort_21.20",
+    "Oubliette01Left": "Map.map_oubliette_01.F7",
+    "Oubliette01Right": "Map.map_oubliette_01.2",
+    "Oubliette02Left": "Map.map_oubliette_02.1",
+    "Oubliette02Right1": "Map.map_oubliette_02.5",
+    "Oubliette02Right2": "Map.map_oubliette_02.4",
+    "Oubliette03Left": "Map.map_oubliette_03.4",
+    "Oubliette03Right": "Map.map_oubliette_03.10",
+    "Oubliette03Top": "Map.map_oubliette_03.5",
+    "Oubliette04Left": "Map.map_oubliette_04.2",
+    "Oubliette04Right": "Map.map_oubliette_04.3",
+    "Oubliette051Bottom": "Map.map_oubliette_05_1.5",
+    "Oubliette052Bottom1": "Map.map_oubliette_05_2.5",
+    "Oubliette052Bottom2": "Map.map_oubliette_05_2.5B",
+    "Oubliette053Top": "Map.map_oubliette_05_3.5",
+    "Oubliette05Bottom1": "Map.map_oubliette_05.7_1",
+    "Oubliette05Bottom2": "Map.map_oubliette_05.5_3",
+    "Oubliette05Bottom3": "Map.map_oubliette_05.3",
+    "Oubliette05Left": "Map.map_oubliette_05.2",
+    "Oubliette05Right": "Map.map_oubliette_05.6",
+    "Oubliette05Top1": "Map.map_oubliette_05.5_1",
+    "Oubliette05Top2": "Map.map_oubliette_05.5_2",
+    "Oubliette05Top3": "Map.map_oubliette_05.7_2",
+    "Oubliette05Top4": "Map.map_oubliette_05.5_2B",
+    "Oubliette061Left": "Map.map_oubliette_06_1.7",
+    "Oubliette062Bottom2": "Map.map_oubliette_06_2.7",
+    "Oubliette063Left1": "Map.map_oubliette_06_3.7",
+    "Oubliette064Top": "Map.map_oubliette_06_4.7",
+    "Oubliette06Bottom": "Map.map_oubliette_06.10",
+    "Oubliette06Left": "Map.map_oubliette_06.5",
+    "Oubliette06Right": "Map.map_oubliette_06.7",
+    "Oubliette071Top": "Map.map_oubliette_07_1.5",
+    "Oubliette072Bottom": "Map.map_oubliette_07_2.5",
+    "Oubliette07Bottom1": "Map.map_oubliette_07.9",
+    "Oubliette07Bottom2": "Map.map_oubliette_07.6_2",
+    "Oubliette07Left1": "Map.map_oubliette_07.6_3",
+    "Oubliette07Left2": "Map.map_oubliette_07.6",
+    "Oubliette07Right1": "Map.map_oubliette_07.6_1",
+    "Oubliette07Right2": "Map.map_oubliette_07.13",
+    "Oubliette07Top": "Map.map_oubliette_07.6_4",
+    "Oubliette08Left": "Map.map_oubliette_08.9",
+    "Oubliette08Right": "Map.map_oubliette_08.11",
+    "Oubliette08Top": "Map.map_oubliette_08.13",
+    "Oubliette09Left": "Map.map_oubliette_09.10",
+    "Oubliette09Right": "Map.map_oubliette_09.8",
+    "Oubliette09Top": "Map.map_oubliette_09.7",
+    "Oubliette10Left1": "Map.map_oubliette_10.3",
+    "Oubliette10Left2": "Map.map_oubliette_10.17",
+    "Oubliette10Right": "Map.map_oubliette_10.9",
+    "Oubliette10Top": "Map.map_oubliette_10.6",
+    "Oubliette11Bottom": "Map.map_oubliette_11.13_2",
+    "Oubliette11Left1": "Map.map_oubliette_11.13",
+    "Oubliette11Left2": "Map.map_oubliette_11.8",
+    "Oubliette11Right1": "Map.map_oubliette_11.12",
+    "Oubliette11Right2": "Map.map_oubliette_11.14",
+    "Oubliette11Top": "Map.map_oubliette_11.13_1",
+    "Oubliette12Left": "Map.map_oubliette_12.11",
+    "Oubliette131Bottom": "Map.map_oubliette_13_1.11",
+    "Oubliette132Top": "Map.map_oubliette_13_2.11",
+    "Oubliette13Bottom": "Map.map_oubliette_13.8",
+    "Oubliette13Left": "Map.map_oubliette_13.7",
+    "Oubliette13Right": "Map.map_oubliette_13.11",
+    "Oubliette14Left": "Map.map_oubliette_14.11",
+    "Oubliette14Right": "Map.map_oubliette_14.15",
+    "Oubliette15Left": "Map.map_oubliette_15.14",
+    "Oubliette15Right": "Map.map_oubliette_15.16",
+    "Oubliette16Left": "Map.map_oubliette_16.15",
+    "Oubliette16Right": "Map.map_oubliette_16.O1",
+    "Oubliette17Bottom": "Map.map_oubliette_17.S6",
+    "Oubliette17Right": "Map.map_oubliette_17.10",
+    "Outside01Left1": "Map.map_outside_01.3",
+    "Outside01Left2": "Map.map_outside_01.O16",
+    "Outside01Right": "Map.map_outside_01.2",
+    "Outside02Left": "Map.map_outside_02.1",
+    "Outside03Right": "Map.map_outside_03.1",
+    "Outside03Top": "Map.map_outside_03.F9",
+    "Swamp04Bottom": "Map.map_swamp_04.5",
+    "Swamp04Left": "Map.map_swamp_04.3",
+    "Swamp05Bottom": "Map.map_swamp_05.7",
+    "Swamp05Left": "Map.map_swamp_05.9",
+    "Swamp05Right": "Map.map_swamp_05.6",
+    "Swamp05Top": "Map.map_swamp_05.4",
+    "Swamp06Left": "Map.map_swamp_06.5",
+    "Swamp06Top": "Map.map_swamp_06.O17",
+    "Swamp07Bottom": "Map.map_swamp_07.16",
+    "Swamp07Left": "Map.map_swamp_07.8",
+    "Swamp07Right": "Map.map_swamp_07.5",
+    "Swamp07Top": "Map.map_swamp_07.3",
+    "Swamp08Right1": "Map.map_swamp_08.7",
+    "Swamp08Right2": "Map.map_swamp_08.15",
+    "Swamp08Top": "Map.map_swamp_08.14",
+    "Swamp09Bottom1": "Map.map_swamp_09.13",
+    "Swamp09Bottom2": "Map.map_swamp_09.13B",
+    "Swamp09Right1": "Map.map_swamp_09.3",
+    "Swamp09Right2": "Map.map_swamp_09.5",
+    "Swamp10Right": "Map.map_swamp_10.13",
+    "Swamp11Bottom": "Map.map_swamp_11.15",
+    "Swamp11Left": "Map.map_swamp_11.14",
+    "Swamp12Bottom": "Map.map_swamp_12.4",
+    "Swamp12Left": "Map.map_swamp_12.15",
+    "Swamp12TP": "Map.map_swamp_12.A5",
+    "Swamp13Bottom": "Map.map_swamp_13.14",
+    "Swamp13Left": "Map.map_swamp_13.10",
+    "Swamp13Top1": "Map.map_swamp_13.9",
+    "Swamp13Top2": "Map.map_swamp_13.9B",
+    "Swamp14Bottom": "Map.map_swamp_14.8",
+    "Swamp14Right": "Map.map_swamp_14.11",
+    "Swamp14Top": "Map.map_swamp_14.13",
+    "Swamp15Left": "Map.map_swamp_15.8",
+    "Swamp15Right": "Map.map_swamp_15.12",
+    "Swamp15Top": "Map.map_swamp_15.11",
+    "Swamp16Left": "Map.map_swamp_16.17",
+    "Swamp16Top": "Map.map_swamp_16.7",
+    "Swamp17Left": "Map.map_swamp_17.18",
+    "Swamp17Right": "Map.map_swamp_17.16",
+    "Swamp18Bottom": "Map.map_swamp_18.A1",
+    "Swamp18Right": "Map.map_swamp_18.17",
+    "Swamp1Bottom": "Map.map_swamp_01.3",
+    "Swamp1Left": "Map.map_swamp_01.2",
+    "Swamp2Right": "Map.map_swamp_02.1",
+    "Swamp2Top": "Map.map_swamp_02.F9",
+    "Swamp3Bottom": "Map.map_swamp_03.7",
+    "Swamp3Left": "Map.map_swamp_03.9",
+    "Swamp3Right": "Map.map_swamp_03.4",
+    "Swamp3Top": "Map.map_swamp_03.1",
+    "Village01Bottom": "Map.map_village_01.0",
+    "Village01Right": "Map.map_village_01.1",
+    "Village02Bottom": "Map.map_village_02.13",
+    "Village02Left": "Map.map_village_02.0",
+    "Village02Right": "Map.map_village_02.1",
+    "Village03Bottom1": "Map.map_village_03.0",
+    "Village03Bottom2": "Map.map_village_03.2",
+    "Village03Right": "Map.map_village_03.5",
+    "Village041Bottom": "Map.map_village_04_1.0",
+    "Village04Right": "Map.map_village_04.5",
+    "Village04Top": "Map.map_village_04.2",
+    "Village05Left": "Map.map_village_05.3",
+    "Village05Right": "Map.map_village_05.1",
+    "Village05Top": "Map.map_village_05.4",
+    "Village06Bottom": "Map.map_village_06.12",
+    "Village06Left": "Map.map_village_06.0",
+    "Village06Right1": "Map.map_village_06.1",
+    "Village06Right2": "Map.map_village_06.8",
+    "Village07Left": "Map.map_village_07.0",
+    "Village07Right": "Map.map_village_07.9",
+    "Village07Top": "Map.map_village_07.14",
+    "Village08Left": "Map.map_village_08.6",
+    "Village08Right": "Map.map_village_08.9",
+    "Village09Left1": "Map.map_village_09.7",
+    "Village09Left2": "Map.map_village_09.8",
+    "Village09Right1": "Map.map_village_09.1",
+    "Village09Right2": "Map.map_village_09.2",
+    "Village10Left": "Map.map_village_10.0",
+    "Village10Right": "Map.map_village_10.1",
+    "Village111Bottom": "Map.map_village_11_1.0",
+    "Village11Left": "Map.map_village_11.0",
+    "Village11Right": "Map.map_village_11.1",
+    "Village11Top": "Map.map_village_11.2",
+    "Village12Left1": "Map.map_village_12.13",
+    "Village12Left2": "Map.map_village_12.16",
+    "Village12Right": "Map.map_village_12.C1",
+    "Village12Top": "Map.map_village_12.6",
+    "Village13Left": "Map.map_village_13.2",
+    "Village13Right": "Map.map_village_13.12",
+    "Village13Top": "Map.map_village_13.0",
+    "Village14Bottom": "Map.map_village_14.7",
+    "Village15Left": "Map.map_village_15.0",
+    "Village15Right": "Map.map_village_15.F1",
+    "Village16Right": "Map.map_village_16.12"
   },
   "nodes_alias": {
-    "Abyss01Bottom": "Abyss_01_GAMEPLAY.BP_WorldTravelVolume3",
-    "Abyss01Top": "Abyss_01_GAMEPLAY.BP_WorldTravelVolume2",
-    "Abyss02Right": "Abyss_02_GAMEPLAY.BP_WorldTravelVolume",
-    "Abyss02Top": "Abyss_02_GAMEPLAY.BP_WorldTravelVolume2",
-    "Abyss03Left": "Abyss_03_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Abyss04Bottom": "Abyss_04_GAMEPLAY.BP_WorldTravelVolume4",
-    "Abyss04Top": "Abyss_04_GAMEPLAY.BP_WorldTravelVolume3",
-    "Abyss05Left": "Abyss_05_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Abyss05Top": "Abyss_05_GAMEPLAY.BP_WorldTravelVolume",
     "Aegis": "Castle_16_GAMEPLAY.BP_e2032_BigKnight",
     "AncientDragonClaw": "Fort_19_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
     "AnkletRoom": "Forest_17_Map.BP_Interactable_Item_Tip5",
@@ -572,159 +563,12 @@
     "BridgeHead": "Village_09_GAMEPLAY.BP_Interactable_Item_Tip4",
     "BrokenMusicBox": "Village_03_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
     "CaliviasRing": "Swamp_07_GAMEPLAY.BP_Interactable_Passive_RecastTimeCut_Lv2_2",
-    "Castle01Left": "Castle_01_GAMEPLAY.BP_WorldTravelVolume3",
-    "Castle01Right1": "Castle_01_GAMEPLAY.BP_WorldTravelVolume5",
-    "Castle01Right2": "Castle_01_GAMEPLAY.BP_WorldTravelVolume4",
-    "Castle01Top": "Castle_01_GAMEPLAY.BP_WorldTravelVolume6",
-    "Castle02Bottom": "Castle_02_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Castle02Left1": "Castle_02_GAMEPLAY.BP_WorldTravelVolume3",
-    "Castle02Left2": "Castle_02_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle02Top": "Castle_02_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Castle03Bottom": "Castle_03_GAMEPLAY.BP_WorldTravelVolume4",
-    "Castle03Top1": "Castle_03_GAMEPLAY.BP_WorldTravelVolume5",
-    "Castle03Top2": "Castle_03_GAMEPLAY.BP_WorldTravelVolume6",
-    "Castle04Top": "Castle_04_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle05Bottom": "Castle_05_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Castle05Left": "Castle_05_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle05Right": "Castle_05_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle05Top": "Castle_05_GAMEPLAY.BP_WorldTravelVolume3",
-    "Castle06Left": "Castle_06_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle06Right": "Castle_06_GAMEPLAY.BP_Interactable_WorldTravel2",
-    "Castle06Top": "Castle_06_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Castle07Left": "Castle_07_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle07Right": "Castle_07_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle08Right": "Castle_08_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle08Top": "Castle_08_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle09Bottom": "Castle_09_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle09Left": "Castle_09_GAMEPLAY.BP_WorldTravelVolume3",
-    "Castle09Right": "Castle_09_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle10Bottom": "Castle_10_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle10Right": "Castle_10_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle11Bottom1": "Castle_11_GAMEPLAY.BP_WorldTravelVolume4",
-    "Castle11Bottom2": "Castle_11_GAMEPLAY.BP_WorldTravelVolume5",
-    "Castle11Left": "Castle_11_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle11Right": "Castle_11_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle11Top": "Castle_11_GAMEPLAY.BP_WorldTravelVolume3",
-    "Castle12Bottom": "Castle_12_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Castle12Left": "Castle_12_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle12Right": "Castle_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Castle13Bottom": "Castle_13_GAMEPLAY.BP_WorldTravelVolume3",
-    "Castle13Left": "Castle_13_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle13Right": "Castle_13_GAMEPLAY.BP_WorldTravelVolume4",
-    "Castle14Left": "Castle_14_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle14Top": "Castle_14_GAMEPLAY.BP_WorldTravelVolume3",
-    "Castle15Bottom": "Castle_15_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle15Left": "Castle_15_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle16Bottom": "Castle_16_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle16Right": "Castle_16_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle17Right": "Castle_17_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle17Top": "Castle_17_GAMEPLAY.BP_WorldTravelVolume3",
-    "Castle18Bottom": "Castle_18_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle18Right": "Castle_18_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle18Top": "Castle18Top",
-    "Castle19Left": "Castle_19_GAMEPLAY.BP_WorldTravelVolume2",
-    "Castle19Right": "Castle_19_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle20Left": "Castle_20_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Castle21Left": "Castle_21_GAMEPLAY.BP_WorldTravelVolume2",
     "CathedralCloister": "CathedralCloister",
-    "Cave01Bottom1": "Cave_01_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave01Bottom2": "Cave_01_Bottom2",
-    "Cave01Left": "Cave_01_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave02Bottom": "Cave_02_GAMEPLAY.BP_WorldTravelVolume4_1",
-    "Cave02Right": "Cave_02_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave02Top": "Cave_02_GAMEPLAY.BP_WorldTravelVolume5",
-    "Cave03Left": "Cave_03_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave03Right": "Cave_03_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave03Top": "Cave_03_GAMEPLAY.BP_WorldTravelVolume5",
-    "Cave04Bottom": "Cave_04_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave04Left": "Cave_04_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave04Right": "Cave_04_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave05Bottom": "Cave_05_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave05Left": "Cave_05_GAMEPLAY.BP_WorldTravelVolume_0",
-    "Cave05Right": "Cave_05_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave05Top": "Cave_05_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave06Bottom": "Cave_06_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave06Top": "Cave_06_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave07Right": "Cave_07_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave07Top": "Cave_07_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave08Bottom": "Cave_08_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave08Left": "Cave_08_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave08Right": "Cave_08_GAMEPLAY.BP_WorldTravelVolume5",
-    "Cave08Top": "Cave_08_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave09Bottom": "Cave_09_GAMEPLAY.BP_WorldTravelVolume5",
-    "Cave09Right": "Cave_09_GAMEPLAY.BP_WorldTravelVolume6",
-    "Cave09Top": "Cave_09_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave10Bottom": "Cave_10_GAMEPLAY.BP_WorldTravelVolume5",
-    "Cave10Left": "Cave_10_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave10Right": "Cave_10_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave10Top": "Cave_10_GAMEPLAY.BP_WorldTravelVolume6",
-    "Cave11Left": "Cave_11_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave11Right": "Cave_11_GAMEPLAY.BP_WorldTravelVolume5",
-    "Cave11Top": "Cave_11_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave12Right": "Cave_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave13Bottom1": "Cave_13_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave13Bottom2": "Cave_13_Bottom2",
-    "Cave13Left": "Cave_13_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave13Right": "Cave_13_GAMEPLAY.BP_WorldTravelVolume5",
-    "Cave13Top": "Cave_13_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave14Bottom": "Cave_14_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave14Left": "Cave_14_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave14Right": "Cave_14_GAMEPLAY.BP_WorldTravelVolume5",
-    "Cave15Left": "Cave_15_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave15Right": "Cave_15_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave16Bottom": "Cave_16_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave16Left": "Cave_16_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave16Right": "Cave_16_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave17Top": "Cave_17_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave18Left1": "Cave_18_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave18Left2": "Cave_18_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave19Left": "Cave_19_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave19Top": "Cave_19_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave20Bottom": "Cave_20_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave20Left": "Cave_20_GAMEPLAY.BP_WorldTravelVolume5",
-    "Cave20Top": "Cave_20_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave21Left": "Cave_21_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave21Right": "Cave_21_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave22Bottom": "Cave_22_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave22Left": "Cave_22_GAMEPLAY.BP_WorldTravelVolume3",
-    "Cave22Right": "Cave_22_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Cave23Left": "Cave_23_GAMEPLAY.BP_WorldTravelVolume4",
-    "Cave23Right": "Cave_23_GAMEPLAY.BP_WorldTravelVolume2_1",
     "Cellar": "Church_10_GAMEPLAY.BP_Interactable_Item_Tip_2",
     "Cells": "Oubliette_06_1_GAMEPLAY.BP_Interactable_Item_Tip3",
     "Champion": "Swamp_04_GAMEPLAY.BP_e2172_Inferior",
     "Charnel": "Cave_03_GAMEPLAY.BP_Interactable_Item_Tip3",
     "Chief": "Church_09_GAMEPLAY.BP_e2092_Priest",
-    "Church01Bottom": "Church_01_GAMEPLAY.BP_Interactable_WorldTravel",
-    "Church01Left": "Church_01_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Church01Top": "Church01Top",
-    "Church02Right": "Church_02_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Church02Top": "Church_02_GAMEPLAY.BP_Interactable_WorldTravel",
-    "Church03Left": "Church_03_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Church03Right": "Church_03_GAMEPLAY.BP_WorldTravelVolume2",
-    "Church04Left": "Church_04_GAMEPLAY.BP_WorldTravelVolume",
-    "Church04Right": "Church_04_GAMEPLAY.BP_WorldTravelVolume2",
-    "Church05Bottom": "Church_05_GAMEPLAY.BP_Interactable_WorldTravel",
-    "Church05Right": "Church_05_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Church05Top": "Church_05_GAMEPLAY.BP_WorldTravelVolume2",
-    "Church06Left": "Church_06_GAMEPLAY.BP_WorldTravelVolume",
-    "Church06Right": "Church_06_GAMEPLAY.BP_WorldTravelVolume2",
-    "Church07Left": "Church_07_GAMEPLAY.BP_WorldTravelVolume_3",
-    "Church07Right": "Church_07_GAMEPLAY.BP_WorldTravelVolume2",
-    "Church08Bottom": "Church_08_GAMEPLAY.BP_WorldTravelVolume2",
-    "Church08Left": "Church_08_GAMEPLAY.BP_WorldTravelVolume3",
-    "Church08Top": "Church_08_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Church09Bottom1": "Church_09_GAMEPLAY.BP_WorldTravelVolume2",
-    "Church09Bottom2": "Church_09_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Church09Top": "Church_09_GAMEPLAY.BP_WorldTravelVolume3",
-    "Church10Left": "Church_10_GAMEPLAY.BP_WorldTravelVolume_4",
-    "Church10Right": "Church_10_GAMEPLAY.BP_WorldTravelVolume2",
-    "Church11Left": "Church_11_GAMEPLAY.BP_WorldTravelVolume_4",
-    "Church11Top": "Church_11_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Church12Bottom": "Church_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Church12Right": "Church_12_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Church13Top": "Church_13_GAMEPLAY.BP_WorldTravelVolume5",
-    "Church14Bottom": "Church_14_GAMEPLAY.BP_WorldTravelVolume3",
     "CollapsedShack": "Village_05_GAMEPLAY.BP_Interactable_Item_Tip4",
     "Courtyard": "Fort_10_GAMEPLAY.BP_Interactable_Item_Tip3",
     "CovenHalls": "Forest_14_GAMEPLAY.BP_Interactable_Item_Tip3",
@@ -744,112 +588,9 @@
     "Faden": "Swamp_18_GAMEPLAY.BP_Interactable_Spirit_s5080_2",
     "Fellwyrm": "Fort_12_GAMEPLAY.BP_e2232_Dragon",
     "Floral": "Forest_11_GAMEPLAY.BP_e2132_Mandrake",
-    "Forest01Right": "Forest_01_GAMEPLAY.BP_WorldTravelVolume5",
-    "Forest01Top": "Forest_01_GAMEPLAY.BP_WorldTravelVolume4",
-    "Forest02Left": "Forest_02_GAMEPLAY.BP_WorldTravelVolume5",
-    "Forest02Right1": "Forest_02_GAMEPLAY.BP_WorldTravelVolume6",
-    "Forest02Right2": "Forest_02_GAMEPLAY.BP_WorldTravelVolume7",
-    "Forest03Left": "Forest_03_GAMEPLAY.BP_WorldTravelVolume4",
-    "Forest03Right": "Forest_03_GAMEPLAY.BP_WorldTravelVolume3",
-    "Forest04Left": "Forest_04_GAMEPLAY.BP_WorldTravelVolume4",
-    "Forest04Right": "Forest_04_GAMEPLAY.BP_WorldTravelVolume3",
-    "Forest05Left": "Forest_05_GAMEPLAY.BP_WorldTravelVolume6",
-    "Forest05Right": "Forest_05_GAMEPLAY.BP_WorldTravelVolume5",
-    "Forest05Top": "Forest_05_GAMEPLAY.BP_WorldTravelVolume7",
-    "Forest06Bottom": "Forest_06_GAMEPLAY.BP_WorldTravelVolume8",
-    "Forest07Bottom": "Forest_07_GAMEPLAY.BP_WorldTravelVolume12",
-    "Forest07Left": "Forest_07_GAMEPLAY.BP_WorldTravelVolume9_1",
-    "Forest07Right": "Forest_07_GAMEPLAY.BP_WorldTravelVolume10_2",
-    "Forest07Top": "Forest_07_GEO.BP_WorldTravelVolume11",
-    "Forest08Right": "Forest_08_GAMEPLAY.BP_WorldTravelVolume13",
-    "Forest08Top": "Forest_08_GAMEPLAY.BP_WorldTravelVolume12",
-    "Forest09Left": "Forest_09_GAMEPLAY.BP_WorldTravelVolume13",
-    "Forest09Top": "Forest_09_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Forest10Bottom1": "Forest_10_DESIGN.BP_Interactable_WorldTravel9",
-    "Forest10Bottom2": "Forest_10_DESIGN.BP_Interactable_WorldTravel10",
-    "Forest10Left": "Forest_10_GAMEPLAY.BP_WorldTravelVolume12",
-    "Forest10Right": "Forest_10_GAMEPLAY.BP_WorldTravelVolume13",
-    "Forest11Right": "Forest_11_GAMEPLAY.BP_WorldTravelVolume12",
-    "Forest11Top": "Forest_11_GAMEPLAY.BP_Interactable_WorldTravel11",
-    "Forest12Bottom": "Forest_12_GAMEPLAY.BP_WorldTravelVolume2",
-    "Forest12Left": "Forest_12_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Forest12Right": "Forest_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Forest13Bottom": "Forest_13_GAMEPLAY.BP_WorldTravelVolume2",
-    "Forest13Right": "Forest_13_GAMEPLAY.BP_WorldTravelVolume3",
-    "Forest13Top": "Forest_13_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Forest14Bottom": "Forest_14_GAMEPLAY.BP_WorldTravelVolume10",
-    "Forest14Left": "Forest_14_GAMEPLAY.BP_WorldTravelVolume12",
-    "Forest14Top": "Forest_14_GAMEPLAY.BP_WorldTravelVolume11",
-    "Forest15Top": "Forest_15_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Forest16Left": "Forest_16_GAMEPLAY.BP_WorldTravelVolume3",
-    "Forest17Left": "Forest_17_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort01Left1": "Fort_01_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort01Left2": "Fort_01_GAMEPLAY.BP_WorldTravelVolume2",
-    "Fort01Right": "Fort_01_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort02Left": "Fort_02_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Fort02Right": "Fort_02_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort03Left1": "Fort_03_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort03Left2": "Fort_03_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Fort03Right": "Fort_03_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort03Top": "Fort_03_GAMEPLAY.BP_WorldTravelVolume4",
-    "Fort04Left": "Fort_04_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort04Top": "Fort_04_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort05Bottom1": "Fort_05_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort05Bottom2": "Fort_05_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort05Right": "Fort_05_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort05Top": "Fort_05_GAMEPLAY.BP_WorldTravelVolume4",
-    "Fort06Bottom": "Fort_06_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort06Left": "Fort_06_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort06Right": "Fort_06_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort07Bottom1": "Fort_07_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort07Bottom2": "Fort_07_GAMEPLAY.BP_WorldTravelVolume5",
-    "Fort07Left": "Fort_07_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort07Right": "Fort_07_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort07Top": "Fort_07_GAMEPLAY.BP_WorldTravelVolume4",
-    "Fort08Left": "Fort_08_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort09Left": "Fort_09_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort09Right": "Fort_09_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort09Top1": "Fort_09_GAMEPLAY.BP_WorldTravelVolume4",
-    "Fort09Top2": "Fort_09_GAMEPLAY.BP_WorldTravelVolume5",
-    "Fort10Right": "Fort_10_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort10Top": "Fort_10_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort11Bottom": "Fort_11_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort11Left": "Fort_11_GAMEPLAY.BP_WorldTravelVolume3",
     "Fort11Stagnant": "Fort_11_GAMEPLAY.BP_SCR_LV1M_2190_4",
-    "Fort11Top1": "Fort_11_GAMEPLAY.BP_WorldTravelVolume4",
-    "Fort11Top2": "Fort_11_GAMEPLAY.BP_WorldTravelVolume5",
     "Fort12HP": "Fort_12_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_7",
-    "Fort12Left": "Fort_12_GAMEPLAY.BP_WorldTravelVolume4",
-    "Fort12Right": "Fort_12_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort12Top": "Fort_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort13Bottom1": "Fort_13_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort13Bottom2": "Fort_13_GAMEPLAY.BP_WorldTravelVolume2",
     "Fort13Chain": "Fort_13_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop",
-    "Fort13Left": "Fort_13_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort13Top": "Fort_13_GAMEPLAY.BP_WorldTravelVolume4",
-    "Fort14Bottom": "Fort_14_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort14Left": "Fort_14_GAMEPLAY.BP_WorldTravelVolume_0",
-    "Fort14Right": "Fort_14_GAMEPLAY.BP_WorldTravelVolume2_1",
-    "Fort15Bottom": "Fort_15_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort15Right1": "Fort_15_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort15Right2": "Fort_15_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort15Right3": "Fort_15_GAMEPLAY.BP_WorldTravelVolume5",
-    "Fort15Top": "Fort_15_GAMEPLAY.BP_WorldTravelVolume4",
-    "Fort16Left1": "Fort_16_GAMEPLAY.BP_WorldTravelVolume4",
-    "Fort16Left2": "Fort_16_GAMEPLAY.BP_WorldTravelVolume6",
-    "Fort16Right": "Fort_16_GAMEPLAY.BP_WorldTravelVolume7",
-    "Fort16Top": "Fort_16_GAMEPLAY.BP_WorldTravelVolume5",
-    "Fort17Bottom": "Fort_17_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort17Right": "Fort_17_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort18Bottom": "Fort_18_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort18Left": "Fort_18_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort18Right": "Fort_18_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort19Bottom": "Fort_19_GAMEPLAY.BP_WorldTravelVolume5",
-    "Fort19Left": "Fort_19_GAMEPLAY.BP_WorldTravelVolume3",
-    "Fort19Top": "Fort_19_GAMEPLAY.BP_WorldTravelVolume4",
-    "Fort20Bottom": "Fort_20_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Fort20Top": "Fort_20_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Fort21Bottom": "Fort_21_GAMEPLAY.BP_WorldTravelVolume2_5",
     "Fungal": "Forest_06_GAMEPLAY.BP_e2122_Fungus",
     "Gerrod": "Village_10_GAMEPLAY.BP_e5050_Giant",
     "GiantsRing": "Village_13_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
@@ -868,88 +609,12 @@
     "Lab3": "Swamp_10_GAMEPLAY.BP_Interactable_Item_Tip3",
     "Lab4": "Swamp_12_GAMEPLAY.BP_Interactable_Item_Tip3",
     "Lab5": "Swamp_16_GAMEPLAY.BP_Interactable_Item_Tip3",
-    "LeftEntrance": "Fort_15_GAMEPLAY.BP_SCR_LV1M_2190_2",
     "MaelstromRemparts": "Castle_10_GAMEPLAY.BP_Interactable_Item_Tip3",
     "ManisasRing": "Forest_08_GAMEPLAY.BP_Interactable_Passive_Treasure_2",
     "MonumentOfTheWind": "Fort_16_GAMEPLAY.BP_Interactable_Item_Tip3",
     "MourningHall": "MourningHall",
     "NymphiliasRing": "Outside_03_GAMEPLAY.BP_Interactable_Passive_ShortHeal_2",
     "Ossuary": "Cave_13_GAMEPLAY.BP_Interactable_Item_Tip3",
-    "Oubliette01Left": "Oubliette_01_GAMEPLAY.BP_WorldTravelVolume11",
-    "Oubliette01Right": "Oubliette_01_GAMEPLAY.BP_WorldTravelVolume12",
-    "Oubliette02Left": "Oubliette_02_GAMEPLAY.BP_WorldTravelVolume11",
-    "Oubliette02Right1": "Oubliette_02_GAMEPLAY.BP_WorldTravelVolume12",
-    "Oubliette02Right2": "Oubliette_02_GAMEPLAY.BP_WorldTravelVolume13",
-    "Oubliette03Left": "Oubliette_03_GAMEPLAY.BP_WorldTravelVolume13",
-    "Oubliette03Right": "Oubliette_03_GAMEPLAY.BP_WorldTravelVolume14",
-    "Oubliette03Top": "Oubliette_03_GAMEPLAY.BP_WorldTravelVolume15",
-    "Oubliette04Left": "Oubliette_04_GAMEPLAY.BP_WorldTravelVolume16",
-    "Oubliette04Right": "Oubliette_04_GAMEPLAY.BP_WorldTravelVolume14",
-    "Oubliette051Bottom": "Oubliette_05_1_GAMEPLAY.BP_Interactable_WorldTravel13",
-    "Oubliette052Bottom1": "Oubliette_05_2_GAMEPLAY.BP_Interactable_WorldTravel12",
-    "Oubliette052Bottom2": "Oubliette_05_2_GAMEPLAY.BP_WorldTravelVolume18",
-    "Oubliette053Top": "Oubliette_05_3_GAMEPLAY.BP_Interactable_WorldTravel16",
-    "Oubliette05Bottom1": "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel14",
-    "Oubliette05Bottom2": "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel11",
-    "Oubliette05Bottom3": "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume17",
-    "Oubliette05Left": "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume15",
-    "Oubliette05Right": "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume16",
-    "Oubliette05Top1": "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel13",
-    "Oubliette05Top2": "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel10",
-    "Oubliette05Top3": "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel12",
-    "Oubliette05Top4": "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume18",
-    "Oubliette061Left": "Oubliette_06_1_GAMEPLAY.BP_Interactable_WorldTravel14",
-    "Oubliette062Bottom2": "Oubliette_06_2_GAMEPLAY.BP_Interactable_WorldTravel13",
-    "Oubliette063Left1": "Oubliette_06_3_GAMEPLAY.BP_WorldTravelVolume16",
-    "Oubliette064Top": "Oubliette_06_4_GAMEPLAY.BP_Interactable_WorldTravel16",
-    "Oubliette06Bottom": "Oubliette_06_GAMEPLAY.BP_WorldTravelVolume22",
-    "Oubliette06Left": "Oubliette_06_GAMEPLAY.BP_WorldTravelVolume20",
-    "Oubliette06Right": "Oubliette_06_GAMEPLAY.BP_WorldTravelVolume21",
-    "Oubliette071Top": "Oubliette_07_1_GAMEPLAY.BP_Interactable_WorldTravel14",
-    "Oubliette072Bottom": "Oubliette_07_2_GAMEPLAY.BP_Interactable_WorldTravel14",
-    "Oubliette07Bottom1": "Oubliette_07_GAMEPLAY.BP_WorldTravelVolume21",
-    "Oubliette07Bottom2": "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel19",
-    "Oubliette07Left1": "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel18",
-    "Oubliette07Left2": "Oubliette_07_GAMEPLAY.BP_WorldTravelVolume19",
-    "Oubliette07Right1": "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel17",
-    "Oubliette07Right2": "Oubliette_07_GAMEPLAY.BP_WorldTravelVolume20",
-    "Oubliette07Top": "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel20",
-    "Oubliette08Left": "Oubliette_08_GAMEPLAY.BP_WorldTravelVolume16",
-    "Oubliette08Right": "Oubliette_08_GAMEPLAY.BP_WorldTravelVolume15",
-    "Oubliette08Top": "Oubliette_08_GAMEPLAY.BP_WorldTravelVolume17",
-    "Oubliette09Left": "Oubliette_09_GAMEPLAY.BP_WorldTravelVolume18",
-    "Oubliette09Right": "Oubliette_09_GAMEPLAY.BP_WorldTravelVolume17",
-    "Oubliette09Top": "Oubliette_09_GAMEPLAY.BP_WorldTravelVolume19",
-    "Oubliette10Left1": "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume18",
-    "Oubliette10Left2": "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume19",
-    "Oubliette10Right": "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume17",
-    "Oubliette10Top": "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume20",
-    "Oubliette11Bottom": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume23",
-    "Oubliette11Left1": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume22",
-    "Oubliette11Left2": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume20",
-    "Oubliette11Right1": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume19",
-    "Oubliette11Right2": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume21",
-    "Oubliette11Top": "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume24",
-    "Oubliette12Left": "Oubliette_12_GAMEPLAY.BP_WorldTravelVolume22_0",
-    "Oubliette131Bottom": "Oubliette_13_1_GAMEPLAY.BP_WorldTravelVolume24",
-    "Oubliette132Top": "Oubliette_13_2_GAMEPLAY.BP_WorldTravelVolume23",
-    "Oubliette13Bottom": "Oubliette_13_GAMEPLAY.BP_WorldTravelVolume21",
-    "Oubliette13Left": "Oubliette_13_GAMEPLAY.BP_WorldTravelVolume23",
-    "Oubliette13Right": "Oubliette_13_GAMEPLAY.BP_WorldTravelVolume22",
-    "Oubliette14Left": "Oubliette_14_GAMEPLAY.BP_WorldTravelVolume13",
-    "Oubliette14Right": "Oubliette_14_GAMEPLAY.BP_WorldTravelVolume14",
-    "Oubliette15Left": "Oubliette_15_GAMEPLAY.BP_WorldTravelVolume15",
-    "Oubliette15Right": "Oubliette_15_GAMEPLAY.BP_WorldTravelVolume16",
-    "Oubliette16Left": "Oubliette_16_GAMEPLAY.BP_WorldTravelVolume17",
-    "Oubliette16Right": "Oubliette_16_GAMEPLAY.BP_WorldTravelVolume18",
-    "Oubliette17Bottom": "Oubliette_17_GAMEPLAY.BP_WorldTravelVolume20",
-    "Oubliette17Right": "Oubliette_17_GAMEPLAY.BP_WorldTravelVolume19",
-    "Outside01Left1": "Outside_01_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Outside01Left2": "Outside_01_GAMEPLAY.BP_WorldTravelVolume4",
-    "Outside01Right": "Outside_01_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Outside02Left": "Outside_02_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Outside03Right": "Outside_03_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Outside03Top": "Outside_03_GAMEPLAY.BP_WorldTravelVolume3_8",
     "PriestessDoll": "Castle_01_GAMEPLAY.BP_Interactable_Passive_healcountup_4",
     "RicorusRing": "Fort_11_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
     "RoyalAegisCrest": "Castle_06_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
@@ -968,101 +633,9 @@
     "Spider": "Cave_07_GAMEPLAY.BP_e2162_Spider",
     "Start": "Church_12_GAMEPLAY.BP_Interactable_Item_Tip1",
     "Subject": "Oubliette_07_2_GAMEPLAY.BP_e2072_Mimic",
-    "Swamp04Bottom": "Swamp_04_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp04Left": "Swamp_04_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp05Bottom": "Swamp_05_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp05Left": "Swamp_05_GAMEPLAY.BP_WorldTravelVolume4",
-    "Swamp05Right": "Swamp_05_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp05Top": "Swamp_05_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp06Left": "Swamp_06_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp06Top": "Swamp_06_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp07Bottom": "Swamp_07_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp07Left": "Swamp_07_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp07Right": "Swamp_07_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp07Top": "Swamp_07_GAMEPLAY.BP_WorldTravelVolume4",
-    "Swamp08Right1": "Swamp_08_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp08Right2": "Swamp_08_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp08Top": "Swamp_08_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp09Bottom1": "Swamp_09_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp09Bottom2": "Swamp_09_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp09Right1": "Swamp_09_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp09Right2": "Swamp_09_GAMEPLAY.BP_WorldTravelVolume4",
-    "Swamp10Right": "Swamp_10_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp11Bottom": "Swamp_11_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp11Left": "Swamp_11_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp12Bottom": "Swamp_12_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp12Left": "Swamp_12_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp13Bottom": "Swamp_13_GAMEPLAY.BP_WorldTravelVolume4",
-    "Swamp13Left": "Swamp_13_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp13Top1": "Swamp_13_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp13Top2": "Swamp_13_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp14Bottom": "Swamp_14_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp14Right": "Swamp_14_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp14Top": "Swamp_14_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp15Left": "Swamp_15_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp15Right": "Swamp_15_GAMEPLAY.BP_WorldTravelVolume4",
-    "Swamp15Top": "Swamp_15_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp16Left": "Swamp_16_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp16Top": "Swamp_16_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp17Left": "Swamp_17_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp17Right": "Swamp_17_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp18Bottom": "Swamp_18_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp18Right": "Swamp_18_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp1Bottom": "Swamp_1_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp1Left": "Swamp_1_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp2Right": "Swamp_2_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp2Top": "Swamp_2_GAMEPLAY.BP_WorldTravelVolume2",
-    "Swamp3Bottom": "Swamp_3_GAMEPLAY.BP_WorldTravelVolume4",
-    "Swamp3Left": "Swamp_3_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Swamp3Right": "Swamp_3_GAMEPLAY.BP_WorldTravelVolume3",
-    "Swamp3Top": "Swamp_3_GAMEPLAY.BP_WorldTravelVolume2",
     "TowerAlcove": "Castle_15_GAMEPLAY.BP_Interactable_Item_Tip3",
     "Ulv": "Fort_21_GAMEPLAY.BP_e5070_Killer",
     "VibrantPlume": "Church_09_GAMEPLAY.BP_Interactable_Passive_JumpHeightUp_2",
-    "Village01Bottom": "Village_01_GAMEPLAY.BP_WorldTravelVolume2",
-    "Village01Right": "Village_01_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village02Bottom": "Village_02_GAMEPLAY.BP_WorldTravelVolume3",
-    "Village02Left": "Village_02_GAMEPLAY.BP_WorldTravelVolume2",
-    "Village02Right": "Village_02_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village03Bottom1": "Village_03_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village03Bottom2": "Village_03_GAMEPLAY.BP_WorldTravelVolume3",
-    "Village03Right": "Village_03_GAMEPLAY.BP_WorldTravelVolume2",
-    "Village041Bottom": "Village_04_1_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village04Right": "Village_04_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village04Top": "Village_04_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Village05Left": "Village_05_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village05Right": "Village_05_GAMEPLAY.BP_WorldTravelVolume2",
-    "Village05Top": "Village_05_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Village06Bottom": "Village_06_GAMEPLAY.BP_WorldTravelVolume3",
-    "Village06Left": "Village_06_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village06Right1": "Village_06_GAMEPLAY.BP_WorldTravelVolume2",
-    "Village06Right2": "Village_06_GAMEPLAY.BP_WorldTravelVolume4",
-    "Village07Left": "Village_07_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village07Right": "Village_07_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Village07Top": "Village_07_GAMEPLAY.BP_WorldTravelVolume3_8",
-    "Village08Left": "Village_08_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village08Right": "Village_08_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Village09Left1": "Village_09_GAMEPLAY.BP_WorldTravelVolume3",
-    "Village09Left2": "Village_09_GAMEPLAY.BP_WorldTravelVolume4",
-    "Village09Right1": "Village_09_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village09Right2": "Village_09_GAMEPLAY.BP_WorldTravelVolume2",
-    "Village10Left": "Village_10_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village10Right": "Village_10_GAMEPLAY.BP_WorldTravelVolume2",
-    "Village111Bottom": "Village_11_1_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village11Left": "Village_11_GAMEPLAY.BP_WorldTravelVolume_4",
-    "Village11Right": "Village_11_GAMEPLAY.BP_WorldTravelVolume2",
-    "Village11Top": "Village_11_GAMEPLAY.BP_Interactable_WorldTravel_2",
-    "Village12Left1": "Village_12_GAMEPLAY.BP_WorldTravelVolume2",
-    "Village12Left2": "Village_12_GAMEPLAY.BP_WorldTravelVolume4",
-    "Village12Right": "Village_12_GAMEPLAY.BP_WorldTravelVolume3",
-    "Village12Top": "Village_12_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village13Left": "Village_13_GAMEPLAY.BP_WorldTravelVolume5",
-    "Village13Right": "Village_13_GAMEPLAY.BP_WorldTravelVolume6",
-    "Village13Top": "Village_13_GAMEPLAY.BP_WorldTravelVolume4",
-    "Village14Bottom": "Village_14_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village15Left": "Village_15_GAMEPLAY.BP_WorldTravelVolume_2",
-    "Village15Right": "Village_15_GAMEPLAY.BP_WorldTravelVolume2_5",
-    "Village16Right": "Village_16_GAMEPLAY.BP_WorldTravelVolume3",
     "WeatheredNecklace": "Swamp_09_GAMEPLAY.BP_Interactable_Passives_Treasure_2",
     "WhitePriestessEarrings": "Abyss_02_GAMEPLAY.BP_Interactable_Passive_healcountup_2",
     "WhitePriestessStatue": "Cave_21_GAMEPLAY.BP_Interactable_Passive_healcountup_2",
@@ -1078,10 +651,13 @@
       "content": "Generic.i_SpiritCurrencyLv2_L",
       "rules": "Abyss01Bottom"
     },
-    "Abyss_01_GAMEPLAY.BP_WorldTravelVolume2": { "content": "Map.map_swamp_18.A1" },
+    "Abyss_01_GAMEPLAY.BP_WorldTravelVolume2": {
+      "content": "Map.map_swamp_18.A1",
+      "rules": "Abyss01Top"
+    },
     "Abyss_01_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_abyss_02.1",
-      "rules": "Abyss01Top + CHARGE + slam + LEDGE + claw + (dash | HORIZONTAL) + (hook | FULLSILVA) + swim"
+      "rules": "Abyss01Bottom | Abyss01Top + CHARGE + slam + LEDGE + claw + (dash | HORIZONTAL) + (hook | FULLSILVA) + swim"
     },
     "Abyss_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1101,13 +677,16 @@
     },
     "Abyss_02_GAMEPLAY.BP_WorldTravelVolume": {
       "content": "Map.map_abyss_03.2",
-      "rules": "Abyss02Top"
+      "rules": "Abyss02Right | Abyss02Top"
     },
     "Abyss_02_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_abyss_01.2",
-      "rules": "Abyss02Right"
+      "rules": "Abyss02Top | Abyss02Right"
     },
-    "Abyss_03_GAMEPLAY.BP_WorldTravelVolume3_8": { "content": "Map.map_abyss_02.3" },
+    "Abyss_03_GAMEPLAY.BP_WorldTravelVolume3_8": {
+      "content": "Map.map_abyss_02.3",
+      "rules": "Abyss03Left"
+    },
     "Abyss_04_GAMEPLAY.BP_SCR_LV1L_2170_2": {
       "content": "Generic.i_SpiritCurrencyLv1_L",
       "rules": "Abyss04Top + mask + slam + hook + 3HEAL + dash"
@@ -1116,10 +695,13 @@
       "content": "Generic.i_SpiritCurrencyLv1_L",
       "rules": "Abyss04Top + mask + slam + hook + 3HEAL + dash"
     },
-    "Abyss_04_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_swamp_12.4" },
+    "Abyss_04_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_swamp_12.4",
+      "rules": "Abyss04Top"
+    },
     "Abyss_04_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_abyss_05.4",
-      "rules": "Abyss04Top + mask + swim + slam + hook + 3HEAL + dash"
+      "rules": "Abyss04Bottom | Abyss04Top + mask + swim + slam + hook + 3HEAL + dash"
     },
     "Abyss_05_GAMEPLAY.BP_Interactable_Item_FinalPassivePart_2": {
       "content": "Generic.i_FinalPassivePart_Up",
@@ -1139,7 +721,7 @@
     },
     "Abyss_05_GAMEPLAY.BP_WorldTravelVolume": {
       "content": "Map.map_abyss_04.5",
-      "rules": "Abyss05Left"
+      "rules": "Abyss05Top"
     },
     "Castle_01_GAMEPLAY.BP_e2082_Dog": {
       "content": "Spirit.s2082",
@@ -1151,7 +733,7 @@
     },
     "Castle_01_GAMEPLAY.BP_Interactable_Passive_Spirit_StunStaminaDamageUp_2": {
       "content": "Passive.i_passive_stunstamina_damage_up",
-      "rules": "Castle01Right1"
+      "rules": "Castle01Right1 | Castle01Top"
     },
     "Castle_01_GAMEPLAY.BP_SCR_LV1L_2031_2": {
       "content": "Generic.i_SpiritCurrencyLv1_L",
@@ -1163,15 +745,15 @@
     },
     "Castle_01_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_village_11.1",
-      "rules": "Dog"
+      "rules": "Castle01Left | Dog"
     },
     "Castle_01_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_castle_02.1",
-      "rules": "Dog + (LEDGE | HORIZONTAL | claw)"
+      "rules": "Castle01Right2 | Dog + (LEDGE | HORIZONTAL | claw)"
     },
     "Castle_01_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_castle_02.1B",
-      "rules": "Castle01Top"
+      "rules": "Castle01Right1 | Castle01Top"
     },
     "Castle_01_GAMEPLAY.BP_WorldTravelVolume6": {
       "content": "Map.map_castle_10.1",
@@ -1183,7 +765,7 @@
     },
     "Castle_02_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_castle_05.2",
-      "rules": "Castle02Left2 + (hook | LEDGE | claw)"
+      "rules": "Castle02Top | Castle02Left2 + (hook | LEDGE | claw)"
     },
     "Castle_02_GAMEPLAY.BP_SCR_LV1M_2000_3": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
@@ -1191,15 +773,15 @@
     },
     "Castle_02_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_01.2",
-      "rules": "Castle02Left1 | Castle02Top | Castle02Bottom"
+      "rules": "Castle02Left2 | Castle02Left1 | Castle02Top | Castle02Bottom"
     },
     "Castle_02_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_castle_04.2",
-      "rules": "Castle02Left2"
+      "rules": "Castle02Bottom | Castle02Left2"
     },
     "Castle_02_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_castle_01.2B",
-      "rules": "Castle02Left2 + (claw + LEDGE)"
+      "rules": "Castle02Left1 | Castle02Left2 + (claw + LEDGE)"
     },
     "Castle_03_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1211,42 +793,51 @@
     },
     "Castle_03_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_castle_05.3",
-      "rules": "Castle03Top1 | Castle03Top2"
+      "rules": "Castle03Bottom | Castle03Top1 | Castle03Top2"
     },
-    "Castle_03_GAMEPLAY.BP_WorldTravelVolume5": { "content": "Map.map_castle_11.3A" },
-    "Castle_03_GAMEPLAY.BP_WorldTravelVolume6": { "content": "Map.map_castle_11.3B" },
+    "Castle_03_GAMEPLAY.BP_WorldTravelVolume5": {
+      "content": "Map.map_castle_11.3A",
+      "rules": "Castle03Top1"
+    },
+    "Castle_03_GAMEPLAY.BP_WorldTravelVolume6": {
+      "content": "Map.map_castle_11.3B",
+      "rules": "Castle03Top2"
+    },
     "Castle_04_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_035",
       "rules": "Castle04Top"
     },
     "Castle_04_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_02.4",
-      "rules": "RuinedCastleCellar + (LEDGE | claw)"
+      "rules": "Castle04Top | RuinedCastleCellar + (LEDGE | claw)"
     },
     "Castle_05_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_castle_02.5",
-      "rules": "Castle05Right | Castle05Left | Castle05Top"
+      "rules": "Castle05Bottom | Castle05Right | Castle05Left | Castle05Top"
     },
     "Castle_05_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_06.5",
-      "rules": "Castle05Bottom"
+      "rules": "Castle05Right | Castle05Bottom"
     },
     "Castle_05_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_08.5",
-      "rules": "Castle05Bottom"
+      "rules": "Castle05Left | Castle05Bottom"
     },
-    "Castle_05_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_castle_03.5" },
+    "Castle_05_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_castle_03.5",
+      "rules": "Castle05Top"
+    },
     "Castle_06_GAMEPLAY.BP_Interactable_Passives_Treasure_2": {
       "content": "Passive.i_passive_maxhpup_LV2",
       "rules": "Castle06Top"
     },
     "Castle_06_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_castle_12.6",
-      "rules": "Castle06Right"
+      "rules": "Castle06Top | Castle06Right"
     },
     "Castle_06_GAMEPLAY.BP_Interactable_WorldTravel2": {
       "content": "Map.map_castle_07.6",
-      "rules": "Castle06Top | Castle06Left"
+      "rules": "Castle06Right | Castle06Top | Castle06Left"
     },
     "Castle_06_GAMEPLAY.BP_SCR_LV1L_2030_3": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
@@ -1254,7 +845,7 @@
     },
     "Castle_06_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_05.6",
-      "rules": "Castle06Top"
+      "rules": "Castle06Left | Castle06Top"
     },
     "Castle_07_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_019",
@@ -1262,11 +853,11 @@
     },
     "Castle_07_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_01.C7",
-      "rules": "GuestChamber + hook"
+      "rules": "Castle07Right | GuestChamber + (hook | 3LEDGE)"
     },
     "Castle_07_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_06.7",
-      "rules": "GuestChamber"
+      "rules": "Castle07Left | GuestChamber"
     },
     "Castle_08_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2": {
       "content": "Generic.i_PassiveSlot_Up",
@@ -1290,27 +881,27 @@
     },
     "Castle_08_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_05.8",
-      "rules": "Castle08Top"
+      "rules": "Castle08Right | Castle08Top"
     },
     "Castle_08_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_09.8",
-      "rules": "Castle08Right + (claw | LEDGE | HORIZONTAL)"
+      "rules": "Castle08Top | Castle08Right + (claw | LEDGE | HORIZONTAL)"
     },
     "Castle_09_GAMEPLAY.BP_SCR_LV2M_2000_3": {
       "content": "Generic.i_SpiritCurrencyLv2_M",
-      "rules": "Castle09Left + (claw + (2LEDGE | (silva | djump) + HORIZONTAL))"
+      "rules": "Castle09Left + (2HORIZONTAL | claw + (2LEDGE | LEDGE + HORIZONTAL) | LEDGE + sinner)"
     },
     "Castle_09_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_11.9",
-      "rules": "Castle09Bottom"
+      "rules": "Castle09Right | Castle09Bottom"
     },
     "Castle_09_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_08.9",
-      "rules": "Castle09Right | Castle09Left"
+      "rules": "Castle09Bottom | Castle09Right | Castle09Left"
     },
     "Castle_09_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_castle_10.9",
-      "rules": "Castle09Bottom"
+      "rules": "Castle09Left | Castle09Bottom"
     },
     "Castle_10_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_064",
@@ -1330,23 +921,23 @@
     },
     "Castle_11_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_12.11",
-      "rules": "Castle11Bottom2"
+      "rules": "Castle11Right | Castle11Bottom2"
     },
     "Castle_11_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_09.11",
-      "rules": "Castle11Bottom1"
+      "rules": "Castle11Left | Castle11Bottom1"
     },
     "Castle_11_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_castle_13.11",
-      "rules": "Castle11Left + Castle11Right"
+      "rules": "Castle11Top | Castle11Left + Castle11Right"
     },
     "Castle_11_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_castle_03.11A",
-      "rules": "Castle11Left"
+      "rules": "Castle11Bottom1 | Castle11Left"
     },
     "Castle_11_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_castle_03.11B",
-      "rules": "Castle11Right"
+      "rules": "Castle11Bottom2 | Castle11Right"
     },
     "Castle_12_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2": {
       "content": "Generic.i_PassiveSlot_Up",
@@ -1362,7 +953,7 @@
     },
     "Castle_12_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_castle_06.12",
-      "rules": "Castle12Left + (hook + (claw | LEDGE | HORIZONTAL) | slam)"
+      "rules": "Castle12Bottom | Castle12Left + (hook + (claw | LEDGE | HORIZONTAL) | slam)"
     },
     "Castle_12_GAMEPLAY.BP_SCR_LV1M_2001_1": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
@@ -1370,27 +961,27 @@
     },
     "Castle_12_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_11.12",
-      "rules": "Castle12Bottom"
+      "rules": "Castle12Left | Castle12Bottom"
     },
     "Castle_12_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_castle_21.12",
-      "rules": "Castle12Bottom + unlock"
+      "rules": "Castle12Right | Castle12Bottom + unlock"
     },
     "Castle_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_2": {
       "content": "Parameter.i_maxHPUp_02",
-      "rules": "Castle13Bottom + (silva + djump + claw | (FULLSILVA | 3LEDGE) + hook | (silva | djump) + champion + hook + claw)"
+      "rules": "Castle13Bottom + (silva + djump + claw | (FULLSILVA | 3LEDGE) + hook | 2LEDGE + hook + claw | LEDGE + HORIZONTAL + claw + hook)"
     },
     "Castle_13_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_17.13",
-      "rules": "Castle13Bottom"
+      "rules": "Castle13Left | Castle13Bottom"
     },
     "Castle_13_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_castle_11.13",
-      "rules": "Castle13Left | Castle13Right"
+      "rules": "Castle13Bottom | Castle13Left | Castle13Right"
     },
     "Castle_13_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_castle_14.13",
-      "rules": "Castle13Bottom"
+      "rules": "Castle13Right | Castle13Bottom"
     },
     "Castle_14_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1406,11 +997,11 @@
     },
     "Castle_14_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_13.14",
-      "rules": "Castle14Top"
+      "rules": "Castle14Left | Castle14Top"
     },
     "Castle_14_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_castle_15.14",
-      "rules": "Castle14Left + (LEDGE | hook)"
+      "rules": "Castle14Top | Castle14Left + (LEDGE | hook)"
     },
     "Castle_15_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2": {
       "content": "Generic.i_HealPower_Up",
@@ -1422,11 +1013,11 @@
     },
     "Castle_15_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_16.15",
-      "rules": "TowerAlcove + claw + (hook | FULLSILVA + sinner | 3LEDGE)"
+      "rules": "Castle15Left | TowerAlcove + claw + (hook | FULLSILVA + sinner | 3LEDGE)"
     },
     "Castle_15_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_14.15",
-      "rules": "TowerAlcove"
+      "rules": "Castle15Bottom | TowerAlcove"
     },
     "Castle_16_GAMEPLAY.BP_e2032_BigKnight": {
       "content": "Spirit.s2032",
@@ -1474,17 +1065,20 @@
     },
     "Castle_16_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_18.16",
-      "rules": "Aegis"
+      "rules": "Castle17Top | Aegis"
     },
     "Castle_16_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_15.16",
-      "rules": "Aegis + (silva + djump | djump + champion | claw)"
+      "rules": "Castle16Right | Aegis + (silva + djump | djump + champion | claw)"
     },
     "Castle_17_GAMEPLAY.BP_SCR_LV1M_2000_3": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
       "rules": "Castle17Right + (LEDGE | claw)"
     },
-    "Castle_17_GAMEPLAY.BP_WorldTravelVolume_2": { "content": "Map.map_castle_13.17" },
+    "Castle_17_GAMEPLAY.BP_WorldTravelVolume_2": {
+      "content": "Map.map_castle_13.17",
+      "rules": "Castle17Right"
+    },
     "Castle_17_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_castle_18.17",
       "rules": "Castle17Right + LEDGE"
@@ -1507,24 +1101,23 @@
     },
     "Castle_18_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_19.18",
-      "rules": "Castle18Bottom + (claw | hook + LEDGE)"
+      "rules": "Castle18Right | Castle18Bottom + (claw | hook + LEDGE)"
     },
     "Castle_18_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_17.18",
       "rules": "Castle18Right + (claw | hook + LEDGE) | Castle18Top"
     },
-    "Castle18Top": {},
     "Castle_19_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_062",
       "rules": "Castle19Right | Castle19Left"
     },
     "Castle_19_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_20.19",
-      "rules": "KingsChamber"
+      "rules": "Castle19Right | KingsChamber"
     },
     "Castle_19_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_18.19",
-      "rules": "KingsChamber"
+      "rules": "Castle19Left | KingsChamber"
     },
     "Castle_20_GAMEPLAY.BP_e5030_Leader": {
       "content": "Spirit.s5030",
@@ -1532,7 +1125,7 @@
     },
     "Castle_20_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_19.20",
-      "rules": "Julius"
+      "rules": "Castle20Left | Julius"
     },
     "Castle_21_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_044",
@@ -1542,27 +1135,29 @@
       "content": "Generic.i_FinalPassivePart_Up",
       "rules": "Castle21Left"
     },
-    "Castle_21_GAMEPLAY.BP_WorldTravelVolume2": { "content": "Map.map_castle_12.21" },
+    "Castle_21_GAMEPLAY.BP_WorldTravelVolume2": {
+      "content": "Map.map_castle_12.21",
+      "rules": "Castle21Left"
+    },
     "Castle_21_GEO.BP_SCR_LV1L_2120_2": {
       "content": "Generic.i_SpiritCurrencyLv1_L",
       "rules": "Castle21Left"
     },
-    "Cave_01_Bottom2": {},
     "Cave_01_GAMEPLAY.BP_Interactable_Passive_Parry_2": {
       "content": "Passive.i_passive_parry",
-      "rules": "Cave01Bottom2 | Cave01Left"
+      "rules": "Cave01Bottom | Cave01Left"
     },
     "Cave_01_GAMEPLAY.BP_SCR_LV2LL_0000_2": {
       "content": "Generic.i_SpiritCurrencyLv2_LL",
-      "rules": "Cave01Bottom2 + (claw | djump | champion | silva + dodge)  | Cave01Left + 3LEDGE + 2HORIZONTAL"
+      "rules": "Cave01Bottom + (claw | djump | champion | silva + dodge)  | Cave01Left + 3LEDGE + 2HORIZONTAL"
     },
     "Cave_01_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_02.1",
-      "rules": "BottomOfTheWell"
+      "rules": "Cave01Bottom | BottomOfTheWell"
     },
     "Cave_01_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_village_12.C1",
-      "rules": "BottomOfTheWell"
+      "rules": "Cave01Left | BottomOfTheWell"
     },
     "Cave_02_GAMEPLAY.BP_SCR_LV1M_2160_1": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
@@ -1574,15 +1169,15 @@
     },
     "Cave_02_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_05.2",
-      "rules": "Cave02Bottom | Cave02Top"
+      "rules": "Cave02Right | Cave02Bottom | Cave02Top"
     },
     "Cave_02_GAMEPLAY.BP_WorldTravelVolume4_1": {
       "content": "Map.map_cave_07.2",
-      "rules": "Cave02Right + slam"
+      "rules": "Cave02Bottom | Cave02Right + slam"
     },
     "Cave_02_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_01.2",
-      "rules": "Cave02Right + claw + (FULLSILVA + dash | 3LEDGE | 2LEDGE + 2HORIZONTAL)"
+      "rules": "Cave02Right + claw + (FULLSILVA + dash | 3LEDGE | 2LEDGE + 2HORIZONTAL | silva + 2HORIZONTAL | silva + sinner + djump | dash + djump + champion + sinner)"
     },
     "Cave_03_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_022",
@@ -1592,11 +1187,17 @@
       "content": "Tip.tip_027",
       "rules": "Cave03Right"
     },
-    "Cave_03_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_cave_07.3" },
-    "Cave_03_GAMEPLAY.BP_WorldTravelVolume4": { "content": "Map.map_cave_08.3" },
+    "Cave_03_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_cave_07.3",
+      "rules": "Cave03Left"
+    },
+    "Cave_03_GAMEPLAY.BP_WorldTravelVolume4": {
+      "content": "Map.map_cave_08.3",
+      "rules": "Cave03Right"
+    },
     "Cave_03_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_06.3",
-      "rules": "Charnel"
+      "rules": "Cave03Top | Charnel"
     },
     "Cave_04_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1604,15 +1205,15 @@
     },
     "Cave_04_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_16.4",
-      "rules": "Cave04Bottom"
+      "rules": "Cave04Right | Cave04Bottom"
     },
     "Cave_04_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_05.4",
-      "rules": "Cave04Right"
+      "rules": "Cave04Bottom | Cave04Right"
     },
     "Cave_04_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_12.4",
-      "rules": "Cave04Bottom + unlock"
+      "rules": "Cave04Left | Cave04Bottom + unlock"
     },
     "Cave_05_GAMEPLAY.BP_SCR_LV1M_2161_2": {
       "content": "Generic.i_SpiritCurrencyLv2_S",
@@ -1620,19 +1221,19 @@
     },
     "Cave_05_GAMEPLAY.BP_WorldTravelVolume_0": {
       "content": "Map.map_cave_02.5",
-      "rules": "Cave05Bottom"
+      "rules": "Cave05Left | Cave05Bottom"
     },
     "Cave_05_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_04.5",
-      "rules": "Cave05Bottom"
+      "rules": "Cave05Top | Cave05Bottom"
     },
     "Cave_05_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_06.5",
-      "rules": "Cave05Left | Cave05Right | Cave05Top"
+      "rules": "Cave05Bottom | Cave05Left | Cave05Right | Cave05Top"
     },
     "Cave_05_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_10.5",
-      "rules": "Cave05Bottom + (claw |  2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL)"
+      "rules": "Cave05Right | Cave05Bottom + (claw |  2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL)"
     },
     "Cave_06_GAMEPLAY.BP_Interactable_Item_Tip4": {
       "content": "Tip.tip_025",
@@ -1648,15 +1249,15 @@
     },
     "Cave_06_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_05.6",
-      "rules": "Cave06Bottom"
+      "rules": "Cave06Top | Cave06Bottom"
     },
     "Cave_06_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_03.6",
-      "rules": "Cave06Top"
+      "rules": "Cave06Bottom | Cave06Top"
     },
     "Cave_07_GAMEPLAY.BP_e2162_Spider": {
       "content": "Spirit.s2162",
-      "rules": "Cave07Right"
+      "rules": "Cave07Right | Cave07Top"
     },
     "Cave_07_GAMEPLAY.BP_SCR_LV1M_2161_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -1665,7 +1266,7 @@
     "Cave_07_GAMEPLAY.BP_WorldTravelVolume2_1": { "content": "Map.map_cave_02.7" },
     "Cave_07_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_03.7",
-      "rules": "Cave07Top"
+      "rules": "Spider"
     },
     "Cave_08_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1673,19 +1274,19 @@
     },
     "Cave_08_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_09.8",
-      "rules": "Cave08Left + (claw | hook)"
+      "rules": "Cave08Top | Cave08Left + (claw | hook)"
     },
     "Cave_08_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_03.8",
-      "rules": "Cave08Top | Cave08Right"
+      "rules": "Cave08Left | Cave08Top | Cave08Right"
     },
     "Cave_08_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_17.8",
-      "rules": "Cave08Left + swim + slam"
+      "rules": "Cave08Bottom | Cave08Left + swim + slam"
     },
     "Cave_08_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_11.8",
-      "rules": "Cave08Left"
+      "rules": "Cave08Right | Cave08Left"
     },
     "Cave_09_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1697,15 +1298,15 @@
     },
     "Cave_09_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_10.9",
-      "rules": "Cave09Bottom + (claw | LEDGE) | Cave09Right"
+      "rules": "Cave09Top | Cave09Bottom + (claw | LEDGE) | Cave09Right"
     },
     "Cave_09_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_08.9",
-      "rules": "Cave09Top | Cave09Right"
+      "rules": "Cave09Bottom | Cave09Top | Cave09Right"
     },
     "Cave_09_GAMEPLAY.BP_WorldTravelVolume6": {
       "content": "Map.map_cave_21.9",
-      "rules": "Cave09Top + (sinner | dodge + (LEDGE | dash + claw) | djump + (champion | silva | dash) | claw + champion)"
+      "rules": "Cave09Right | Cave09Top + (sinner | dodge + (LEDGE | dash + claw) | djump + (champion | silva | dash) | claw + champion)"
     },
     "Cave_10_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1717,23 +1318,23 @@
     },
     "Cave_10_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_23.10",
-      "rules": "Cave10Bottom"
+      "rules": "Cave10Right | Cave10Bottom"
     },
     "Cave_10_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_05.10",
-      "rules": "Cave10Bottom + (hook | 2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL)"
+      "rules": "Cave10Left | Cave10Bottom + (hook | 2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL)"
     },
     "Cave_10_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_09.10",
-      "rules": "Cave10Right | Cave10Bottom | Cave10Top | Cave10Left"
+      "rules": "Cave10Bottom | Cave10Right | Cave10Top | Cave10Left"
     },
     "Cave_10_GAMEPLAY.BP_WorldTravelVolume6": {
       "content": "Map.map_cave_16.10",
-      "rules": "Cave10Bottom"
+      "rules": "Cave10Top | Cave10Bottom"
     },
     "Cave_11_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_030",
-      "rules": "Cave11Left | Cave11Top | Cave11Right"
+      "rules": "Cave11Left | Cave11Top | Cave11Right1 | Cave11Right2"
     },
     "Cave_11_GAMEPLAY.BP_SCR_LV1M_2161_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -1741,33 +1342,35 @@
     },
     "Cave_11_GAMEPLAY.BP_SCR_LV2M_2050_2": {
       "content": "Generic.i_SpiritCurrencyLv2_S",
-      "rules": "(Cave11Left | Cave11Top | Cave11Right) + swim"
+      "rules": "(Cave11Left | Cave11Top | Cave11Right1 | Cave11Right2) + swim"
     },
     "Cave_11_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_08.11",
-      "rules": "(Cave11Top | Cave11Right) + (hook | LEDGE | claw)"
+      "rules": "Cave11Left | (Cave11Top | Cave11Right1 | Cave11Right2) + (hook | LEDGE | claw)"
     },
     "Cave_11_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_13.11",
-      "rules": "(Cave11Left | Cave11Right) + claw"
+      "rules": "(Cave11Top | Cave11Left | Cave11Right1 | Cave11Right2) + claw"
     },
     "Cave_11_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_18.11",
-      "rules": "(Cave11Left | Cave11Top) + (hook | claw + LEDGE | 2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL)"
+      "rules": "Cave11Right1 | (Cave11Left | Cave11Top) + (hook | claw + LEDGE | 2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL)"
     },
     "Cave_12_GAMEPLAY.BP_Interactable_Item_FinalPassivePart_2": {
       "content": "Generic.i_FinalPassivePart_Up",
       "rules": "Cave12Right"
     },
-    "Cave_12_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_cave_04.12" },
-    "Cave_13_Bottom2": {},
+    "Cave_12_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_cave_04.12",
+      "rules": "Cave12Right"
+    },
     "Cave_13_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_029",
-      "rules": "Cave13Top | Cave13Left | Cave13Right | Cave13Bottom2"
+      "rules": "Cave13Top | Cave13Left | Cave13Right | Cave13Bottom"
     },
     "Cave_13_GAMEPLAY.BP_SCR_LV2L_2091_4": {
       "content": "Generic.i_SpiritCurrencyLv2_M",
-      "rules": "Ossuary + hook | Cave13Bottom2 + claw"
+      "rules": "Ossuary + hook | Cave13Bottom + claw"
     },
     "Cave_13_GAMEPLAY.BP_SCR_LV2M_2161_5": {
       "content": "Generic.i_SpiritCurrencyLv2_S",
@@ -1775,19 +1378,19 @@
     },
     "Cave_13_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_11.13",
-      "rules": "Ossuary"
+      "rules": "Cave13Bottom | Ossuary"
     },
     "Cave_13_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_14.13",
-      "rules": "Ossuary"
+      "rules": "Cave13Top | Ossuary"
     },
     "Cave_13_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_23.13",
-      "rules": "Ossuary + (claw | 2LEDGE | 2HORIZONTAL)"
+      "rules": "Cave13Left | Ossuary + (claw | 2LEDGE | 2HORIZONTAL)"
     },
     "Cave_13_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_20.13",
-      "rules": "Ossuary"
+      "rules": "Cave13Right | Ossuary"
     },
     "Cave_14_GAMEPLAY.BP_SCR_LV1S_2020_7": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -1795,15 +1398,15 @@
     },
     "Cave_14_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_13.14",
-      "rules": "Cave14Right | Cave14Left"
+      "rules": "Cave14Bottom | Cave14Right | Cave14Left"
     },
     "Cave_14_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_15.14",
-      "rules": "Cave14Bottom + LEDGE"
+      "rules": "Cave14Left | Cave14Bottom + LEDGE"
     },
     "Cave_14_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_22.14",
-      "rules": "Cave14Bottom + (hook | claw | 2LEDGE | LEDGE + HORIZONTAL)"
+      "rules": "Cave14Right | Cave14Bottom + (hook | claw | 2LEDGE | LEDGE + HORIZONTAL)"
     },
     "Cave_15_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_021",
@@ -1819,11 +1422,11 @@
     },
     "Cave_15_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_14.15",
-      "rules": "Cave15Left + swim + (LEDGE | claw)"
+      "rules": "Cave15Right | Cave15Left + swim + (LEDGE | claw)"
     },
     "Cave_15_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_16.15",
-      "rules": "Cave15Right"
+      "rules": "Cave15Left | Cave15Right"
     },
     "Cave_16_GAMEPLAY.BP_Interactable_Item_Tip4": {
       "content": "Tip.tip_020",
@@ -1835,23 +1438,32 @@
     },
     "Cave_16_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_15.16",
-      "rules": "GreatHall"
+      "rules": "Cave16Right | GreatHall"
     },
-    "Cave_16_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_cave_10.16" },
+    "Cave_16_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_cave_10.16",
+      "rules": "Cave16Bottom"
+    },
     "Cave_16_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_04.16",
-      "rules": "GreatHall"
+      "rules": "Cave16Left | GreatHall"
     },
     "Cave_17_GAMEPLAY.BP_SCR_LV3M_5000_2": {
       "content": "Generic.i_SpiritCurrencyLv3_2",
       "rules": "Cave17Top + swim"
     },
-    "Cave_17_GAMEPLAY.BP_WorldTravelVolume2_1": { "content": "Map.map_cave_08.17" },
+    "Cave_17_GAMEPLAY.BP_WorldTravelVolume2_1": {
+      "content": "Map.map_cave_08.17",
+      "rules": "Cave17Top"
+    },
     "Cave_18_GAMEPLAY.BP_Interactable_Passive_healpowerup_2": {
       "content": "Passive.i_passive_heal_power_up",
       "rules": "Cave18Left1"
     },
-    "Cave_18_GAMEPLAY.BP_WorldTravelVolume2_1": { "content": "Map.map_cave_11.18" },
+    "Cave_18_GAMEPLAY.BP_WorldTravelVolume2_1": {
+      "content": "Map.map_cave_11.18",
+      "rules": "Cave18Left1"
+    },
     "Cave_18_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_11.18B",
       "rules": "Cave18Left1 + swim"
@@ -1870,11 +1482,11 @@
     },
     "Cave_19_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_20.19",
-      "rules": "Archer"
+      "rules": "Cave19Top | Archer"
     },
     "Cave_19_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_21.19",
-      "rules": "Cave19Top + (HORIZONTAL + LEDGE | claw | 2LEDGE)"
+      "rules": "Cave19Left | Cave19Top + (HORIZONTAL + LEDGE | claw | 2LEDGE)"
     },
     "Cave_20_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1890,15 +1502,15 @@
     },
     "Cave_20_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_22.20",
-      "rules": "Cave20Bottom + (hook | claw | LEDGE)"
+      "rules": "Cave20Top | Cave20Bottom + (hook | claw | LEDGE)"
     },
     "Cave_20_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_19.20",
-      "rules": "Cave20Left | Cave20Top"
+      "rules": "Cave20Bottom | Cave20Left | Cave20Top"
     },
     "Cave_20_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_13.20",
-      "rules": "Cave20Bottom | Cave20Top"
+      "rules": "Cave20Left | Cave20Bottom | Cave20Top"
     },
     "Cave_21_GAMEPLAY.BP_Interactable_Passive_healcountup_2": {
       "content": "Passive.i_passive_heal_count_up_1",
@@ -1906,11 +1518,11 @@
     },
     "Cave_21_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_09.21",
-      "rules": "Cave21Right"
+      "rules": "Cave21Left | Cave21Right"
     },
     "Cave_21_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_19.21",
-      "rules": "Cave21Left"
+      "rules": "Cave21Right | Cave21Left"
     },
     "Cave_22_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_026",
@@ -1918,15 +1530,15 @@
     },
     "Cave_22_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_fort_02.C22",
-      "rules": "Cave22Bottom"
+      "rules": "Cave22Right | Cave22Bottom"
     },
     "Cave_22_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_14.22",
-      "rules": "Cave22Bottom + (2LEDGE | hook | claw | LEDGE + HORIZONTAL)"
+      "rules": "Cave22Left | Cave22Bottom + (2LEDGE | hook | claw | LEDGE + HORIZONTAL)"
     },
     "Cave_22_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_20.22",
-      "rules": "Cave22Right | Cave22Left"
+      "rules": "Cave22Bottom | Cave22Right | Cave22Left"
     },
     "Cave_23_GAMEPLAY.BP_e5021_OlderSister": {
       "content": "Spirit.s5020",
@@ -1938,20 +1550,19 @@
     },
     "Cave_23_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_13.23",
-      "rules": "Silva"
+      "rules": "Cave23Right | Silva"
     },
     "Cave_23_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_cave_10.23",
-      "rules": "Silva"
+      "rules": "Cave23Left | Silva"
     },
     "Church_01_GAMEPLAY.BP_Interactable_WorldTravel": {
       "content": "Map.map_church_02.0",
-      "rules": "Church01Left | Church01Top"
+      "rules": "Church01Bottom | Church01Left | Church01Top"
     },
-    "Church01Top": {},
     "Church_01_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_church_12.1",
-      "rules": "Church01Bottom | Church01Top"
+      "rules": "Church01Left | Church01Bottom | Church01Top"
     },
     "Church_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1963,11 +1574,11 @@
     },
     "Church_02_GAMEPLAY.BP_Interactable_WorldTravel": {
       "content": "Map.map_church_01.1",
-      "rules": "Church02Right + (djump | champion | silva + dodge)"
+      "rules": "Church02Top | Church02Right + (djump | champion | silva + dodge)"
     },
     "Church_02_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_church_10.2",
-      "rules": "Church02Top"
+      "rules": "Church02Right | Church02Top"
     },
     "Church_03_GAMEPLAY.BP_e5011_YoungerSister": {
       "content": "Spirit.s5010",
@@ -1975,11 +1586,11 @@
     },
     "Church_03_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_church_05.1",
-      "rules": "Church03Right"
+      "rules": "Church03Left | Church03Right"
     },
     "Church_03_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_church_04.0",
-      "rules": "Church03Left"
+      "rules": "Church03Right | Church03Left"
     },
     "Church_04_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_005",
@@ -1987,11 +1598,11 @@
     },
     "Church_04_GAMEPLAY.BP_WorldTravelVolume": {
       "content": "Map.map_church_03.1",
-      "rules": "SaintsPassage"
+      "rules": "Church04Left | SaintsPassage"
     },
     "Church_04_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_church_06.0",
-      "rules": "SaintsPassage"
+      "rules": "Church04Right | SaintsPassage"
     },
     "Church_05_GAMEPLAY.BP_Interactable_Passive_MaxHPUp_Lv1_2": {
       "content": "Passive.i_passive_maxhpup_LV1",
@@ -2008,15 +1619,15 @@
     "CathedralCloister": { "rules": "Church05Right | Church05Bottom | Church05Top" },
     "Church_05_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_church_09.5",
-      "rules": "Church05Bottom + claw"
+      "rules": "CathedralCloister + claw"
     },
     "Church_06_GAMEPLAY.BP_WorldTravelVolume": {
       "content": "Map.map_church_04.1",
-      "rules": "Church06Right + (LEDGE | claw)"
+      "rules": "Church06Left | Church06Right + (LEDGE | claw)"
     },
     "Church_06_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_church_07.0",
-      "rules": "Church06Left + (LEDGE | claw)"
+      "rules": "Church06Right | Church06Left + (LEDGE | claw)"
     },
     "Church_07_GAMEPLAY.BP_e2012_Slime_Unique": {
       "content": "Spirit.s2012",
@@ -2028,11 +1639,11 @@
     },
     "Church_07_GAMEPLAY.BP_WorldTravelVolume_3": {
       "content": "Map.map_church_06.1",
-      "rules": "Youth + (LEDGE | claw)"
+      "rules": "Church07Left | Youth + (LEDGE | claw)"
     },
     "Church_07_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_church_08.0",
-      "rules": "Church07Left + (LEDGE | claw) | Youth"
+      "rules": "Church07Right | Church07Left + (LEDGE | claw) | Youth"
     },
     "Church_08_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -2044,23 +1655,23 @@
     },
     "Church_08_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_01.0",
-      "rules": "Crossroads"
+      "rules": "Church08Top | Crossroads"
     },
     "Church_08_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_forest_01.C8",
-      "rules": "Crossroads"
+      "rules": "Church08Bottom | Crossroads"
     },
     "Church_08_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_church_07.1",
-      "rules": "Crossroads"
+      "rules": "Church08Left | Crossroads"
     },
     "Church_09_GAMEPLAY.BP_e2092_Priest": {
       "content": "Spirit.s2092",
-      "rules": "Church09Bottom2 | Church09Top"
+      "rules": "Church09Bottom | Church09Top"
     },
     "Church_09_GAMEPLAY.BP_Interactable_Passive_JumpHeightUp_2": {
       "content": "Passive.i_passive_jump_height_up",
-      "rules": "Church09Bottom2 + claw + CHARGE"
+      "rules": "Church09Bottom + claw + CHARGE"
     },
     "Church_09_GAMEPLAY.BP_SCR_LV2M_2001_2": {
       "content": "Generic.i_SpiritCurrencyLv2_M",
@@ -2068,7 +1679,7 @@
     },
     "Church_09_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_church_05.9",
-      "rules": "Church09Top | Chief + claw + LEDGE"
+      "rules": "Church09Bottom | Church09Top"
     },
     "Church_09_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_church_01.2",
@@ -2076,7 +1687,7 @@
     },
     "Church_09_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_church_14.9",
-      "rules": "Church09Bottom2 + hook"
+      "rules": "Church09Bottom + hook"
     },
     "Church_10_GAMEPLAY.BP_Interactable_Item_Tip_2": {
       "content": "Tip.tip_003",
@@ -2088,11 +1699,11 @@
     },
     "Church_10_GAMEPLAY.BP_WorldTravelVolume_4": {
       "content": "Map.map_church_02.10",
-      "rules": "Cellar"
+      "rules": "Church10Left | Cellar"
     },
     "Church_10_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_church_11.10",
-      "rules": "Cellar"
+      "rules": "Church10Right | Cellar"
     },
     "Church_11_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -2104,26 +1715,32 @@
     },
     "Church_11_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_church_05.11",
+      "rules": "Church11Top | Church11Left"
+    },
+    "Church_11_GAMEPLAY.BP_WorldTravelVolume_4": {
+      "content": "Map.map_church_10.11",
       "rules": "Church11Left"
     },
-    "Church_11_GAMEPLAY.BP_WorldTravelVolume_4": { "content": "Map.map_church_10.11" },
     "Church_12_GAMEPLAY.BP_Interactable_Item_Tip1": {
       "content": "Tip.tip_001",
       "rules": "Church12Right"
     },
     "Church_12_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_church_01.12",
-      "rules": "Start"
+      "rules": "Church12Right | Start"
     },
     "Church_12_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_church_13.6",
-      "rules": "Start + (unlock + ( djump | champion | silva + dodge | claw ))"
+      "rules": "Church12Bottom | Start + (unlock + ( djump | champion | silva + dodge | claw ))"
     },
     "Church_13_GAMEPLAY.BP_Interactable_Item_Tip4": {
       "content": "Tip.tip_068",
       "rules": "Church13Top"
     },
-    "Church_13_GAMEPLAY.BP_WorldTravelVolume5": { "content": "Map.map_church_12.3" },
+    "Church_13_GAMEPLAY.BP_WorldTravelVolume5": {
+      "content": "Map.map_church_12.3",
+      "rules": "Church13Top"
+    },
     "Church_14_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2": {
       "content": "Generic.i_HealPower_Up",
       "rules": "Church14Bottom"
@@ -2132,14 +1749,17 @@
       "content": "Tip.tip_070",
       "rules": "Church14Bottom"
     },
-    "Church_14_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_church_09.14" },
+    "Church_14_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_church_09.14",
+      "rules": "Church14Bottom"
+    },
     "Forest_01_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_church_08.2",
-      "rules": "Forest01Right + (LEDGE | claw)"
+      "rules": "Forest01Top | Forest01Right + (LEDGE | claw)"
     },
     "Forest_01_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_forest_02.1",
-      "rules": "Forest01Top"
+      "rules": "Forest01Right | Forest01Top"
     },
     "Forest_02_GAMEPLAY.BP_SCR_LV1S_2130_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -2147,15 +1767,15 @@
     },
     "Forest_02_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_forest_01.2",
-      "rules": "Forest02Right1"
+      "rules": "Forest02Left | Forest02Right1"
     },
     "Forest_02_GAMEPLAY.BP_WorldTravelVolume6": {
       "content": "Map.map_forest_04.2",
-      "rules": "Forest02Left | Forest02Right2 + (claw | LEDGE)"
+      "rules": "Forest02Right1 | Forest02Left | Forest02Right2 + (claw | LEDGE)"
     },
     "Forest_02_GAMEPLAY.BP_WorldTravelVolume7": {
       "content": "Map.map_forest_03.2",
-      "rules": "Forest02Left"
+      "rules": "Forest02Right2 | Forest02Left"
     },
     "Forest_03_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -2167,11 +1787,11 @@
     },
     "Forest_03_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_forest_05.3",
-      "rules": "Forest03Left + (claw | LEDGE | HORIZONTAL)"
+      "rules": "Forest03Right | Forest03Left + (claw | LEDGE | HORIZONTAL)"
     },
     "Forest_03_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_forest_02.3",
-      "rules": "Forest03Right"
+      "rules": "Forest03Left | Forest03Right"
     },
     "Forest_04_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
@@ -2187,11 +1807,11 @@
     },
     "Forest_04_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_forest_05.4",
-      "rules": "Forest04Left +  (LEDGE | claw | HORIZONTAL + swim)"
+      "rules": "Forest04Right | Forest04Left +  (LEDGE | claw | HORIZONTAL + swim)"
     },
     "Forest_04_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_forest_02.4",
-      "rules": "Forest04Right + (LEDGE | claw)"
+      "rules": "Forest04Left | Forest04Right + (LEDGE | claw)"
     },
     "Forest_05_GAMEPLAY.BP_Interactable_Item_Tip4": {
       "content": "Tip.tip_010",
@@ -2199,15 +1819,15 @@
     },
     "Forest_05_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_forest_07.5",
-      "rules": "DryadLake"
+      "rules": "Forest05Right | DryadLake"
     },
     "Forest_05_GAMEPLAY.BP_WorldTravelVolume6": {
       "content": "Map.map_forest_03.5",
-      "rules": "DryadLake"
+      "rules": "Forest05Left | DryadLake"
     },
     "Forest_05_GAMEPLAY.BP_WorldTravelVolume7": {
       "content": "Map.map_forest_04.6",
-      "rules": "DryadLake + LEDGE"
+      "rules": "Forest05Top | DryadLake + LEDGE"
     },
     "Forest_06_GAMEPLAY.BP_e2122_Fungus": {
       "content": "Spirit.s2122",
@@ -2221,7 +1841,10 @@
       "content": "Generic.i_SpiritCurrencyLv2_S",
       "rules": "Forest06Bottom + (hook | LEDGE + slam | 2LEDGE | LEDGE + HORIZONTAL)"
     },
-    "Forest_06_GAMEPLAY.BP_WorldTravelVolume8": { "content": "Map.map_forest_07.6" },
+    "Forest_06_GAMEPLAY.BP_WorldTravelVolume8": {
+      "content": "Map.map_forest_07.6",
+      "rules": "Forest06Bottom"
+    },
     "Forest_07_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
       "rules": "Forest07Left + (LEDGE | hook | HORIZONTAL)"
@@ -2236,19 +1859,19 @@
     },
     "Forest_07_GAMEPLAY.BP_WorldTravelVolume10_2": {
       "content": "Map.map_oubliette_01.F7",
-      "rules": "Forest07Left + (dodge + (LEDGE | dash) | 2LEDGE | hook | sinner | djump + dash)"
+      "rules": "Forest07Right | Forest07Left + (dodge + (LEDGE | dash) | 2LEDGE | hook | sinner | djump + dash)"
     },
     "Forest_07_GAMEPLAY.BP_WorldTravelVolume12": {
       "content": "Map.map_forest_08.7",
-      "rules": "Forest07Left"
+      "rules": "Forest07Bottom | Forest07Left"
     },
     "Forest_07_GAMEPLAY.BP_WorldTravelVolume9_1": {
       "content": "Map.map_forest_05.7",
-      "rules": "Forest07Bottom + LEDGE | Forest07Right + (LEDGE | hook | HORIZONTAL | dash)"
+      "rules": "Forest07Left | Forest07Bottom + LEDGE | Forest07Right + (LEDGE | hook | HORIZONTAL | dash)"
     },
     "Forest_07_GEO.BP_WorldTravelVolume11": {
       "content": "Map.map_forest_06.7",
-      "rules": "Forest07Left + LEDGE"
+      "rules": "Forest07Top | Forest07Left + LEDGE"
     },
     "Forest_08_GAMEPLAY.BP_Interactable_Passive_Treasure_2": {
       "content": "Passive.i_passive_spirit_maxcast_count_up_LV1",
@@ -2264,11 +1887,11 @@
     },
     "Forest_08_GAMEPLAY.BP_WorldTravelVolume12": {
       "content": "Map.map_forest_07.8",
-      "rules": "Forest08Right + (LEDGE | claw)"
+      "rules": "Forest08Top | Forest08Right + (LEDGE | claw)"
     },
     "Forest_08_GAMEPLAY.BP_WorldTravelVolume13": {
       "content": "Map.map_forest_10.8",
-      "rules": "Forest08Top + (LEDGE | hook | claw)"
+      "rules": "Forest08Right | Forest08Top + (LEDGE | hook | claw)"
     },
     "Forest_09_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2": {
       "content": "Generic.i_HealPower_Up",
@@ -2280,7 +1903,7 @@
     },
     "Forest_09_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_forest_10.9",
-      "rules": "Forest09Left + swim"
+      "rules": "Forest09Top | Forest09Left + swim"
     },
     "Forest_09_GAMEPLAY.BP_SCR_LV2S_2130_2": {
       "content": "Generic.i_SpiritCurrencyLv2_S",
@@ -2288,15 +1911,15 @@
     },
     "Forest_09_GAMEPLAY.BP_WorldTravelVolume13": {
       "content": "Map.map_swamp_02.F9",
-      "rules": "Forest09Top + swim + (LEDGE | claw)"
+      "rules": "Forest09Left | Forest09Top + swim + (LEDGE | claw)"
     },
     "Forest_10_DESIGN.BP_Interactable_WorldTravel10": {
       "content": "Map.map_forest_11.10",
-      "rules": "WitchsHermitage"
+      "rules": "Forest10Bottom2 | WitchsHermitage"
     },
     "Forest_10_DESIGN.BP_Interactable_WorldTravel9": {
       "content": "Map.map_forest_09.10",
-      "rules": "WitchsHermitage"
+      "rules": "Forest10Bottom1 | WitchsHermitage"
     },
     "Forest_10_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_013",
@@ -2304,11 +1927,11 @@
     },
     "Forest_10_GAMEPLAY.BP_WorldTravelVolume12": {
       "content": "Map.map_forest_08.10",
-      "rules": "WitchsHermitage"
+      "rules": "Forest10Left | WitchsHermitage"
     },
     "Forest_10_GAMEPLAY.BP_WorldTravelVolume13": {
       "content": "Map.map_forest_12.10",
-      "rules": "WitchsHermitage"
+      "rules": "Forest10Right | WitchsHermitage"
     },
     "Forest_11_GAMEPLAY.BP_e2132_Mandrake": {
       "content": "Spirit.s2132",
@@ -2328,7 +1951,7 @@
     },
     "Forest_11_GAMEPLAY.BP_Interactable_WorldTravel11": {
       "content": "Map.map_forest_10.11",
-      "rules": "Forest11Right"
+      "rules": "Forest11Top | Forest11Right"
     },
     "Forest_11_GAMEPLAY.BP_SCR_LV1M_2120_2": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
@@ -2340,7 +1963,7 @@
     },
     "Forest_11_GAMEPLAY.BP_WorldTravelVolume12": {
       "content": "Map.map_forest_14.11",
-      "rules": "Forest11Top + swim"
+      "rules": "Forest11Right | Forest11Top + swim"
     },
     "Forest_12_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
@@ -2352,28 +1975,31 @@
     },
     "Forest_12_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_forest_10.12",
-      "rules": "Forest12Bottom + (LEDGE | hook)"
+      "rules": "Forest12Left | Forest12Bottom + (LEDGE | hook)"
     },
     "Forest_12_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_forest_13.12",
-      "rules": "Forest12Left + (LEDGE | hook)"
+      "rules": "Forest12Bottom | Forest12Left + (LEDGE | hook)"
     },
     "Forest_12_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_forest_17.12",
-      "rules": "Forest12Left + (claw + (djump | champion) | silva + djump | sinner + (djump | champion) | 2HORIZONTAL + LEDGE | 2LEDGE + HORIZONTAL) | Forest12Bottom + hook"
+      "rules": "Forest12Right | Forest12Left + (claw + (djump | champion) | silva + djump | sinner + LEDGE | 2HORIZONTAL + LEDGE | 2LEDGE + HORIZONTAL) | Forest12Bottom + hook"
     },
     "Forest_13_GAMEPLAY.BP_SCR_LV1S_2130_3": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
       "rules": "Forest13Top"
     },
-    "Forest_13_GAMEPLAY.BP_WorldTravelVolume_2": { "content": "Map.map_forest_12.13" },
+    "Forest_13_GAMEPLAY.BP_WorldTravelVolume_2": {
+      "content": "Map.map_forest_12.13",
+      "rules": "Forest13Top"
+    },
     "Forest_13_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_forest_14.13",
-      "rules": "Forest13Top"
+      "rules": "Forest13Bottom | Forest13Top"
     },
     "Forest_13_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_forest_16.13",
-      "rules": "Forest13Top + claw + unlock + (LEDGE + HORIZONTAL | 2LEDGE)"
+      "rules": "Forest13Right | Forest13Top + claw + unlock + (LEDGE + HORIZONTAL | 2LEDGE)"
     },
     "Forest_14_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_017",
@@ -2381,21 +2007,24 @@
     },
     "Forest_14_GAMEPLAY.BP_WorldTravelVolume10": {
       "content": "Map.map_forest_15.14",
-      "rules": "CovenHalls"
+      "rules": "Forest14Bottom | CovenHalls"
     },
     "Forest_14_GAMEPLAY.BP_WorldTravelVolume11": {
       "content": "Map.map_forest_13.14",
-      "rules": "CovenHalls"
+      "rules": "Forest14Top | CovenHalls"
     },
     "Forest_14_GAMEPLAY.BP_WorldTravelVolume12": {
       "content": "Map.map_forest_11.14",
-      "rules": "CovenHalls + swim"
+      "rules": "Forest14Left | CovenHalls + swim"
     },
     "Forest_15_GAMEPLAY.BP_e5040_Witch": {
       "content": "Spirit.s5040",
       "rules": "Forest_15_GAMEPLAY.BP_WorldTravelVolume_2"
     },
-    "Forest_15_GAMEPLAY.BP_WorldTravelVolume_2": { "content": "Map.map_forest_14.15" },
+    "Forest_15_GAMEPLAY.BP_WorldTravelVolume_2": {
+      "content": "Map.map_forest_14.15",
+      "rules": "Forest15Top"
+    },
     "Forest_16_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_057",
       "rules": "Forest16Left"
@@ -2408,7 +2037,10 @@
       "content": "Generic.i_SpiritCurrencyLv1_LL",
       "rules": "Forest16Left"
     },
-    "Forest_16_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_forest_13.16" },
+    "Forest_16_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_forest_13.16",
+      "rules": "Forest16Left"
+    },
     "Forest_17_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_Treasure_2": {
       "content": "Parameter.i_maxHPUp_02",
       "rules": "Forest17Left + (claw | LEDGE)"
@@ -2421,14 +2053,17 @@
       "content": "Passive.i_passive_move_speed_up",
       "rules": "Forest17Left + (claw | LEDGE)"
     },
-    "Forest_17_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_forest_12.17" },
+    "Forest_17_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_forest_12.17",
+      "rules": "Forest17Left"
+    },
     "Forest_17_Map.BP_Interactable_Item_Tip5": {
       "content": "Tip.tip_055",
       "rules": "Forest17Left"
     },
     "Fort_01_GAMEPLAY.BP_e2192_Gargoyle": {
       "content": "Spirit.s2192",
-      "rules": "Fort01Right + (LEDGE | hook)"
+      "rules": "Fort01Left1 | Fort01Right + (LEDGE | hook)"
     },
     "Fort_01_GAMEPLAY.BP_SCR_LV1M_2190_2": {
       "content": "Generic.i_SpiritCurrencyLv2_M",
@@ -2436,15 +2071,15 @@
     },
     "Fort_01_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_03.1",
-      "rules": "Fort01Left1 | Fort01Right"
+      "rules": "Fort01Right | Fort01Left1 | Fort01Left2"
     },
     "Fort_01_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_village_15.F1",
-      "rules": "Fort01Right + swim"
+      "rules": "Fort01Left2 | Fort01Right + swim"
     },
     "Fort_01_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_castle_07.F1",
-      "rules": "Sentinel + hook"
+      "rules": "Fort01Left1 | Sentinel + hook"
     },
     "Fort_02_GAMEPLAY.BP_SCR_LV1S_2021_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -2456,11 +2091,11 @@
     },
     "Fort_02_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_03.2",
-      "rules": "Fort02Left + (LEDGE + HORIZONTAL | 2HORIZONTAL | djump + (silva | champion))"
+      "rules": "Fort02Right | Fort02Left + (LEDGE + HORIZONTAL | 2HORIZONTAL | djump + (silva | champion))"
     },
     "Fort_02_GAMEPLAY.BP_WorldTravelVolume3_8": {
       "content": "Map.map_cave_22.F2",
-      "rules": "Fort02Right + (LEDGE + HORIZONTAL | 2HORIZONTAL | djump + (silva | champion))"
+      "rules": "Fort02Left | Fort02Right + (LEDGE + HORIZONTAL | 2HORIZONTAL | 2LEDGE | sinner | dash + LEDGE | dash + dodge)"
     },
     "Fort_03_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_037",
@@ -2488,11 +2123,11 @@
     },
     "Fort_04_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_05.4",
-      "rules": "Fort04Left + LEDGE"
+      "rules": "Fort04Top | Fort04Left + LEDGE"
     },
     "Fort_04_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_03.4",
-      "rules": "Fort04Top"
+      "rules": "Fort04Left | Fort04Top"
     },
     "Fort_05_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
@@ -2504,19 +2139,19 @@
     },
     "Fort_05_GAMEPLAY.BP_SCR_LV1S_2020_6": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
-      "rules": "Fort05Bottom2 + LEDGE + slam | Fort05Bottom1 + claw + LEDGE"
+      "rules": "Fort05Bottom2 + LEDGE + slam  | Fort05Bottom1"
     },
     "Fort_05_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_04.5",
-      "rules": "Fort05Right"
+      "rules": "Fort05Bottom2 | Fort05Right"
     },
     "Fort_05_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_06.5",
-      "rules": "Fort05Bottom2 + LEDGE"
+      "rules": "Fort05Right | Fort05Bottom2 + LEDGE"
     },
     "Fort_05_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_03.5",
-      "rules": "Fort05Bottom2 + LEDGE"
+      "rules": "Fort05Bottom1 | Fort05Bottom2 + LEDGE"
     },
     "Fort_05_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_fort_15.5",
@@ -2528,15 +2163,15 @@
     },
     "Fort_06_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_05.6",
-      "rules": "Fort06Bottom"
+      "rules": "Fort06Left | Fort06Bottom | Fort06Right + (LEDGE | HORIZONTAL | dash)"
     },
     "Fort_06_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_07.6",
-      "rules": "Fort06Left + (LEDGE | HORIZONTAL | dash)"
+      "rules": "Fort06Right | Fort06Left + (LEDGE | HORIZONTAL | dash)"
     },
     "Fort_06_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_10.6",
-      "rules": "Fort06Left | Fort06Right"
+      "rules": "Fort06Bottom | Fort06Left | Fort06Right"
     },
     "Fort_07_GAMEPLAY.BP_SCR_LV1S_2021_1": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -2544,23 +2179,23 @@
     },
     "Fort_07_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_09.7",
-      "rules": "Fort07Top | Fort07Bottom2  + claw"
+      "rules": "Fort07Right | Fort07Bottom1 | Fort07Top | Fort07Bottom2  + claw"
     },
     "Fort_07_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_08.7",
-      "rules": "Fort07Top"
+      "rules": "Fort07Right | Fort07Top"
     },
     "Fort_07_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_06.7",
-      "rules": "Fort07Top + LEDGE"
+      "rules": "Fort07Left | Fort07Top + LEDGE"
     },
     "Fort_07_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_fort_11.7",
-      "rules": "Fort07Bottom1 | Fort07Left + (LEDGE | claw) | Fort07Right"
+      "rules": "Fort07Top | Fort07Bottom1 | Fort07Left + (LEDGE | claw) | Fort07Right"
     },
     "Fort_07_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_fort_09.7B",
-      "rules": "Fort07Bottom1 + claw"
+      "rules": "Fort07Bottom2 | Fort07Bottom1 + claw"
     },
     "Fort_08_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_060",
@@ -2568,7 +2203,7 @@
     },
     "Fort_08_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_07.8",
-      "rules": "SecondSpireChamber"
+      "rules": "Fort08Left | SecondSpireChamber"
     },
     "Fort_09_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_041",
@@ -2588,19 +2223,19 @@
     },
     "Fort_09_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_outside_03.F9",
-      "rules": "Fort09Top1 + claw"
+      "rules": "Fort09Right | Fort09Top1 + claw"
     },
     "Fort_09_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_10.9",
-      "rules": "Fort09Right | Fort09Top1 | Fort09Top2"
+      "rules": "Fort09Left | Fort09Right | Fort09Top1 | Fort09Top2"
     },
     "Fort_09_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_fort_07.9",
-      "rules": "Fort09Left + (LEDGE | hook)"
+      "rules": "Fort09Top1 | Fort09Left + (LEDGE | hook)"
     },
     "Fort_09_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_fort_07.9B",
-      "rules": "Fort09Right + LEDGE + claw"
+      "rules": "Fort09Top2 | Fort09Right + LEDGE + claw"
     },
     "Fort_10_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -2628,19 +2263,19 @@
     },
     "Fort_11_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_07.11",
-      "rules": "Fort11Left | Fort11Top1 | Fort11Top2 | Fort11Stagnant"
+      "rules": "Fort11Bottom | Fort11Left | Fort11Top1 | Fort11Top2 | Fort11Top2"
     },
     "Fort_11_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_12.11",
-      "rules": "Fort11Bottom + LEDGE | Fort11Top1 + (HORIZONTAL | LEDGE | dash)"
+      "rules": "Fort11Left | Fort11Bottom + LEDGE | Fort11Top1 + (HORIZONTAL | LEDGE | dash)"
     },
     "Fort_11_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_fort_13.11",
-      "rules": "Fort11Left + (claw | LEDGE | HORIZONTAL | dash)"
+      "rules": "Fort11Top1 | Fort11Left + (claw | LEDGE | HORIZONTAL | dash)"
     },
     "Fort_11_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_fort_13.11B",
-      "rules": "Fort11Stagnant + claw"
+      "rules": "Fort11Top2 + claw | Fort11Stagnant + claw"
     },
     "Fort_12_GAMEPLAY.BP_e2232_Dragon": {
       "content": "Spirit.s2232",
@@ -2652,15 +2287,15 @@
     },
     "Fort_12_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_11.12",
-      "rules": "Fort12Left"
+      "rules": "Fort12Right | Fort12Left"
     },
     "Fort_12_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_14.12",
-      "rules": "Fort12HP + LEDGE + claw"
+      "rules": "Fort12Top | Fort12HP + LEDGE + claw"
     },
     "Fort_12_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_fort_16.12",
-      "rules": "Fort12Right | Fort12HP"
+      "rules": "Fort12Left | Fort12Right | Fort12HP"
     },
     "Fort_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -2672,19 +2307,19 @@
     },
     "Fort_13_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_11.13",
-      "rules": "Fort13Bottom2 | Fort13Left | Fort13Top"
+      "rules": "Fort13Bottom1 | Fort13Bottom2 | Fort13Left | Fort13Top"
     },
     "Fort_13_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_fort_11.53",
-      "rules": "Fort13Top | Fort13Bottom1"
+      "rules": "Fort13Bottom2 | Fort13Top | Fort13Bottom1"
     },
     "Fort_13_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_14.13",
-      "rules": "Fort13Bottom1 + (LEDGE | claw)"
+      "rules": "Fort13Left | Fort13Bottom1 + (LEDGE | claw)"
     },
     "Fort_13_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_fort_19.13",
-      "rules": "Fort13Bottom1 + claw + LEDGE"
+      "rules": "Fort13Top + claw + LEDGE | Fort13Bottom1 + claw + LEDGE"
     },
     "Fort_14_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_061",
@@ -2708,15 +2343,15 @@
     },
     "Fort_14_GAMEPLAY.BP_WorldTravelVolume_0": {
       "content": "Map.map_fort_15.14",
-      "rules": "Fort14Right + (dash | HORIZONTAL | LEDGE)"
+      "rules": "Fort14Left | Fort14Right + (dash | HORIZONTAL | LEDGE)"
     },
     "Fort_14_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_fort_13.14",
-      "rules": "Fort14Left | Fort14Bottom"
+      "rules": "Fort14Right | Fort14Left | Fort14Bottom"
     },
     "Fort_14_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_12.14",
-      "rules": "Fort14Right | Fort14Left"
+      "rules": "Fort14Bottom | Fort14Right | Fort14Left"
     },
     "Fort_15_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_039",
@@ -2728,7 +2363,7 @@
     },
     "Fort_15_GAMEPLAY.BP_SCR_LV1M_2190_2": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
-      "rules": "Fort15Right2 + claw | Fort15Top"
+      "rules": "Fort15Right2 + claw | Fort15Top | Fort15Bottom"
     },
     "Fort_15_GAMEPLAY.BP_SCR_LV1S_2021_1": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -2736,40 +2371,55 @@
     },
     "Fort_15_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_16.15",
-      "rules": "Fort15Right1 | Fort15Top"
+      "rules": "Fort15Right2 | Fort15Right1 | Fort15Top | Fort15Bottom + LEDGE"
     },
     "Fort_15_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_14.15",
-      "rules": "Fort15Right2 + LEDGE"
+      "rules": "Fort15Right1 | Fort15Right2 + LEDGE"
     },
     "Fort_15_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_05.15",
-      "rules": "LeftEntrance | Fort15Top"
+      "rules": "Fort15Bottom | Fort15Top"
     },
     "Fort_15_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_fort_17.15",
-      "rules": "Fort15Right3 + LEDGE"
+      "rules": "Fort15Top | Fort15Right3 + LEDGE"
     },
     "Fort_15_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_fort_16.15B",
-      "rules": "LeftEntrance + LEDGE | Fort15Right2"
+      "rules": "Fort15Right3 | Fort15Bottom + LEDGE | Fort15Right2"
     },
     "Fort_16_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_040",
       "rules": "Fort16Left1 | Fort16Top | Fort16Left2 | Fort16Right"
     },
-    "Fort_16_GAMEPLAY.BP_WorldTravelVolume4": { "content": "Map.map_fort_15.16" },
-    "Fort_16_GAMEPLAY.BP_WorldTravelVolume5": { "content": "Map.map_fort_18.16" },
-    "Fort_16_GAMEPLAY.BP_WorldTravelVolume6": { "content": "Map.map_fort_15.16B" },
-    "Fort_16_GAMEPLAY.BP_WorldTravelVolume7": { "content": "Map.map_fort_12.16" },
+    "Fort_16_GAMEPLAY.BP_WorldTravelVolume4": {
+      "content": "Map.map_fort_15.16",
+      "rules": "Fort16Left1"
+    },
+    "Fort_16_GAMEPLAY.BP_WorldTravelVolume5": {
+      "content": "Map.map_fort_18.16",
+      "rules": "Fort16Top"
+    },
+    "Fort_16_GAMEPLAY.BP_WorldTravelVolume6": {
+      "content": "Map.map_fort_15.16B",
+      "rules": "Fort16Left2"
+    },
+    "Fort_16_GAMEPLAY.BP_WorldTravelVolume7": {
+      "content": "Map.map_fort_12.16",
+      "rules": "Fort16Right"
+    },
     "Fort_17_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
       "rules": "Fort17Bottom"
     },
-    "Fort_17_GAMEPLAY.BP_WorldTravelVolume_2": { "content": "Map.map_fort_15.17" },
+    "Fort_17_GAMEPLAY.BP_WorldTravelVolume_2": {
+      "content": "Map.map_fort_15.17",
+      "rules": "Fort17Bottom"
+    },
     "Fort_17_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_18.17",
-      "rules": "Fort17Bottom"
+      "rules": "Fort17Right | Fort17Bottom"
     },
     "Fort_18_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_Treasure_2": {
       "content": "Parameter.i_maxHPUp_02",
@@ -2781,15 +2431,15 @@
     },
     "Fort_18_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_17.18",
-      "rules": "Fort18Right"
+      "rules": "Fort18Left | Fort18Right"
     },
     "Fort_18_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_19.18",
-      "rules": "Fort18Left | Fort18Bottom"
+      "rules": "Fort18Right | Fort18Left | Fort18Bottom"
     },
     "Fort_18_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_16.18",
-      "rules": "Fort18Right"
+      "rules": "Fort18Bottom | Fort18Right"
     },
     "Fort_19_GAMEPLAY.BP_Interactable_Passives_Treasure_2": {
       "content": "Passive.i_passive_dmgup_airborne",
@@ -2805,24 +2455,24 @@
     },
     "Fort_19_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_18.19",
-      "rules": "Fort19Top + LEDGE"
+      "rules": "Fort19Left | Fort19Top + LEDGE"
     },
     "Fort_19_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_fort_20.19",
-      "rules": "Fort19Left + LEDGE"
+      "rules": "Fort19Top | Fort19Left + LEDGE"
     },
     "Fort_19_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_fort_13.19",
-      "rules": "Fort19Top + claw"
+      "rules": "Fort19Bottom | Fort19Top + claw"
     },
     "Fort_20_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_19.20",
-      "rules": "MourningHall"
+      "rules": "Fort20Bottom | MourningHall"
     },
     "MourningHall": { "rules": "Fort20Bottom | Fort20Top" },
     "Fort_20_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_21.20",
-      "rules": "MourningHall"
+      "rules": "Fort20Top | MourningHall"
     },
     "Fort_21_GAMEPLAY.BP_e5070_Killer": {
       "content": "Spirit.s5070",
@@ -2836,7 +2486,10 @@
       "content": "Tip.tip_036",
       "rules": "Ulv + (claw | (silva + djump + (champion | dodge)))"
     },
-    "Fort_21_GAMEPLAY.BP_WorldTravelVolume2_5": { "content": "Map.map_fort_20.21" },
+    "Fort_21_GAMEPLAY.BP_WorldTravelVolume2_5": {
+      "content": "Map.map_fort_20.21",
+      "rules": "Fort21Bottom"
+    },
     "Oubliette_01_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_5": {
       "content": "Parameter.i_maxHPUp_01",
       "rules": "Oubliette01Left + swim"
@@ -2847,11 +2500,11 @@
     },
     "Oubliette_01_GAMEPLAY.BP_WorldTravelVolume11": {
       "content": "Map.map_forest_07.O1",
-      "rules": "Oubliette01Right + swim"
+      "rules": "Oubliette01Left | Oubliette01Right + swim"
     },
     "Oubliette_01_GAMEPLAY.BP_WorldTravelVolume12": {
       "content": "Map.map_oubliette_02.1",
-      "rules": "Oubliette01Left + swim"
+      "rules": "Oubliette01Right | Oubliette01Left + swim"
     },
     "Oubliette_02_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_032",
@@ -2859,15 +2512,15 @@
     },
     "Oubliette_02_GAMEPLAY.BP_WorldTravelVolume11": {
       "content": "Map.map_oubliette_01.2",
-      "rules": "Aqueduct + (LEDGE | claw)"
+      "rules": "Oubliette02Left | Aqueduct + (LEDGE | claw)"
     },
     "Oubliette_02_GAMEPLAY.BP_WorldTravelVolume12": {
       "content": "Map.map_oubliette_05.2",
-      "rules": "Aqueduct"
+      "rules": "Oubliette02Right1 | Aqueduct"
     },
     "Oubliette_02_GAMEPLAY.BP_WorldTravelVolume13": {
       "content": "Map.map_oubliette_04.2",
-      "rules": "Aqueduct"
+      "rules": "Oubliette02Right2 | Aqueduct"
     },
     "Oubliette_03_GAMEPLAY.BP_SCR_LV1M_2050_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -2879,15 +2532,15 @@
     },
     "Oubliette_03_GAMEPLAY.BP_WorldTravelVolume13": {
       "content": "Map.map_oubliette_04.3",
-      "rules": "Oubliette03Right + swim"
+      "rules": "Oubliette03Left | Oubliette03Right + swim"
     },
     "Oubliette_03_GAMEPLAY.BP_WorldTravelVolume14": {
       "content": "Map.map_oubliette_10.3",
-      "rules": "Oubliette03Left + swim | Oubliette03Top + (LEDGE | claw | swim)"
+      "rules": "Oubliette03Right | Oubliette03Left + swim | Oubliette03Top + (LEDGE | claw | swim)"
     },
     "Oubliette_03_GAMEPLAY.BP_WorldTravelVolume15": {
       "content": "Map.map_oubliette_05.3",
-      "rules": "Oubliette03Right + hook"
+      "rules": "Oubliette03Top | Oubliette03Right + hook"
     },
     "Oubliette_03_GEO.BP_SCR_LV1LL_0000_2": {
       "content": "Generic.i_SpiritCurrencyLv1_LL",
@@ -2903,20 +2556,23 @@
     },
     "Oubliette_04_GAMEPLAY.BP_WorldTravelVolume14": {
       "content": "Map.map_oubliette_03.4",
-      "rules": "Oubliette04Left"
+      "rules": "Oubliette04Right | Oubliette04Left"
     },
     "Oubliette_04_GAMEPLAY.BP_WorldTravelVolume16": {
       "content": "Map.map_oubliette_02.4",
-      "rules": "Oubliette04Right"
+      "rules": "Oubliette04Left | Oubliette04Right"
     },
-    "Oubliette_05_1_GAMEPLAY.BP_Interactable_WorldTravel13": { "content": "Map.map_oubliette_05.5_1" },
+    "Oubliette_05_1_GAMEPLAY.BP_Interactable_WorldTravel13": {
+      "content": "Map.map_oubliette_05.5_1",
+      "rules": "Oubliette051Bottom"
+    },
     "Oubliette_05_1_GAMEPLAY.BP_SCR_LV2S_2021_2": {
       "content": "Generic.i_SpiritCurrencyLv2_S",
       "rules": "Oubliette051Bottom"
     },
     "Oubliette_05_2_GAMEPLAY.BP_Interactable_WorldTravel12": {
       "content": "Map.map_oubliette_05.5_2",
-      "rules": "Oubliette052Bottom2"
+      "rules": "Oubliette052Bottom1 | Oubliette052Bottom2"
     },
     "Oubliette_05_2_GAMEPLAY.BP_SCR_LV1S_2010_3": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -2924,36 +2580,39 @@
     },
     "Oubliette_05_2_GAMEPLAY.BP_WorldTravelVolume18": {
       "content": "Map.map_oubliette_05.5_2B",
-      "rules": "Oubliette052Bottom1 + (LEDGE + claw + hook)"
+      "rules": "Oubliette052Bottom2 | Oubliette052Bottom1 + (LEDGE + claw + hook)"
     },
     "Oubliette_05_3_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop": {
       "content": "Generic.i_PassiveSlot_Up",
       "rules": "Oubliette053Top"
     },
-    "Oubliette_05_3_GAMEPLAY.BP_Interactable_WorldTravel16": { "content": "Map.map_oubliette_05.5_3" },
+    "Oubliette_05_3_GAMEPLAY.BP_Interactable_WorldTravel16": {
+      "content": "Map.map_oubliette_05.5_3",
+      "rules": "Oubliette053Top"
+    },
     "Oubliette_05_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_2": {
       "content": "Parameter.i_maxHPUp_02",
       "rules": "Oubliette05Top4"
     },
     "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel10": {
       "content": "Map.map_oubliette_05_2.5",
-      "rules": "Oubliette05Top1"
+      "rules": "Oubliette05Top2 | Oubliette05Top1"
     },
     "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel11": {
       "content": "Map.map_oubliette_05_3.5",
-      "rules": "Oubliette05Left"
+      "rules": "Oubliette05Bottom2 | Oubliette05Left"
     },
     "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel12": {
       "content": "Map.map_oubliette_07_2.5",
-      "rules": "Oubliette05Top1"
+      "rules": "Oubliette05Top3 | Oubliette05Top1"
     },
     "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel13": {
       "content": "Map.map_oubliette_05_1.5",
-      "rules": "Oubliette05Left + LEDGE"
+      "rules": "Oubliette05Top1 | Oubliette05Left + LEDGE"
     },
     "Oubliette_05_GAMEPLAY.BP_Interactable_WorldTravel14": {
       "content": "Map.map_oubliette_07_1.5",
-      "rules": "Oubliette05Left"
+      "rules": "Oubliette05Bottom1 | Oubliette05Left"
     },
     "Oubliette_05_GAMEPLAY.BP_SCR_LV1L_2220_3": {
       "content": "Generic.i_SpiritCurrencyLv1_L",
@@ -2965,37 +2624,52 @@
     },
     "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume15": {
       "content": "Map.map_oubliette_02.5",
-      "rules": "Oubliette05Right | Oubliette05Top1"
+      "rules": "Oubliette05Left | Oubliette05Right | Oubliette05Top1"
     },
-    "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume16": { "content": "Map.map_oubliette_06.5" },
+    "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume16": {
+      "content": "Map.map_oubliette_06.5",
+      "rules": "Oubliette05Right"
+    },
     "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume17": {
       "content": "Map.map_oubliette_03.5",
-      "rules": "Oubliette05Left"
+      "rules": "Oubliette05Bottom3 | Oubliette05Left"
     },
-    "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume18": { "content": "Map.map_oubliette_05_2.5B" },
+    "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume18": {
+      "content": "Map.map_oubliette_05_2.5B",
+      "rules": "Oubliette05Top4"
+    },
     "Oubliette_06_1_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_058",
       "rules": "Oubliette061Left"
     },
     "Oubliette_06_1_GAMEPLAY.BP_Interactable_WorldTravel14": {
       "content": "Map.map_oubliette_07.6_1",
-      "rules": "Cells"
+      "rules": "Oubliette061Left | Cells"
     },
     "Oubliette_06_2_GAMEPLAY.BP_Interactable_Passive_dmgup_maxHP_2": {
       "content": "Passive.i_passive_dmgup_maxhp",
       "rules": "Oubliette062Bottom2 + swim"
     },
-    "Oubliette_06_2_GAMEPLAY.BP_Interactable_WorldTravel13": { "content": "Map.map_oubliette_07.6_2" },
+    "Oubliette_06_2_GAMEPLAY.BP_Interactable_WorldTravel13": {
+      "content": "Map.map_oubliette_07.6_2",
+      "rules": "Oubliette062Bottom2"
+    },
     "Oubliette_06_3_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2": {
       "content": "Generic.i_PassiveSlot_Up",
       "rules": "Oubliette063Left1"
     },
-    "Oubliette_06_3_GAMEPLAY.BP_WorldTravelVolume16": { "content": "Map.map_oubliette_07.6_3" },
+    "Oubliette_06_3_GAMEPLAY.BP_WorldTravelVolume16": {
+      "content": "Map.map_oubliette_07.6_3",
+      "rules": "Oubliette063Left1"
+    },
     "Oubliette_06_4_GAMEPLAY.BP_Interactable_Item_FinalPassivePart_2": {
       "content": "Generic.i_FinalPassivePart_Up",
       "rules": "Oubliette064Top"
     },
-    "Oubliette_06_4_GAMEPLAY.BP_Interactable_WorldTravel16": { "content": "Map.map_oubliette_07.6_4" },
+    "Oubliette_06_4_GAMEPLAY.BP_Interactable_WorldTravel16": {
+      "content": "Map.map_oubliette_07.6_4",
+      "rules": "Oubliette064Top"
+    },
     "Oubliette_06_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
       "rules": "Oubliette06Bottom"
@@ -3010,50 +2684,59 @@
     },
     "Oubliette_06_GAMEPLAY.BP_WorldTravelVolume20": {
       "content": "Map.map_oubliette_05.6",
-      "rules": "Oubliette06Bottom + hook"
+      "rules": "Oubliette06Left | Oubliette06Bottom + hook"
     },
     "Oubliette_06_GAMEPLAY.BP_WorldTravelVolume21": {
       "content": "Map.map_oubliette_07.6",
-      "rules": "Oubliette06Bottom + hook"
+      "rules": "Oubliette06Right | Oubliette06Bottom + hook"
     },
     "Oubliette_06_GAMEPLAY.BP_WorldTravelVolume22": {
       "content": "Map.map_oubliette_10.6",
-      "rules": "Oubliette06Right | Oubliette06Left"
+      "rules": "Oubliette06Bottom | Oubliette06Right | Oubliette06Left"
     },
     "Oubliette_07_1_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_014",
       "rules": "Oubliette071Top"
     },
-    "Oubliette_07_1_GAMEPLAY.BP_Interactable_WorldTravel14": { "content": "Map.map_oubliette_05.7_1" },
+    "Oubliette_07_1_GAMEPLAY.BP_Interactable_WorldTravel14": {
+      "content": "Map.map_oubliette_05.7_1",
+      "rules": "Oubliette071Top"
+    },
     "Oubliette_07_2_GAMEPLAY.BP_e2072_Mimic": {
       "content": "Spirit.s2072",
       "rules": "Oubliette072Bottom"
     },
-    "Oubliette_07_2_GAMEPLAY.BP_Interactable_WorldTravel14": { "content": "Map.map_oubliette_05.7_2" },
+    "Oubliette_07_2_GAMEPLAY.BP_Interactable_WorldTravel14": {
+      "content": "Map.map_oubliette_05.7_2",
+      "rules": "Oubliette072Bottom"
+    },
     "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel17": {
       "content": "Map.map_oubliette_06_1.7",
-      "rules": "Oubliette07Bottom1 + (hook | LEDGE)"
+      "rules": "Oubliette07Right1 | Oubliette07Bottom1 + (hook | LEDGE)"
     },
     "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel18": {
       "content": "Map.map_oubliette_06_3.7",
-      "rules": "Oubliette07Bottom1 + (hook + (LEDGE | HORIZONTAL) | FULLSILVA | 3LEDGE)"
+      "rules": "Oubliette07Left1 | Oubliette07Bottom1 + (hook + (LEDGE | HORIZONTAL) | silva + djump)"
     },
     "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel19": {
       "content": "Map.map_oubliette_06_2.7",
-      "rules": "Oubliette07Bottom1"
+      "rules": "Oubliette07Bottom2 | Oubliette07Bottom1"
     },
     "Oubliette_07_GAMEPLAY.BP_Interactable_WorldTravel20": {
       "content": "Map.map_oubliette_06_4.7",
-      "rules": "Oubliette07Left1 + unlock + hook"
+      "rules": "Oubliette07Top | Oubliette07Left1 + unlock + (hook | claw + (3LEDGE | FULLSILVA))"
     },
-    "Oubliette_07_GAMEPLAY.BP_WorldTravelVolume19": { "content": "Map.map_oubliette_06.7" },
+    "Oubliette_07_GAMEPLAY.BP_WorldTravelVolume19": {
+      "content": "Map.map_oubliette_06.7",
+      "rules": "Oubliette07Left2"
+    },
     "Oubliette_07_GAMEPLAY.BP_WorldTravelVolume20": {
       "content": "Map.map_oubliette_13.7",
-      "rules": "Oubliette07Bottom1"
+      "rules": "Oubliette07Right2 | Oubliette07Bottom1"
     },
     "Oubliette_07_GAMEPLAY.BP_WorldTravelVolume21": {
       "content": "Map.map_oubliette_09.7",
-      "rules": "Oubliette07Left1 | Oubliette07Left2 | Oubliette07Bottom2 | Oubliette07Right1 | Oubliette07Right2"
+      "rules": "Oubliette07Bottom1 | Oubliette07Left1 | Oubliette07Left2 | Oubliette07Bottom2 | Oubliette07Right1 | Oubliette07Right2"
     },
     "Oubliette_08_GAMEPLAY.BP_SCR_LV2M_2050_3": {
       "content": "Generic.i_SpiritCurrencyLv2_M",
@@ -3065,15 +2748,15 @@
     },
     "Oubliette_08_GAMEPLAY.BP_WorldTravelVolume15": {
       "content": "Map.map_oubliette_11.8",
-      "rules": "Oubliette08Left + LEDGE"
+      "rules": "Oubliette08Right | Oubliette08Left + LEDGE"
     },
     "Oubliette_08_GAMEPLAY.BP_WorldTravelVolume16": {
       "content": "Map.map_oubliette_09.8",
-      "rules": "Oubliette08Right | Oubliette08Top"
+      "rules": "Oubliette08Left | Oubliette08Right | Oubliette08Top"
     },
     "Oubliette_08_GAMEPLAY.BP_WorldTravelVolume17": {
       "content": "Map.map_oubliette_13.8",
-      "rules": "Oubliette08Right + hook"
+      "rules": "Oubliette08Top | Oubliette08Right + hook"
     },
     "Oubliette_09_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -3089,15 +2772,15 @@
     },
     "Oubliette_09_GAMEPLAY.BP_WorldTravelVolume17": {
       "content": "Map.map_oubliette_08.9",
-      "rules": "Oubliette09Top + swim + HORIZONTAL"
+      "rules": "Oubliette09Right | Oubliette09Top + swim + HORIZONTAL"
     },
     "Oubliette_09_GAMEPLAY.BP_WorldTravelVolume18": {
       "content": "Map.map_oubliette_10.9",
-      "rules": "Oubliette09Top + swim"
+      "rules": "Oubliette09Left | Oubliette09Top + swim"
     },
     "Oubliette_09_GAMEPLAY.BP_WorldTravelVolume19": {
       "content": "Map.map_oubliette_07.9",
-      "rules": "Oubliette09Left"
+      "rules": "Oubliette09Top | Oubliette09Left"
     },
     "Oubliette_10_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_034",
@@ -3105,19 +2788,19 @@
     },
     "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume17": {
       "content": "Map.map_oubliette_09.10",
-      "rules": "DarkChamber"
+      "rules": "Oubliette10Right | DarkChamber"
     },
     "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume18": {
       "content": "Map.map_oubliette_03.10",
-      "rules": "DarkChamber"
+      "rules": "Oubliette10Left1 | DarkChamber"
     },
     "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume19": {
       "content": "Map.map_oubliette_17.10",
-      "rules": "DarkChamber + CHARGE"
+      "rules": "Oubliette10Left2 | DarkChamber + CHARGE"
     },
     "Oubliette_10_GAMEPLAY.BP_WorldTravelVolume20": {
       "content": "Map.map_oubliette_06.10",
-      "rules": "DarkChamber"
+      "rules": "Oubliette10Top | DarkChamber"
     },
     "Oubliette_11_GAMEPLAY.BP_SCR_LV2S_2020_2": {
       "content": "Generic.i_SpiritCurrencyLv2_S",
@@ -3125,27 +2808,27 @@
     },
     "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume19": {
       "content": "Map.map_oubliette_12.11",
-      "rules": "Oubliette11Left1 | Oubliette11Top"
+      "rules": "Oubliette11Right1 | Oubliette11Left1 | Oubliette11Top"
     },
     "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume20": {
       "content": "Map.map_oubliette_08.11",
-      "rules": "Oubliette11Left1 | Oubliette11Right1 | Oubliette11Top | Oubliette11Right2"
+      "rules": "Oubliette11Left2 | Oubliette11Left1 | Oubliette11Right1 | Oubliette11Top | Oubliette11Right2"
     },
     "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume21": {
       "content": "Map.map_oubliette_14.11",
-      "rules": "Oubliette11Left2"
+      "rules": "Oubliette11Right2 | Oubliette11Left2"
     },
     "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume22": {
       "content": "Map.map_oubliette_13.11",
-      "rules": "Oubliette11Left2 + hook | Oubliette11Right2 + (HORIZONTAL | LEDGE)"
+      "rules": "Oubliette11Left1 | Oubliette11Left2 + hook | Oubliette11Right2 + (HORIZONTAL | LEDGE)"
     },
     "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume23": {
       "content": "Map.map_oubliette_13_2.11",
-      "rules": "Oubliette11Left1 + slam"
+      "rules": "Oubliette11Bottom | Oubliette11Left1 + slam"
     },
     "Oubliette_11_GAMEPLAY.BP_WorldTravelVolume24": {
       "content": "Map.map_oubliette_13_1.11",
-      "rules": "Oubliette11Left1 + claw + (FULLSILVA | (hook + (HORIZONTAL | LEDGE)))"
+      "rules": "Oubliette11Top | Oubliette11Left1 + claw + (FULLSILVA | (hook + (HORIZONTAL | LEDGE)))"
     },
     "Oubliette_12_GAMEPLAY.BP_e2182_Shadow": {
       "content": "Spirit.s2182",
@@ -3153,18 +2836,24 @@
     },
     "Oubliette_12_GAMEPLAY.BP_WorldTravelVolume22_0": {
       "content": "Map.map_oubliette_11.12",
-      "rules": "Executioner"
+      "rules": "Oubliette12Left | Executioner"
     },
     "Oubliette_13_1_GAMEPLAY.BP_Interactable_Passives_Treasure_2": {
       "content": "Passive.i_passive_spirit_maxcast_count_up_LV2",
       "rules": "Oubliette131Bottom"
     },
-    "Oubliette_13_1_GAMEPLAY.BP_WorldTravelVolume24": { "content": "Map.map_oubliette_11.13_1" },
+    "Oubliette_13_1_GAMEPLAY.BP_WorldTravelVolume24": {
+      "content": "Map.map_oubliette_11.13_1",
+      "rules": "Oubliette131Bottom"
+    },
     "Oubliette_13_2_GAMEPLAY.BP_SCR_LV3S_5000_1": {
       "content": "Generic.i_SpiritCurrencyLv3_1",
       "rules": "Oubliette132Top"
     },
-    "Oubliette_13_2_GAMEPLAY.BP_WorldTravelVolume23": { "content": "Map.map_oubliette_11.13_2" },
+    "Oubliette_13_2_GAMEPLAY.BP_WorldTravelVolume23": {
+      "content": "Map.map_oubliette_11.13_2",
+      "rules": "Oubliette132Top"
+    },
     "Oubliette_13_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2": {
       "content": "Generic.i_PassiveSlot_Up",
       "rules": "Oubliette13Right + (claw + LEDGE | 2LEDGE | hook)"
@@ -3183,15 +2872,15 @@
     },
     "Oubliette_13_GAMEPLAY.BP_WorldTravelVolume21": {
       "content": "Map.map_oubliette_08.13",
-      "rules": "Oubliette13Right"
+      "rules": "Oubliette13Bottom | Oubliette13Right"
     },
     "Oubliette_13_GAMEPLAY.BP_WorldTravelVolume22": {
       "content": "Map.map_oubliette_11.13",
-      "rules": "Oubliette13Left"
+      "rules": "Oubliette13Right | Oubliette13Left"
     },
     "Oubliette_13_GAMEPLAY.BP_WorldTravelVolume23": {
       "content": "Map.map_oubliette_07.13",
-      "rules": "Oubliette13Right + (hook | LEDGE + claw + HORIZONTAL)"
+      "rules": "Oubliette13Left | Oubliette13Right + (hook | LEDGE + claw + HORIZONTAL)"
     },
     "Oubliette_14_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_059",
@@ -3199,11 +2888,11 @@
     },
     "Oubliette_14_GAMEPLAY.BP_WorldTravelVolume13": {
       "content": "Map.map_oubliette_11.14",
-      "rules": "ExecutionGrounds"
+      "rules": "Oubliette14Left | ExecutionGrounds"
     },
     "Oubliette_14_GAMEPLAY.BP_WorldTravelVolume14": {
       "content": "Map.map_oubliette_15.14",
-      "rules": "ExecutionGrounds"
+      "rules": "Oubliette14Right | ExecutionGrounds"
     },
     "Oubliette_15_GAMEPLAY.BP_e5060_Assassin": {
       "content": "Spirit.s5060",
@@ -3211,11 +2900,11 @@
     },
     "Oubliette_15_GAMEPLAY.BP_WorldTravelVolume15": {
       "content": "Map.map_oubliette_14.15",
-      "rules": "Oubliette15Right"
+      "rules": "Oubliette15Left | Oubliette15Right"
     },
     "Oubliette_15_GAMEPLAY.BP_WorldTravelVolume16": {
       "content": "Map.map_oubliette_16.15",
-      "rules": "Oubliette15Left"
+      "rules": "Oubliette15Right | Oubliette15Left"
     },
     "Oubliette_16_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2": {
       "content": "Generic.i_HealPower_Up",
@@ -3227,30 +2916,39 @@
     },
     "Oubliette_16_GAMEPLAY.BP_WorldTravelVolume17": {
       "content": "Map.map_oubliette_15.16",
-      "rules": "Oubliette16Right"
+      "rules": "Oubliette16Left | Oubliette16Right"
     },
     "Oubliette_16_GAMEPLAY.BP_WorldTravelVolume18": {
       "content": "Map.map_outside_01.O16",
-      "rules": "Oubliette16Left + (hook + ((sinner + LEDGE) | 2HORIZONTAL | silva + (djump | dodge) | djump + (dodge | champion)) | silva + djump + (claw | champion | dodge))"
+      "rules": "Oubliette16Right | Oubliette16Left + (hook + ((sinner + LEDGE) | 2HORIZONTAL | silva + (djump | dodge) | djump + (dodge | champion)) | silva + djump + (claw | champion | dodge))"
     },
-    "Oubliette_17_GAMEPLAY.BP_WorldTravelVolume19": { "content": "Map.map_oubliette_10.17" },
+    "Oubliette_17_GAMEPLAY.BP_WorldTravelVolume19": {
+      "content": "Map.map_oubliette_10.17",
+      "rules": "Oubliette17Right"
+    },
     "Oubliette_17_GAMEPLAY.BP_WorldTravelVolume20": {
       "content": "Map.map_swamp_06.O17",
-      "rules": "Oubliette17Right +  (CHARGE + slam + (dodge + claw | hook))"
+      "rules": "Oubliette17Bottom | Oubliette17Right +  (CHARGE + slam + (dodge + claw | hook))"
     },
     "Outside_01_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_outside_02.1",
-      "rules": "Outside01Left1 | Outside01Left2 | Outside01Right"
+      "rules": "Outside01Right | Outside01Left1 | Outside01Left2"
     },
     "Outside_01_GAMEPLAY.BP_WorldTravelVolume3_8": {
       "content": "Map.map_outside_03.1",
-      "rules": "Outside01Right + claw + silva + djump"
+      "rules": "Outside01Left1 | Outside01Right + claw + silva + djump"
     },
-    "Outside_01_GAMEPLAY.BP_WorldTravelVolume4": { "content": "Map.map_oubliette_16.O1" },
-    "Outside_02_GAMEPLAY.BP_WorldTravelVolume3_8": { "content": "Map.map_outside_01.2" },
+    "Outside_01_GAMEPLAY.BP_WorldTravelVolume4": {
+      "content": "Map.map_oubliette_16.O1",
+      "rules": "Outside01Left2"
+    },
+    "Outside_02_GAMEPLAY.BP_WorldTravelVolume3_8": {
+      "content": "Map.map_outside_01.2",
+      "rules": "Outside02Left"
+    },
     "Outside_03_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_045",
-      "rules": "Outside03Right + (claw + (2LEDGE | LEDGE + HORIZONTAL))"
+      "rules": "Outside03Right + (claw + (2LEDGE | LEDGE + HORIZONTAL | champion))"
     },
     "Outside_03_GAMEPLAY.BP_Interactable_Item_Tip4": {
       "content": "Tip.tip_046",
@@ -3266,9 +2964,12 @@
     },
     "Outside_03_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_outside_01.3",
+      "rules": "Outside03Right | Outside03Top"
+    },
+    "Outside_03_GAMEPLAY.BP_WorldTravelVolume3_8": {
+      "content": "Map.map_fort_09.O3",
       "rules": "Outside03Top"
     },
-    "Outside_03_GAMEPLAY.BP_WorldTravelVolume3_8": { "content": "Map.map_fort_09.O3" },
     "Swamp_04_GAMEPLAY.BP_e2172_Inferior": {
       "content": "Spirit.s2172",
       "rules": "Swamp04Bottom + unlock"
@@ -3279,11 +2980,11 @@
     },
     "Swamp_04_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_05.4",
-      "rules": "Swamp04Left + LEDGE"
+      "rules": "Swamp04Bottom | Swamp04Left + LEDGE"
     },
     "Swamp_04_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_03.4",
-      "rules": "Swamp04Bottom + LEDGE"
+      "rules": "Swamp04Left | Swamp04Bottom + LEDGE"
     },
     "Swamp_05_GAMEPLAY.BP_SCR_LV2M_2171_2": {
       "content": "Generic.i_SpiritCurrencyLv2_L",
@@ -3291,19 +2992,19 @@
     },
     "Swamp_05_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_04.5",
-      "rules": "Swamp05Right + (LEDGE | claw)"
+      "rules": "Swamp05Top | Swamp05Right + (LEDGE | claw)"
     },
     "Swamp_05_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_06.5",
-      "rules": "Swamp05Top | Swamp05Left + (LEDGE | claw)"
+      "rules": "Swamp05Right | Swamp05Top | Swamp05Left + (LEDGE | claw)"
     },
     "Swamp_05_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_07.5",
-      "rules": "Swamp05Left + swim + CHARGE"
+      "rules": "Swamp05Bottom | Swamp05Left + swim + CHARGE"
     },
     "Swamp_05_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_swamp_09.5",
-      "rules": "Swamp05Right"
+      "rules": "Swamp05Left | Swamp05Right"
     },
     "Swamp_05_GEO.BP_SCR_LV1M_2051_2": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
@@ -3323,9 +3024,12 @@
     },
     "Swamp_06_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_05.6",
-      "rules": "Lab2"
+      "rules": "Swamp06Left | Lab2"
     },
-    "Swamp_06_GAMEPLAY.BP_WorldTravelVolume2": { "content": "Map.map_oubliette_17.S6" },
+    "Swamp_06_GAMEPLAY.BP_WorldTravelVolume2": {
+      "content": "Map.map_oubliette_17.S6",
+      "rules": "Swamp06Top"
+    },
     "Swamp_07_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
       "rules": "Swamp07Right + claw"
@@ -3336,11 +3040,20 @@
     },
     "Swamp_07_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_16.7",
-      "rules": "Swamp07Right + Swamp07Left + Swamp07Top"
+      "rules": "Swamp07Bottom | Swamp07Right + Swamp07Left + Swamp07Top"
     },
-    "Swamp_07_GAMEPLAY.BP_WorldTravelVolume2": { "content": "Map.map_swamp_05.7" },
-    "Swamp_07_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_swamp_08.7" },
-    "Swamp_07_GAMEPLAY.BP_WorldTravelVolume4": { "content": "Map.map_swamp_03.7" },
+    "Swamp_07_GAMEPLAY.BP_WorldTravelVolume2": {
+      "content": "Map.map_swamp_05.7",
+      "rules": "Swamp07Right"
+    },
+    "Swamp_07_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_swamp_08.7",
+      "rules": "Swamp07Left"
+    },
+    "Swamp_07_GAMEPLAY.BP_WorldTravelVolume4": {
+      "content": "Map.map_swamp_03.7",
+      "rules": "Swamp07Top"
+    },
     "Swamp_08_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_2": {
       "content": "Parameter.i_maxHPUp_02",
       "rules": "Swamp08Right2 + swim"
@@ -3355,15 +3068,15 @@
     },
     "Swamp_08_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_07.8",
-      "rules": "Swamp08Right2 + (hook | (claw + (djump | champion | silva + dodge))) + (djump | HORIZONTAL)"
+      "rules": "Swamp08Right1 | Swamp08Right2 + (hook | (claw + (djump | champion | silva + dodge))) + (djump | HORIZONTAL)"
     },
     "Swamp_08_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_15.8",
-      "rules": "Swamp08Top | Swamp08Right1"
+      "rules": "Swamp08Right2 | Swamp08Top | Swamp08Right1"
     },
     "Swamp_08_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_14.8",
-      "rules": "Swamp08Right2 + LEDGE"
+      "rules": "Swamp08Top | Swamp08Right2 + LEDGE"
     },
     "Swamp_09_GAMEPLAY.BP_Interactable_Passives_Treasure_2": {
       "content": "Passive.i_passive_regenHP_kill",
@@ -3375,19 +3088,19 @@
     },
     "Swamp_09_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_13.9",
-      "rules": "Swamp09Right1 + CHARGE"
+      "rules": "Swamp09Bottom1 | Swamp09Right1 + CHARGE"
     },
     "Swamp_09_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_03.9",
-      "rules": "Swamp09Right2 + (LEDGE | HORIZONTAL)"
+      "rules": "Swamp09Right1 | Swamp09Right2 + (LEDGE | HORIZONTAL)"
     },
     "Swamp_09_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_13.9B",
-      "rules": "Swamp09Right2"
+      "rules": "Swamp09Bottom2 | Swamp09Right2"
     },
     "Swamp_09_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_swamp_05.9",
-      "rules": "Swamp09Right1"
+      "rules": "Swamp09Right2 | Swamp09Right1"
     },
     "Swamp_1_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_051",
@@ -3395,11 +3108,11 @@
     },
     "Swamp_1_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_03.1",
-      "rules": "Lab1"
+      "rules": "Swamp1Bottom | Lab1"
     },
     "Swamp_1_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_02.1",
-      "rules": "Lab1"
+      "rules": "Swamp1Left | Lab1"
     },
     "Swamp_10_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_052",
@@ -3411,7 +3124,7 @@
     },
     "Swamp_10_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_13.10",
-      "rules": "Lab3"
+      "rules": "Swamp10Right | Lab3"
     },
     "Swamp_11_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -3423,11 +3136,11 @@
     },
     "Swamp_11_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_15.11",
-      "rules": "Swamp11Left"
+      "rules": "Swamp11Bottom | Swamp11Left"
     },
     "Swamp_11_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_14.11",
-      "rules": "Swamp11Bottom + (hook | claw | 2LEDGE) + (djump | champion | (silva + dodge))"
+      "rules": "Swamp11Left | Swamp11Bottom + (hook | claw | 2LEDGE) + (djump | champion | (silva + dodge))"
     },
     "Swamp_12_GAMEPLAY.BP_Interactable_Item_HealPower_Up_2": {
       "content": "Generic.i_HealPower_Up",
@@ -3435,15 +3148,15 @@
     },
     "Swamp_12_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_050",
-      "rules": "Swamp12Left | Swamp12Bottom"
+      "rules": "Swamp12Left | Swamp12Bottom | Swamp12TP"
     },
     "Swamp_12_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_15.12",
-      "rules": "Lab4"
+      "rules": "Swamp12Left | Lab4"
     },
     "Swamp_12_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_abyss_04.2",
-      "rules": "Lab4 + slam + unlock"
+      "rules": "Swamp12Bottom | Lab4 + slam + unlock"
     },
     "Swamp_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -3459,13 +3172,19 @@
     },
     "Swamp_13_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_10.13",
-      "rules": "Swamp13Top1 + slam | Swamp13Top2 + CHARGE + slam"
+      "rules": "Swamp13Left | Swamp13Top1 + slam | Swamp13Top2 + CHARGE + slam"
     },
-    "Swamp_13_GAMEPLAY.BP_WorldTravelVolume2": { "content": "Map.map_swamp_09.13" },
-    "Swamp_13_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_swamp_09.13B" },
+    "Swamp_13_GAMEPLAY.BP_WorldTravelVolume2": {
+      "content": "Map.map_swamp_09.13",
+      "rules": "Swamp13Top1"
+    },
+    "Swamp_13_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_swamp_09.13B",
+      "rules": "Swamp13Top2"
+    },
     "Swamp_13_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_swamp_14.13",
-      "rules": "slam + (Swamp13Top1 | Swamp13Left)"
+      "rules": "Swamp13Bottom | slam + (Swamp13Top1 | Swamp13Left)"
     },
     "Swamp_14_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2": {
       "content": "Generic.i_PassiveSlot_Up",
@@ -3475,18 +3194,21 @@
       "content": "Generic.i_SpiritCurrencyLv1_L",
       "rules": "Swamp14Top + (2LEDGE | hook)"
     },
-    "Swamp_14_GAMEPLAY.BP_WorldTravelVolume_2": { "content": "Map.map_swamp_13.14" },
+    "Swamp_14_GAMEPLAY.BP_WorldTravelVolume_2": {
+      "content": "Map.map_swamp_13.14",
+      "rules": "Swamp14Top"
+    },
     "Swamp_14_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_11.14",
-      "rules": "Swamp14Top | Swamp14Bottom + (LEDGE | claw | hook)"
+      "rules": "Swamp14Right | Swamp14Top | Swamp14Bottom + (LEDGE | claw | hook)"
     },
     "Swamp_14_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_08.14",
-      "rules": "Swamp14Right"
+      "rules": "Swamp14Bottom | Swamp14Right"
     },
     "Swamp_15_GAMEPLAY.BP_e2052_Toad": {
       "content": "Spirit.s2052",
-      "rules": "Swamp15Left + (swim + mask)"
+      "rules": "Swamp15Left + swim + mask"
     },
     "Swamp_15_GAMEPLAY.BP_SCR_LV1M_2171_2": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
@@ -3494,15 +3216,15 @@
     },
     "Swamp_15_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_11.15",
-      "rules": "Swamp15Right + LEDGE"
+      "rules": "Swamp15Top | Swamp15Right + LEDGE"
     },
     "Swamp_15_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_08.15",
-      "rules": "Swamp15Right + LEDGE"
+      "rules": "Swamp15Left | Swamp15Right + LEDGE"
     },
     "Swamp_15_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_swamp_12.15",
-      "rules": "Swamp15Left + (claw | hook) | Swamp15Top"
+      "rules": "Swamp15Right | Swamp15Left + (claw | hook) | Swamp15Top"
     },
     "Swamp_16_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_049",
@@ -3510,19 +3232,19 @@
     },
     "Swamp_16_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_07.16",
-      "rules": "Lab5"
+      "rules": "Swamp16Top | Lab5"
     },
     "Swamp_16_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_17.16",
-      "rules": "Lab5"
+      "rules": "Swamp16Left | Lab5"
     },
     "Swamp_17_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_18.17",
-      "rules": "Swamp17Right"
+      "rules": "Swamp17Left | Swamp17Right"
     },
     "Swamp_17_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_16.17",
-      "rules": "Swamp17Left"
+      "rules": "Swamp17Right | Swamp17Left"
     },
     "Swamp_18_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_047",
@@ -3542,11 +3264,11 @@
     },
     "Swamp_18_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_abyss_01.S18",
-      "rules": "Faden + unlock"
+      "rules": "Swamp18Bottom | Faden + unlock"
     },
     "Swamp_18_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_17.18",
-      "rules": "Faden"
+      "rules": "Swamp18Right | Faden"
     },
     "Swamp_2_GAMEPLAY.BP_SCR_LV2S_2010_2": {
       "content": "Generic.i_SpiritCurrencyLv2_S",
@@ -3558,11 +3280,11 @@
     },
     "Swamp_2_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_01.2",
-      "rules": "Swamp2Top + (dash | dodge)"
+      "rules": "Swamp2Right | Swamp2Top + (dash | dodge)"
     },
     "Swamp_2_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_forest_09.S2",
-      "rules": "Swamp2Right"
+      "rules": "Swamp2Top | Swamp2Right"
     },
     "Swamp_3_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
@@ -3574,27 +3296,27 @@
     },
     "Swamp_3_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_09.3",
-      "rules": "Swamp3Bottom"
+      "rules": "Swamp3Left | Swamp3Bottom"
     },
     "Swamp_3_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_01.3",
-      "rules": "Swamp3Left + LEDGE"
+      "rules": "Swamp3Top | Swamp3Left + LEDGE"
     },
     "Swamp_3_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_04.3",
-      "rules": "Swamp3Bottom | Swamp3Top"
+      "rules": "Swamp3Right | Swamp3Bottom | Swamp3Top"
     },
     "Swamp_3_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_swamp_07.3",
-      "rules": "Swamp3Top | Swamp3Right"
+      "rules": "Swamp3Bottom | Swamp3Top | Swamp3Right"
     },
     "Village_01_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_02.0",
-      "rules": "Village01Bottom"
+      "rules": "Village01Right | Village01Bottom"
     },
     "Village_01_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_church_08.1",
-      "rules": "Village01Right"
+      "rules": "Village01Bottom | Village01Right"
     },
     "Village_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_Drop": {
       "content": "Parameter.i_maxHPUp_01",
@@ -3610,15 +3332,15 @@
     },
     "Village_02_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_03.0",
-      "rules": "Village02Bottom | Village02Left + (LEDGE | claw)"
+      "rules": "Village02Right | Village02Bottom | Village02Left + (LEDGE | claw)"
     },
     "Village_02_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_village_01.1",
-      "rules": "Village02Bottom"
+      "rules": "Village02Left | Village02Bottom"
     },
     "Village_02_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_village_13.2",
-      "rules": "Village02Right"
+      "rules": "Village02Bottom | Village02Right"
     },
     "Village_03_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -3638,21 +3360,24 @@
     },
     "Village_03_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_02.1",
-      "rules": "Village03Right + (HORIZONTAL | LEDGE | hook)"
+      "rules": "Village03Bottom1 | Village03Right + (HORIZONTAL | LEDGE | hook)"
     },
     "Village_03_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_village_05.3",
-      "rules": "Village03Bottom1 + (LEDGE | claw)"
+      "rules": "Village03Right | Village03Bottom1 + (LEDGE | claw)"
     },
     "Village_03_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_village_13.0",
-      "rules": "Village03Right + slam"
+      "rules": "Village03Bottom2 | Village03Right + slam"
     },
     "Village_04_1_GAMEPLAY.BP_e2102_Crow": {
       "content": "Spirit.s2102",
       "rules": "Village041Bottom"
     },
-    "Village_04_1_GAMEPLAY.BP_WorldTravelVolume_2": { "content": "Map.map_village_04.2" },
+    "Village_04_1_GAMEPLAY.BP_WorldTravelVolume_2": {
+      "content": "Map.map_village_04.2",
+      "rules": "Village041Bottom"
+    },
     "Village_04_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
       "rules": "Village04Top"
@@ -3663,7 +3388,7 @@
     },
     "Village_04_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_village_04_1.0",
-      "rules": "Village04Right"
+      "rules": "Village04Top | Village04Right"
     },
     "Village_04_GAMEPLAY.BP_SCR_LV1S_2010_1": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -3671,7 +3396,7 @@
     },
     "Village_04_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_05.4",
-      "rules": "Village04Top"
+      "rules": "Village04Right | Village04Top"
     },
     "Village_05_GAMEPLAY.BP_Interactable_Item_Tip4": {
       "content": "Tip.tip_009",
@@ -3679,15 +3404,15 @@
     },
     "Village_05_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_village_04.5",
-      "rules": "CollapsedShack"
+      "rules": "Village05Top | CollapsedShack"
     },
     "Village_05_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_03.5",
-      "rules": "CollapsedShack"
+      "rules": "Village05Left | CollapsedShack"
     },
     "Village_05_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_village_06.0",
-      "rules": "CollapsedShack"
+      "rules": "Village05Right | CollapsedShack"
     },
     "Village_06_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -3715,19 +3440,19 @@
     },
     "Village_06_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_05.1",
-      "rules": "Village06Right2 + LEDGE + claw"
+      "rules": "Village06Left | Village06Right2 + LEDGE + claw"
     },
     "Village_06_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_village_07.0",
-      "rules": "Village06Right2 + (LEDGE | HORIZONTAL)"
+      "rules": "Village06Right1 | Village06Right2 + (LEDGE | HORIZONTAL)"
     },
     "Village_06_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_village_12.6",
-      "rules": "Village06Left + slam"
+      "rules": "Village06Bottom | Village06Left + slam"
     },
     "Village_06_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_village_08.6",
-      "rules": "Village06Left + (hook | LEDGE) | Village06Right1"
+      "rules": "Village06Right2 | Village06Left + (hook | LEDGE) | Village06Right1"
     },
     "Village_07_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2": {
       "content": "Generic.i_PassiveSlot_Up",
@@ -3743,15 +3468,15 @@
     },
     "Village_07_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_06.1",
-      "rules": "Village07Right"
+      "rules": "Village07Left | Village07Right"
     },
     "Village_07_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_village_09.7",
-      "rules": "Village07Left | Village07Top"
+      "rules": "Village07Right | Village07Left | Village07Top"
     },
     "Village_07_GAMEPLAY.BP_WorldTravelVolume3_8": {
       "content": "Map.map_village_14.7",
-      "rules": "Village07Right + (hook | LEDGE + sinner | djump + (dodge | silva | champion) | dodge + (silva | champion + dash))"
+      "rules": "Village07Top | Village07Right + (hook | LEDGE + sinner | djump + (dodge | silva | champion) | dodge + (silva | champion + dash))"
     },
     "Village_08_GAMEPLAY.BP_e2002_Knight": {
       "content": "Spirit.s2002",
@@ -3767,11 +3492,11 @@
     },
     "Village_08_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_06.8",
-      "rules": "Village08Right"
+      "rules": "Village08Left | Village08Right"
     },
     "Village_08_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_village_09.8",
-      "rules": "Village08Left"
+      "rules": "Village08Right | Village08Left"
     },
     "Village_09_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_018",
@@ -3783,19 +3508,19 @@
     },
     "Village_09_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_10.0",
-      "rules": "BridgeHead"
+      "rules": "Village09Right1 | BridgeHead"
     },
     "Village_09_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_village_15.0",
-      "rules": "BridgeHead + swim"
+      "rules": "Village09Right2 | BridgeHead + swim"
     },
     "Village_09_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_village_07.9",
-      "rules": "BridgeHead"
+      "rules": "Village09Left1 | BridgeHead"
     },
     "Village_09_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_village_08.9",
-      "rules": "BridgeHead"
+      "rules": "Village09Left2 | BridgeHead"
     },
     "Village_10_GAMEPLAY.BP_e5050_Giant": {
       "content": "Spirit.s5050",
@@ -3803,17 +3528,20 @@
     },
     "Village_10_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_09.1",
-      "rules": "Gerrod"
+      "rules": "Village10Left | Gerrod"
     },
     "Village_10_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_village_11.0",
-      "rules": "Gerrod"
+      "rules": "Village10Right | Gerrod"
     },
     "Village_11_1_GAMEPLAY.BP_Interactable_Item_HealPower_Up_5": {
       "content": "Generic.i_HealPower_Up",
       "rules": "Village111Bottom + slam"
     },
-    "Village_11_1_GAMEPLAY.BP_WorldTravelVolume_2": { "content": "Map.map_village_11.2" },
+    "Village_11_1_GAMEPLAY.BP_WorldTravelVolume_2": {
+      "content": "Map.map_village_11.2",
+      "rules": "Village111Bottom"
+    },
     "Village_11_GAMEPLAY.BP_Interactable_Item_Tip1": {
       "content": "Tip.tip_006",
       "rules": "Village11Left"
@@ -3824,7 +3552,7 @@
     },
     "Village_11_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_village_11_1.0",
-      "rules": "Village11Left"
+      "rules": "Village11Top | Village11Left"
     },
     "Village_11_GAMEPLAY.BP_SCR_LV2S_2020_3": {
       "content": "Generic.i_SpiritCurrencyLv2_S",
@@ -3832,28 +3560,31 @@
     },
     "Village_11_GAMEPLAY.BP_WorldTravelVolume_4": {
       "content": "Map.map_village_10.1",
-      "rules": "Village11Right + claw"
+      "rules": "Village11Left | Village11Right + claw"
     },
     "Village_11_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_01.0",
-      "rules": "Village11Left + claw"
+      "rules": "Village11Right | Village11Left + claw"
     },
     "Village_12_GAMEPLAY.BP_SCR_LV1S_2021_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
       "rules": "Village12Left1"
     },
-    "Village_12_GAMEPLAY.BP_WorldTravelVolume_2": { "content": "Map.map_village_06.12" },
+    "Village_12_GAMEPLAY.BP_WorldTravelVolume_2": {
+      "content": "Map.map_village_06.12",
+      "rules": "Village12Top"
+    },
     "Village_12_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_village_13.12",
-      "rules": "Village12Right + Village12Top"
+      "rules": "Village12Left1 | Village12Right + Village12Top"
     },
     "Village_12_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_01.V12",
-      "rules": "Village12Left1 + Village12Top + swim"
+      "rules": "Village12Right | Village12Left1 + Village12Top + swim"
     },
     "Village_12_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_village_16.12",
-      "rules": "Village12Left1 + CHARGE"
+      "rules": "Village12Left2 | Village12Left1 + CHARGE"
     },
     "Village_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_Treasure_2": {
       "content": "Parameter.i_maxHPUp_02",
@@ -3873,15 +3604,15 @@
     },
     "Village_13_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_village_03.2",
-      "rules": "Village13Right + LEDGE"
+      "rules": "Village13Top | Village13Right + LEDGE"
     },
     "Village_13_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_village_02.13",
-      "rules": "Village13Right"
+      "rules": "Village13Left | Village13Right"
     },
     "Village_13_GAMEPLAY.BP_WorldTravelVolume6": {
       "content": "Map.map_village_12.13",
-      "rules": "Village13Top"
+      "rules": "Village13Right | Village13Top"
     },
     "Village_14_GAMEPLAY.BP_e2112_Ork": {
       "content": "Spirit.s2112",
@@ -3895,7 +3626,10 @@
       "content": "Generic.i_SpiritCurrencyLv2_M",
       "rules": "Elder + (slam + (hook | 3LEDGE | FULLSILVA | claw + LEDGE) )"
     },
-    "Village_14_GAMEPLAY.BP_WorldTravelVolume_2": { "content": "Map.map_village_07.14" },
+    "Village_14_GAMEPLAY.BP_WorldTravelVolume_2": {
+      "content": "Map.map_village_07.14",
+      "rules": "Village14Bottom"
+    },
     "Village_15_GAMEPLAY.BP_SCR_LV1LL_0000_2": {
       "content": "Generic.i_SpiritCurrencyLv1_LL",
       "rules": "Village15Left + (swim + (claw + (sinner + (djump | champion) | dodge + silva | 2LEDGE + HORIZONTAL) | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL))) | Village15Right + (swim + claw + djump + silva)"
@@ -3910,11 +3644,11 @@
     },
     "Village_15_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_09.2",
-      "rules": "Village15Right + (claw + djump + silva | swim)"
+      "rules": "Village15Left | Village15Right + (claw + djump + silva | swim)"
     },
     "Village_15_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_01.V15",
-      "rules": "Village15Left + (swim + (claw + (sinner + (djump | champion) | dodge + silva | 2LEDGE + HORIZONTAL) | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL)))"
+      "rules": "Village15Right | Village15Left + (swim + (claw + (sinner + (djump | champion) | dodge + silva | 2LEDGE + HORIZONTAL) | hook + 2LEDGE | hook + claw + (LEDGE | HORIZONTAL)))"
     },
     "Village_16_GAMEPLAY.BP_Interactable_Item_Tip4": {
       "content": "Tip.tip_054",
@@ -3924,8 +3658,10 @@
       "content": "Generic.i_FinalPassivePart_Up",
       "rules": "Village16Right"
     },
-    "Village_16_GAMEPLAY.BP_WorldTravelVolume3": { "content": "Map.map_village_12.16" },
+    "Village_16_GAMEPLAY.BP_WorldTravelVolume3": {
+      "content": "Map.map_village_12.16",
+      "rules": "Village16Right"
+    },
     "starting_weapon": { "content": "umbral" }
   }
 }
-

@@ -56,10 +56,13 @@ namespace EnderLilies.Randomizer.Logic
                 graph.aliases.Add(a.Key, a.Value);
             foreach (var a in data.nodes_alias)
                 graph.aliases.Add(a.Key, a.Value);
+            foreach (var a in data.tags)
+            {
+                graph.aliases.Add(a.Key, a.Value);
+                graph.tags[a.Key] = graph.AddNode(a.Value);
+            }
             graph.extra_items = data.extra_items;
             graph.AddNodes(data.nodes.Keys);
-            foreach (var tag in data.tags)
-                graph.tags[tag.Key] = graph.AddNode(tag.Value);
             foreach (var room in data.nodes)
             {
                 string rules = room.Value.rules;
