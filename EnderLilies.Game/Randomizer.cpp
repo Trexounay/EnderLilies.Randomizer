@@ -893,6 +893,7 @@ void Randomizer::RefreshAptitudes()
 	for (int i = 0; i < gm->TutorialTable->Data.Num(); ++i)
 		pc->MarkTutorialAsSeen(gm->TutorialTable->Data[i].Name);
 
+	return;
 #ifdef _DEBUG
 
 	pc->UnlockAllAptitudes();

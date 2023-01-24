@@ -21,8 +21,12 @@ namespace EnderLilies.Randomizer
             _settings.PropertyChangedEnded += _settings_PropertyChanged;
         }
 
+        string _seed_text = "";
         private void _settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (!_settings.Init || _settings.SeedText == _seed_text)
+                return;
+            _seed_text = _settings.SeedText;
             Generate(_settings.Seed);
             _settings.GeneratePreview(this);
         }

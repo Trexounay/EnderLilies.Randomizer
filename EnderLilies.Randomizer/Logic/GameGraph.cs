@@ -141,92 +141,46 @@ namespace EnderLilies.Randomizer
             return true;
         }
 
+        int max_item_count = 0;
+
         public Dictionary<string, string> Solve(string start, string weapon = "umbral", bool metaprogression = false, bool roomrandom = false)
         {
+            if (aliases.ContainsKey(start))
+                start = aliases[start];
+
             Dictionary<string, string> data = new Dictionary<string, string>();
             if (roomrandom)
             {
-                /* 
-                var trans = new List<string>(transitions.Values);
-                trans.Shuffle();
-                List<string> first_pass = tags.Where(k => transitions.ContainsKey(k.Value)).
-                    Select<KeyValuePair<string, int>, string>(k => k.Key).ToList();
-
-                List<string> tagsnames = new List<string>(transitions.Values);
-                List<int> volumes = new List<int>(transitions.Keys);
-
-                var query = tags.Values.GroupBy(x => x)
-                      .Where(g => g.Count() > 1)
-                      .Select(y => y.Key)
-                      .ToList();
-
-                first_pass.Shuffle();
-                HashSet<string> done = new HashSet<string>();
-                while (first_pass.Count > 0)
-                {
-                    string source_map = first_pass[0].Substring(4, first_pass[0].LastIndexOf('.') - 4);
-                        //first_pass[0].Split('.')[1].Substring(4);
-                    int i = 1;
-                    for (; i < first_pass.Count; ++i)
+                    var trans = new List<string>(transitions.Values);
+                    trans.Shuffle();
+                    foreach (var id in transitions)
                     {
-                        string dest_map = first_pass[i].Substring(4, first_pass[i].LastIndexOf('.') - 4);
-                        if (source_map != dest_map)
-                            break;
+                        var i = trans.Count - 1;
+                        var tag = trans[i];
+                        data[Node(id.Key)] = trans[i];
+                        AddRule(tag, Node(id.Key));
+                        trans.RemoveAt(i);
                     }
-                    if (i >= first_pass.Count)
-                        break;
-                    string tag1 = first_pass[0];
-                    string tag2 = first_pass[i];
-                    data[Node(tags[tag1])] = tag2;
-                    data[Node(tags[tag2])] = tag1;
-                    AddRule(Node(tags[tag1]), Node(tags[tag2]));
-                    AddRule(Node(tags[tag2]), Node(tags[tag1]));
-                    first_pass.RemoveAt(i);
-                    first_pass.RemoveAt(0);
-                    int i1 = tagsnames.IndexOf(tag1);
-                    tagsnames.RemoveAt(i1);
-                    int i2 = tagsnames.IndexOf(tag2);
-                    tagsnames.RemoveAt(i2);
-                    int v1 = volumes.IndexOf(tags[tag1]);
-                    volumes.RemoveAt(v1);
-                    int v2 = volumes.IndexOf(tags[tag2]);
-                    volumes.RemoveAt(v2);
-                }
-                while (volumes.Count > 0)
-                {
-                    string node = Node(volumes[0]);
-                    node = node.Substring(0, node.IndexOf('.'));
-                    string source_map = node.Substring(0, node.LastIndexOf('_')).ToLower();
-                    int i = 0;
-                    for (; i < tagsnames.Count; ++i)
-                    {
-                        string dest_map = tagsnames[i].Substring(4, tagsnames[i].LastIndexOf('.') - 4);
-                        if (source_map != dest_map)
-                            break;
-                    }
-                    if (i >= tagsnames.Count)
-                        break;
-                    data[Node(volumes[0])] = tagsnames[i];
-                    AddRule(Node(tags[tagsnames[i]]), Node(volumes[0]));
-                    volumes.RemoveAt(0);
-                    tagsnames.RemoveAt(i);
-                }*/
-
-                var trans = new List<string>(transitions.Values);
-                trans.Shuffle();
-                foreach (var id in transitions)
-                {
-                    data[Node(id.Key)] = trans[trans.Count - 1];
-                    AddRule(Node(tags[trans[trans.Count - 1]]), Node(id.Key));
-                    trans.RemoveAt(trans.Count - 1);
-                }
             }
+            /*
+            var area = new Dictionary<string, string>()
+                {
+                    { "Map.map_church_08.1", "Map.map_village_01.0" },
+                    { "Map.map_church_08.2", "Map.map_forest_01.C8" },
+                    { "Map.map_village_11.1", "Map.map_castle_01.0" },
+                    { "Map.map_village_12.C1", "Map.map_cave_01.V12" },
+                    { "Map.map_village_15.F1", "Map.map_fort_01.V15" },
+                    { "Map.map_castle_07.F1", "Map.map_fort_01.C7" },
+                    { "Map.map_cave_22.F2", "Map.map_fort_02.C22" },
+                    { "Map.map_forest_07.O1", "Map.map_oubliette_01.F7" },
+                    { "Map.map_forest_09.S2","Map.map_swamp_02.F9" },
+                    { "Map.map_oubliette_17.S6", "Map.map_swamp_06.O17" },
+                };
+            */
             else
-                foreach (var trans in transitions)
-                    AddRule(trans.Value, Node(trans.Key));
+                foreach (var t in transitions)
+                    AddRule(t.Value, Node(t.Key));
 
-            if (aliases.ContainsKey(start))
-                start = aliases[start];
             if (aliases.ContainsKey(weapon))
                 weapon = aliases[weapon];
 
@@ -261,7 +215,7 @@ namespace EnderLilies.Randomizer
             do
             {
                 progress = false;
-                for (int nb_items = 1; !progress && nb_items <= missing_keys.Count; nb_items++)
+                for (int nb_items = 1; !progress && nb_items <= missing_keys.Count && nb_items < max_item_count; nb_items++)
                 {
                     // check 1 by 1 item that would grant progress
                     foreach (IEnumerable<int> subitems in Numerics.Combinations(missing_keys, nb_items))
@@ -293,7 +247,7 @@ namespace EnderLilies.Randomizer
                             empty_locations.AddRange(meta_locations);
                             //for (int i = 0; i < meta_locations.Count; i++)
                             //{
-                                //Console.WriteLine(i.ToString() + " " + Node(meta_locations[i]));
+                            //Console.WriteLine(i.ToString() + " " + Node(meta_locations[i]));
                             //}
 
                             foreach (int key in subitems)
@@ -369,6 +323,8 @@ namespace EnderLilies.Randomizer
             int id = nodes.IndexOf(node);
             if (check != null)
             {
+                if (aliases.ContainsKey(check))
+                    check = aliases[check];
                 if (check.StartsWith("Map."))
                     transitions[id] = check;
                 else
@@ -402,6 +358,7 @@ namespace EnderLilies.Randomizer
                 else
                     keys_condition.Add(AddKey(condition));
             }
+            max_item_count = Math.Max(max_item_count, keys_condition.Count);
             if (nodes_condition.Count == 0)
                 throw new Exception("unlinked node");
             if (!conditions.ContainsKey(node))

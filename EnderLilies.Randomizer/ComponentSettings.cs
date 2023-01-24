@@ -756,6 +756,7 @@ namespace EnderLilies.Randomizer
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public event PropertyChangedEventHandler PropertyChangedEnded = delegate { };
 
+        public bool Init = false;
         public void SetSettings(XmlNode node)
         {
             var element = (XmlElement)node;
@@ -788,8 +789,8 @@ namespace EnderLilies.Randomizer
             DashProgressive = SettingsHelper.ParseBool(element["DashProgressive"], true);
             StartWeaponUsesAncientSouls = SettingsHelper.ParseBool(element["StartWeaponUsesAncientSouls"], true);
             ShuffleWeaponUpgrades = SettingsHelper.ParseBool(element["ShuffleWeaponUpgrades"], false);
-
-
+            Init = true;
+            NotifyPropertyChanged();
         }
 
         public XmlNode GetSettings(XmlDocument document)
@@ -1032,7 +1033,9 @@ namespace EnderLilies.Randomizer
                 if (!_internalInteraction)
                 {
                     if (propertyName != "SeedText")
+                    {
                         NotifyPropertyChanged("SeedText");
+                    }
                     else
                         PropertyChangedEnded(this, new PropertyChangedEventArgs(propertyName));
                 }

@@ -1015,7 +1015,7 @@
     },
     "Castle_15_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_16.15",
-      "rules": "Castle15Left | TowerAlcove + claw + (hook | FULLSILVA + sinner | 3LEDGE)"
+      "rules": "TowerAlcove + claw + (hook | FULLSILVA + sinner | 3LEDGE)"
     },
     "Castle_15_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_14.15",
@@ -2550,11 +2550,11 @@
     },
     "Oubliette_04_GAMEPLAY.BP_SCR_LV1S_2020_2": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
-      "rules": "Oubliette04Left + (FULLSILVA | hook)"
+      "rules": "Oubliette04Left + (FULLSILVA | hook | 3LEDGE | sinner + silva + djump | silva + champion + dodge | 2HORIZONTAL + dash + LEDGE | djump + champion + HORIZONTAL)"
     },
     "Oubliette_04_GAMEPLAY.BP_SCR_LV2S_2010_3": {
       "content": "Generic.i_SpiritCurrencyLv2_S",
-      "rules": "Oubliette04Right"
+      "rules": "Oubliette04Right | Oubliette04Left"
     },
     "Oubliette_04_GAMEPLAY.BP_WorldTravelVolume14": {
       "content": "Map.map_oubliette_03.4",
@@ -2562,7 +2562,7 @@
     },
     "Oubliette_04_GAMEPLAY.BP_WorldTravelVolume16": {
       "content": "Map.map_oubliette_02.4",
-      "rules": "Oubliette04Left | Oubliette04Right"
+      "rules": "Oubliette04Right | Oubliette04Left"
     },
     "Oubliette_05_1_GAMEPLAY.BP_Interactable_WorldTravel13": {
       "content": "Map.map_oubliette_05.5_1",
@@ -2922,7 +2922,7 @@
     },
     "Oubliette_16_GAMEPLAY.BP_WorldTravelVolume18": {
       "content": "Map.map_outside_01.O16",
-      "rules": "Oubliette16Right | Oubliette16Left + (hook + ((sinner + LEDGE) | 2HORIZONTAL | silva + (djump | dodge) | djump + (dodge | champion)) | silva + djump + (claw | champion | dodge))"
+      "rules": "Oubliette16Right | Oubliette16Left + (hook + (sinner + (LEDGE | dash | dodge) | silva + (djump | dodge | champion + dash) | djump + (dodge | champion)) | silva + djump + (claw | champion | dodge))"
     },
     "Oubliette_17_GAMEPLAY.BP_WorldTravelVolume19": {
       "content": "Map.map_oubliette_10.17",
@@ -3130,7 +3130,7 @@
     },
     "Swamp_11_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
-      "rules": "Swamp11Left + (LEDGE + HORIZONTAL)"
+      "rules": "Swamp11Left + (LEDGE + HORIZONTAL | 2HORIZONTAL | silva + djump)"
     },
     "Swamp_11_GAMEPLAY.BP_Interactable_Passives_Treasure_2": {
       "content": "Passive.i_passive_dmgup",
@@ -3350,7 +3350,7 @@
     },
     "Village_03_GAMEPLAY.BP_Interactable_Passives_Treasure_2": {
       "content": "Passive.i_passive_dmgcut_LV1",
-      "rules": "Village03Right + (claw | hook | LEDGE | HORIZONTAL)"
+      "rules": "Village03Right + (claw | hook | LEDGE | HORIZONTAL | dash)"
     },
     "Village_03_GAMEPLAY.BP_SCR_LV1S_2021_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -3530,11 +3530,11 @@
     },
     "Village_10_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_09.1",
-      "rules": "Village10Left | Gerrod"
+      "rules": "Gerrod"
     },
     "Village_10_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_village_11.0",
-      "rules": "Village10Right | Gerrod"
+      "rules": "Gerrod"
     },
     "Village_11_1_GAMEPLAY.BP_Interactable_Item_HealPower_Up_5": {
       "content": "Generic.i_HealPower_Up",
