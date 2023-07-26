@@ -10,11 +10,13 @@ using System.Xml;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Linq;
+
 using LiveSplit.UI;
 using System.Runtime.CompilerServices;
 using System.Globalization;
 using EnderLilies.Randomizer.Tools;
 using EnderLilies.Randomizer.Logic;
+using WebSocketSharp;
 
 namespace EnderLilies.Randomizer
 {
@@ -23,6 +25,8 @@ namespace EnderLilies.Randomizer
         public LayoutMode Mode { get; set; }
         public string FilePath { get; set; }
         public string CheckFileResult { get; set; }
+
+        public string CheckSeedResult { get; set; }
         public DataTable Preview { get; set; }
 
         string _exePath;
@@ -922,6 +926,7 @@ namespace EnderLilies.Randomizer
                 var node = g.Node(l.node);
                 var item = g.Key(l.item);
                 var tooltip = g.Node(l.node);
+
                 //session.result[node];
 
                 if (DashProgressive)
@@ -956,12 +961,15 @@ namespace EnderLilies.Randomizer
 
                 LogicPreviewGridview.Rows[rowid].Cells[0].ToolTipText = tooltip;
             }
+
+            // Once the seed is generated here is the result
             foreach (var pair in session.result)
             {
                 var node = pair.Key;
                 if (nodes.Contains(node))
                     continue;
                 var item = pair.Value;
+
                 foreach (var k in g.aliases)
                 {
                     if (k.Value == node)
@@ -1003,6 +1011,36 @@ namespace EnderLilies.Randomizer
                 this.checkfile.Text = CheckFileResult;
             }
         }
+        
+        /// <summary>
+        /// This checks the EnderLiliesSeed.txt in comparison
+        /// to the actual game seed and shows if there is a
+        /// mismatch between the seeds.
+        /// </summary>
+        void ValidateSeed()
+        {
+            string seedFilePath = ".\\Components\\EnderLiliesSeed.txt";
+            string seedFileContent = string.Empty;
+
+            // Only get the first line because it has the seed
+            using (StreamReader sr = new StreamReader(seedFilePath))
+                seedFileContent = sr.ReadLine();
+
+            int seedNumberFromFile = Int32.Parse(seedFileContent.Split(':')[1]);
+            if (seedNumberFromFile == Seed)
+            {
+                CheckSeedResult = "The seed is valid";
+                this.seedValidator.ForeColor = Color.Green;
+            }
+            else
+            {
+                CheckSeedResult = String.Format("The seed from file: {0}, doesn't match seed from game {1}",
+                    seedNumberFromFile, Seed);
+                this.seedValidator.ForeColor = Color.Red;
+            }
+
+            this.seedValidator.Text = CheckSeedResult;
+        }
 
         private void Randomize_Click(object sender, EventArgs e)
         {
@@ -1022,6 +1060,7 @@ namespace EnderLilies.Randomizer
         private void ComponentSettings_Load(object sender, EventArgs e)
         {
             CheckFile();
+            ValidateSeed();
             NotifyPropertyChanged();
         }
 
@@ -1081,5 +1120,6 @@ namespace EnderLilies.Randomizer
             else
                 this.StartingRooms = 0;
         }
+
     }
 }

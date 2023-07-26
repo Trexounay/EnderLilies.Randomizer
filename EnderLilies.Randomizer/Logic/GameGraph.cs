@@ -100,7 +100,7 @@ namespace EnderLilies.Randomizer
         public List<string> keys = new List<string>();
         // locations
         public List<string> nodes = new List<string>();
-        // Translation from user defined name to game name
+        // Translation from user defined name to game name from JSON
         public Dictionary<string, string> aliases = new Dictionary<string, string>();
         // Room locations to spawn the player
         public Dictionary<string, int> tags = new Dictionary<string, int>();
@@ -162,21 +162,6 @@ namespace EnderLilies.Randomizer
                         trans.RemoveAt(i);
                     }
             }
-            /*
-            var area = new Dictionary<string, string>()
-                {
-                    { "Map.map_church_08.1", "Map.map_village_01.0" },
-                    { "Map.map_church_08.2", "Map.map_forest_01.C8" },
-                    { "Map.map_village_11.1", "Map.map_castle_01.0" },
-                    { "Map.map_village_12.C1", "Map.map_cave_01.V12" },
-                    { "Map.map_village_15.F1", "Map.map_fort_01.V15" },
-                    { "Map.map_castle_07.F1", "Map.map_fort_01.C7" },
-                    { "Map.map_cave_22.F2", "Map.map_fort_02.C22" },
-                    { "Map.map_forest_07.O1", "Map.map_oubliette_01.F7" },
-                    { "Map.map_forest_09.S2","Map.map_swamp_02.F9" },
-                    { "Map.map_oubliette_17.S6", "Map.map_swamp_06.O17" },
-                };
-            */
             else
                 foreach (var t in transitions)
                     AddRule(t.Value, Node(t.Key));
