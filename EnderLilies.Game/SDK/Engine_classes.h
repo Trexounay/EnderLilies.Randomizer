@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+
 // Name: enderlilies, Version: 1.1.3
 
 
@@ -11615,7 +11616,7 @@ public:
 	void STATIC_Conv_StringToVector2D(const struct FString& inString, struct FVector2D* OutConvertedVector2D, bool* OutIsValid);
 	void STATIC_Conv_StringToVector(const struct FString& inString, struct FVector* OutConvertedVector, bool* OutIsValid);
 	void STATIC_Conv_StringToRotator(const struct FString& inString, struct FRotator* OutConvertedRotator, bool* OutIsValid);
-	struct FName STATIC_Conv_StringToName(const struct FString& inString);
+	static struct FName STATIC_Conv_StringToName(const struct FString& inString);
 	int STATIC_Conv_StringToInt(const struct FString& inString);
 	float STATIC_Conv_StringToFloat(const struct FString& inString);
 	void STATIC_Conv_StringToColor(const struct FString& inString, struct FLinearColor* OutConvertedColor, bool* OutIsValid);
@@ -11802,7 +11803,7 @@ public:
 	bool STATIC_IsValidPrimaryAssetType(const struct FPrimaryAssetType& PrimaryAssetType);
 	bool STATIC_IsValidPrimaryAssetId(const struct FPrimaryAssetId& PrimaryAssetId);
 	bool STATIC_IsValidClass(class UClass* Class);
-	bool STATIC_IsValid(class UObject* Object);
+	static bool STATIC_IsValid(class UObject* Object);
 	bool STATIC_IsUnattended();
 	bool STATIC_IsStandalone(class UObject* WorldContextObject);
 	bool STATIC_IsSplitScreen(class UObject* WorldContextObject);
@@ -11945,7 +11946,7 @@ public:
 
 	static UClass* StaticClass()
 	{
-		UClass* ptr = UObject::FindClass("Class Engine.KismetTextLibrary");
+		static UClass* ptr = UObject::FindClass("Class Engine.KismetTextLibrary");
 		return ptr;
 	}
 
@@ -11975,7 +11976,7 @@ public:
 	struct FText STATIC_Conv_Vector2dToText(const struct FVector2D& InVec);
 	struct FText STATIC_Conv_TransformToText(const struct FTransform& InTrans);
 	struct FString STATIC_Conv_TextToString(const struct FText& InText);
-	struct FText STATIC_Conv_StringToText(const struct FString& inString);
+	static struct FText STATIC_Conv_StringToText(const struct FString& inString);
 	struct FText STATIC_Conv_RotatorToText(const struct FRotator& InRot);
 	struct FText STATIC_Conv_ObjectToText(class UObject* InObj);
 	struct FText STATIC_Conv_NameToText(const struct FName& InName);

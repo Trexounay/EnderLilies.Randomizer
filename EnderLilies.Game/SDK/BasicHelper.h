@@ -789,6 +789,22 @@ struct FName
 #endif
 	}
 
+	// GetRawString - returns an unedited string as the engine uses it
+	inline std::string GetRawString() const
+	{
+		thread_local wchar_t *toto = reinterpret_cast<wchar_t*>(malloc(sizeof(wchar_t) * 1024));
+		thread_local FString TempString(toto);
+		static void(*AppendString)(const FName*, FString&) = nullptr;
+
+		if (!AppendString)
+			AppendString = reinterpret_cast<void(*)(const FName*, FString&)>(uintptr_t(GetModuleHandle(0)) + 0x00EE1C40);
+
+		AppendString(this, TempString);
+
+		std::string OutputString = TempString.ToString();
+		return OutputString;
+	}
+
 	static inline GNAME_TYPE& GetGlobalNames()
 	{
 		return *GNames;

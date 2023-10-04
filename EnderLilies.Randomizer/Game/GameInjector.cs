@@ -52,8 +52,6 @@ namespace EnderLilies.Randomizer
             return path;
         }
 
-
-
         static void InjectDLL(Process process, string path)
         {
             IntPtr loadLibraryAddr = SafeNativeMethods.GetProcAddress(SafeNativeMethods.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
@@ -98,6 +96,8 @@ namespace EnderLilies.Randomizer
                     SafeNativeMethods.CloseHandle(hThread);
             }
         }
+
+        public bool IsInjected =>  _game != null && !_game.HasExited;
 
         Process _game = null;
         public void Update()

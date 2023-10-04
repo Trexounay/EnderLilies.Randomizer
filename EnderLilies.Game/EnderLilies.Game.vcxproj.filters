@@ -92,6 +92,18 @@
     <ClInclude Include="SDK\BP_EnemySpawnPoint_Boss_structs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Function.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnrealFunctions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK\BP_Condition_EnemyList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedMemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -139,12 +151,21 @@
     <ClCompile Include="xinput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UnrealFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EnderLilies.Game.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="xinput1_3.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="xinput1_3_asm.asm">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

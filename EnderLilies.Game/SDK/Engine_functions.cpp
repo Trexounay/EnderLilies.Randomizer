@@ -58344,6 +58344,7 @@ void UKismetStringLibrary::STATIC_Conv_StringToRotator(const struct FString& inS
 //		struct FName                                       ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 struct FName UKismetStringLibrary::STATIC_Conv_StringToName(const struct FString& inString)
 {
+	CG::UClass* kis = CG::UKismetStringLibrary::StaticClass();
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Engine.KismetStringLibrary.Conv_StringToName");
 
 	UKismetStringLibrary_Conv_StringToName_Params params;
@@ -58352,7 +58353,7 @@ struct FName UKismetStringLibrary::STATIC_Conv_StringToName(const struct FString
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	kis->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 
@@ -62574,6 +62575,7 @@ bool UKismetSystemLibrary::STATIC_IsValidClass(class UClass* Class)
 //		bool                                               ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 bool UKismetSystemLibrary::STATIC_IsValid(class UObject* Object)
 {
+	auto kis = UKismetSystemLibrary::StaticClass();
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Engine.KismetSystemLibrary.IsValid");
 
 	UKismetSystemLibrary_IsValid_Params params;
@@ -62582,7 +62584,7 @@ bool UKismetSystemLibrary::STATIC_IsValid(class UObject* Object)
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	kis->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 
@@ -66991,6 +66993,7 @@ struct FString UKismetTextLibrary::STATIC_Conv_TextToString(const struct FText& 
 //		struct FText                                       ReturnValue                                                (Parm, OutParm, ReturnParm, NativeAccessSpecifierPublic)
 struct FText UKismetTextLibrary::STATIC_Conv_StringToText(const struct FString& inString)
 {
+	CG::UClass* kis = UKismetTextLibrary::StaticClass();
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Engine.KismetTextLibrary.Conv_StringToText");
 
 	UKismetTextLibrary_Conv_StringToText_Params params;
@@ -66999,7 +67002,7 @@ struct FText UKismetTextLibrary::STATIC_Conv_StringToText(const struct FString& 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	kis->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 

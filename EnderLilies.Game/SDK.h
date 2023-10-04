@@ -2017,3 +2017,4 @@
 #include "SDK/BP_Interactable_Passives_Treasure_structs.h"
 #include "SDK/BP_Interactable_Passives_Treasure_classes.h"
 #include "SDK/BP_Interactable_Passives_Treasure_parameters.h"
+#include "SDK/BP_Condition_EnemyList.h"

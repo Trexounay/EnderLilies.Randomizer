@@ -1,10 +1,15 @@
-﻿using LiveSplit.Model;
+﻿using EnderLilies.Randomizer.Properties;
+using LiveSplit.Model;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
 using System.Xml;
+using WebSocketSharp;
 
 namespace EnderLilies.Randomizer
 {
@@ -16,17 +21,34 @@ namespace EnderLilies.Randomizer
         private GameInjector _gameInjector;
         private GameTracker _tracker;
         private RandomSession _session;
+        private ArchipelagoSession _AP;
 
         public EnderLiliesRandomizer(LiveSplitState state)
         {
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+
+
             _settings = new ComponentSettings();
             _gameInjector = new GameInjector(_settings);
             _tracker = new GameTracker();
             _session = new RandomSession(_settings);
+            _AP = new ArchipelagoSession(_settings);
 
-            ContextMenuControls = new Dictionary<string, Action>();
-            ContextMenuControls.Add("Launch Ender Lilies", () => _settings.launchRequested = _settings.HasExePath);
-            ContextMenuControls.Add("Reroll Seed", () => _settings.Seed = new System.Random().Next());
+            ContextMenuControls = new Dictionary<string, Action>
+            {
+                { "Launch Ender Lilies", () => _settings.launchRequested = _settings.HasExePath },
+                { "Reroll Seed", () => _settings.Seed = new System.Random().Next() }
+            };
+        }
+
+        private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            string name = args.Name.Substring(0, args.Name.IndexOf(","));
+            if (name == "Archipelago.MultiClient.Net")
+                return Assembly.Load(Resources.Archipelago_MultiClient_Net);
+            else if (name == "Newtonsoft.Json")
+                return Assembly.Load(Resources.Newtonsoft_Json);
+            return null;
         }
 
         public override void Dispose()
@@ -53,6 +75,7 @@ namespace EnderLilies.Randomizer
         public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
             _gameInjector.Update();
+            _AP.Update(_gameInjector.IsInjected);
             if (_settings.UATServer)
             {
                 _tracker.Update();
@@ -61,6 +84,6 @@ namespace EnderLilies.Randomizer
             }
             else
                 _tracker.Stop();
-        }
+        } 
     }
 }

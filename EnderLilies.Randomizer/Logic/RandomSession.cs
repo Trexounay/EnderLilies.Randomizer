@@ -24,7 +24,7 @@ namespace EnderLilies.Randomizer
         string _seed_text = "";
         private void _settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (!_settings.Init || _settings.SeedText == _seed_text)
+            if (!_settings.Init || _settings.SeedText == _seed_text || !_settings.AP_CanConnect)
                 return;
             _seed_text = _settings.SeedText;
             Generate(_settings.Seed);
@@ -258,7 +258,7 @@ namespace EnderLilies.Randomizer
             return g;
         }
 
-        public void WriteFile(bool sort = false)
+        void WriteFile(bool sort = false)
         {
             string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? String.Empty;
             string path = Path.Combine(dir, "EnderLiliesSeed.txt");

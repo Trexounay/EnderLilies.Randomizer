@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.seedText = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -79,6 +79,9 @@
             this.checkBox52 = new System.Windows.Forms.CheckBox();
             this.checkBoxStartAll = new System.Windows.Forms.CheckBox();
             this.ItemsPage = new System.Windows.Forms.TabPage();
+            this.metaprogression = new System.Windows.Forms.CheckBox();
+            this.dashProgressive = new System.Windows.Forms.CheckBox();
+            this.shuffleSlots = new System.Windows.Forms.CheckBox();
             this.unusedRelics = new System.Windows.Forms.CheckBox();
             this.shuffleGroup = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -128,6 +131,15 @@
             this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArchipelagoPage = new System.Windows.Forms.TabPage();
+            this.ArchipelagoSettings = new System.Windows.Forms.GroupBox();
+            this.connectAP = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this._APSlotName = new System.Windows.Forms.TextBox();
+            this._APServerPassword = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this._APServerIP = new System.Windows.Forms.TextBox();
             this.skinLevelText = new System.Windows.Forms.Label();
             this.skinLevel = new System.Windows.Forms.TrackBar();
             this.launchButton = new System.Windows.Forms.Button();
@@ -135,9 +147,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.helpTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.shuffleSlots = new System.Windows.Forms.CheckBox();
-            this.dashProgressive = new System.Windows.Forms.CheckBox();
-            this.metaprogression = new System.Windows.Forms.CheckBox();
+            this.APconnectedInfo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -155,6 +165,8 @@
             this.startingSpiritsBox.SuspendLayout();
             this.LogicPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).BeginInit();
+            this.ArchipelagoPage.SuspendLayout();
+            this.ArchipelagoSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.componentSettingsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -215,6 +227,7 @@
             this.tabSettings.Controls.Add(this.ItemsPage);
             this.tabSettings.Controls.Add(this.SpiritsPage);
             this.tabSettings.Controls.Add(this.LogicPage);
+            this.tabSettings.Controls.Add(this.ArchipelagoPage);
             this.tabSettings.Location = new System.Drawing.Point(4, 45);
             this.tabSettings.Margin = new System.Windows.Forms.Padding(0);
             this.tabSettings.Name = "tabSettings";
@@ -473,7 +486,7 @@
             this.checkBox29.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.checkBox29.Size = new System.Drawing.Size(138, 17);
             this.checkBox29.TabIndex = 49;
-            this.checkBox29.Text = "Cahtedral Cloister";
+            this.checkBox29.Text = "Cathedral Cloister";
             this.checkBox29.UseVisualStyleBackColor = true;
             // 
             // checkBox30
@@ -790,6 +803,46 @@
             this.ItemsPage.TabIndex = 6;
             this.ItemsPage.Text = "Items";
             this.ItemsPage.UseVisualStyleBackColor = true;
+            // 
+            // metaprogression
+            // 
+            this.metaprogression.AutoSize = true;
+            this.metaprogression.Location = new System.Drawing.Point(49, 225);
+            this.metaprogression.Name = "metaprogression";
+            this.metaprogression.Size = new System.Drawing.Size(107, 17);
+            this.metaprogression.TabIndex = 32;
+            this.metaprogression.Text = "Meta progression";
+            this.helpTooltip.SetToolTip(this.metaprogression, "Items for progression will always be placed on newly accessible checks");
+            this.metaprogression.UseVisualStyleBackColor = true;
+            // 
+            // dashProgressive
+            // 
+            this.dashProgressive.AutoSize = true;
+            this.dashProgressive.Checked = true;
+            this.dashProgressive.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dashProgressive.Location = new System.Drawing.Point(49, 202);
+            this.dashProgressive.Name = "dashProgressive";
+            this.dashProgressive.Size = new System.Drawing.Size(193, 17);
+            this.dashProgressive.TabIndex = 31;
+            this.dashProgressive.Text = "Dash always before Piercing Lance";
+            this.helpTooltip.SetToolTip(this.dashProgressive, "You will find Julius Dash before (faster horizontal movement) before \r\nJulius\' Pi" +
+        "ercing Lance (breaking vertical walls).\r\nPiercing Lance doesn\'t do anything with" +
+        "out Dash.\r\n");
+            this.dashProgressive.UseVisualStyleBackColor = true;
+            // 
+            // shuffleSlots
+            // 
+            this.shuffleSlots.AutoSize = true;
+            this.shuffleSlots.Checked = true;
+            this.shuffleSlots.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.shuffleSlots.Location = new System.Drawing.Point(49, 179);
+            this.shuffleSlots.Name = "shuffleSlots";
+            this.shuffleSlots.Size = new System.Drawing.Size(109, 17);
+            this.shuffleSlots.TabIndex = 23;
+            this.shuffleSlots.Text = "Shuffle relics cost";
+            this.helpTooltip.SetToolTip(this.shuffleSlots, "Cost of equipping relics are shuffled\r\nThe game will still have the same number o" +
+        "f relic of each cost\r\n");
+            this.shuffleSlots.UseVisualStyleBackColor = true;
             // 
             // unusedRelics
             // 
@@ -1397,11 +1450,11 @@
             this.LogicPreviewGridview.AllowUserToAddRows = false;
             this.LogicPreviewGridview.AllowUserToDeleteRows = false;
             this.LogicPreviewGridview.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.LogicPreviewGridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.LogicPreviewGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LogicPreviewGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1441,6 +1494,96 @@
             this.ReachablesColumn.ReadOnly = true;
             this.ReachablesColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ReachablesColumn.Width = 5;
+            // 
+            // ArchipelagoPage
+            // 
+            this.ArchipelagoPage.Controls.Add(this.ArchipelagoSettings);
+            this.ArchipelagoPage.Location = new System.Drawing.Point(4, 22);
+            this.ArchipelagoPage.Name = "ArchipelagoPage";
+            this.ArchipelagoPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ArchipelagoPage.Size = new System.Drawing.Size(458, 444);
+            this.ArchipelagoPage.TabIndex = 8;
+            this.ArchipelagoPage.Text = "Archipelago";
+            this.ArchipelagoPage.UseVisualStyleBackColor = true;
+            // 
+            // ArchipelagoSettings
+            // 
+            this.ArchipelagoSettings.Controls.Add(this.APconnectedInfo);
+            this.ArchipelagoSettings.Controls.Add(this.connectAP);
+            this.ArchipelagoSettings.Controls.Add(this.label4);
+            this.ArchipelagoSettings.Controls.Add(this._APSlotName);
+            this.ArchipelagoSettings.Controls.Add(this._APServerPassword);
+            this.ArchipelagoSettings.Controls.Add(this.label3);
+            this.ArchipelagoSettings.Controls.Add(this.label2);
+            this.ArchipelagoSettings.Controls.Add(this._APServerIP);
+            this.ArchipelagoSettings.Location = new System.Drawing.Point(35, 25);
+            this.ArchipelagoSettings.Margin = new System.Windows.Forms.Padding(0);
+            this.ArchipelagoSettings.Name = "ArchipelagoSettings";
+            this.ArchipelagoSettings.Size = new System.Drawing.Size(384, 142);
+            this.ArchipelagoSettings.TabIndex = 0;
+            this.ArchipelagoSettings.TabStop = false;
+            this.ArchipelagoSettings.Text = "Session";
+            // 
+            // connectAP
+            // 
+            this.connectAP.Location = new System.Drawing.Point(152, 113);
+            this.connectAP.Name = "connectAP";
+            this.connectAP.Size = new System.Drawing.Size(75, 23);
+            this.connectAP.TabIndex = 6;
+            this.connectAP.Text = "Connect";
+            this.connectAP.UseVisualStyleBackColor = true;
+            this.connectAP.Click += new System.EventHandler(this.connectAP_Click);
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(12, 71);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 20);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Slot Name:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // _APSlotName
+            // 
+            this._APSlotName.Location = new System.Drawing.Point(118, 72);
+            this._APSlotName.Name = "_APSlotName";
+            this._APSlotName.Size = new System.Drawing.Size(150, 20);
+            this._APSlotName.TabIndex = 4;
+            this._APSlotName.Text = "playerA";
+            // 
+            // _APServerPassword
+            // 
+            this._APServerPassword.Location = new System.Drawing.Point(118, 46);
+            this._APServerPassword.Name = "_APServerPassword";
+            this._APServerPassword.PasswordChar = '*';
+            this._APServerPassword.Size = new System.Drawing.Size(150, 20);
+            this._APServerPassword.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(12, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 20);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Password:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(13, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Server:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // _APServerIP
+            // 
+            this._APServerIP.Location = new System.Drawing.Point(118, 19);
+            this._APServerIP.Name = "_APServerIP";
+            this._APServerIP.Size = new System.Drawing.Size(150, 20);
+            this._APServerIP.TabIndex = 0;
+            this._APServerIP.Text = "127.0.0.1";
             // 
             // skinLevelText
             // 
@@ -1495,45 +1638,16 @@
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
             // 
-            // shuffleSlots
+            // APconnectedInfo
             // 
-            this.shuffleSlots.AutoSize = true;
-            this.shuffleSlots.Checked = true;
-            this.shuffleSlots.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shuffleSlots.Location = new System.Drawing.Point(49, 179);
-            this.shuffleSlots.Name = "shuffleSlots";
-            this.shuffleSlots.Size = new System.Drawing.Size(109, 17);
-            this.shuffleSlots.TabIndex = 23;
-            this.shuffleSlots.Text = "Shuffle relics cost";
-            this.helpTooltip.SetToolTip(this.shuffleSlots, "Cost of equipping relics are shuffled\r\nThe game will still have the same number o" +
-        "f relic of each cost\r\n");
-            this.shuffleSlots.UseVisualStyleBackColor = true;
-            // 
-            // dashProgressive
-            // 
-            this.dashProgressive.AutoSize = true;
-            this.dashProgressive.Checked = true;
-            this.dashProgressive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dashProgressive.Location = new System.Drawing.Point(49, 202);
-            this.dashProgressive.Name = "dashProgressive";
-            this.dashProgressive.Size = new System.Drawing.Size(193, 17);
-            this.dashProgressive.TabIndex = 31;
-            this.dashProgressive.Text = "Dash always before Piercing Lance";
-            this.helpTooltip.SetToolTip(this.dashProgressive, "You will find Julius Dash before (faster horizontal movement) before \r\nJulius\' Pi" +
-        "ercing Lance (breaking vertical walls).\r\nPiercing Lance doesn\'t do anything with" +
-        "out Dash.\r\n");
-            this.dashProgressive.UseVisualStyleBackColor = true;
-            // 
-            // metaprogression
-            // 
-            this.metaprogression.AutoSize = true;
-            this.metaprogression.Location = new System.Drawing.Point(49, 225);
-            this.metaprogression.Name = "metaprogression";
-            this.metaprogression.Size = new System.Drawing.Size(107, 17);
-            this.metaprogression.TabIndex = 32;
-            this.metaprogression.Text = "Meta progression";
-            this.helpTooltip.SetToolTip(this.metaprogression, "Items for progression will always be placed on newly accessible checks");
-            this.metaprogression.UseVisualStyleBackColor = true;
+            this.APconnectedInfo.AutoSize = true;
+            this.APconnectedInfo.ForeColor = System.Drawing.Color.Green;
+            this.APconnectedInfo.Location = new System.Drawing.Point(274, 22);
+            this.APconnectedInfo.Name = "APconnectedInfo";
+            this.APconnectedInfo.Size = new System.Drawing.Size(62, 13);
+            this.APconnectedInfo.TabIndex = 7;
+            this.APconnectedInfo.Text = "Connected!";
+            this.APconnectedInfo.Visible = false;
             // 
             // ComponentSettings
             // 
@@ -1572,6 +1686,9 @@
             this.startingSpiritsBox.PerformLayout();
             this.LogicPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogicPreviewGridview)).EndInit();
+            this.ArchipelagoPage.ResumeLayout(false);
+            this.ArchipelagoSettings.ResumeLayout(false);
+            this.ArchipelagoSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinLevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.componentSettingsBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -1688,5 +1805,15 @@
         private System.Windows.Forms.CheckBox metaprogression;
         private System.Windows.Forms.CheckBox dashProgressive;
         private System.Windows.Forms.CheckBox shuffleSlots;
+        private System.Windows.Forms.TabPage ArchipelagoPage;
+        private System.Windows.Forms.GroupBox ArchipelagoSettings;
+        private System.Windows.Forms.TextBox _APServerPassword;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox _APServerIP;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox _APSlotName;
+        private System.Windows.Forms.Button connectAP;
+        private System.Windows.Forms.Label APconnectedInfo;
     }
 }

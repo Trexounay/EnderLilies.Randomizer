@@ -1,8 +1,8 @@
 ﻿// Name: enderlilies, Version: 1.1.3
 
 #include "pch.h"
-
 #include "../SDK.h"
+#include "../UnrealFunctions.hpp"
 #include <iostream>
 #include <sstream>
 
@@ -18,8 +18,6 @@
 
 namespace CG
 {
-
-
 GNAME_TYPE* FName::GNames = nullptr;
 TUObjectArray* UObject::GObjects = nullptr;
 UWorld** UWorld::GWorld = nullptr;
@@ -34,12 +32,19 @@ bool InitSdk(const std::string& moduleName, const uintptr_t gObjectsOffset, cons
 
 	if (mBaseAddress == 0x00)
 		return false;
-	
+
+	// FNAME::TOSTRING 0x0000000000EEAE00
+	// FNAME::CONSTRUCTOR 0x00000000010D9FC0
+	// FNAME::FNAME 0x0000000000EDD150
+	// GUOBJECT ARRAY 0x000000000451C058
+
 	UObject::GObjects = reinterpret_cast<CG::TUObjectArray*>(mBaseAddress + gObjectsOffset);
 	FName::GNames = reinterpret_cast<CG::GNAME_TYPE*>(mBaseAddress + gNamesOffset);
 	UWorld::GWorld = reinterpret_cast<CG::UWorld**>(mBaseAddress + gWorldOffset);
+	RC::Function<CG::FName(const wchar_t*, Unreal::EFindName)> toto;
 
-	std::cout << FName::GNames->Num() << std::endl;
+	Unreal::FName::ConstructorInternal.assign_address((void*)(mBaseAddress + 0xEDD150));
+	Unreal::FName::ToStringInternal.assign_address((void*)(mBaseAddress + 0xEEAE00));
 
 	return true;
 }

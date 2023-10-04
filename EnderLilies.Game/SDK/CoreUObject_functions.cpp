@@ -18,6 +18,7 @@ namespace CG
 // Functions
 //---------------------------------------------------------------------------
 
+std::unordered_map<std::string, CG::UFunction*>	UObject::_bp_funcs;
 std::string UObject::GetName() const
 {
 	std::string name(Name.GetName());

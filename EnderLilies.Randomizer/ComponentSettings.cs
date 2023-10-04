@@ -25,19 +25,55 @@ namespace EnderLilies.Randomizer
         public string CheckFileResult { get; set; }
         public DataTable Preview { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        public event PropertyChangedEventHandler PropertyChangedEnded = delegate { };
+        public event Action APConnectionRequested;
+
         string _exePath;
         public string ExePath
         {
-            get
-            {
-                return _exePath;
-            }
+            get => _exePath;
             set
             {
                 _exePath = value;
                 HasExePath = true;
             }
         }
+
+        bool _ap_is_connecting;
+        public bool AP_IsConnecting
+        {
+            get => _ap_is_connecting;
+            set
+            {
+                if (_ap_is_connecting != value)
+                {
+                    _ap_is_connecting = value;
+                    NotifyPropertyChanged("AP_IsConnecting");
+                }
+            }
+        }
+
+        bool _ap_is_connected;
+        public bool AP_IsConnected {
+            get => _ap_is_connected;
+            set
+            {
+                connectAP.Text = value ? "Disconnect" : "Connect";
+                APconnectedInfo.Visible = value;
+                if (_ap_is_connected != value)
+                {
+                    _ap_is_connected = value;
+                    NotifyPropertyChanged("AP_IsConnected");
+                }
+            }
+        }
+
+        public bool AP_CanConnect => !AP_IsConnected && !AP_IsConnecting;
+
+        public string APServer { get; set; }
+        public string APPassword => _APServerPassword.Text;
+        public string APSlotName { get; set; }
 
         const string disabledTooltip = "Ender Lilies's installation folder has not been detected yet.\nPlease manually launch the game once and save your LiveSplit Layout to enable this feature.";
         const string enabledTooltip = "Launch the Game";
@@ -712,6 +748,12 @@ namespace EnderLilies.Randomizer
             this.startChapter.DataBindings.Add("Value", this, "StartChapter", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             this.maxChapter.DataBindings.Add("Value", this, "MaxChapter", false, DataSourceUpdateMode.OnPropertyChanged, 9);
 
+            this._APServerIP.DataBindings.Add("Enabled", this, "AP_CanConnect", false, DataSourceUpdateMode.OnPropertyChanged, true);
+            this._APServerPassword.DataBindings.Add("Enabled", this, "AP_CanConnect", false, DataSourceUpdateMode.OnPropertyChanged, true);
+            this._APSlotName.DataBindings.Add("Enabled", this, "AP_CanConnect", false, DataSourceUpdateMode.OnPropertyChanged, true);
+
+            this._APServerIP.DataBindings.Add("Text", this, "APServer", false, DataSourceUpdateMode.OnPropertyChanged, "127.0.0.1");
+            this._APSlotName.DataBindings.Add("Text", this, "APSlotName", false, DataSourceUpdateMode.OnPropertyChanged, "Lily");
 
             for (int i = 0; i < startingSpiritsBox.Controls.Count; ++i)
             {
@@ -753,8 +795,6 @@ namespace EnderLilies.Randomizer
             this.Preview = new DataTable();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public event PropertyChangedEventHandler PropertyChangedEnded = delegate { };
 
         public bool Init = false;
         public void SetSettings(XmlNode node)
@@ -789,6 +829,9 @@ namespace EnderLilies.Randomizer
             DashProgressive = SettingsHelper.ParseBool(element["DashProgressive"], true);
             StartWeaponUsesAncientSouls = SettingsHelper.ParseBool(element["StartWeaponUsesAncientSouls"], true);
             ShuffleWeaponUpgrades = SettingsHelper.ParseBool(element["ShuffleWeaponUpgrades"], false);
+            APSlotName = SettingsHelper.ParseString(element["APSlotName"], "Lily");
+            APServer = SettingsHelper.ParseString(element["APServer"], "127.0.0.1");
+
             Init = true;
             NotifyPropertyChanged();
         }
@@ -824,6 +867,8 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "DashProgressive", DashProgressive));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "StartWeaponUsesAncientSouls", StartWeaponUsesAncientSouls));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "ShuffleWeaponUpgrades", ShuffleWeaponUpgrades));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "APSlotName", APSlotName));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "APServer", APServer));
             return settings_node;
         }
 
@@ -1080,6 +1125,11 @@ namespace EnderLilies.Randomizer
                 this.StartingRooms = (1 << startingRoomsBox.Controls.Count) - 1;
             else
                 this.StartingRooms = 0;
+        }
+
+        private void connectAP_Click(object sender, EventArgs e)
+        {
+            APConnectionRequested?.Invoke();
         }
     }
 }

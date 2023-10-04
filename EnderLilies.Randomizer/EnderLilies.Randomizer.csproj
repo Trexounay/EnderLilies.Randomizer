@@ -39,6 +39,11 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Archipelago.MultiClient.Net, Version=5.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Archipelago.MultiClient.Net.5.0.6\lib\net45\Archipelago.MultiClient.Net.dll</HintPath>
+      <Private>False</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="LiveSplit.Core">
       <HintPath>bin\LiveSplit.Core.dll</HintPath>
     </Reference>
@@ -91,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Game\GameTracker.cs" />
     <Compile Include="Game\GameInjector.cs" />
+    <Compile Include="Logic\ArchipelagoSession.cs" />
     <Compile Include="Logic\LogicParser.cs" />
     <Compile Include="Logic\RandomSession.cs" />
     <Compile Include="Tools\Expressions.cs" />
@@ -206,6 +212,12 @@
     </None>
     <None Include="packages.config" />
     <None Include="Resources\600px-Refresh_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Archipelago.MultiClient.Net.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Newtonsoft.Json.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

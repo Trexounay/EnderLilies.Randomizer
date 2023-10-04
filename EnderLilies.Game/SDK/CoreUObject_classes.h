@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <map>
 
 // Name: enderlilies, Version: 1.1.3
 
@@ -15,9 +16,13 @@
 
 namespace CG
 {
+	class UClass;
+	class UFunction;
 //---------------------------------------------------------------------------
 // Classes
 //---------------------------------------------------------------------------
+
+
 
 // Class CoreUObject.Object
 // 0x0028
@@ -30,8 +35,26 @@ public:
 	int32_t                                            InternalIndex;                                             // 0x000C(0x0004) NOT AUTO-GENERATED PROPERTY
 	class UClass*                                      Class;                                                     // 0x0010(0x0008) NOT AUTO-GENERATED PROPERTY
 	FName                                              Name;                                                      // 0x0018(0x0008) NOT AUTO-GENERATED PROPERTY
-	class UObject*                                     Outer;                                                     // 0x0020(0x0008) NOT AUTO-GENERATED PROPERTY
+	class UObject*                                     Outer;                                           // 0x0020(0x0008) NOT AUTO-GENERATED PROPERTY
 
+
+	//static std::unordered_map<std::string, CG::UClass*>	_bp_classes;
+	static std::unordered_map<std::string, CG::UFunction*>	_bp_funcs;
+
+	static CG::UFunction* FindFunction(const std::string& name)
+	{
+		return _bp_funcs[name];
+	}
+
+	static void ClearFunctions()
+	{
+		_bp_funcs.clear();
+	}
+
+	static void CacheFunction(const std::string& name, CG::UFunction* fn)
+	{
+		_bp_funcs[name] = fn;
+	}
 
 	static inline TUObjectArray& GetGlobalObjects()
 	{

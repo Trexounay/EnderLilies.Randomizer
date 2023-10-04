@@ -55,11 +55,14 @@ namespace EnderLilies.Randomizer.Logic
             foreach (var a in data.items_alias)
                 graph.aliases.Add(a.Key, a.Value);
             foreach (var a in data.nodes_alias)
-                graph.aliases.Add(a.Key, a.Value);
-            foreach (var a in data.tags)
             {
                 graph.aliases.Add(a.Key, a.Value);
-                graph.tags[a.Key] = graph.AddNode(a.Value);
+                graph.AddNode(a.Key);
+            }
+            foreach (var a in data.tags)
+            {
+                graph.tags[graph.AddNode(a.Key)] = graph.AddNode(a.Value);
+                //graph.tags[graph.AddNode(a.Value)] = graph.AddNode(a.Key);
             }
             graph.extra_items = data.extra_items;
             graph.AddNodes(data.nodes.Keys);
@@ -78,12 +81,6 @@ namespace EnderLilies.Randomizer.Logic
                     string[] and_parts = or_part.Split(new char[] { '+' }, StringSplitOptions.RemoveEmptyEntries); //.Select<string, string>((s) => s.Trim()).Select<string, string>((s) => s.Trim()).ToArray();
                     graph.AddRule(room.Key, and_parts);
                 }
-                /*
-                if (data.tags.ContainsKey(room.Value.content))
-                {
-                    var loc = data.tags[room.Value.content];
-                    graph.AddRule(loc, room.Key);
-                }*/
             }
             return graph;
         }

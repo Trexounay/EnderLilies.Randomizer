@@ -10,7 +10,10 @@
 #include "SDK.h"
 #include "lib/detours.h"
 #include "Randomizer.h"
+#include "UnrealFunctions.hpp"
 
+ 
+void load_original_dll();
 
 template<class T>
 T DoDetourFunction(const char* str, PVOID target);
@@ -26,6 +29,7 @@ __declspec(noinline) int  AddDifficultyHook(CG::AGameModeZenithBase* obj, void *
 {
 	return addDifficulty(obj, param);
 }
+
 
 class ProcessEventCache
 {
@@ -57,6 +61,73 @@ public:
 };
 
 
+struct FFrame
+{
+public:
+	unsigned char buffer[0x10];
+	// Variables.
+	CG::UFunction* Node;
+	CG::UObject* Object;
+	unsigned char* Code;
+	unsigned char* Locals;
+
+	CG::FProperty* MostRecentProperty;
+	unsigned char* MostRecentPropertyAddress;
+
+	/** The execution flow stack for compiled Kismet code */
+	void* FlowStack;
+
+	/** Previous frame on the stack */
+	FFrame* PreviousFrame;
+
+	/** contains information on any out parameters */
+	void* OutParms;
+
+	/** If a class is compiled in then this is set to the property chain for compiled-in functions. In that case, we follow the links to setup the args instead of executing by code. */
+	CG::FField* PropertyChainForCompiledIn;
+
+	/** Currently executed native function */
+	CG::UFunction* CurrentNativeFunction;
+
+	bool bArrayContextFailed;
+};
+
+typedef void (*UFuntionPtr)(CG::UObject*, FFrame*, void*);
+std::unordered_map<PVOID, UFuntionPtr> _detours;
+
+__declspec(noinline) void  ClearableComponent_MarkCleared_Hook(CG::UObject* Context, FFrame* TheStack, void* ret_value)
+{
+	std::cout << "<<<<<<<<<<" << Context->Name.GetAnsiName() << std::endl;
+	_detours[ClearableComponent_MarkCleared_Hook](Context, TheStack, ret_value);
+}
+
+__declspec(noinline) void  EnemySpawnPoint_OnClearedStatusChecked_Hook(CG::UObject* Context, FFrame* TheStack, void* ret_value)
+{
+	CG::AEnemySpawnPoint* spawn = (CG::AEnemySpawnPoint*)Context;
+	std::cout << "<<<<<<<<<<" << spawn->Name.GetAnsiName() << " -> " << spawn->ClearableComponent->bCleared << std::endl;
+	_detours[EnemySpawnPoint_OnClearedStatusChecked_Hook](Context, TheStack, ret_value);
+}
+
+__declspec(noinline) void Interactable_OnClearedStatusChecked_Hook(CG::UObject* Context, FFrame* TheStack, void* ret_value)
+{
+	CG::AInteractable* spawn = (CG::AInteractable*)Context;
+	std::cout << "<<<<<<<<<<" << spawn->Name.GetAnsiName() << " -> " << spawn->ClearableComponent->bCleared << std::endl;
+	_detours[Interactable_OnClearedStatusChecked_Hook](Context, TheStack, ret_value);
+}
+
+__declspec(noinline) void Generic(CG::UObject* Context, FFrame* TheStack, void* ret_value)
+{
+	std::cout << "<<<<<<<<<<" << Context->Name.GetAnsiName() << std::endl;
+	_detours[Generic](Context, TheStack, ret_value);
+}
+
+__declspec(noinline) void UActorComponent_ReceiveTick(CG::UObject* Context, FFrame* TheStack, void* ret_value)
+{
+	std::cout << "<<<<<<<<<<" << Context->Name.GetAnsiName() << std::endl;
+	_detours[UActorComponent_ReceiveTick](Context, TheStack, ret_value);
+}
+
+
 typedef void (*ProcessEventPtr)(CG::UObject*, CG::UFunction*, void*);
 static ProcessEventPtr processEvent;
 __declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn, void* parms)
@@ -74,7 +145,6 @@ __declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn,
 	processEvent(obj, fn, parms);
 }
 
-
 template<class T>
 T DoDetourFunction(const char *str, PVOID target)
 {
@@ -83,13 +153,22 @@ T DoDetourFunction(const char *str, PVOID target)
 	CG::UFunction* fn = CG::UObject::FindObject<CG::UFunction>(str);
 	if (fn == nullptr)
 		return nullptr;
+
 	T og = reinterpret_cast<T>(fn->Func);
+	_detours[target] = og;
+
+	// easy version
+	fn->Func = target;
+
+	return og;
+
+	// detour function
 	DetourRestoreAfterWith();
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 	DetourAttach(&(PVOID&)og, target);
 	LONG error = DetourTransactionCommit();
-
+	
 	if (error == NO_ERROR) {
 		std::cout << "No error detouring " << str << std::endl;
 		return og;
@@ -98,6 +177,7 @@ T DoDetourFunction(const char *str, PVOID target)
 		std::cout << " Error detouring " << error << std::endl;
 		return nullptr;
 	}
+	return og;
 }
 
 bool DoDetour()
@@ -110,8 +190,8 @@ bool DoDetour()
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 	DetourAttach(&(PVOID&)processEvent, ProcessEventHook);
-	LONG error = DetourTransactionCommit();
 
+	LONG error = DetourTransactionCommit();
 	if (error == NO_ERROR) {
 		std::cout << "No error detouring " << std::endl;
 		return true;
@@ -137,8 +217,11 @@ DWORD APIENTRY HackMain(HMODULE hModule)
 
 	CG::InitSdk116();
 
+	//std::cout << " -> " << Unreal::FName::ConstructorInternal.get_function_address() << std::endl;
+
 	char  dllName[MAX_PATH];
 	GetModuleFileNameA(hModule, dllName, MAX_PATH); 
+	std::cout << dllName << std::endl;
 	std::string path(dllName);
 	path = path.substr(0, path.find_last_of("\\/"));
 	rando = new Randomizer(path);
@@ -162,7 +245,7 @@ void CleanUp()
 
 namespace
 {
-	HMODULE xinput;
+	HMODULE xinput = 0;
 }
 
 BOOL DllMain(HMODULE hModule,
@@ -177,12 +260,11 @@ BOOL DllMain(HMODULE hModule,
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
+		char  dllName[MAX_PATH];
+		GetModuleFileNameA(hModule, dllName, MAX_PATH);
+		if (strstr(dllName, "xinput") != nullptr || strstr(dllName, "XINPUT") != nullptr)
+			load_original_dll();
 		second = new std::thread(HackMain, hModule);
-		/*
-		xinput = LoadLibrary(L"C:\\Windows\\System32\\xinput1_3-orig.dll");
-		if (xinput == 0)
-			xinput = LoadLibrary(L"C:\\Windows\\System32\\xinput1_3.dll");
-			*/
 		break;
 	case DLL_THREAD_ATTACH:
 		break;
@@ -273,4 +355,31 @@ DWORD WINAPI XInputOrd103(DWORD dwUserIndex)
 {
 	static DWORD(WINAPI * orig)(DWORD dwUserIndex);
 	return set_call(orig, 103)(dwUserIndex);
+}
+
+//Loads the original DLL from the default system directory
+//Function originally written by Michael Koch
+void load_original_dll() {
+	char buffer[MAX_PATH];
+
+	// Get path to system dir and to xinput1_3.dll
+	GetSystemDirectoryA(buffer, MAX_PATH);
+	// Append DLL name
+	strcat_s(buffer, "\\xinput1_3.dll");
+
+	// Try to load the system's xinput1_3.dll, if pointer empty
+	if (!xinput) {
+		xinput = LoadLibraryA(buffer);
+	}
+	if (!xinput) {
+		GetSystemDirectoryA(buffer, MAX_PATH);
+		strcat_s(buffer, "\\xinput1_3-orig.dll");
+		xinput = LoadLibraryA(buffer);
+	}
+
+	// Debug
+	if (!xinput) {
+		OutputDebugStringA("PROXYDLL: Original xinput1_3.dll not loaded ERROR ****\r\n");
+		ExitProcess(0); // Exit the hard way
+	}
 }

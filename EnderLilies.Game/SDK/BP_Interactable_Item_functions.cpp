@@ -67,7 +67,7 @@ void ABP_Interactable_Item_C::ConfigureEventPlayer(class UEventPlayer* EventPlay
 //		struct FText                                       ReturnValue                                                (Parm, OutParm, ReturnParm)
 struct FText ABP_Interactable_Item_C::GetInteractionText()
 {
-	static UFunction* fn = UObject::FindObject<UFunction>("Function BP_Interactable_Item.BP_Interactable_Item_C.GetInteractionText");
+	UFunction* fn = UObject::FindObject<UFunction>("Function BP_Interactable_Item.BP_Interactable_Item_C.GetInteractionText");
 
 	ABP_Interactable_Item_C_GetInteractionText_Params params;
 
