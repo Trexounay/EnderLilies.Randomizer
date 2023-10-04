@@ -26,25 +26,25 @@ int SharedMemory::_Write(const std::string message)
         NULL,                    // default security
         PAGE_READWRITE,          // read/write access
         0,                       // maximum object size (high-order DWORD)
-        size,                    // maximum object size (low-order DWORD)
+        16384,                    // maximum object size (low-order DWORD)
         name);                   // name of mapping object
 
     if (hMapFile == NULL)
     {
-        DWORD err = GetLastError();
+        err = GetLastError();
         _tprintf(TEXT("W Could not create file mapping object (%d).\n"), err);
     }
     else
     {
         LPCTSTR pBuf = (LPTSTR)MapViewOfFile(hMapFile,   // handle to map object
-            FILE_MAP_ALL_ACCESS,                          // read/write permission
+            FILE_MAP_WRITE,                          // read/write permission
             0,
             0,
-            size);
+            0);
 
         if (pBuf == NULL)
         {
-            DWORD err = GetLastError();
+            err = GetLastError();
             _tprintf(TEXT("W Could not map view of file (%d).\n"), err);
             CloseHandle(hMapFile);
         }

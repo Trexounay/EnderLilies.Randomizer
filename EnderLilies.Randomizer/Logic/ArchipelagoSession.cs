@@ -81,7 +81,7 @@ namespace EnderLilies.Randomizer
             {
                 Session = ArchipelagoSessionFactory.CreateSession(_settings.APServer);
                 Session.Items.ItemReceived += Items_ItemReceived;
-                result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.RemoteItems, password: _settings.APPassword);
+                result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.IncludeOwnItems, password: _settings.APPassword);
             }
             catch (Exception e)
             {
@@ -169,13 +169,14 @@ namespace EnderLilies.Randomizer
                 return;
             try
             {
-                mmf = MemoryMappedFile.CreateOrOpen(__SHARED_SERVER_MEMORY_FILE, str.Length);
+                var bytes = System.Text.Encoding.ASCII.GetBytes(str);
+                mmf = MemoryMappedFile.CreateOrOpen(__SHARED_SERVER_MEMORY_FILE, 8192);
                 {
                     using (var stream = mmf.CreateViewStream())
                     {
                         using (BinaryWriter binWriter = new BinaryWriter(stream))
                         {
-                            binWriter.Write(System.Text.Encoding.ASCII.GetBytes(str));
+                            binWriter.Write(bytes);
                         }
                     }
                 }
