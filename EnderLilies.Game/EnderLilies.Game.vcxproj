@@ -218,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="SDK\WBP_TipNotification_functions.cpp" />
     <ClCompile Include="SharedMemory.cpp" />
     <ClCompile Include="UnrealFunctions.cpp" />
     <ClCompile Include="xinput.cpp" />

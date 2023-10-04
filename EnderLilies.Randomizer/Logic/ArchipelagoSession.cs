@@ -81,7 +81,7 @@ namespace EnderLilies.Randomizer
             {
                 Session = ArchipelagoSessionFactory.CreateSession(_settings.APServer);
                 Session.Items.ItemReceived += Items_ItemReceived;
-                result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.IncludeOwnItems, password: _settings.APPassword);
+                result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.RemoteItems, password: _settings.APPassword);
             }
             catch (Exception e)
             {

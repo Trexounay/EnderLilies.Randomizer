@@ -157,6 +157,9 @@
     <ClCompile Include="SharedMemory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\WBP_TipNotification_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EnderLilies.Game.rc" />
