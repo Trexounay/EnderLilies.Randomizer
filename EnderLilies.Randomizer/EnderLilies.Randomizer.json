@@ -1077,11 +1077,11 @@
     },
     "Abyss_01_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_abyss_02.1",
-      "rules": "Abyss01Bottom | Abyss01Top + CHARGE + slam + LEDGE + claw + (dash | HORIZONTAL) + (hook | FULLSILVA) + swim"
+      "rules": "Abyss01Bottom | Abyss01Top + CHARGE + slam + swim + (2HORIZONTAL + LEDGE | FULLSILVA | 3LEDGE | silva + (dodge | djump) | champion + djump | claw + HORIZONTAL + LEDGE) + (hook | FULLSILVA | 3LEDGE | 2HORIZONTAL + LEDGE)"
     },
     "Abyss_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
-      "rules": "Abyss02Top + (claw + 2LEDGE | LEDGE + HORIZONTAL)"
+      "rules": "Abyss02Top + claw + (2LEDGE | 2LEDGE + HORIZONTAL | 2HORIZONTAL + LEDGE | dodge + dash + LEDGE)"
     },
     "Abyss_02_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_067",
@@ -1169,7 +1169,7 @@
     },
     "Castle_01_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_castle_02.1",
-      "rules": "Castle01Right2 | Dog + (LEDGE | HORIZONTAL | claw)"
+      "rules": "Castle01Right2"
     },
     "Castle_01_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_castle_02.1B",
@@ -1217,11 +1217,11 @@
     },
     "Castle_03_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_castle_11.3A",
-      "rules": "Castle03Top1"
+      "rules": "Castle03Top1 + claw"
     },
     "Castle_03_GAMEPLAY.BP_WorldTravelVolume6": {
       "content": "Map.map_castle_11.3B",
-      "rules": "Castle03Top2"
+      "rules": "Castle03Top2 + claw"
     },
     "Castle_04_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_035",
@@ -1361,7 +1361,7 @@
     },
     "Castle_12_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2": {
       "content": "Generic.i_PassiveSlot_Up",
-      "rules": "Castle12Bottom+ hook"
+      "rules": "Castle12Bottom + (hook | (3LEDGE + claw + dodge))"
     },
     "Castle_12_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_042",
@@ -1489,7 +1489,7 @@
     },
     "Castle_16_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_15.16",
-      "rules": "Castle16Right | Aegis + (silva + djump | djump + champion | claw)"
+      "rules": "Castle16Right | Aegis + (2LEDGE | claw)"
     },
     "Castle_17_GAMEPLAY.BP_SCR_LV1M_2000_3": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
@@ -1525,7 +1525,7 @@
     },
     "Castle_18_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_17.18",
-      "rules": "Castle18Right + (claw | hook + LEDGE) | Castle18Top"
+      "rules": "Castle18Bottom | Castle18Right + (claw | hook + LEDGE) | Castle18Top"
     },
     "Castle_19_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_062",
@@ -1681,11 +1681,11 @@
     },
     "Cave_07_GAMEPLAY.BP_SCR_LV1M_2161_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
-      "rules": "Spider + claw + hook + (FULLSILVA | 3LEDGE)"
+      "rules": "Spider + swim"
     },
     "Cave_07_GAMEPLAY.BP_WorldTravelVolume2_1": {
       "content": "Map.map_cave_02.7",
-      "rules": "Spider"
+      "rules": "Spider + claw + hook + (FULLSILVA | 3LEDGE)"
     },
     "Cave_07_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_03.7",
@@ -1773,7 +1773,7 @@
     },
     "Cave_11_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_13.11",
-      "rules": "Cave11Tip  + claw"
+      "rules": "Cave11Tip + claw"
     },
     "Cave_11_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_18.11",
@@ -2046,7 +2046,7 @@
     },
     "Church_06_GAMEPLAY.BP_WorldTravelVolume": {
       "content": "Map.map_church_04.1",
-      "rules": "Church06Left | Church06Right + (LEDGE | claw)"
+      "rules": "Church06Left | Church06Right"
     },
     "Church_06_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_church_07.0",
@@ -2094,7 +2094,7 @@
     },
     "Church_09_GAMEPLAY.BP_Interactable_Passive_JumpHeightUp_2": {
       "content": "Passive.i_passive_jump_height_up",
-      "rules": "Church09Bottom + claw + CHARGE"
+      "rules": "Church09Bottom + CHARGE + (LEDGE + claw | 3LEDGE)"
     },
     "Church_09_GAMEPLAY.BP_SCR_LV2M_2001_2": {
       "content": "Generic.i_SpiritCurrencyLv2_M",
@@ -2418,7 +2418,7 @@
     },
     "Forest_13_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_forest_14.13",
-      "rules": "Forest13Bottom | Forest13Top"
+      "rules": "Forest13Bottom | Forest13Top + LEDGE"
     },
     "Forest_13_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_forest_16.13",
@@ -2538,7 +2538,7 @@
     },
     "Fort_03_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_fort_05.3",
-      "rules": "BastionGates + (LEDGE + claw)"
+      "rules": "BastionGates + claw"
     },
     "Fort_04_GAMEPLAY.BP_SCR_LV1L_2230_8": {
       "content": "Generic.i_SpiritCurrencyLv1_L",
@@ -2686,7 +2686,7 @@
     },
     "Fort_11_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_fort_07.11",
-      "rules": "Fort11Bottom | Fort11Left | Fort11Top1 | Fort11Top2 | Fort11Top2"
+      "rules": "Fort11Bottom | Fort11Left | Fort11Top1 | Fort11Top2"
     },
     "Fort_11_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_fort_12.11",
@@ -2983,7 +2983,7 @@
     },
     "Oubliette_04_GAMEPLAY.BP_WorldTravelVolume16": {
       "content": "Map.map_oubliette_02.4",
-      "rules": "Oubliette04Right | Oubliette04Left"
+      "rules": "Oubliette04Right + (claw | hook | LEDGE) | Oubliette04Left"
     },
     "Oubliette_05_1_GAMEPLAY.BP_Interactable_WorldTravel13": {
       "content": "Map.map_oubliette_05.5_1",
@@ -3051,7 +3051,7 @@
     },
     "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume16": {
       "content": "Map.map_oubliette_06.5",
-      "rules": "Oubliette05Right"
+      "rules": "Oubliette05Right | Oubliette05Top4 + slam"
     },
     "Oubliette_05_GAMEPLAY.BP_WorldTravelVolume17": {
       "content": "Map.map_oubliette_03.5",
@@ -3359,7 +3359,7 @@
     },
     "Outside_01_GAMEPLAY.BP_WorldTravelVolume3_8": {
       "content": "Map.map_outside_03.1",
-      "rules": "Outside01Left1 | Outside01Right + claw + silva + djump"
+      "rules": "Outside01Left1 | Outside01Right + claw + (djump | champion | 2LEDGE)"
     },
     "Outside_01_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_oubliette_16.O1",
@@ -3599,7 +3599,7 @@
     },
     "Swamp_13_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_09.13",
-      "rules": "Swamp13Top1"
+      "rules": "Swamp13Top1 | Swamp13Bottom + claw + 3LEDGE"
     },
     "Swamp_13_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_09.13B",
@@ -3619,7 +3619,7 @@
     },
     "Swamp_14_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_13.14",
-      "rules": "Swamp14Top"
+      "rules": "Swamp14Top | Swamp14Bottom + claw + 3LEDGE"
     },
     "Swamp_14_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_swamp_11.14",
@@ -3639,7 +3639,7 @@
     },
     "Swamp_15_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_swamp_11.15",
-      "rules": "Swamp15Top | Swamp15Right + LEDGE"
+      "rules": "Swamp15Top | Swamp15Right + (champion | djump | silva + dodge)"
     },
     "Swamp_15_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_08.15",
@@ -3683,7 +3683,7 @@
     },
     "Swamp_18_GAMEPLAY.BP_SCR_LV1LL_miliel_2": {
       "content": "Generic.i_SpiritCurrencyLv1_LL",
-      "rules": "Faden + (claw + (LEDGE + 2HORIZONTAL) | (2LEDGE + dodge))"
+      "rules": "Faden + claw + (3LEDGE | sinner + 2LEDGE | FULLSILVA | dodge + silva + champion | 2HORIZONTAL + champion + djump)"
     },
     "Swamp_18_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_abyss_01.S18",
@@ -3767,7 +3767,7 @@
     },
     "Village_03_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
-      "rules": "slam + (Village03Right + (LEDGE | HORIZONTAL | hook | dash) | Village03Bottom1 + (LEDGE | claw))"
+      "rules": "slam + (Village03Right + (LEDGE | HORIZONTAL) | Village03Bottom1 + (LEDGE | claw))"
     },
     "Village_03_GAMEPLAY.BP_Interactable_Passives_Treasure_2": {
       "content": "Passive.i_passive_dmgcut_LV1",
@@ -4085,6 +4085,6 @@
       "content": "Map.map_village_12.16",
       "rules": "Village16Right"
     },
-    "starting_weapon": { "content": "umbral" }
+    "starting_weapon": { "content": "Spirit.s5000" }
   }
 }

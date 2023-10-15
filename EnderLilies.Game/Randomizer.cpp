@@ -66,7 +66,6 @@ void Randomizer::FindNames()
 	}
 }
 
-
 const CG::FGuid MainLevel = { 1674253860, 1178503981, -1366124878, -652381037 };
 bool Randomizer::IsReady()
 {
@@ -191,7 +190,6 @@ void Randomizer::NewGame()
 	ReadSeedFile(_path + "/EnderLiliesSeed.txt");
 	ModifySpirits();
 	FindNames();
-	RemoveHasItemCheck();
 	std::cout << _seed << std::endl;
 
 	if (_starting_room > 0)
@@ -205,6 +203,8 @@ void Randomizer::NewGame()
 
 	_completedChecks.clear();
 	_receivedItems.clear();
+	_game_memory->Clear();
+	_remote_memory->Clear();
 	data_to_send = "\n";
 	SendData();
 }
@@ -857,20 +857,6 @@ bool Randomizer::FindTableRow(const std::string& item, FTableRowProxy& result)
 	return false;
 }
 
-
-
-void Randomizer::RemoveHasItemCheck()
-{
-	CG::UFunction* fn = CG::UObject::FindObject<CG::UFunction>("Function Zenith.InventoryComponent.HasItem");
-	DWORD_PTR ptr = (DWORD_PTR)(fn->Func);
-	void* src = (void*)(ptr + 0x88);
-	DWORD curProtection;
-	VirtualProtect(src, 5, PAGE_EXECUTE_READWRITE, &curProtection);
-	memset(src, 0x90, 5);
-	DWORD temp;
-	VirtualProtect(src, 5, curProtection, &temp);
-}
-
 void Randomizer::ModifySpirits()
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
@@ -1108,7 +1094,7 @@ void Randomizer::UpdateChecks()
 
 void Randomizer::UpdateItems()
 {
-	std::string str;
+	char* str;
 	if (!_remote_memory->Read(str))
 	{
 		std::stringstream ss(str);
@@ -1116,12 +1102,39 @@ void Randomizer::UpdateItems()
 		int i = 0;
 		while (std::getline(ss, item))
 		{
-			i++;
-			if (_receivedItems.size() < i)
+			if (i >= _receivedItems.size())
 			{
 				_receivedItems.push_back(item);
-				AddItem(item);
+				if (i >= _remote_memory->GetHeader())
+					AddItem(item);
 			}
+			i++;
 		}
 	}
+}
+
+void Randomizer::OnSave()
+{
+	_remote_memory->SetHeader(_receivedItems.size());
+}
+
+void Randomizer::OnEndingReached()
+{
+	//CG::UGameInstanceZenithBase* GameInstance = (CG::UGameInstanceZenithBase*)(World()->OwningGameInstance);
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+
+	const char* endings[3] = {
+		"Ending_A\n",
+		"Ending_B\n",
+		"Ending_C\n"
+	};
+
+	int ending = 0;
+	if (gm->DidReachGameEnding(CG::Zenith_EGameEndingType::EGameEndingType__EndingC, false))
+		ending = 2;
+	else if (gm->DidReachGameEnding(CG::Zenith_EGameEndingType::EGameEndingType__EndingB, false))
+		ending = 1;
+
+	data_to_send += endings[ending];
+	SendData();
 }

@@ -93,27 +93,10 @@ public:
 };
 
 typedef void (*UFuntionPtr)(CG::UObject*, FFrame*, void*);
+typedef void (*ProcessEventPtr)(CG::UObject*, CG::UFunction*, void*);
+
 std::unordered_map<PVOID, UFuntionPtr> _detours;
-
-__declspec(noinline) void  ClearableComponent_MarkCleared_Hook(CG::UObject* Context, FFrame* TheStack, void* ret_value)
-{
-	std::cout << "<<<<<<<<<<" << Context->Name.GetAnsiName() << std::endl;
-	_detours[ClearableComponent_MarkCleared_Hook](Context, TheStack, ret_value);
-}
-
-__declspec(noinline) void  EnemySpawnPoint_OnClearedStatusChecked_Hook(CG::UObject* Context, FFrame* TheStack, void* ret_value)
-{
-	CG::AEnemySpawnPoint* spawn = (CG::AEnemySpawnPoint*)Context;
-	std::cout << "<<<<<<<<<<" << spawn->Name.GetAnsiName() << " -> " << spawn->ClearableComponent->bCleared << std::endl;
-	_detours[EnemySpawnPoint_OnClearedStatusChecked_Hook](Context, TheStack, ret_value);
-}
-
-__declspec(noinline) void Interactable_OnClearedStatusChecked_Hook(CG::UObject* Context, FFrame* TheStack, void* ret_value)
-{
-	CG::AInteractable* spawn = (CG::AInteractable*)Context;
-	std::cout << "<<<<<<<<<<" << spawn->Name.GetAnsiName() << " -> " << spawn->ClearableComponent->bCleared << std::endl;
-	_detours[Interactable_OnClearedStatusChecked_Hook](Context, TheStack, ret_value);
-}
+std::unordered_map<PVOID, ProcessEventPtr> _events;
 
 __declspec(noinline) void Generic(CG::UObject* Context, FFrame* TheStack, void* ret_value)
 {
@@ -121,24 +104,52 @@ __declspec(noinline) void Generic(CG::UObject* Context, FFrame* TheStack, void* 
 	_detours[Generic](Context, TheStack, ret_value);
 }
 
-__declspec(noinline) void UActorComponent_ReceiveTick(CG::UObject* Context, FFrame* TheStack, void* ret_value)
+
+__declspec(noinline) void NotifyGameEndingReached(CG::UObject* Context, FFrame* TheStack, void* ret_value)
 {
 	std::cout << "<<<<<<<<<<" << Context->Name.GetAnsiName() << std::endl;
-	_detours[UActorComponent_ReceiveTick](Context, TheStack, ret_value);
+	_detours[NotifyGameEndingReached](Context, TheStack, ret_value);
+	rando->OnEndingReached();
 }
 
 
-typedef void (*ProcessEventPtr)(CG::UObject*, CG::UFunction*, void*);
-static ProcessEventPtr processEvent;
+__declspec(noinline) void SaveGameAsync(CG::UObject* Context, FFrame* TheStack, void* ret_value)
+{
+	rando->OnSave();
+	_detours[SaveGameAsync](Context, TheStack, ret_value);
+}
+
+// prevent the game from adding missing items to the player inventory
+__declspec(noinline) void HasItem(CG::UObject* Context, FFrame* TheStack, void* ret_value)
+{
+	static bool done;
+	if (!done)
+	{
+		DWORD_PTR ptr = (DWORD_PTR)(_detours[HasItem]);
+		void* src = (void*)(ptr + 0x88);
+		DWORD curProtection;
+		VirtualProtect(src, 5, PAGE_EXECUTE_READWRITE, &curProtection);
+		memset(src, 0x90, 5);
+		DWORD temp;
+		VirtualProtect(src, 5, curProtection, &temp);
+		done = true;
+	}
+	_detours[HasItem](Context, TheStack, ret_value);
+}
+
+ProcessEventPtr processEvent;
+
 __declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn, void* parms)
 {
 	static ProcessEventCache controllerTick("PC_Base_C", "ReceiveTick");
 	static ProcessEventCache onEquipSpirit("SpiritCompanionComponent", "OnEquipSpirit");
+	//static ProcessEventCache OnPostUpdateCamera("PlayerCameraManagerZenith_C", "OnPostUpdateCamera");
 
-	if (rando->IsReady())
+	if ((fn->FunctionFlags & 0x00000400) == 0)
 	{
-		if (controllerTick.Match(obj, fn))
-			rando->Update();
+		if (rando->IsReady())
+			if (controllerTick.Match(obj, fn))
+				rando->Update();
 	}
 	if (onEquipSpirit.Match(obj, fn))
 		rando->EquipSpirit((CG::USummonerComponent_OnEquipSpirit_Params*)parms);
@@ -146,38 +157,31 @@ __declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn,
 }
 
 template<class T>
-T DoDetourFunction(const char *str, PVOID target)
+T DoDetourFunction(const char *str, PVOID target, std::unordered_map<PVOID, T>& map)
 {
 	if (rando->World() == nullptr || rando->World()->Name.ComparisonIndex <= 0)
 		return nullptr;
 	CG::UFunction* fn = CG::UObject::FindObject<CG::UFunction>(str);
+	//fn->FunctionFlags |= 0x00000400;
 	if (fn == nullptr)
 		return nullptr;
-
 	T og = reinterpret_cast<T>(fn->Func);
-	_detours[target] = og;
-
 	// easy version
 	fn->Func = target;
-
+	map[target] = og;
 	return og;
+}
 
-	// detour function
-	DetourRestoreAfterWith();
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
-	DetourAttach(&(PVOID&)og, target);
-	LONG error = DetourTransactionCommit();
-	
-	if (error == NO_ERROR) {
-		std::cout << "No error detouring " << str << std::endl;
-		return og;
-	}
-	else {
-		std::cout << " Error detouring " << error << std::endl;
-		return nullptr;
-	}
-	return og;
+template<>
+UFuntionPtr DoDetourFunction(const char* str, PVOID target)
+{
+	return DoDetourFunction(str, target, _detours);
+}
+
+template<>
+ProcessEventPtr DoDetourFunction(const char* str, PVOID target)
+{
+	return DoDetourFunction(str, target, _events);
 }
 
 bool DoDetour()
@@ -192,14 +196,24 @@ bool DoDetour()
 	DetourAttach(&(PVOID&)processEvent, ProcessEventHook);
 
 	LONG error = DetourTransactionCommit();
-	if (error == NO_ERROR) {
-		std::cout << "No error detouring " << std::endl;
-		return true;
-	}
-	else {
+
+	if (error != NO_ERROR)
+	{
 		std::cout << " Error detouring " << error << std::endl;
 		return false;
 	}
+
+	if (DoDetourFunction<UFuntionPtr>("Function Zenith.SaveSubsystem.SaveGameAsync", SaveGameAsync) == nullptr)
+		std::cout << "detouring incomplete 1" << std::endl;
+
+	if (DoDetourFunction<UFuntionPtr>("Function Zenith.InventoryComponent.HasItem", HasItem) == nullptr)
+		std::cout << "detouring incomplete 2" << std::endl;
+
+	if (DoDetourFunction<UFuntionPtr>("Function Zenith.GameModeZenithBase.NotifyGameEndingReached", NotifyGameEndingReached) == nullptr)
+		std::cout << "detouring incomplete 3" << std::endl;
+
+	std::cout << "No error detouring " << std::endl;
+	return true;
 }
 
 DWORD APIENTRY HackMain(HMODULE hModule)
@@ -216,8 +230,6 @@ DWORD APIENTRY HackMain(HMODULE hModule)
 
 
 	CG::InitSdk116();
-
-	//std::cout << " -> " << Unreal::FName::ConstructorInternal.get_function_address() << std::endl;
 
 	char  dllName[MAX_PATH];
 	GetModuleFileNameA(hModule, dllName, MAX_PATH); 

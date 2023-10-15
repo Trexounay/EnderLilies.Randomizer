@@ -4,8 +4,10 @@ using LiveSplit.UI;
 using LiveSplit.UI.Components;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
 using System.Xml;
@@ -27,7 +29,6 @@ namespace EnderLilies.Randomizer
         {
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
-
             _settings = new ComponentSettings();
             _gameInjector = new GameInjector(_settings);
             _tracker = new GameTracker();
@@ -37,7 +38,8 @@ namespace EnderLilies.Randomizer
             ContextMenuControls = new Dictionary<string, Action>
             {
                 { "Launch Ender Lilies", () => _settings.launchRequested = _settings.HasExePath },
-                { "Reroll Seed", () => _settings.Seed = new System.Random().Next() }
+                { "Reroll Seed", () => _settings.Seed = new System.Random().Next() },
+                { "Connect to Archipelago", () => _AP.APConnectionRequested() },
             };
         }
 

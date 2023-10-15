@@ -5636,6 +5636,7 @@ public:
 	struct FString STATIC_AutomationDir();
 };
 
+class USubsystemBlueprintLibrary;
 // Class Engine.GameInstance
 // 0x0180 (FullSize[0x01A8] - InheritedSize[0x0028])
 class UGameInstance : public UObject
@@ -5661,14 +5662,18 @@ public:
 		return ptr;
 	}
 
-
-
 	void ReceiveShutdown();
 	void ReceiveInit();
 	void HandleTravelError(TEnumAsByte<Engine_ETravelFailure> FailureType);
 	void HandleNetworkError(TEnumAsByte<Engine_ENetworkFailure> FailureType, bool bIsServer);
 	void DebugRemovePlayer(int ControllerId);
 	void DebugCreatePlayer(int ControllerId);
+
+	template<class T>
+	inline auto GetGameInstanceSubsystem()
+	{
+		return (T*)USubsystemBlueprintLibrary::STATIC_GetGameInstanceSubsystem(this, T::StaticClass());
+	}
 };
 
 // Class Engine.PlatformGameInstance
@@ -7651,7 +7656,7 @@ public:
 	class UWorldSubsystem* STATIC_GetWorldSubsystem(class UObject* ContextObject, class UClass* Class);
 	class ULocalPlayerSubsystem* STATIC_GetLocalPlayerSubSystemFromPlayerController(class APlayerController* PlayerController, class UClass* Class);
 	class ULocalPlayerSubsystem* STATIC_GetLocalPlayerSubsystem(class UObject* ContextObject, class UClass* Class);
-	class UGameInstanceSubsystem* STATIC_GetGameInstanceSubsystem(class UObject* ContextObject, class UClass* Class);
+	static class UGameInstanceSubsystem* STATIC_GetGameInstanceSubsystem(class UObject* ContextObject, class UClass* Class);
 	class UEngineSubsystem* STATIC_GetEngineSubsystem(class UClass* Class);
 };
 

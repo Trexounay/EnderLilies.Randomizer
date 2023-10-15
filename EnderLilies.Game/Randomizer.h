@@ -39,6 +39,8 @@ public:
 
 	bool	IsReady();
 	void	Update();
+	void	OnSave();
+	void	OnEndingReached();
 	void	EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* params);
 	void	OnInteract(CG::UObject* obj, CG::ABP_Interactable_Item_C_OnInteract_Params* params);
 
@@ -85,7 +87,6 @@ private:
 	int32_t FunctionIndex = 395;
 
 	std::string _path;
-	
 
 	std::unordered_set<int> _aptitudes;
 	std::unordered_map<std::string, FTableRowProxy> _replacements;
@@ -93,7 +94,6 @@ private:
 	std::unordered_map<std::string, int32_t> _events;
 	std::unordered_set<CG::FDataTableRowHandle*> _done;
 
-	void RemoveHasItemCheck();
 	void ModifySpirits();
 	void RefreshAptitudes();
 	void ShuffleRelicSlots();

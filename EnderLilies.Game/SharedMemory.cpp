@@ -58,37 +58,38 @@ int SharedMemory::_Write(const std::string message)
     return err;
 }
 
-int SharedMemory::_Read(std::string& message)
+int SharedMemory::_Read(LPSTR& buffer)
 {
-    //std::cout << "LOCK R" << std::endl;
     DWORD err = 0;
     HANDLE hMapFile = OpenFileMappingW(
-        FILE_MAP_READ,                      // read/write access
+        FILE_MAP_READ|FILE_MAP_WRITE,                      // read/write access
         FALSE,                              // inherit handle
         this->name);                        // name of mapping object
 
     if (hMapFile == NULL)
     {
         err = GetLastError();
-        _tprintf(TEXT("R Could not create file mapping object (%d).\n"), err);
     }
     else
     {
         LPSTR pBuf = (LPSTR)MapViewOfFile(hMapFile,  // handle to map object
-            FILE_MAP_READ,                              // read/write permission
-            0,
-            0,
-            0);
+            FILE_MAP_ALL_ACCESS,                     // read/write permission
+            0,                                       // offset high
+            0,                                       // offset low
+            0);                                      // size
+
         if (pBuf == NULL)
         {
             err = GetLastError();
             _tprintf(TEXT("R Could not map view of file (%d).\n"), err);
-            CloseHandle(hMapFile);
         }
         else
         {
-            message.assign(pBuf);
+            SetHeader(*((DWORD*)pBuf));
+            buffer = pBuf + sizeof(DWORD);
+            CopyMemory((PVOID)pBuf, &header, sizeof(DWORD));
         }
+        CloseHandle(hMapFile);
     }
     return err;
 }
@@ -122,12 +123,12 @@ int SharedMemory::Write(const std::string message)
     return result;
 }
 
-int SharedMemory::Read(std::string& message)
+int SharedMemory::Read(LPSTR& buffer)
 {
     int result = 1;
     if (!Lock())
     {
-        result = _Read(message);
+        result = _Read(buffer);
         Unlock();
     }
     return result;

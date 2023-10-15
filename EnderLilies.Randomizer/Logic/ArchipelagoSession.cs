@@ -8,10 +8,14 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.MemoryMappedFiles;
-using System.Net;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
+using System.Linq;
+using System.Collections;
+using Archipelago.MultiClient.Net.Packets;
+using static System.Collections.Specialized.BitVector32;
 
 namespace EnderLilies.Randomizer
 {
@@ -21,11 +25,14 @@ namespace EnderLilies.Randomizer
         const string __GAME = "Ender Lilies";
         const string __SHARED_CLIENT_MEMORY_FILE = "EnderLilies.Game.SharedMemory";
         const string __SHARED_SERVER_MEMORY_FILE = "EnderLilies.Randomizer.SharedMemory";
+        const string __ITEM_SAVED_COUNT_KEY = "ItemSavedCount";
 
         ComponentSettings _settings;
         LoginSuccessful loginInfo;
         Archipelago.MultiClient.Net.ArchipelagoSession Session;
+
         List<string> _items = new List<string>();
+        string[] _victory_locations = null;
         Mutex mutex_client;
         Mutex mutex_server;
         Stopwatch sw;
@@ -34,13 +41,13 @@ namespace EnderLilies.Randomizer
         {
             _settings = settings;
             _settings.PropertyChangedEnded += _settings_PropertyChanged;
-            _settings.APConnectionRequested += _settings_APConnectionRequested;
+            _settings.APConnectionRequested += APConnectionRequested;
 
             mutex_client = new Mutex(false, __SHARED_CLIENT_MEMORY_FILE + "_mtx");
             mutex_server = new Mutex(false, __SHARED_SERVER_MEMORY_FILE + "_mtx");
         }
 
-        private void _settings_APConnectionRequested()
+        public void APConnectionRequested()
         {
             if (_settings.AP_IsConnected)
             {
@@ -53,9 +60,10 @@ namespace EnderLilies.Randomizer
             _settings.AP_IsConnected = loginInfo != null;
             if (loginInfo != null)
             {
-                _sent = 0;
-                WriteFile(loginInfo.SlotData);
                 Items_ItemReceived(Session.Items);
+                Session.Items.ItemReceived += Items_ItemReceived;
+                _sent = 0;
+                GetSlotData(loginInfo.SlotData);
                 sw = new Stopwatch();
                 sw.Start();
             }
@@ -80,7 +88,6 @@ namespace EnderLilies.Randomizer
             try
             {
                 Session = ArchipelagoSessionFactory.CreateSession(_settings.APServer);
-                Session.Items.ItemReceived += Items_ItemReceived;
                 result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.RemoteItems, password: _settings.APPassword);
             }
             catch (Exception e)
@@ -107,7 +114,7 @@ namespace EnderLilies.Randomizer
             return loginInfo;
         }
 
-        public void WriteFile(Dictionary<string, object> data, bool sort = false)
+        public void GetSlotData(Dictionary<string, object> data, bool sort = false)
         {
             if (data == null)
                 return;
@@ -123,14 +130,31 @@ namespace EnderLilies.Randomizer
                     writer.WriteLine($"{key}:{data[key].ToString()}");
                 }
             }
+            if (data.ContainsKey("SETTINGS:victory"))
+                _victory_locations = (data["SETTINGS:victory"] as IEnumerable<object>).Select(o => o.ToString()).ToArray();
         }
 
         public void SendLocations(string[] locations)
         {
             long[] locationsIds = new long[locations.Length];
+            bool done = false;
             for (int i = 0; i < locations.Length; i++)
-                locationsIds[i] = Session.Locations.GetLocationIdFromName(__GAME, locations[i]);
+            {
+                if (_victory_locations.Contains(locations[i]))
+                    done = true;
+                else
+                    locationsIds[i] = Session.Locations.GetLocationIdFromName(__GAME, locations[i]);
+            }
             Session.Locations.CompleteLocationChecks(locationsIds);
+            if (done)
+                send_completion();
+        }
+
+        public void send_completion()
+        {
+            var statusUpdatePacket = new StatusUpdatePacket();
+            statusUpdatePacket.Status = ArchipelagoClientState.ClientGoal;
+            Session.Socket.SendPacket(statusUpdatePacket);
         }
 
         public void ReadGameChecksList()
@@ -154,40 +178,61 @@ namespace EnderLilies.Randomizer
             catch { }
         }
 
+        public void Clear()
+        {
+            mmf = MemoryMappedFile.CreateOrOpen(__SHARED_SERVER_MEMORY_FILE, 8192, access: MemoryMappedFileAccess.ReadWrite);
+            using (var stream = mmf.CreateViewAccessor())
+            {
+                stream.Write(0, 0);
+                stream.Write(sizeof(uint), 0);
+                stream.Flush();
+            }
+            mmf.Dispose();
+            mmf = null;
+        }
 
         MemoryMappedFile mmf = null;
         int _sent = 0;
         public void SendGameItems()
         {
-            if (_items.Count <= _sent)
-                return;
-            string str = "";
-            var to_send = new List<string>(_items);
-            foreach (var item in to_send)
-                str += $"{item}\n";
-            if (str.Length <= 0)
+            if (_items.Count == 0)
                 return;
             try
             {
-                var bytes = System.Text.Encoding.ASCII.GetBytes(str);
-                mmf = MemoryMappedFile.CreateOrOpen(__SHARED_SERVER_MEMORY_FILE, 8192);
+                mmf = MemoryMappedFile.CreateOrOpen(__SHARED_SERVER_MEMORY_FILE, 8192, access: MemoryMappedFileAccess.ReadWrite);
+                using (var stream = mmf.CreateViewAccessor())
                 {
-                    using (var stream = mmf.CreateViewStream())
+                    int value = Session.DataStorage[Scope.Slot, __ITEM_SAVED_COUNT_KEY];
+                    if (_sent == 0)
                     {
-                        using (BinaryWriter binWriter = new BinaryWriter(stream))
-                        {
-                            binWriter.Write(bytes);
-                        }
+                        stream.Write(0, value);
                     }
+                    else
+                    {
+                        uint saved_count = stream.ReadUInt32(0);
+                        if (saved_count > value)
+                            Session.DataStorage[Scope.Slot, __ITEM_SAVED_COUNT_KEY] = saved_count;
+                    }
+                    if (_items.Count <= _sent)
+                        return;
+                    int new_len = _items.Count;
+                    string str = "";
+                    for (int i = 0; i < new_len; ++i)
+                        str += $"{_items[i]}\n";
+                    str += '\0';
+                    var bytes = System.Text.Encoding.ASCII.GetBytes(str);
+                    bytes[bytes.Length - 1] = 0;
+
+                    stream.WriteArray<byte>(sizeof(uint), bytes, 0, bytes.Length);
+                    _sent = new_len;
                 }
-                _sent = to_send.Count;
             }
             catch { }
         }
 
-        bool ExecuteLocked(Action action, Mutex mutex)
+        bool ExecuteLocked(Action action, Mutex mutex, int timeout = 0)
         {
-            if (mutex.WaitOne(0))
+            if (mutex.WaitOne(timeout))
             {
                 action();
                 mutex.ReleaseMutex();
@@ -196,16 +241,23 @@ namespace EnderLilies.Randomizer
             return false;
         }
 
+        void CloseConnection()
+        {
+            sw.Stop();
+            ExecuteLocked(Clear, mutex_server, 1000);
+            _settings.AP_IsConnected = false;
+        }
+
         public void Update(bool gameIsRuning)
         {
             if (_settings.AP_IsConnected)
             {
                 if (Session == null || !Session.Socket.Connected)
                 {
-                    _settings.AP_IsConnected = false;
+                    CloseConnection();
                     return;
                 }
-                if (gameIsRuning)
+                else if (gameIsRuning)
                 {
                     if (sw.ElapsedMilliseconds > 300)
                     {

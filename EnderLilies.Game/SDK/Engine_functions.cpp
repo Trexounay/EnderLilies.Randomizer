@@ -25132,7 +25132,6 @@ void UGameInstance::DebugRemovePlayer(int ControllerId)
 
 }
 
-
 // Function:
 //		Offset -> 0x029D2900
 //		Name   -> Function Engine.GameInstance.DebugCreatePlayer
@@ -26042,6 +26041,7 @@ class ULocalPlayerSubsystem* USubsystemBlueprintLibrary::STATIC_GetLocalPlayerSu
 //		class UGameInstanceSubsystem*                      ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UGameInstanceSubsystem* USubsystemBlueprintLibrary::STATIC_GetGameInstanceSubsystem(class UObject* ContextObject, class UClass* Class)
 {
+	static UClass* cls = USubsystemBlueprintLibrary::StaticClass();
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Engine.SubsystemBlueprintLibrary.GetGameInstanceSubsystem");
 
 	USubsystemBlueprintLibrary_GetGameInstanceSubsystem_Params params;
@@ -26051,7 +26051,7 @@ class UGameInstanceSubsystem* USubsystemBlueprintLibrary::STATIC_GetGameInstance
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	cls->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 
