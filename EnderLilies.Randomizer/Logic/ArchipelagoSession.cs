@@ -120,6 +120,13 @@ namespace EnderLilies.Randomizer
                 return;
             string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? String.Empty;
             string path = Path.Combine(dir, "EnderLiliesSeed.txt");
+
+            if (data.ContainsKey("SETTINGS:victory"))
+            {
+                _victory_locations = (data["SETTINGS:victory"] as IEnumerable<object>).Select(o => o.ToString()).ToArray();
+                data.Remove("SETTINGS:victory");
+            }
+
             using (StreamWriter writer = new StreamWriter(path))
             {
                 var keys = new List<string>(data.Keys);
@@ -127,11 +134,12 @@ namespace EnderLilies.Randomizer
                     keys.Sort();
                 foreach (var key in keys)
                 {
-                    writer.WriteLine($"{key}:{data[key].ToString()}");
+                    if (data[key] != null)
+                        writer.WriteLine($"{key}:{data[key].ToString()}");
+                    else
+                        writer.WriteLine($"{key}");
                 }
             }
-            if (data.ContainsKey("SETTINGS:victory"))
-                _victory_locations = (data["SETTINGS:victory"] as IEnumerable<object>).Select(o => o.ToString()).ToArray();
         }
 
         public void SendLocations(string[] locations)
