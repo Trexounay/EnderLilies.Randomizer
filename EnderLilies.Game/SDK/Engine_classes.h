@@ -11980,7 +11980,7 @@ public:
 	struct FText STATIC_Conv_VectorToText(const struct FVector& InVec);
 	struct FText STATIC_Conv_Vector2dToText(const struct FVector2D& InVec);
 	struct FText STATIC_Conv_TransformToText(const struct FTransform& InTrans);
-	struct FString STATIC_Conv_TextToString(const struct FText& InText);
+	static struct FString STATIC_Conv_TextToString(const struct FText& InText);
 	static struct FText STATIC_Conv_StringToText(const struct FString& inString);
 	struct FText STATIC_Conv_RotatorToText(const struct FRotator& InRot);
 	struct FText STATIC_Conv_ObjectToText(class UObject* InObj);
@@ -21759,9 +21759,6 @@ public:
 		static UClass* ptr = UObject::FindClass("Class Engine.CompositeCurveTable");
 		return ptr;
 	}
-
-
-
 };
 
 struct FDataTableData
@@ -21782,7 +21779,7 @@ public:
 class UDataTable : public UObject
 {
 public:
-	class UScriptStruct*                               RowStruct;                                                 // 0x0028(0x0008) (Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	class UScriptStruct* RowStruct;                                                 // 0x0028(0x0008) (Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	TArray<FDataTableData>							   Data;													  // 0x0030(0x0008)
 	unsigned char                                      UnknownData_ROHI[0x48];                                    // 0x0038(0x0048) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 	unsigned char                                      bStripFromClientBuilds : 1;                                // 0x0080(0x0001) BIT_FIELD (Edit, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
@@ -21802,11 +21799,47 @@ public:
 		return -1;
 	}
 
+	void AddRowInternal(FName RowName, void* RowDataPtr)
+	{
+		CG::GetVFunction<void(*)(UDataTable*,  FName, void*) > (this, 78)(this, RowName, RowDataPtr);
+	}
+
+	void RemoveRow(FName RowName)
+	{
+		CG::GetVFunction<void(*)(UDataTable*, FName) >(this, 83)(this, RowName);
+	}
+
+	void AddRow(FName RowName, const FTableRowBase& RowData)
+	{
+		CG::GetVFunction<void(*)(UDataTable*, FName, const FTableRowBase&) >(this, 84)(this, RowName, RowData);
+	}
 
 	static UClass* StaticClass()
 	{
 		static UClass* ptr = UObject::FindClass("Class Engine.DataTable");
+
 		return ptr;
+	}
+
+	inline FName GetName(int i) const
+	{
+		return Data[i].Name;
+	}
+
+	template<class T>
+	inline T* GetValue(int i) const
+	{
+		return (T*)(Data[i].ptr);
+	}
+
+	FDataTableData& operator[](int i)
+	{
+		return Data[i];
+	}
+
+	const FDataTableData& operator[](int i) const
+	{
+		return Data[i];
 	}
 };
 

@@ -97,13 +97,12 @@ private:
 	void ModifySpirits();
 	void RefreshAptitudes();
 	void ShuffleRelicSlots();
-	void ShuffleRooms();
 	void ShuffleMusic();
 	void ModifySpawnPoints();
 	void RemoveBreakable();
 	void ReadSeedFile(std::string path);
 	void FindItems(const std::string &string);
-	void ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle, CG::UClearableComponent* clearable);
+	FTableRowProxy ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle, CG::UClearableComponent* clearable);
 	void TransitionFound(CG::AActor* actor, CG::FDataTableRowHandle* handle, CG::FName* PlayerStartTag, bool test);
 	void FindNames();
 	void NewGame();
@@ -115,8 +114,10 @@ private:
 	void AddItem(const std::string& item);
 	void RemoveItem(const std::string& item);
 	void SendData();
-
+	void DumpTables();
 	void AddClearableCheck(std::string name, CG::UClearableComponent* comp);
 	void UpdateChecks();
 	void UpdateItems();
+	void SetupAPItem(FTableRowProxy replacement, CG::FDataTableRowHandle* itemhandle, CG::FText* onGroundDescription);
+	void QueueTipNotification(const std::string& item);
 };

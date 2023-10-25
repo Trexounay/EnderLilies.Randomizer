@@ -16,6 +16,9 @@ using System.Linq;
 using System.Collections;
 using Archipelago.MultiClient.Net.Packets;
 using static System.Collections.Specialized.BitVector32;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
+using LiveSplitCore;
+using WebSocketSharp;
 
 namespace EnderLilies.Randomizer
 {
@@ -31,7 +34,7 @@ namespace EnderLilies.Randomizer
         LoginSuccessful loginInfo;
         Archipelago.MultiClient.Net.ArchipelagoSession Session;
 
-        List<string> _items = new List<string>();
+        List<long> _items = new List<long>();
         string[] _victory_locations = null;
         Mutex mutex_client;
         Mutex mutex_server;
@@ -74,7 +77,7 @@ namespace EnderLilies.Randomizer
             _items.Clear();
             foreach (NetworkItem item in helper.AllItemsReceived)
             {
-                _items.Add(helper.GetItemName(item.Item));
+                _items.Add(item.Item);
                 helper.DequeueItem();
             }
         }
@@ -114,6 +117,8 @@ namespace EnderLilies.Randomizer
             return loginInfo;
         }
 
+        Dictionary<string, long> key_to_address = new Dictionary<string, long>();
+        Dictionary<long, string> code_to_key = new Dictionary<long, string>();
         public void GetSlotData(Dictionary<string, object> data, bool sort = false)
         {
             if (data == null)
@@ -121,10 +126,17 @@ namespace EnderLilies.Randomizer
             string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? String.Empty;
             string path = Path.Combine(dir, "EnderLiliesSeed.txt");
 
-            if (data.ContainsKey("SETTINGS:victory"))
+            if (data.ContainsKey("AP.victory"))
+                _victory_locations = (data["AP.victory"] as IEnumerable<object>).Select(o => o.ToString()).ToArray();
+
+            if (data.ContainsKey("AP.key_to_address"))
+                key_to_address = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, long>>(data["AP.key_to_address"].ToString());
+
+            if (data.ContainsKey("AP.key_to_code"))
             {
-                _victory_locations = (data["SETTINGS:victory"] as IEnumerable<object>).Select(o => o.ToString()).ToArray();
-                data.Remove("SETTINGS:victory");
+                var key_to_code = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, long>>(data["AP.key_to_code"].ToString());
+                foreach (var key in key_to_code)
+                    code_to_key[key.Value] = key.Key;
             }
 
             using (StreamWriter writer = new StreamWriter(path))
@@ -134,8 +146,13 @@ namespace EnderLilies.Randomizer
                     keys.Sort();
                 foreach (var key in keys)
                 {
+                    if (key.StartsWith("AP."))
+                        continue;
                     if (data[key] != null)
+                    {
+                        var value = data[key].ToString();
                         writer.WriteLine($"{key}:{data[key].ToString()}");
+                    }
                     else
                         writer.WriteLine($"{key}");
                 }
@@ -151,7 +168,12 @@ namespace EnderLilies.Randomizer
                 if (_victory_locations.Contains(locations[i]))
                     done = true;
                 else
-                    locationsIds[i] = Session.Locations.GetLocationIdFromName(__GAME, locations[i]);
+                {
+                    if (key_to_address.ContainsKey(locations[i]))
+                        locationsIds[i] = key_to_address[locations[i]];
+                    else
+                        ;
+                }
             }
             Session.Locations.CompleteLocationChecks(locationsIds);
             if (done)
@@ -176,14 +198,19 @@ namespace EnderLilies.Randomizer
                         using (BinaryReader binReader = new BinaryReader(stream))
                         {
                             byte[] bytes = binReader.ReadBytes((int)stream.Length);
-                            String str = System.Text.Encoding.ASCII.GetString(bytes).Trim('\0');
+                            String str = System.Text.Encoding.ASCII.GetString(bytes).Split(new char[] { '\0' }, 2)[0];
                             var checks = str.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                            if (checks.Length == 0 || checks[0].IsNullOrEmpty())
+                                return;
                             SendLocations(checks);
                         }
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Debug.Write(ex.Message);
+            }
         }
 
         public void Clear()
@@ -226,7 +253,12 @@ namespace EnderLilies.Randomizer
                     int new_len = _items.Count;
                     string str = "";
                     for (int i = 0; i < new_len; ++i)
-                        str += $"{_items[i]}\n";
+                    {
+                        if (code_to_key.ContainsKey(_items[i]))
+                            str += $"{code_to_key[_items[i]]}\n";
+                        else
+                            ;
+                    }
                     str += '\0';
                     var bytes = System.Text.Encoding.ASCII.GetBytes(str);
                     bytes[bytes.Length - 1] = 0;
@@ -235,7 +267,10 @@ namespace EnderLilies.Randomizer
                     _sent = new_len;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Debug.Write(ex.Message);
+            }
         }
 
         bool ExecuteLocked(Action action, Mutex mutex, int timeout = 0)

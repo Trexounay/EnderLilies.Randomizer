@@ -52,6 +52,7 @@ int SharedMemory::_Write(const std::string message)
         {
             std::cout << "W Shared memory done " << std::endl;
             CopyMemory((PVOID)pBuf, message.c_str(), (size * sizeof(CHAR)));
+            ((char*)pBuf)[size] = '\0';
             UnmapViewOfFile(pBuf);
         }
     }

@@ -66968,6 +66968,7 @@ struct FText UKismetTextLibrary::STATIC_Conv_TransformToText(const struct FTrans
 //		struct FString                                     ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 struct FString UKismetTextLibrary::STATIC_Conv_TextToString(const struct FText& InText)
 {
+	CG::UClass* kis = UKismetTextLibrary::StaticClass();
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Engine.KismetTextLibrary.Conv_TextToString");
 
 	UKismetTextLibrary_Conv_TextToString_Params params;
@@ -66976,7 +66977,7 @@ struct FString UKismetTextLibrary::STATIC_Conv_TextToString(const struct FText& 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	kis->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 

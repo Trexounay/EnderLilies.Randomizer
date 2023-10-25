@@ -940,7 +940,28 @@ public:
 
 struct FText
 {
-	char UnknownData[0x18];
+public:
+	void *Data;
+	char UnknownData[0x10];
+
+	void SetFromString(CG::FString const& str)
+	{
+		FText tmp = FromString(str);
+		memcpy(&Data, &tmp.Data, 0x8);
+	}
+
+	inline FText& operator=(const wchar_t* other)
+	{
+		SetFromString(CG::FString(other));
+		return *this;
+	}
+
+	static CG::FText FromString(CG::FString const& str)
+	{
+		uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
+		auto ptr = ((CG::FText(__fastcall*)(CG::FString const&))(base + 0xE26010));
+		return ptr(str);
+	}
 };
 
 struct FScriptDelegate

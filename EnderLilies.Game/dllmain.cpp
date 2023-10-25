@@ -112,6 +112,12 @@ __declspec(noinline) void NotifyGameEndingReached(CG::UObject* Context, FFrame* 
 	rando->OnEndingReached();
 }
 
+__declspec(noinline) void Interacted(CG::UObject* Context, FFrame* TheStack, void* ret_value)
+{
+	std::cout << "<<<<<<<<<<" << Context->Name.GetAnsiName() << std::endl;
+	_detours[Interacted](Context, TheStack, ret_value);
+}
+
 
 __declspec(noinline) void SaveGameAsync(CG::UObject* Context, FFrame* TheStack, void* ret_value)
 {
@@ -139,31 +145,14 @@ __declspec(noinline) void HasItem(CG::UObject* Context, FFrame* TheStack, void* 
 
 ProcessEventPtr processEvent;
 
-__declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn, void* parms)
-{
-	static ProcessEventCache controllerTick("PC_Base_C", "ReceiveTick");
-	static ProcessEventCache onEquipSpirit("SpiritCompanionComponent", "OnEquipSpirit");
-	//static ProcessEventCache OnPostUpdateCamera("PlayerCameraManagerZenith_C", "OnPostUpdateCamera");
-
-	if ((fn->FunctionFlags & 0x00000400) == 0)
-	{
-		if (rando->IsReady())
-			if (controllerTick.Match(obj, fn))
-				rando->Update();
-	}
-	if (onEquipSpirit.Match(obj, fn))
-		rando->EquipSpirit((CG::USummonerComponent_OnEquipSpirit_Params*)parms);
-	processEvent(obj, fn, parms);
-}
-
 template<class T>
 T DoDetourFunction(const char *str, PVOID target, std::unordered_map<PVOID, T>& map)
 {
 	if (rando->World() == nullptr || rando->World()->Name.ComparisonIndex <= 0)
 		return nullptr;
 	CG::UFunction* fn = CG::UObject::FindObject<CG::UFunction>(str);
-	//fn->FunctionFlags |= 0x00000400;
-	if (fn == nullptr)
+
+	if (fn == nullptr || fn->Func == nullptr)
 		return nullptr;
 	T og = reinterpret_cast<T>(fn->Func);
 	// easy version
@@ -182,6 +171,27 @@ template<>
 ProcessEventPtr DoDetourFunction(const char* str, PVOID target)
 {
 	return DoDetourFunction(str, target, _events);
+}
+
+
+__declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn, void* parms)
+{
+	static ProcessEventCache controllerTick("PC_Base_C", "ReceiveTick");
+	static ProcessEventCache onEquipSpirit("SpiritCompanionComponent", "OnEquipSpirit");
+	//static ProcessEventCache OnPostUpdateCamera("PlayerCameraManagerZenith_C", "OnPostUpdateCamera");
+
+
+	if ((fn->FunctionFlags & 0x00000400) == 0)
+	{
+		if (rando->IsReady())
+		{
+			if (controllerTick.Match(obj, fn))
+				rando->Update();
+		}
+	}
+	if (onEquipSpirit.Match(obj, fn))
+		rando->EquipSpirit((CG::USummonerComponent_OnEquipSpirit_Params*)parms);
+	processEvent(obj, fn, parms);
 }
 
 bool DoDetour()

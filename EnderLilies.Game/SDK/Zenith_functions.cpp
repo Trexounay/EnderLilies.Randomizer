@@ -11079,6 +11079,8 @@ int AGameModeZenithBase::GetMaxDifficultyLevel()
 //		class UDataTable*                                  ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UDataTable* AGameModeZenithBase::GetItemTipTable()
 {
+	return ItemTipTable;
+	/*
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.GameModeZenithBase.GetItemTipTable");
 
 	AGameModeZenithBase_GetItemTipTable_Params params;
@@ -11090,7 +11092,7 @@ class UDataTable* AGameModeZenithBase::GetItemTipTable()
 	fn->FunctionFlags = flags;
 
 
-	return params.ReturnValue;
+	return params.ReturnValue;*/
 }
 
 
@@ -11102,6 +11104,8 @@ class UDataTable* AGameModeZenithBase::GetItemTipTable()
 //		class UDataTable*                                  ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UDataTable* AGameModeZenithBase::GetItemSpiritTable()
 {
+	return ItemSpiritTable;
+	/*
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.GameModeZenithBase.GetItemSpiritTable");
 
 	AGameModeZenithBase_GetItemSpiritTable_Params params;
@@ -11113,7 +11117,7 @@ class UDataTable* AGameModeZenithBase::GetItemSpiritTable()
 	fn->FunctionFlags = flags;
 
 
-	return params.ReturnValue;
+	return params.ReturnValue;*/
 }
 
 
@@ -11125,6 +11129,8 @@ class UDataTable* AGameModeZenithBase::GetItemSpiritTable()
 //		class UDataTable*                                  ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UDataTable* AGameModeZenithBase::GetItemPassiveTable()
 {
+	return ItemPassiveTable;
+	/*
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.GameModeZenithBase.GetItemPassiveTable");
 
 	AGameModeZenithBase_GetItemPassiveTable_Params params;
@@ -11137,6 +11143,7 @@ class UDataTable* AGameModeZenithBase::GetItemPassiveTable()
 
 
 	return params.ReturnValue;
+	*/
 }
 
 
@@ -11148,6 +11155,8 @@ class UDataTable* AGameModeZenithBase::GetItemPassiveTable()
 //		class UDataTable*                                  ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UDataTable* AGameModeZenithBase::GetItemParameterTable()
 {
+	return ItemParameterTable;
+	/*
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.GameModeZenithBase.GetItemParameterTable");
 
 	AGameModeZenithBase_GetItemParameterTable_Params params;
@@ -11159,7 +11168,7 @@ class UDataTable* AGameModeZenithBase::GetItemParameterTable()
 	fn->FunctionFlags = flags;
 
 
-	return params.ReturnValue;
+	return params.ReturnValue;*/
 }
 
 
@@ -11171,6 +11180,8 @@ class UDataTable* AGameModeZenithBase::GetItemParameterTable()
 //		class UDataTable*                                  ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UDataTable* AGameModeZenithBase::GetItemGenericTable()
 {
+	return ItemGenericTable;
+	/*
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.GameModeZenithBase.GetItemGenericTable");
 
 	AGameModeZenithBase_GetItemGenericTable_Params params;
@@ -11182,7 +11193,7 @@ class UDataTable* AGameModeZenithBase::GetItemGenericTable()
 	fn->FunctionFlags = flags;
 
 
-	return params.ReturnValue;
+	return params.ReturnValue;*/
 }
 
 
@@ -11194,6 +11205,8 @@ class UDataTable* AGameModeZenithBase::GetItemGenericTable()
 //		class UDataTable*                                  ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UDataTable* AGameModeZenithBase::GetItemAptitudeTable()
 {
+	return ItemAptitudeTable;
+	/*
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Zenith.GameModeZenithBase.GetItemAptitudeTable");
 
 	AGameModeZenithBase_GetItemAptitudeTable_Params params;
@@ -11205,7 +11218,7 @@ class UDataTable* AGameModeZenithBase::GetItemAptitudeTable()
 	fn->FunctionFlags = flags;
 
 
-	return params.ReturnValue;
+	return params.ReturnValue;*/
 }
 
 
