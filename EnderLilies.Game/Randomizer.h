@@ -45,6 +45,7 @@ public:
 	void	OnInteract(CG::UObject* obj, CG::ABP_Interactable_Item_C_OnInteract_Params* params);
 
 	bool _new_map = true;
+	bool notif_visible;
 private:
 	static std::unordered_map<std::string, CG::UClass*>	_bp_classes;
 	std::unordered_map<std::string, std::string> _data;
@@ -118,6 +119,9 @@ private:
 	void AddClearableCheck(std::string name, CG::UClearableComponent* comp);
 	void UpdateChecks();
 	void UpdateItems();
+	void QueueTipNotification(const std::string& item, const FTableRowProxy &result);
+
 	void SetupAPItem(FTableRowProxy replacement, CG::FDataTableRowHandle* itemhandle, CG::FText* onGroundDescription);
-	void QueueTipNotification(const std::string& item);
+	int AddAPItem(const std::string& item);
+	//int AddNotification(const std::string& item);
 };

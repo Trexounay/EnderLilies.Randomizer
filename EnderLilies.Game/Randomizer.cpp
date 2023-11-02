@@ -763,17 +763,56 @@ int stringCompare(const std::string& str1, const std::string& str2)
 	return -1;
 }
 
-void Randomizer::QueueTipNotification(const std::string &item)
+void Randomizer::QueueTipNotification(const std::string& item, const FTableRowProxy &result)
 {
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	auto pc = (CG::APC_Base_C*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
-	auto wstr = std::wstring(item.begin(), item.end());
+	auto datatable = *(CG::UDataTable**)(&((char*)gm)[result.datatable]);
+	auto data = datatable->GetValue<CG::FBaseItemData>(result.entry);
+
+	CG::FString str = CG::UKismetTextLibrary::STATIC_Conv_TextToString(data->Name);
+	auto wstr = str.ToWString() + L" was received from Archipelago";
 
 	CG::FText text = pc->PlayerUI->WBP_TipNotification->TipText->Text;
-	text = (wstr + L" was received from Archipelago").c_str();
+	text.SetFromString(CG::FString(wstr.c_str()));
 	pc->PlayerUI->WBP_TipNotification->LaunchNewTipAnim();
 	pc->PlayerUI->WBP_TipNotification->TipText->SetText(text);
 }
 
+int Randomizer::AddAPItem(const std::string& item)
+{
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	CG::UDataTable* table = gm->ItemTipTable;
+	auto tip = table->GetValue<CG::FItemTipData>(0);
+	CG::FItemTipData new_tip;
+	memcpy(&new_tip, tip, sizeof(CG::FItemTipData));
+
+	CG::FName name;
+	name.ComparisonIndex = table->Name.ComparisonIndex;
+	name.Number = table->Data.Num();
+	auto switch_set = gm->ItemAptitudeTable->GetValue<CG::FItemAptitudeData>(13);
+
+	size_t first = item.find('|', 3);
+	size_t second = item.find('|', first + 1);
+	std::string player = item.substr(3, first - 3);
+	std::string game = item.substr(first + 1, second - first - 1);
+	std::string obj = item.substr(second + 1);
+
+	std::wstring wgame = std::wstring(game.begin(), game.end());
+	std::wstring wplayer = std::wstring(player.begin(), player.end());
+
+	new_tip.ItemType = CG::Zenith_EItemType::EItemType__EItemType_MAX;
+	memcpy(new_tip.Icon, switch_set->Icon, 0x28);
+
+	new_tip.Name = std::wstring(obj.begin(), obj.end()).c_str();
+	new_tip.ShortExplanation = L"Archipelago Item";
+	new_tip.Description = (std::wstring(L"This item belongs to ") + wplayer + L" in " + wgame + L".").c_str();
+	new_tip.AddToInventory = false;
+
+	table->AddRow(name, new_tip);
+	return name.Number;
+	//result.tag = item.substr(3, item.length());
+}
 
 bool Randomizer::FindTableRow(const std::string& item, FTableRowProxy& result)
 {
@@ -798,44 +837,10 @@ bool Randomizer::FindTableRow(const std::string& item, FTableRowProxy& result)
 		0x350,
 		0x320,
 	};
-	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	if (item.starts_with("AP."))
 	{
-		CG::UDataTable* table = gm->ItemTipTable;
-		auto tip = table->GetValue<CG::FItemTipData>(0);
-		CG::FItemTipData new_tip;
-		memcpy(&new_tip, tip, sizeof(CG::FItemTipData));
-
-		CG::FName name;
-		name.ComparisonIndex = table->Name.ComparisonIndex;
-		name.Number = table->Data.Num();
-
-
-		auto switch_set = gm->ItemAptitudeTable->GetValue<CG::FItemAptitudeData>(13);
-
-
-		size_t first = item.find('|', 3);
-		size_t second = item.find('|', first + 1);
-		std::string player = item.substr(3, first - 3);
-		std::string game = item.substr(first + 1, second - first - 1);
-		std::string obj = item.substr(second + 1);
-
-		std::wstring wgame = std::wstring(game.begin(), game.end());
-		std::wstring wplayer = std::wstring(player.begin(), player.end());
-
-		new_tip.ItemType = CG::Zenith_EItemType::EItemType__EItemType_MAX;
-		memcpy(new_tip.Icon, switch_set->Icon, 0x28);
-
-		new_tip.Name = std::wstring(obj.begin(), obj.end()).c_str();
-		new_tip.ShortExplanation = L"Archipelago Item";
-		new_tip.Description = (std::wstring(L"This item belongs to ") + wplayer + L" in " + wgame + L".").c_str();
-		new_tip.AddToInventory = false;
-
 		result.datatable = offsets[5];
-		result.entry = table->Data.Num();
-		result.tag = item.substr(3, item.length());
-
-		table->AddRow(name, new_tip);
+		result.entry = AddAPItem(item);
 		return true;
 	}
 	for (char i = 0; i < table_count; ++i)
@@ -850,6 +855,7 @@ bool Randomizer::FindTableRow(const std::string& item, FTableRowProxy& result)
 				result.tag = entry.substr(sep + 1, entry.length());
 				entry = entry.substr(0, sep);
 			}
+			CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 			DWORD_PTR ptr = (DWORD_PTR)gm;
 			CG::UDataTable* table = *(CG::UDataTable**)(&((char*)gm)[offsets[i]]);
 			for (int j = 0; j < table->Data.Num(); ++j)
@@ -1007,6 +1013,7 @@ void Randomizer::RefreshAptitudes()
 #endif
 }
 
+
 void Randomizer::AddItem(const std::string& item)
 {
 	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
@@ -1019,11 +1026,11 @@ void Randomizer::AddItem(const std::string& item)
 		CG::FDataTableRowHandle handle;
 		handle.DataTable = *(CG::UDataTable**)(&((char*)gm)[result.datatable]);
 		handle.RowName = handle.DataTable->Data[result.entry].Name;
-		auto data = (CG::FBaseItemData*)handle.DataTable->Data[result.entry].ptr;
 		pc->InventoryComponent->AddItem(handle);
-
-		CG::FString str = CG::UKismetTextLibrary::STATIC_Conv_TextToString(data->Name);
-		QueueTipNotification(str.ToString());
+		if (notif_visible)
+			return;
+		QueueTipNotification(item, result);
+		notif_visible = true;
 	}
 }
 
@@ -1128,6 +1135,7 @@ void Randomizer::UpdateItems()
 			}
 			i++;
 		}
+		notif_visible = false;
 	}
 }
 

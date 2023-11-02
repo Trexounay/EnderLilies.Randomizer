@@ -947,7 +947,7 @@ public:
 	void SetFromString(CG::FString const& str)
 	{
 		FText tmp = FromString(str);
-		memcpy(&Data, &tmp.Data, 0x8);
+		Data = tmp.Data;
 	}
 
 	inline FText& operator=(const wchar_t* other)
