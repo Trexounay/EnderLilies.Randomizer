@@ -65,7 +65,7 @@ private:
 	static constexpr const int passive_weapons[] = { 10, 11, 12, 18 };
 
 	int _starting_weapon = 0;
-	int _seed = -1;
+	unsigned int _seed = 0;
 	int _skin_override = -1;
 	int _starting_room = 0;
 	bool _has_normal_weapon = true;

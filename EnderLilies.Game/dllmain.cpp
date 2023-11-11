@@ -213,14 +213,23 @@ bool DoDetour()
 		return false;
 	}
 
-	if (DoDetourFunction<UFuntionPtr>("Function Zenith.SaveSubsystem.SaveGameAsync", SaveGameAsync) == nullptr)
+	if (!_detours[SaveGameAsync] && DoDetourFunction<UFuntionPtr>("Function Zenith.SaveSubsystem.SaveGameAsync", SaveGameAsync) == nullptr)
+	{
 		std::cout << "detouring incomplete 1" << std::endl;
+		return false;
+	}
 
-	if (DoDetourFunction<UFuntionPtr>("Function Zenith.InventoryComponent.HasItem", HasItem) == nullptr)
+	if (!_detours[HasItem] && DoDetourFunction<UFuntionPtr>("Function Zenith.InventoryComponent.HasItem", HasItem) == nullptr)
+	{
 		std::cout << "detouring incomplete 2" << std::endl;
+		return false;
+	}
 
-	if (DoDetourFunction<UFuntionPtr>("Function Zenith.GameModeZenithBase.NotifyGameEndingReached", NotifyGameEndingReached) == nullptr)
+	if (!_detours[NotifyGameEndingReached] && DoDetourFunction<UFuntionPtr>("Function Zenith.GameModeZenithBase.NotifyGameEndingReached", NotifyGameEndingReached) == nullptr)
+	{
 		std::cout << "detouring incomplete 3" << std::endl;
+		return false;
+	}
 
 	std::cout << "No error detouring " << std::endl;
 	return true;
@@ -249,9 +258,9 @@ DWORD APIENTRY HackMain(HMODULE hModule)
 	rando = new Randomizer(path);
 	while (!g_cancel)
 	{
-		Sleep(100);
 		if (DoDetour())
 			break;
+		Sleep(100);
 	}
 	FreeLibraryAndExitThread(hModule, 0);
 	return false;

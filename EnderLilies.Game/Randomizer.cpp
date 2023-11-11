@@ -219,6 +219,9 @@ void Randomizer::GameDataReady()
 		gm->SetDifficultyLevel(_max_chapter);
 	else if (gm->DifficultyLevel < _min_chapter)
 		gm->SetDifficultyLevel(_min_chapter);
+
+	auto spawn_point = gm->GameMapTable->GetValue<CG::FGameMapData>(0);
+	spawn_point->bContainsRestPoint = true;
 }
 
 void Randomizer::NewMap()
@@ -684,7 +687,7 @@ void Randomizer::ReadSeedFile(std::string path)
 			trim(location);
 			trim(item);
 			if (location == "SEED")
-				_seed = atoi(item.c_str());
+				_seed = (unsigned long)atoll(item.c_str());
 			else if (location == "SETTINGS")
 			{
 				if (item == "shuffle_slots")
