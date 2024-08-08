@@ -2,23 +2,19 @@
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.Models;
+using Archipelago.MultiClient.Net.Packets;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.MemoryMappedFiles;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
-using System.Linq;
-using System.Collections;
-using Archipelago.MultiClient.Net.Packets;
-using static System.Collections.Specialized.BitVector32;
-using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
-using LiveSplitCore;
 using WebSocketSharp;
+using static System.Collections.Specialized.BitVector32;
 
 namespace EnderLilies.Randomizer
 {
@@ -72,12 +68,12 @@ namespace EnderLilies.Randomizer
             }
         }
 
-        private void Items_ItemReceived(ReceivedItemsHelper helper)
+        private void Items_ItemReceived(IReceivedItemsHelper helper)
         {
             _items.Clear();
-            foreach (NetworkItem item in helper.AllItemsReceived)
+            foreach (ItemInfo item in helper.AllItemsReceived)
             {
-                _items.Add(item.Item);
+                _items.Add(item.ItemId);
                 helper.DequeueItem();
             }
         }
@@ -91,7 +87,7 @@ namespace EnderLilies.Randomizer
             try
             {
                 Session = ArchipelagoSessionFactory.CreateSession(_settings.APServer);
-                result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.RemoteItems, password: _settings.APPassword);
+                result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.IncludeStartingInventory | ItemsHandlingFlags.RemoteItems, password: _settings.APPassword);
             }
             catch (Exception e)
             {
@@ -138,6 +134,9 @@ namespace EnderLilies.Randomizer
                 foreach (var key in key_to_code)
                     code_to_key[key.Value] = key.Key;
             }
+
+            if (_settings.SkinOverride > 0)
+                data[$"SETTINGS:override_skin={_settings.SkinOverride}"] = null;
 
             using (StreamWriter writer = new StreamWriter(path))
             {

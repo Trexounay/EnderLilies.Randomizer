@@ -426,10 +426,14 @@ namespace EnderLilies.Randomizer
                             meta.Xor(new_nodes);
                             meta_locations.Shuffle();
                             empty_locations.AddRange(meta_locations);
-                            //for (int i = 0; i < meta_locations.Count; i++)
-                            //{
-                            //Console.WriteLine(i.ToString() + " " + Node(meta_locations[i]));
-                            //}
+
+                            /*
+                            var toto = new List<string>();
+                            for (int i = 0; i < meta_locations.Count; i++)
+                            {
+                                toto.Add(i.ToString() + " " + Node(meta_locations[i]);
+                                Console.WriteLine(i.ToString() + " " + Node(meta_locations[i]));
+                            }*/
 
                             foreach (int key in subitems)
                             {

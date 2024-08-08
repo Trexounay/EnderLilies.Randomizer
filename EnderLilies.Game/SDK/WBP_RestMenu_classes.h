@@ -63,7 +63,7 @@ public:
 
 	static UClass* StaticClass()
 	{
-		static UClass* ptr = UObject::FindClass("WidgetBlueprintGeneratedClass WBP_RestMenu.WBP_RestMenu_C");
+		UClass* ptr = UObject::FindClass("WidgetBlueprintGeneratedClass WBP_RestMenu.WBP_RestMenu_C");
 		return ptr;
 	}
 

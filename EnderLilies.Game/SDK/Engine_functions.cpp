@@ -76212,6 +76212,7 @@ class UAudioComponent* UGameplayStatics::STATIC_SpawnSound2D(class UObject* Worl
 //		class UObject*                                     ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UObject* UGameplayStatics::STATIC_SpawnObject(class UClass* ObjectClass, class UObject* Outer)
 {
+	static UClass* StaticClass = UGameplayStatics::StaticClass();
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Engine.GameplayStatics.SpawnObject");
 
 	UGameplayStatics_SpawnObject_Params params;
@@ -76221,7 +76222,7 @@ class UObject* UGameplayStatics::STATIC_SpawnObject(class UClass* ObjectClass, c
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	StaticClass->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 
@@ -77535,7 +77536,8 @@ void UGameplayStatics::STATIC_LoadStreamLevelBySoftObjectPtr(class UObject* Worl
 //		struct FLatentActionInfo                           LatentInfo                                                 (Parm, NoDestructor, NativeAccessSpecifierPublic)
 void UGameplayStatics::STATIC_LoadStreamLevel(class UObject* WorldContextObject, const struct FName& LevelName, bool bMakeVisibleAfterLoad, bool bShouldBlockOnLoad, const struct FLatentActionInfo& LatentInfo)
 {
-	static UFunction* fn = UObject::FindObject<UFunction>("Function Engine.GameplayStatics.LoadStreamLevel");
+	//UClass* StaticClass = UGameplayStatics::StaticClass();
+	UFunction* fn = UObject::FindObject<UFunction>("Function Engine.GameplayStatics.LoadStreamLevel");
 
 	UGameplayStatics_LoadStreamLevel_Params params;
 	params.WorldContextObject = WorldContextObject;
@@ -78583,7 +78585,7 @@ void UGameplayStatics::STATIC_GetAllActorsOfClass(class UObject* WorldContextObj
 
 	if (ActorClass == nullptr || ActorClass->Name.ComparisonIndex == 0)
 		return;
-	UObject::ProcessEvent(fn, &params);
+	UGameplayStatics::StaticClass()->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 	if (OutActors != nullptr)
@@ -79370,7 +79372,7 @@ class AActor* UGameplayStatics::STATIC_BeginSpawningActorFromClass(class UObject
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	UGameplayStatics::StaticClass()->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 
@@ -79401,7 +79403,7 @@ class AActor* UGameplayStatics::STATIC_BeginSpawningActorFromBlueprint(class UOb
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	UGameplayStatics::StaticClass()->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 
@@ -79433,10 +79435,8 @@ class AActor* UGameplayStatics::STATIC_BeginDeferredActorSpawnFromClass(class UO
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
-
-	UObject::ProcessEvent(fn, &params);
+	UGameplayStatics::StaticClass()->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
-
 
 	return params.ReturnValue;
 }
@@ -85118,6 +85118,7 @@ class ULevelStreamingDynamic* ULevelStreamingDynamic::STATIC_LoadLevelInstanceBy
 //		class ULevelStreamingDynamic*                      ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class ULevelStreamingDynamic* ULevelStreamingDynamic::STATIC_LoadLevelInstance(class UObject* WorldContextObject, const struct FString& LevelName, const struct FVector& Location, const struct FRotator& Rotation, bool* bOutSuccess, const struct FString& OptionalLevelNameOverride)
 {
+	static UClass* StaticClass = ULevelStreamingDynamic::StaticClass();
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Engine.LevelStreamingDynamic.LoadLevelInstance");
 
 	ULevelStreamingDynamic_LoadLevelInstance_Params params;
@@ -85130,7 +85131,7 @@ class ULevelStreamingDynamic* ULevelStreamingDynamic::STATIC_LoadLevelInstance(c
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	StaticClass->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 	if (bOutSuccess != nullptr)

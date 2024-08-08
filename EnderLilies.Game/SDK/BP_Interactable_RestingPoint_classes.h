@@ -38,7 +38,7 @@ public:
 
 	static UClass* StaticClass()
 	{
-		static UClass* ptr = UObject::FindClass("BlueprintGeneratedClass BP_Interactable_RestingPoint.BP_Interactable_RestingPoint_C");
+		UClass* ptr = UObject::FindClass("BlueprintGeneratedClass BP_Interactable_RestingPoint.BP_Interactable_RestingPoint_C");
 		return ptr;
 	}
 

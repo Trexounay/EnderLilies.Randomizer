@@ -218,8 +218,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="SDK\BP_Interactable_RestingPoint_functions.cpp" />
     <ClCompile Include="SDK\UMG_functions.cpp" />
     <ClCompile Include="SDK\WBP_AchievementNotification_functions.cpp" />
+    <ClCompile Include="SDK\WBP_RestMenu_functions.cpp" />
     <ClCompile Include="SDK\WBP_TipNotification_functions.cpp" />
     <ClCompile Include="SharedMemory.cpp" />
     <ClCompile Include="UnrealFunctions.cpp" />

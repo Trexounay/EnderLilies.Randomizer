@@ -14747,6 +14747,7 @@ class UDragDropOperation* UWidgetBlueprintLibrary::STATIC_CreateDragDropOperatio
 class UUserWidget* UWidgetBlueprintLibrary::STATIC_Create(class UObject* WorldContextObject, class UClass* WidgetType, class APlayerController* OwningPlayer)
 {
 	static UFunction* fn = UObject::FindObject<UFunction>("Function UMG.WidgetBlueprintLibrary.Create");
+	auto library = UWidgetBlueprintLibrary::StaticClass();
 
 	UWidgetBlueprintLibrary_Create_Params params;
 	params.WorldContextObject = WorldContextObject;
@@ -14756,7 +14757,7 @@ class UUserWidget* UWidgetBlueprintLibrary::STATIC_Create(class UObject* WorldCo
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	UObject::ProcessEvent(fn, &params);
+	library->ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 

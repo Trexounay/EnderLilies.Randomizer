@@ -6893,8 +6893,6 @@ public:
 		return ptr;
 	}
 
-
-
 	bool UnequipPassive(const struct FName& PassiveID);
 	int SetSlotCount(int NewSlotCount);
 	bool IsPassiveEquipped(const struct FName& PassiveID);

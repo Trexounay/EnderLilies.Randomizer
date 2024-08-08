@@ -27,7 +27,7 @@ namespace EnderLilies.Randomizer
 
         public EnderLiliesRandomizer(LiveSplitState state)
         {
-            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+            //AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             _settings = new ComponentSettings();
             _gameInjector = new GameInjector(_settings);
@@ -46,10 +46,13 @@ namespace EnderLilies.Randomizer
         private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
             string name = args.Name.Substring(0, args.Name.IndexOf(","));
-            if (name == "Archipelago.MultiClient.Net")
-                return Assembly.Load(Resources.Archipelago_MultiClient_Net);
-            else if (name == "Newtonsoft.Json")
-                return Assembly.Load(Resources.Newtonsoft_Json);
+
+            Dictionary<string, byte[]> dlls = new Dictionary<string, byte[]> {
+                { "Newtonsoft.Json",  Resources.Newtonsoft_Json},
+                { "Archipelago.MultiClient.Net",  Resources.Archipelago_MultiClient_Net},
+            };
+            if (dlls.ContainsKey(name))
+                return Assembly.Load(dlls[name]);
             return null;
         }
 

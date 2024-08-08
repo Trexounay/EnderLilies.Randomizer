@@ -38,7 +38,7 @@ void Randomizer::FindNames()
 		name = pool.GetNext(lastFNameAddress, nextFNameComparisonId))
 	{
 		auto str = name->GetAnsiName();
-		if ( str == "BlueprintGeneratedClass")
+		if (str == "BlueprintGeneratedClass")
 			BlueprintGeneratedClassIndex = nextFNameComparisonId;
 		else if (str == "Function")
 			FunctionIndex = nextFNameComparisonId;
@@ -48,8 +48,8 @@ void Randomizer::FindNames()
 			RestPointTag = nextFNameComparisonId;
 		else if (!strncmp(str.c_str(), evt, strlen(evt)))
 			_events[str] = nextFNameComparisonId;
-//		else if (_player_start_tags.find(str) != _player_start_tags.end())
-//			_player_start_tags[str] = nextFNameComparisonId;
+		//		else if (_player_start_tags.find(str) != _player_start_tags.end())
+		//			_player_start_tags[str] = nextFNameComparisonId;
 
 	}
 
@@ -185,7 +185,7 @@ void Randomizer::ChangeStartingRoom(int room)
 void Randomizer::NewGame()
 {
 	_new_game = false;
-	std::cout << "NEWGAME" <<std::endl;
+	std::cout << "NEWGAME" << std::endl;
 
 	ReadSeedFile(_path + "/EnderLiliesSeed.txt");
 	ModifySpirits();
@@ -379,8 +379,6 @@ void Randomizer::ModifySpawnPoints()
 	}
 }
 
-
-
 bool done = false;
 bool wait = false;
 int count = 0;
@@ -400,8 +398,19 @@ void Randomizer::Update()
 		SendData();
 		count = 0;
 	}
+
 	count++;
 #ifdef _DEBUG
+
+// Testing custom relic effect
+	static auto name = CG::FName("i_passive_stamina_up");
+
+	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
+	if (pc->ZenithCharacter->CharacterMovement->Buoyancy > 0.5f && pc->PassiveEquipComponent->IsPassiveEquipped(name))
+	{
+		pc->ZenithCharacter->CharacterMovement->Buoyancy = 0.25f;
+	}
+
 	if (!_kbhit())
 		wait = false;
 	else if (!wait)
@@ -409,47 +418,24 @@ void Randomizer::Update()
 		if (wait)
 			return;
 		std::cout << "Key struck was " << _getch() << std::endl;
-		done = !done;
-		wait = true;
+
+
+		auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
+		auto statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
+		CG::TArray<CG::AActor*> out;
+		statics->STATIC_GetAllActorsOfClass(World(), _bp_classes["BP_EnemySpawnPoint_C"], &out);
+		int count = out.Num();
+		if (count > 0)
+		{
+			auto spawn = (CG::ABP_EnemySpawnPoint_C*)out[0];
+			auto t = pc->Pawn->GetTransform();
+			auto obj = (CG::AActor *)CG::UGameplayStatics::STATIC_BeginDeferredActorSpawnFromClass(spawn, spawn->CharacterToSpawn, spawn->GetTransform(), CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AlwaysSpawn, spawn);
+			done = !done;
+			wait = true;
+		}
 	}
 #endif
 }
-
-
-/* double boss
-CG::FRotator r = spawn1->K2_GetActorRotation();
-CG::FTransform t = spawn1->GetTransform();
-t.Translation.Y += 200;
-CG::FActorSpawnParameters spawn_params;
-spawn_params.ObjectFlags = (CG::EObjectFlags)0x48;
-spawn_params.OverrideLevel = (CG::ULevel*)spawn1->Outer;
-spawn_params.Owner = spawn1;
-spawn_params.SpawnCollisionHandlingOverride = CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AdjustIfPossibleButDontSpawnIfColliding;
-auto a = World()->SpawnActor<CG::APawn>(spawn1->CharacterToSpawn, &t.Translation, &r, spawn_params);
-if (a != nullptr)
-{
-	a->SetActorScale3D(CG::FVector(2, 2, 2));
-	a->SpawnDefaultController();
-}
-*/
-
-/* double boss
-CG::ABP_EnemySpawnPoint_Boss_C* spawn = (CG::ABP_EnemySpawnPoint_Boss_C*)boss->SourceSpawnPoint;
-auto c = boss->Controller;
-if (out.Num() == 1 && c != nullptr && boss->IsActivated())
-{
-	CG::FRotator r = boss->K2_GetActorRotation();
-	CG::FTransform t = boss->GetTransform();
-	t.Translation.Y += 200;
-	CG::FActorSpawnParameters spawn_params;
-	spawn_params.ObjectFlags = (CG::EObjectFlags)0x48;
-	spawn_params.OverrideLevel = (CG::ULevel*)spawn->Outer;
-	spawn_params.Owner = spawn;
-	spawn_params.SpawnCollisionHandlingOverride = CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AdjustIfPossibleButDontSpawnIfColliding;
-	auto a = World()->SpawnActor<CG::APawn>(boss->Class, &t.Translation, &r, spawn_params);
-	if (a != nullptr)
-		a->SpawnDefaultController();
-}*/
 
 void Randomizer::FindItems(const std::string& type_name)
 {
@@ -537,7 +523,7 @@ void Randomizer::TransitionFound(CG::AActor* actor, CG::FDataTableRowHandle* han
 		_done.insert(handle);
 }
 
-FTableRowProxy Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle, CG::UClearableComponent *clearable)
+FTableRowProxy Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle, CG::UClearableComponent* clearable)
 {
 	FTableRowProxy replacement;
 	if (itemhandle == nullptr)
@@ -687,7 +673,11 @@ void Randomizer::ReadSeedFile(std::string path)
 			trim(location);
 			trim(item);
 			if (location == "SEED")
-				_seed = (unsigned long)atoll(item.c_str());
+			{
+				unsigned long long seed;
+				std::stringstream(item) >> seed;
+				_seed = seed % INT_MAX;
+			}
 			else if (location == "SETTINGS")
 			{
 				if (item == "shuffle_slots")
@@ -766,7 +756,7 @@ int stringCompare(const std::string& str1, const std::string& str2)
 	return -1;
 }
 
-void Randomizer::QueueTipNotification(const std::string& item, const FTableRowProxy &result)
+void Randomizer::QueueTipNotification(const std::string& item, const FTableRowProxy& result)
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	auto pc = (CG::APC_Base_C*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
@@ -879,13 +869,33 @@ bool Randomizer::FindTableRow(const std::string& item, FTableRowProxy& result)
 	return false;
 }
 
+
+// Custom Relics
+void ModifyRelics(const CG::UWorld* world)
+{
+	auto gm = (CG::AGameModeZenithBase*)world->AuthorityGameMode;
+	CG::UDataTable* passiveTable = gm->ItemPassiveTable;
+	CG::UDataTable* spiritTable = gm->ItemSpiritTable;
+	//CG::FBaseItemData* from = spiritTable->GetValue<CG::FBaseItemData>(8);
+	CG::FBaseItemData* to = passiveTable->GetValue<CG::FBaseItemData>(33);
+	
+	auto achie = world->OwningGameInstance->GetGameInstanceSubsystem<CG::UAchievementsSubsystem>();
+	auto table = achie->GetAchievementDataTable();
+	CG::FAchievementData* from = table->GetValue<CG::FAchievementData>(0);
+
+	memcpy(to->Icon, from->UnlockedIcon, 0x28);
+	to->ShortExplanation.SetFromString(CG::FString(L"Will make you drawn"));
+	to->Name.SetFromString(CG::FString(L"Heavy Boulder"));
+	to->Description.SetFromString(CG::FString(L"Look nice on your ankle"));
+}
+
 void Randomizer::ModifySpirits()
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UDataTable* table = gm->ItemSpiritTable;
 	CG::FItemSpiritData* data = (CG::FItemSpiritData*)(table->Data[0].ptr);
 	CG::FDataTableRowHandle empty = data->AptitudeToUnlock;
-
+	//ModifyRelics(World());
 	_starting_weapon = 0;
 	auto entry = _replacements.find("starting_weapon");
 	if (entry != _replacements.end())
@@ -1070,8 +1080,8 @@ void Randomizer::RemoveItem(const std::string& item)
 		case 0x350: // Tip
 			inventory = pc->InventoryComponent->GetItemTipInventory();
 			break;
-		//case 0x320: // Map
-		//  break;
+			//case 0x320: // Map
+			//  break;
 		default:
 			return;
 		}
