@@ -203,8 +203,10 @@ void Randomizer::NewGame()
 	_receivedItems.clear();
 	_game_memory->Clear();
 	_remote_memory->Clear();
-	data_to_send = "\n";
+	_completedChecks.insert("starting_weapon");
+	data_to_send = "starting_weapon\n";
 	SendData();
+
 }
 
 void Randomizer::GameDataReady()
