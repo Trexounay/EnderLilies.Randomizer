@@ -77,6 +77,8 @@ private:
 	bool _shuffle_bgm = false;
 	bool _force_ancient_souls = false;
 	bool _minibosses_chapter = false;
+	bool _need_ap_refresh = false;
+
 	int _min_chapter = 0;
 	int _max_chapter = 10;
 

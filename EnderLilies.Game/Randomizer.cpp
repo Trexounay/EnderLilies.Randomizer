@@ -181,7 +181,6 @@ void Randomizer::ChangeStartingRoom(int room)
 	pc->DefaultPlayerStartTag = CG::FName(RestPointTag);
 }
 
-
 void Randomizer::NewGame()
 {
 	_new_game = false;
@@ -207,6 +206,9 @@ void Randomizer::NewGame()
 	data_to_send = "starting_weapon\n";
 	SendData();
 
+	auto intent = ((CG::UGameInstanceZenith_C*)World()->OwningGameInstance)->GetLaunchGameIntent();
+	if (intent == CG::Zenith_ELaunchGameIntent::ELaunchGameIntent__NewGame)
+		_need_ap_refresh = true;
 }
 
 void Randomizer::GameDataReady()
@@ -1145,12 +1147,13 @@ void Randomizer::UpdateItems()
 			if (i >= _receivedItems.size())
 			{
 				_receivedItems.push_back(item);
-				if (i >= _remote_memory->GetHeader())
+				if (_need_ap_refresh || i >= _remote_memory->GetHeader())
 					AddItem(item);
 			}
 			i++;
 		}
 		notif_visible = false;
+		_need_ap_refresh = false;
 	}
 }
 

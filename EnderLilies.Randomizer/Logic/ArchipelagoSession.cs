@@ -246,9 +246,9 @@ namespace EnderLilies.Randomizer
                         uint saved_count = stream.ReadUInt32(0);
                         if (saved_count > value)
                             Session.DataStorage[Scope.Slot, __ITEM_SAVED_COUNT_KEY] = saved_count;
+                        if (_items.Count <= _sent)
+                            return;
                     }
-                    if (_items.Count <= _sent)
-                        return;
                     int new_len = _items.Count;
                     string str = "";
                     for (int i = 0; i < new_len; ++i)
