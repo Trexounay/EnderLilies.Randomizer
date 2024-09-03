@@ -4,14 +4,9 @@ using LiveSplit.UI;
 using LiveSplit.UI.Components;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
 using System.Xml;
-using WebSocketSharp;
 
 namespace EnderLilies.Randomizer
 {
@@ -25,9 +20,14 @@ namespace EnderLilies.Randomizer
         private RandomSession _session;
         private ArchipelagoSession _AP;
 
+        Dictionary<string, byte[]> dlls = new Dictionary<string, byte[]> {
+                { "Newtonsoft.Json",  Resources.Newtonsoft_Json},
+                { "Archipelago.MultiClient.Net",  Resources.Archipelago_MultiClient_Net},
+            };
+
         public EnderLiliesRandomizer(LiveSplitState state)
         {
-            //AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             _settings = new ComponentSettings();
             _gameInjector = new GameInjector(_settings);
@@ -46,11 +46,6 @@ namespace EnderLilies.Randomizer
         private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
             string name = args.Name.Substring(0, args.Name.IndexOf(","));
-
-            Dictionary<string, byte[]> dlls = new Dictionary<string, byte[]> {
-                { "Newtonsoft.Json",  Resources.Newtonsoft_Json},
-                { "Archipelago.MultiClient.Net",  Resources.Archipelago_MultiClient_Net},
-            };
             if (dlls.ContainsKey(name))
                 return Assembly.Load(dlls[name]);
             return null;
@@ -79,6 +74,9 @@ namespace EnderLilies.Randomizer
 
         public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
+            if (_settings.Seed == 0)
+                _settings.Seed = new System.Random().Next();
+
             _gameInjector.Update();
             _AP.Update(_gameInjector.IsInjected);
             if (_settings.UATServer)

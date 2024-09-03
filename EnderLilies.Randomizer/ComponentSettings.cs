@@ -790,9 +790,9 @@ namespace EnderLilies.Randomizer
             FilePath = "Components/EnderLilies.Randomizer.json";
 
             this.Dock = DockStyle.Fill;
-            if (Seed == 0)
-                Seed = new System.Random().Next();
             this.Preview = new DataTable();
+
+            Init = true;
         }
 
 
@@ -800,6 +800,7 @@ namespace EnderLilies.Randomizer
         public void SetSettings(XmlNode node)
         {
             var element = (XmlElement)node;
+            Init = false;
             Version version = SettingsHelper.ParseVersion(element["Version"]);
             ExePath = SettingsHelper.ParseString(element["ExePath"], null); ;
             SkinOverride = SettingsHelper.ParseInt(element["SkinOverride"], 1);
