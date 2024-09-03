@@ -1120,7 +1120,7 @@ void Randomizer::UpdateChecks()
 			if (!it->first->IsBeingDestroyed())
 			{
 				auto entry = _replacements.find(it->second);
-				if (entry->second.datatable == 0)
+				if (entry != _replacements.end() && entry->second.datatable == 0)
 					it->first->GetOwner()->SetActorEnableCollision(false);
 			}
 			it = _mapChecks.erase(it);
