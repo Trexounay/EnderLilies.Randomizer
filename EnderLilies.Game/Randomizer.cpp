@@ -313,6 +313,7 @@ void Randomizer::NewMap()
 	for (int i = 0; i < gm->GameMapTable->Data.Num(); ++i)
 		file << i << "\t" << gm->GameMapTable->Data[i].Name.GetNameA() << std::endl;
 	file.close();
+	ModifyEnemyTables();
 #endif
 
 	ModifySpawnPoints();
@@ -336,6 +337,56 @@ void Randomizer::RemoveBreakable()
 			door->HPComponent->DoDamage(nullptr, 1000, false, false);
 		}
 	}
+}
+
+void Randomizer::ModifyEnemyTables()
+{
+	// settings will go here
+
+	auto parameters = CG::UObject::FindObjects<CG::UParameterEnemyComponent>();
+	for (auto parameter : parameters)
+		FixChapterProgression(parameter);
+}
+
+bool IsChapterLocked(const CG::TArray<CG::FDataTableData>& data)
+{
+	auto chapter1 = (CG::FEnemyParameterLevelData*)data[0].ptr;
+	auto chapter2 = (CG::FEnemyParameterLevelData*)data[1].ptr;
+	return chapter1->HP == chapter2->HP;
+}
+void Randomizer::FixChapterProgression(CG::UParameterEnemyComponent* parameterEnemyComponent)
+{
+	if (parameterEnemyComponent->LevelTable == nullptr || !IsChapterLocked(parameterEnemyComponent->LevelTable->Data))
+		return;
+	const CG::TArray<CG::FDataTableData>& data = parameterEnemyComponent->LevelTable->Data;
+
+	auto maxChapter = 9;
+	for (int i = 0; i < maxChapter; ++i)
+	{
+		auto chapter = (CG::FEnemyParameterLevelData*)data[i].ptr;
+		if (((CG::FEnemyParameterLevelData*)data[i + 1].ptr)->HP != chapter->HP)
+		{
+			maxChapter = i;
+			break;
+		}
+	}
+	auto maxChapterData = (CG::FEnemyParameterLevelData*)data[maxChapter].ptr;
+	std::cout << parameterEnemyComponent->LevelTable->GetFullName() << std::endl;
+	for (int i = 0; i < maxChapter; ++i)
+	{
+		auto chapter = (CG::FEnemyParameterLevelData*)data[i].ptr;
+		chapter->HP = int((maxChapterData->HP / (maxChapter + 1.0)) * pow(maxChapterData->HP / (maxChapterData->HP / (maxChapter + 1.0)), i / double(maxChapter)));
+		chapter->Attack = int(lerp(0, maxChapterData->Attack, (i + 1.0) / (maxChapter + 1.0)));
+		chapter->DropExperience = int(lerp(0, maxChapterData->DropExperience, (i + 1.0) / maxChapter + 1.0));
+	}
+
+#ifdef _DEBUG
+	for (int i = 0; i < 10; ++i)
+	{
+		auto chapter = (CG::FEnemyParameterLevelData*)data[i].ptr;
+		std::cout << i + 1 << "->" << chapter->HP << ":" << chapter->Attack << ":" << chapter->DropExperience << std::endl;
+	}
+#endif
 }
 
 void Randomizer::ModifySpawnPoints()
@@ -1130,7 +1181,7 @@ void Randomizer::UpdateItems()
 	{
 		std::stringstream ss(str);
 		std::string item;
-		int i = 0;
+		DWORD i = 0;
 		while (std::getline(ss, item))
 		{
 			if (i >= _receivedItems.size())

@@ -21,6 +21,12 @@ static inline void trim(std::string& s) {
 	rtrim(s);
 }
 
+static inline double lerp(double a, double b, double f)
+{
+	return a * (1.0 - f) + (b * f);
+}
+
+
 struct FTableRowProxy
 {
 	int datatable;
@@ -45,7 +51,7 @@ public:
 	void	OnInteract(CG::UObject* obj, CG::ABP_Interactable_Item_C_OnInteract_Params* params);
 
 	bool _new_map = true;
-	bool notif_visible;
+	bool notif_visible = false;
 private:
 	static std::unordered_map<std::string, CG::UClass*>	_bp_classes;
 	std::unordered_map<std::string, std::string> _data;
@@ -85,7 +91,7 @@ private:
 	float time_travel = 0;
 	int room = 0;
 
-	int32_t RestPointTag;
+	int32_t RestPointTag = -1;
 	int32_t BlueprintGeneratedClassIndex = 348039;
 	int32_t FunctionIndex = 395;
 
@@ -119,14 +125,14 @@ private:
 	void AddItem(const std::string& item);
 	void RemoveItem(const std::string& item);
 	void SendData();
-	void DumpTables();
 	void AddClearableCheck(std::string name, CG::UClearableComponent* comp);
 	void UpdateChecks();
 	void UpdateItems();
 	void QueueTipNotification(const std::string& item, const FTableRowProxy &result);
 	void PreventReturnToOutset();
+	void ModifyEnemyTables();
+	void FixChapterProgression(CG::UParameterEnemyComponent* parameterEnemyComponent);
 
-	void SetupAPItem(FTableRowProxy replacement, CG::FDataTableRowHandle* itemhandle, CG::FText* onGroundDescription);
 	int AddAPItem(const std::string& item);
 	//int AddNotification(const std::string& item);
 };

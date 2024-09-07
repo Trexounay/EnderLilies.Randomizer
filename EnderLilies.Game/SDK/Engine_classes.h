@@ -22903,16 +22903,16 @@ struct FActorSpawnParameters
 {
 public:
 	CG::FName Name;
-	CG::AActor* Template;
-	CG::AActor* Owner;
-	CG::APawn* Instigator;
-	CG::ULevel* OverrideLevel;
+	CG::AActor* Template = nullptr;
+	CG::AActor* Owner = nullptr;
+	CG::APawn* Instigator = nullptr;
+	CG::ULevel* OverrideLevel = nullptr;
 	CG::Engine_ESpawnActorCollisionHandlingMethod SpawnCollisionHandlingOverride;
 	uint8_t bRemoteOwned : 1;
 	uint8_t bNoFail : 1;
 	uint8_t bDeferConstruction : 1;
 	uint8_t	bAllowDuringConstructionScript : 1;
-	uint8_t NameMode;
+	uint8_t NameMode = 0;
 	char pad;
 
 	/* Flags used to describe the spawned actor/object instance. */
