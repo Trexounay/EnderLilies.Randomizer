@@ -89,6 +89,8 @@ private:
 	int32_t BlueprintGeneratedClassIndex = 348039;
 	int32_t FunctionIndex = 395;
 
+	CG::FRespawnPointData lastDefaultRespite;
+
 	std::string _path;
 
 	std::unordered_set<int> _aptitudes;
@@ -122,6 +124,7 @@ private:
 	void UpdateChecks();
 	void UpdateItems();
 	void QueueTipNotification(const std::string& item, const FTableRowProxy &result);
+	void PreventReturnToOutset();
 
 	void SetupAPItem(FTableRowProxy replacement, CG::FDataTableRowHandle* itemhandle, CG::FText* onGroundDescription);
 	int AddAPItem(const std::string& item);

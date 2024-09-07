@@ -15,6 +15,8 @@ Randomizer::Randomizer(std::string path)
 	_path = path;
 	_game_memory = new SharedMemory(TEXT("EnderLilies.Game.SharedMemory"));
 	_remote_memory = new SharedMemory(TEXT("EnderLilies.Randomizer.SharedMemory"));
+
+	lastDefaultRespite.GameMapID.ComparisonIndex = 0;
 }
 
 Randomizer::~Randomizer()
@@ -211,6 +213,7 @@ void Randomizer::NewGame()
 		_need_ap_refresh = true;
 }
 
+
 void Randomizer::GameDataReady()
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
@@ -226,6 +229,26 @@ void Randomizer::GameDataReady()
 
 	auto spawn_point = gm->GameMapTable->GetValue<CG::FGameMapData>(0);
 	spawn_point->bContainsRestPoint = true;
+}
+
+void Randomizer::PreventReturnToOutset()
+{
+	auto pc = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController);
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+
+	//auto spawn_point = gm->GameMapTable->GetValue<CG::FGameMapData>(0);
+
+	if (pc == nullptr || gm == nullptr || gm->GameMapTable == nullptr)
+		return;
+
+	CG::FRespawnPointData data = pc->GetRespawnPointData();
+	if (data.GameMapID == gm->GameMapTable->GetName(0) && lastDefaultRespite.GameMapID.ComparisonIndex != 0)
+	{
+		pc->RespawnPointData.GameMapID = lastDefaultRespite.GameMapID;
+		pc->RespawnPointData.PlayerStartTag = lastDefaultRespite.PlayerStartTag;
+	}
+	else
+		lastDefaultRespite = data;
 }
 
 void Randomizer::NewMap()
@@ -396,6 +419,7 @@ void Randomizer::Update()
 	FindItems("BP_Interactable_WorldTravel_C");
 
 	UpdateChecks();
+	PreventReturnToOutset();
 	if (count == 10)
 	{
 		UpdateItems();
@@ -404,9 +428,7 @@ void Randomizer::Update()
 	}
 
 	count++;
-#ifdef _DEBUG
-
-// Testing custom relic effect
+	// Testing custom relic effect
 	static auto name = CG::FName("i_passive_stamina_up");
 
 	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
@@ -415,6 +437,7 @@ void Randomizer::Update()
 		pc->ZenithCharacter->CharacterMovement->Buoyancy = 0.25f;
 	}
 
+#ifdef _DEBUG
 	if (!_kbhit())
 		wait = false;
 	else if (!wait)
@@ -678,6 +701,9 @@ void Randomizer::ReadSeedFile(std::string path)
 			trim(item);
 			if (location == "SEED")
 			{
+				// limit a seed to 19 characters
+				item = item.substr(0, 19);
+
 				unsigned long long seed;
 				std::stringstream(item) >> seed;
 				_seed = seed % INT_MAX;
@@ -888,7 +914,7 @@ void ModifyRelics(const CG::UWorld* world)
 	CG::FAchievementData* from = table->GetValue<CG::FAchievementData>(0);
 
 	memcpy(to->Icon, from->UnlockedIcon, 0x28);
-	to->ShortExplanation.SetFromString(CG::FString(L"Will make you drawn"));
+	to->ShortExplanation.SetFromString(CG::FString(L"Stops Lily from floating into water"));
 	to->Name.SetFromString(CG::FString(L"Heavy Boulder"));
 	to->Description.SetFromString(CG::FString(L"Look nice on your ankle"));
 }
@@ -899,7 +925,7 @@ void Randomizer::ModifySpirits()
 	CG::UDataTable* table = gm->ItemSpiritTable;
 	CG::FItemSpiritData* data = (CG::FItemSpiritData*)(table->Data[0].ptr);
 	CG::FDataTableRowHandle empty = data->AptitudeToUnlock;
-	//ModifyRelics(World());
+	ModifyRelics(World());
 	_starting_weapon = 0;
 	auto entry = _replacements.find("starting_weapon");
 	if (entry != _replacements.end())
@@ -951,12 +977,6 @@ void Randomizer::ModifySpirits()
 				oldLevel->NecessaryCurrencyForLevelUp = newLevel->NecessaryCurrencyForLevelUp;
 				newLevel->CurrencyTypeForLevelUp = tmpType;
 				newLevel->NecessaryCurrencyForLevelUp = tmpCount;
-#ifdef _DEBUG
-				oldLevel->CurrencyTypeForLevelUp = CG::Zenith_ECurrencyType::ECurrencyType__Spirit_Lv1;
-				oldLevel->NecessaryCurrencyForLevelUp = 0;
-				newLevel->CurrencyTypeForLevelUp = CG::Zenith_ECurrencyType::ECurrencyType__Spirit_Lv1;
-				newLevel->NecessaryCurrencyForLevelUp = 0;
-#endif
 			}
 		}
 	}
@@ -997,37 +1017,6 @@ void Randomizer::RefreshAptitudes()
 		pc->MarkTutorialAsSeen(gm->TutorialTable->Data[i].Name);
 
 	return;
-#ifdef _DEBUG
-
-	pc->UnlockAllAptitudes();
-
-	for (int i = 0; i < gm->InitialCommonSpiritLevel->Data.Num(); ++i)
-	{
-		CG::FInitialSpiritLevelData* init = (CG::FInitialSpiritLevelData*)gm->InitialCommonSpiritLevel->Data[i].ptr;
-		init->InitialLevel = 1;
-	}
-	for (int i = 0; i < gm->InitialBossSpiritLevel->Data.Num(); ++i)
-	{
-		CG::FInitialSpiritLevelData* init = (CG::FInitialSpiritLevelData*)gm->InitialBossSpiritLevel->Data[i].ptr;
-		init->InitialLevel = 1;
-	}
-
-	CG::FDataTableRowHandle handle;
-	handle.DataTable = gm->ItemSpiritTable;
-	for (int i = 0; i < gm->ItemSpiritTable->Data.Num(); ++i)
-	{
-		handle.RowName = gm->ItemSpiritTable->Data[i].Name;
-		pc->InventoryComponent->AddItem(handle);
-	}
-	handle.DataTable = gm->ItemPassiveTable;
-	for (int i = 0; i < gm->ItemPassiveTable->Data.Num(); ++i)
-	{
-		handle.RowName = gm->ItemPassiveTable->Data[i].Name;
-		pc->InventoryComponent->AddItem(handle);
-	}
-	pc->SpiritEquipComponent->SetCanChangeEquipment(true);
-
-#endif
 }
 
 

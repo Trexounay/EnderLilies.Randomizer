@@ -4864,7 +4864,8 @@ public:
 	class AActor*                                      DefaultViewTarget;                                         // 0x0630(0x0008) (ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
 	struct FDataTableRowHandle                         DefaultGameMap;                                            // 0x0638(0x0010) (Edit, DisableEditOnInstance, NoDestructor, NativeAccessSpecifierPrivate)
 	struct FName                                       DefaultPlayerStartTag;                                     // 0x0648(0x0008) (Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
-	unsigned char                                      UnknownData_AEUG[0x18];                                    // 0x0650(0x0018) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+	struct FRespawnPointData                           RespawnPointData;                                          // 0x0650(0x0010) manually found
+	unsigned char                                      UnknownData_AEUG[0x8];                                     // 0x0660(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 	TArray<Zenith_EAptitudeType>                       UnlockedAptitudes;                                         // 0x0668(0x0010) (Edit, ZeroConstructor, EditConst, NativeAccessSpecifierPrivate)
 	TArray<struct FName>                               OpenedWorlds;                                              // 0x0678(0x0010) (Edit, ZeroConstructor, EditConst, NativeAccessSpecifierPrivate)
 	TArray<struct FName>                               OpenedAreas;                                               // 0x0688(0x0010) (Edit, ZeroConstructor, EditConst, NativeAccessSpecifierPrivate)
