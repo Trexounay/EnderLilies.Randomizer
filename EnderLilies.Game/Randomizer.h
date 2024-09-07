@@ -4,6 +4,7 @@
 #include "SDK.h"
 #include "SharedMemory.h"
 #include <map>
+#include <deque>
 
 
 static inline void ltrim(std::string& s) {
@@ -48,6 +49,7 @@ public:
 	bool notif_visible;
 private:
 	static std::unordered_map<std::string, CG::UClass*>	_bp_classes;
+	static std::deque<CG::ABP_EnemySpawnPoint_C*> _enemy_spawners;
 	std::unordered_map<std::string, std::string> _data;
 	std::unordered_set<int> _musics;
 
@@ -125,6 +127,14 @@ private:
 	void UpdateItems();
 	void QueueTipNotification(const std::string& item, const FTableRowProxy &result);
 	void PreventReturnToOutset();
+	void FindEnemySpawners();
+
+	// Chapter Related
+	void FixChapterLockedEnemies();
+	bool FixChapterLockedEnemy(CG::ABP_Character_Enemy_Base_C* enemy, bool is_unique, bool modifyHP, bool modifyAttack, bool modifyXP);
+	bool IsEnemyChapterLocked(std::string enemyName);
+	bool IsInChapterLockedLocation(std::string locationName);
+
 
 	void SetupAPItem(FTableRowProxy replacement, CG::FDataTableRowHandle* itemhandle, CG::FText* onGroundDescription);
 	int AddAPItem(const std::string& item);
