@@ -377,7 +377,7 @@ void Randomizer::FixChapterProgression(CG::UParameterEnemyComponent* parameterEn
 		auto chapter = (CG::FEnemyParameterLevelData*)data[i].ptr;
 		chapter->HP = int((maxChapterData->HP / (maxChapter + 1.0)) * pow(maxChapterData->HP / (maxChapterData->HP / (maxChapter + 1.0)), i / double(maxChapter)));
 		chapter->Attack = int(lerp(0, maxChapterData->Attack, (i + 1.0) / (maxChapter + 1.0)));
-		chapter->DropExperience = int(lerp(0, maxChapterData->DropExperience, (i + 1.0) / maxChapter + 1.0));
+		chapter->DropExperience = int(lerp(0, maxChapterData->DropExperience, (i + 1.0) / (maxChapter + 1.0)));
 	}
 
 #ifdef _DEBUG
