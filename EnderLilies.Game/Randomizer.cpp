@@ -310,7 +310,7 @@ void Randomizer::NewMap()
 			pc->PlayedEvents[0].ComparisonIndex = _events["EVT_ev02"];
 	}
 
-	FindEnemySpawners();
+	// FindEnemySpawners();
 
 
 #ifdef _DEBUG
@@ -321,6 +321,7 @@ void Randomizer::NewMap()
 	file.close();
 #endif
 
+	ModifyEnemyTables();
 	ModifySpawnPoints();
 
 	if (!_has_normal_weapon)
@@ -342,6 +343,59 @@ void Randomizer::RemoveBreakable()
 			door->HPComponent->DoDamage(nullptr, 1000, false, false);
 		}
 	}
+}
+
+void Randomizer::ModifyEnemyTables()
+{
+	// settings will go here
+
+	auto parameters = CG::UObject::FindObjects<CG::UParameterEnemyComponent>();
+	for (auto parameter : parameters)
+		FixChapterProgression(parameter);
+}
+
+bool IsChapterLocked(const CG::TArray<CG::FDataTableData> &data)
+{
+	auto chapter1 = (CG::FEnemyParameterLevelData*)data[0].ptr;
+	auto chapter2 = (CG::FEnemyParameterLevelData*)data[1].ptr;
+	return chapter1->HP == chapter2->HP;
+}
+
+float lerp(float a, float b, float f)
+{
+	return a * (1.0 - f) + (b * f);
+}
+
+void Randomizer::FixChapterProgression(CG::UParameterEnemyComponent* parameterEnemyComponent)
+{
+	if (parameterEnemyComponent->LevelTable == nullptr || !IsChapterLocked(parameterEnemyComponent->LevelTable->Data))
+		return;
+	const CG::TArray<CG::FDataTableData>& data = parameterEnemyComponent->LevelTable->Data;
+	auto chapter10 = (CG::FEnemyParameterLevelData*)data[9].ptr;
+
+	std::cout << parameterEnemyComponent->LevelTable->GetFullName() << std::endl;
+
+	for (int i = 0; i < 9; ++i)
+	{
+		auto chapter = (CG::FEnemyParameterLevelData*)data[i].ptr;
+		if (((CG::FEnemyParameterLevelData*)data[i+1].ptr)->HP != chapter->HP)
+		{
+			// maybe we want to use the last dynamic chapter to calculate the progression curve
+			std::cout << "Stop chapter fix at " << i+1 << std::endl;
+			break;
+		}
+		chapter->HP = (chapter10->HP / 10.0) * pow(chapter10->HP / (chapter10->HP / 10.0), i / 9.0);
+		chapter->Attack = int(lerp(0, chapter10->Attack, (i+1) / 10.0));
+		chapter->DropExperience = int(lerp(0, chapter10->DropExperience, (i + 1) / 10.0));
+	}
+
+#ifdef _DEBUG
+	for (int i = 0; i < 10; ++i)
+	{
+		auto chapter = (CG::FEnemyParameterLevelData*)data[i].ptr;
+		std::cout << i+1 << "->" << chapter->HP << ":" << chapter->Attack << ":" << chapter->DropExperience << std::endl;
+	}
+#endif
 }
 
 void Randomizer::ModifySpawnPoints()
@@ -602,7 +656,7 @@ void Randomizer::Update()
 	//std::cout << "Help" << std::endl;
 	
 	// TODO: Put this behind a setting
-	FixChapterLockedEnemies();
+	// FixChapterLockedEnemies();
 
 	UpdateChecks();
 	PreventReturnToOutset();

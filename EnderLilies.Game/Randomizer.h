@@ -105,6 +105,8 @@ private:
 	void RefreshAptitudes();
 	void ShuffleRelicSlots();
 	void ShuffleMusic();
+	void ModifyEnemyTables();
+	void FixChapterProgression(CG::UParameterEnemyComponent* parameterEnemyComponent);
 	void ModifySpawnPoints();
 	void RemoveBreakable();
 	void ReadSeedFile(std::string path);
