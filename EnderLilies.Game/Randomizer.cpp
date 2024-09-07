@@ -4,9 +4,12 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
+#include <deque>
+#include <array>
 
 std::unordered_map<std::string, CG::UClass*>	Randomizer::_bp_classes;
 std::unordered_map<std::string, CG::UFunction*>	Randomizer::_bp_funcs;
+std::deque<CG::ABP_EnemySpawnPoint_C*> Randomizer::_enemy_spawners;
 
 
 Randomizer::Randomizer(std::string path)
@@ -85,8 +88,10 @@ bool Randomizer::IsReady()
 	}
 	if (_new_data)
 		this->GameDataReady();
-	if (_new_map)
+	if (_new_map) {
 		this->NewMap();
+		this->FindEnemies("e2011_slime");
+	}
 	return true;
 }
 
@@ -205,6 +210,7 @@ void Randomizer::NewMap()
 	std::cout << "NEWMAP" << std::endl;
 	_done.clear();
 	_bp_classes.clear();
+	_enemy_spawners.clear();
 	_bp_funcs.clear();
 
 	CG::FNamePool pool = CG::FName::GetGlobalNames();
@@ -251,7 +257,7 @@ void Randomizer::NewMap()
 		if (!has_fast_travel)
 			pc->PlayedEvents[0].ComparisonIndex = _events["EVT_ev02"];
 	}
-
+	FindEnemySpawners();
 
 #ifdef _DEBUG
 	std::fstream file("dataout.txt", std::ios_base::app);
@@ -370,6 +376,121 @@ void Randomizer::ModifySpawnPoints()
 }
 
 
+bool Randomizer::FixChapterLockedEnemy(CG::ABP_Character_Enemy_Base_C* enemy, bool is_unique, bool modifyHP, bool modifyAttack, bool modifyXP) {
+
+	std::cout << "Fixing Chapter Locked enemy" << std::endl;
+			
+	CG::AAIC_Base_C* aic;
+
+	// Getting the AIC* is different based of if subspirit (unique) vs normal
+	if (is_unique) {
+		aic = (CG::AAIC_Base_C*)enemy->Controller;
+	}
+	else {
+		aic = (CG::AAIC_Base_C*)enemy->GetController();
+	}
+
+
+	// World Information
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+	int currentChapter = gm->GetChapterDisplay();
+
+	// Get the Enemy Base data from the AI Controller
+	if (aic == nullptr) {
+		return false;
+	}
+
+	std::cout << aic->GetName() << std::endl;
+	if (aic->ParameterEnemyComponent == nullptr) {
+		std::cout << "Parameters Locked..." << std::endl;
+		return false;
+	}
+
+	CG::UDataTable* table = aic->ParameterEnemyComponent->LevelTable;
+	CG::FDataTableRowHandle handle;
+	handle.DataTable = table;
+	
+	// For Max Chapter information
+	CG::FEnemyParameterLevelData* maxEnemyData = (CG::FEnemyParameterLevelData*)table->Data[9].ptr;
+	//std::cout << "Max enemy data: " << maxEnemyData->HP << std::endl;
+
+	// For Current Chapter information 
+	CG::FEnemyParameterLevelData* currentEnemyData = (CG::FEnemyParameterLevelData*)table->Data[currentChapter - 1].ptr;
+
+	if (modifyHP) {
+		int enemyMaxHP = maxEnemyData->HP;
+		double enemyMinHP = enemyMaxHP / 10.0;
+		double base = enemyMaxHP / enemyMinHP;
+		double exponent = (currentChapter - 1) / 9.0;
+		int fixedEnemyHP = enemyMinHP * pow(base, exponent);
+		enemy->HPComponent->MaxHP = fixedEnemyHP;
+		enemy->HPComponent->CurrHP = fixedEnemyHP;
+		std::cout << "Fixed enemy HP" << std::endl;
+	} 
+
+	if (modifyAttack) {
+		int fixedAttack = int((maxEnemyData->Attack / 10) * currentChapter);
+		currentEnemyData->Attack = fixedAttack;
+		std::cout << "Fixed enemy Attack" << std::endl;
+	}
+
+	if (modifyXP) {
+		int fixedXP = int((maxEnemyData->DropExperience / 10) * currentChapter);
+		currentEnemyData->DropExperience = fixedXP;
+		std::cout << "Fixed enemy experience" << std::endl;
+	}
+
+	return true;
+}
+
+void Randomizer::FixChapterLockedEnemies() {
+	/*
+	Enemies in Ender Lilies 	
+	
+	*/
+	if (!_enemy_spawners.empty()) {
+
+		CG::UWorld* world = World();
+		CG::UGameInstanceZenithBase* gameInstance = (CG::UGameInstanceZenithBase*)(world->OwningGameInstance);
+		CG::UWorldLoaderSubsystem* worldLoader = (CG::UWorldLoaderSubsystem*)gameInstance->SubSystems[0x1F];
+		std::string levelName = worldLoader->GetCurrentGameMapID().GetName();
+
+		for (int i = 0; i < _enemy_spawners.size(); i++) {
+			CG::ABP_EnemySpawnPoint_C* spawner = _enemy_spawners.front();
+			if (spawner->IsEnemySpawned()) {
+				std::cout << "Enemy activated!" << std::endl;
+
+				if (spawner->Children[0] != nullptr) {
+					CG::ABP_Character_Enemy_Base_C* enemy = (CG::ABP_Character_Enemy_Base_C*)spawner->GetEnemy();
+					CG::AAIC_Base_C* aic;
+					bool is_unique = false;
+
+					// Normal Spawn with AIC as child of Spawner
+					if (spawner->Children[0]->Class->GetName().find("AIC_") != std::string::npos) {
+						std::cout << "Normal Enemy: " << enemy->GetController()->GetName() << std::endl;
+						aic = (CG::AAIC_Base_C*)spawner->Children[0];
+					}
+					// Unique (Sub spirits) Spawn with EnemyBase as child of spawner
+					else {
+						if (enemy->Controller != nullptr) {
+							std::cout << "Unique Enemy: " << enemy->Controller->GetName() << std::endl;
+						}
+						aic = (CG::AAIC_Base_C*)enemy->Controller;
+						is_unique = true;
+					}
+					if (IsEnemyChapterLocked(enemy->Class->GetName()) && IsInChapterLockedLocation(levelName)) {
+						if (FixChapterLockedEnemy(enemy, is_unique, true, true, true)) {
+							_enemy_spawners.pop_front();
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+}
+
 void Randomizer::Update()
 {
 	FindItems("BP_Character_Boss_Base_C");
@@ -377,7 +498,118 @@ void Randomizer::Update()
 	FindItems("BP_Interactable_Treasure_C");
 	FindItems("BP_WorldTravelVolume_C");
 	FindItems("BP_Interactable_WorldTravel_C");
+	FixChapterLockedEnemies();
+
 }
+
+bool Randomizer::IsInChapterLockedLocation(std::string locationName) {
+
+	std::set<std::string> chapterLockedLocations = {
+		"map_cave_12",
+		"map_castle_16",
+		"map_village_14",
+		"map_church_09",
+		"map_fort_12"
+	};
+			
+	// Check if its in the right location because they reuse
+	if (chapterLockedLocations.find(locationName) != chapterLockedLocations.end()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+
+}
+
+bool Randomizer::IsEnemyChapterLocked(std::string enemyName) {
+
+	std::set<std::string> chapterLockedEnemies = {
+		"BP_e2252_UncleanNest_C",
+		"BP_e2040_UncleanGolem_C",
+		"BP_e2032_BigKnight_C",
+		"BP_e2100_Crow_C",
+		"BP_e2110_Ork_C",
+		"BP_e2112_Ork_C",
+		"BP_e2090_Priest_C",
+		"BP_e2092_Priest_C",
+		"BP_e2010_Slime_C",
+		"BP_e2001_Knight_C",
+		"BP_e2232_Dragon_C"
+	};
+			
+	// Check if its in the right location because they reuse
+	if (chapterLockedEnemies.find(enemyName) != chapterLockedEnemies.end()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+
+}
+
+CG::TArray<CG::AActor*> Randomizer::FindEnemies(const std::string& enemy_name) {
+
+	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
+	CG::TArray<CG::AActor*> out;
+	statics->STATIC_GetAllActorsOfClass(World(), _bp_classes[enemy_name], &out);
+	return out;
+}
+
+void Randomizer::FindEnemySpawners() {
+	// Find the enemy spawners when we enter a new location
+
+	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
+	CG::TArray<CG::AActor*> out;
+	statics->STATIC_GetAllActorsOfClass(World(), _bp_classes["BP_EnemySpawnPoint_C"], &out);
+
+	// Loop over the spawn points
+	if (out.Num() > 0) {
+		for (int i = 0; i < out.Num(); i++) {
+			_enemy_spawners.push_back((CG::ABP_EnemySpawnPoint_C*)out[i]);
+		}
+	}
+
+#ifdef _DEBUG
+	//int spawnerSize = _enemy_spawners.size();
+	//for (int i = 0; i < spawnerSize; i++) {
+	//	CG::ABP_EnemySpawnPoint_C* spawner = _enemy_spawners.front();
+	//	std::cout << spawner->CharacterToSpawn->GetName() << std::endl;
+	//	_enemy_spawners.pop_front();
+	//}
+#endif
+}
+
+
+void Randomizer::AddParticlesToInteractable(const std::string& interactable_name) {
+	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
+	CG::TArray<CG::AActor*> out;
+	statics->STATIC_GetAllActorsOfClass(World(), _bp_classes[interactable_name], &out);
+	
+	if (out.Num() > 0) {
+		for (int i = 0; i < out.Num(); ++i) {
+			CG::ABP_Interactable_Item_C* interactable = (CG::ABP_Interactable_Item_C*)out[i];
+			//CG::UGameplayStatics::STATIC_SpawnEmitterAtLocation('EnderLilies/Content/_Zenith/Art/Effects/Gameplay/PS_AccessLight_M.uasset')
+			CG::FName none = CG::FName("None");
+			CG::FName pkg = CG::FName("EnderLilies/Content/_Zenith/Art/Effects/Gameplay");
+
+			//CG::FAssetData particles = CG::FAssetData(none, none, none, pkg, none, nullptr);
+			//CG::UAssetRegistryHelpers::STATIC_ToSoftObjectPath();
+		}
+	}
+
+	
+}
+
+void Randomizer::TestingFunction() {
+	// Check if enemies have spawned in
+
+
+}
+
+
+
+
 
 
 void Randomizer::FindItems(const std::string& type_name)
@@ -525,6 +757,17 @@ void Randomizer::ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandl
 		_done.insert(itemhandle);
 #ifdef _DEBUG
 	auto v = actor->K2_GetActorLocation();
+	/*
+	CG::FVector vec;
+	vec.X = 10;
+	vec.Y = 0;
+	vec.Z = 10;
+
+	CG::FTransform trans;
+	trans.Scale3D = vec;
+	std::cout << "Making actor bigger" << std::endl;
+	actor->K2_SetActorTransform(trans, true, nullptr, false);
+	*/
 	std::cout << v.X << " : " << v.Y << " : " << v.Z << name << std::endl;
 #endif
 }

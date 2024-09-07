@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "SDK.h"
 #include <map>
+#include <deque>
 
 
 static inline void ltrim(std::string& s) {
@@ -48,6 +49,7 @@ public:
 private:
 	static std::unordered_map<std::string, CG::UClass*>	_bp_classes;
 	static std::unordered_map<std::string, CG::UFunction*>	_bp_funcs;
+	static std::deque<CG::ABP_EnemySpawnPoint_C*> _enemy_spawners;
 	std::unordered_map<std::string, std::string> _data;
 	std::unordered_set<int> _musics;
 
@@ -98,6 +100,8 @@ private:
 	void RemoveBreakable();
 	void ReadSeedFile(std::string path);
 	void FindItems(const std::string &string);
+	CG::TArray<CG::AActor*> FindEnemies(const std::string &string);
+	void FindEnemySpawners();
 	void ItemFound(CG::AActor* actor, CG::FDataTableRowHandle* itemhandle);
 	void TransitionFound(CG::AActor* actor, CG::FDataTableRowHandle* handle, CG::FName* PlayerStartTag, bool test);
 	void FindNames();
@@ -107,6 +111,17 @@ private:
 	void GameDataReady();
 	bool FindTableRow(const std::string &item, FTableRowProxy& result);
 	bool PlayerHasItem(const FTableRowProxy proxy);
+
+	// Added
+	void AddParticlesToInteractable(const std::string& interactable_name);
+	void TestingFunction();
+	
+	// Chapter Related
+	void FixChapterLockedEnemies();
+	bool FixChapterLockedEnemy(CG::ABP_Character_Enemy_Base_C* enemy, bool is_unique, bool modifyHP, bool modifyAttack, bool modifyXP);
+	bool IsEnemyChapterLocked(std::string enemyName);
+	bool IsInChapterLockedLocation(std::string locationName);
+
 };
 
 namespace CG
