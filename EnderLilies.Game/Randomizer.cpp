@@ -318,28 +318,7 @@ void Randomizer::NewMap()
 	ModifyEnemyTables();
 	ModifySpawnPoints();
 
-
-	auto RegistryHelper = (CG::UAssetRegistryHelpers*)CG::UAssetRegistryHelpers::StaticClass();
-
-
 	auto pc = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController);
-
-	
-	
-	CG::FName package = Unreal::FName::ConstructorInternal(L"/Game/_Zenith/Characters/e2112_Ork/BP_e2112_Ork", Unreal::EFindName::FNAME_Add);
-	CG::FName obj_path = Unreal::FName::ConstructorInternal(L"/Game/_Zenith/Characters/e2112_Ork/BP_e2112_Ork.BP_e2112_Ork_C", Unreal::EFindName::FNAME_Add);
-	CG::FName path = Unreal::FName::ConstructorInternal(L"/Game/_Zenith/Characters/e2112_Ork", Unreal::EFindName::FNAME_Add);
-	CG::FName asset_class = Unreal::FName::ConstructorInternal(L"BP_e2112_Ork_C", Unreal::EFindName::FNAME_Add);
-	CG::FName asset_name = Unreal::FName::ConstructorInternal(L"BP_e2112_Ork", Unreal::EFindName::FNAME_Add);
-
-	CG::FAssetData data;
-	data.PackageName = package;
-	data.PackagePath = path;
-	data.AssetName = asset_name;
-	data.AssetClass = asset_class;
-	data.ObjectPath = obj_path;
-
-	auto result = RegistryHelper->STATIC_GetAsset(data);
 
 	//auto toto = CG::UAssetRegistryHelpers::STATIC_GetAssetRegistryFix();
 
@@ -347,6 +326,33 @@ void Randomizer::NewMap()
 	if (!_has_normal_weapon)
 		RemoveBreakable();
 }
+
+CG::UClass* GetCharacterClass(const wchar_t *name)
+{
+	CG::FAssetData data;
+	wchar_t buffer[128];
+
+	_swprintf(buffer, L"/Game/_Zenith/Characters/%s/BP_%s", name, name);
+	data.PackageName = Unreal::FName::ConstructorInternal(buffer, Unreal::EFindName::FNAME_Add);
+
+	_swprintf(buffer, L"/Game/_Zenith/Characters/%s", name, name);
+	data.PackagePath = Unreal::FName::ConstructorInternal(buffer, Unreal::EFindName::FNAME_Add);
+
+	_swprintf(buffer, L"/Game/_Zenith/Characters/%s/BP_%s.BP_%s_C", name, name, name);
+	data.ObjectPath = Unreal::FName::ConstructorInternal(buffer, Unreal::EFindName::FNAME_Add);
+
+	_swprintf(buffer, L"BP_%s_C", name);
+	data.AssetClass = Unreal::FName::ConstructorInternal(buffer, Unreal::EFindName::FNAME_Add);
+
+	_swprintf(buffer, L"BP_%s", name);
+	data.AssetName = Unreal::FName::ConstructorInternal(name, Unreal::EFindName::FNAME_Add);
+
+	auto RegistryHelper = (CG::UAssetRegistryHelpers*)CG::UAssetRegistryHelpers::StaticClass();
+
+	auto result = RegistryHelper->STATIC_GetAsset(data);
+	return (CG::UClass *)result;
+}
+
 
 void Randomizer::RemoveBreakable()
 {
@@ -454,30 +460,8 @@ void Randomizer::ModifySpawnPoints()
 				}
 				continue;
 			}
-
-
-			CG::FRotator r = spawn1->K2_GetActorRotation();
-			CG::FTransform t = spawn1->GetTransform();
-			t.Translation.Y += 200;
-
-
-			CG::FActorSpawnParameters spawn_params;
-			spawn_params.ObjectFlags = (CG::EObjectFlags)0x48;
-			spawn_params.OverrideLevel = (CG::ULevel*)spawn1->Outer;
-			spawn_params.Owner = spawn1;
-			spawn_params.SpawnCollisionHandlingOverride = CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AdjustIfPossibleButDontSpawnIfColliding;
-
-			auto a = World()->SpawnActor<CG::APawn>(spawn1->CharacterToSpawn, &t.Translation, &r, spawn_params);
-			//auto a = (CG::APawn*)CG::UGameplayStatics::STATIC_BeginDeferredActorSpawnFromClass(spawn1, spawn1->Class, t, CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AlwaysSpawn, spawn1);
-
-			/*
-			if (a != nullptr)
-			{
-				a->SetActorScale3D(CG::FVector(2, 2, 2));
-				a->SpawnDefaultController();
-			}*/
-
-
+			auto new_class = GetCharacterClass(L"e2180_Shadow");
+			spawn1->CharacterToSpawn = new_class;
 
 
 			spawn1->bShouldActivateByDefault = true;
