@@ -1,6 +1,6 @@
 ﻿// Name: enderlilies, Version: 1.1.3
 
-#include "../pch.h"
+#include "pch.h"
 
 /*!!DEFINE!!*/
 
@@ -291,7 +291,34 @@ void UAssetRegistryHelpers::STATIC_GetAssetRegistry()
 
 	UObject::ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
+}
 
+
+// Function AssetRegistry.AssetRegistryHelpers.GetAsset
+struct STATIC_GetAssetRegistryFix_Params
+{
+	class TScriptInterface<CG::UAssetRegistry> ReturnValue;
+};
+
+
+// Function:
+//		Offset -> 0x021D95E0
+//		Name   -> Function AssetRegistry.AssetRegistryHelpers.GetAssetRegistry
+//		Flags  -> (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
+class TScriptInterface<CG::UAssetRegistry> UAssetRegistryHelpers::STATIC_GetAssetRegistryFix()
+{
+	UAssetRegistryHelpers* statics = (UAssetRegistryHelpers*)UAssetRegistryHelpers::StaticClass();
+
+	static UFunction* fn = UObject::FindObject<UFunction>("Function AssetRegistry.AssetRegistryHelpers.GetAssetRegistry");
+
+	STATIC_GetAssetRegistryFix_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x00000400;
+
+	statics->ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+	return params.ReturnValue;
 }
 
 
@@ -304,7 +331,7 @@ void UAssetRegistryHelpers::STATIC_GetAssetRegistry()
 //		class UObject*                                     ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UObject* UAssetRegistryHelpers::STATIC_GetAsset(const struct FAssetData& InAssetData)
 {
-	static UFunction* fn = UObject::FindObject<UFunction>("Function AssetRegistry.AssetRegistryHelpers.GetAsset");
+	UFunction* fn = UObject::FindObject<UFunction>("Function AssetRegistry.AssetRegistryHelpers.GetAsset");
 
 	UAssetRegistryHelpers_GetAsset_Params params;
 	params.InAssetData = InAssetData;
@@ -811,6 +838,25 @@ struct FAssetData UAssetRegistry::GetAssetByObjectPath(const struct FName& Objec
 	UAssetRegistry_GetAssetByObjectPath_Params params;
 	params.ObjectPath = ObjectPath;
 	params.bIncludeOnlyOnDiskAssets = bIncludeOnlyOnDiskAssets;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x00000400;
+
+	UObject::ProcessEvent(fn, &params);
+	fn->FunctionFlags = flags;
+
+
+	return params.ReturnValue;
+}
+
+struct FAssetData UAssetRegistry::GetAssetByObjectPath(const FSoftObjectPath& ObjectPath, bool bIncludeOnlyOnDiskAssets, bool bSkipARFilteredAssets)
+{
+	static UFunction* fn = UObject::FindObject<UFunction>("Function AssetRegistry.AssetRegistry.GetAssetByObjectPath");
+
+	UAssetRegistry_GetAssetByObjectPath_Params2 params;
+	params.ObjectPath = ObjectPath;
+	params.bIncludeOnlyOnDiskAssets = bIncludeOnlyOnDiskAssets;
+	params.bSkipARFilteredAssets = bSkipARFilteredAssets;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;

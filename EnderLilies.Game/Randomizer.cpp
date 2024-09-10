@@ -313,10 +313,36 @@ void Randomizer::NewMap()
 	for (int i = 0; i < gm->GameMapTable->Data.Num(); ++i)
 		file << i << "\t" << gm->GameMapTable->Data[i].Name.GetNameA() << std::endl;
 	file.close();
-	ModifyEnemyTables();
 #endif
 
+	ModifyEnemyTables();
 	ModifySpawnPoints();
+
+
+	auto RegistryHelper = (CG::UAssetRegistryHelpers*)CG::UAssetRegistryHelpers::StaticClass();
+
+
+	auto pc = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController);
+
+	
+	
+	CG::FName package = Unreal::FName::ConstructorInternal(L"/Game/_Zenith/Characters/e2112_Ork/BP_e2112_Ork", Unreal::EFindName::FNAME_Add);
+	CG::FName obj_path = Unreal::FName::ConstructorInternal(L"/Game/_Zenith/Characters/e2112_Ork/BP_e2112_Ork.BP_e2112_Ork_C", Unreal::EFindName::FNAME_Add);
+	CG::FName path = Unreal::FName::ConstructorInternal(L"/Game/_Zenith/Characters/e2112_Ork", Unreal::EFindName::FNAME_Add);
+	CG::FName asset_class = Unreal::FName::ConstructorInternal(L"BP_e2112_Ork_C", Unreal::EFindName::FNAME_Add);
+	CG::FName asset_name = Unreal::FName::ConstructorInternal(L"BP_e2112_Ork", Unreal::EFindName::FNAME_Add);
+
+	CG::FAssetData data;
+	data.PackageName = package;
+	data.PackagePath = path;
+	data.AssetName = asset_name;
+	data.AssetClass = asset_class;
+	data.ObjectPath = obj_path;
+
+	auto result = RegistryHelper->STATIC_GetAsset(data);
+
+	//auto toto = CG::UAssetRegistryHelpers::STATIC_GetAssetRegistryFix();
+
 
 	if (!_has_normal_weapon)
 		RemoveBreakable();
@@ -342,6 +368,8 @@ void Randomizer::RemoveBreakable()
 void Randomizer::ModifyEnemyTables()
 {
 	// settings will go here
+	if (!_rebalance_enemies)
+		return;
 
 	auto parameters = CG::UObject::FindObjects<CG::UParameterEnemyComponent>();
 	for (auto parameter : parameters)
@@ -426,6 +454,32 @@ void Randomizer::ModifySpawnPoints()
 				}
 				continue;
 			}
+
+
+			CG::FRotator r = spawn1->K2_GetActorRotation();
+			CG::FTransform t = spawn1->GetTransform();
+			t.Translation.Y += 200;
+
+
+			CG::FActorSpawnParameters spawn_params;
+			spawn_params.ObjectFlags = (CG::EObjectFlags)0x48;
+			spawn_params.OverrideLevel = (CG::ULevel*)spawn1->Outer;
+			spawn_params.Owner = spawn1;
+			spawn_params.SpawnCollisionHandlingOverride = CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AdjustIfPossibleButDontSpawnIfColliding;
+
+			auto a = World()->SpawnActor<CG::APawn>(spawn1->CharacterToSpawn, &t.Translation, &r, spawn_params);
+			//auto a = (CG::APawn*)CG::UGameplayStatics::STATIC_BeginDeferredActorSpawnFromClass(spawn1, spawn1->Class, t, CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AlwaysSpawn, spawn1);
+
+			/*
+			if (a != nullptr)
+			{
+				a->SetActorScale3D(CG::FVector(2, 2, 2));
+				a->SpawnDefaultController();
+			}*/
+
+
+
+
 			spawn1->bShouldActivateByDefault = true;
 			shuffled.push_back(i);
 		}
@@ -507,7 +561,6 @@ void Randomizer::Update()
 		{
 			auto spawn = (CG::ABP_EnemySpawnPoint_C*)out[0];
 			auto t = pc->Pawn->GetTransform();
-			auto obj = (CG::AActor *)CG::UGameplayStatics::STATIC_BeginDeferredActorSpawnFromClass(spawn, spawn->CharacterToSpawn, spawn->GetTransform(), CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AlwaysSpawn, spawn);
 			done = !done;
 			wait = true;
 		}
@@ -731,6 +784,7 @@ void Randomizer::ReadSeedFile(std::string path)
 	_shuffle_enemies = false;
 	_shuffle_rooms = false;
 	_shuffle_bgm = false;
+	_rebalance_enemies = false;
 	_starting_room = 0;
 	_cheat = false;
 	_has_normal_weapon = true;
@@ -773,6 +827,8 @@ void Randomizer::ReadSeedFile(std::string path)
 					_shuffle_upgrades = true;
 				else if (item == "shuffle_enemies")
 					_shuffle_enemies = true;
+				else if (item == "balance_enemies")
+					_rebalance_enemies = true;
 				else if (item == "NG+")
 					gm->NewGamePlusGeneration = 1;
 				else if (item == "force_ancient_souls")
@@ -962,11 +1018,11 @@ void ModifyRelics(const CG::UWorld* world)
 	
 	auto achie = world->OwningGameInstance->GetGameInstanceSubsystem<CG::UAchievementsSubsystem>();
 	auto table = achie->GetAchievementDataTable();
-	CG::FAchievementData* from = table->GetValue<CG::FAchievementData>(0);
+	CG::FAchievementData* from = table->GetValue<CG::FAchievementData>(36);
 
 	memcpy(to->Icon, from->UnlockedIcon, 0x28);
 	to->ShortExplanation.SetFromString(CG::FString(L"Stops Lily from floating into water"));
-	to->Name.SetFromString(CG::FString(L"Heavy Boulder"));
+	to->Name.SetFromString(CG::FString(L"Heavy Relic"));
 	to->Description.SetFromString(CG::FString(L"Look nice on your ankle"));
 }
 

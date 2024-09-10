@@ -22898,32 +22898,33 @@ public:
 
 
 };
-
 struct FActorSpawnParameters
 {
 public:
 	CG::FName Name;
-	CG::AActor* Template = nullptr;
-	CG::AActor* Owner = nullptr;
-	CG::APawn* Instigator = nullptr;
-	CG::ULevel* OverrideLevel = nullptr;
+	CG::AActor* Template;
+	CG::AActor* Owner;
+	CG::APawn* Instigator;
+	CG::ULevel* OverrideLevel;
 	CG::Engine_ESpawnActorCollisionHandlingMethod SpawnCollisionHandlingOverride;
 	uint8_t bRemoteOwned : 1;
 	uint8_t bNoFail : 1;
 	uint8_t bDeferConstruction : 1;
 	uint8_t	bAllowDuringConstructionScript : 1;
-	uint8_t NameMode = 0;
+	uint8_t NameMode;
 	char pad;
 
 	/* Flags used to describe the spawned actor/object instance. */
 	CG::EObjectFlags ObjectFlags;
 
+	
 	FActorSpawnParameters()
 	{
 		uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
-		((void(__fastcall*)(FActorSpawnParameters*)) (base + 0x2945840))(this);
+		((void(__fastcall*)(FActorSpawnParameters*)) (base + 0x2945880))(this);
 	}
 };
+
 
 // Class Engine.World
 // 0x0760 (FullSize[0x0788] - InheritedSize[0x0028])

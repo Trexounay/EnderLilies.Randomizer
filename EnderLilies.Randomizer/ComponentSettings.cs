@@ -1,20 +1,17 @@
-﻿using EnderLilies.Randomizer;
-using LiveSplit.TimeFormatters;
+﻿using EnderLilies.Randomizer.Logic;
+using EnderLilies.Randomizer.Tools;
+using LiveSplit.UI;
 using System;
-using System.Data;
-using System.Drawing;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Xml;
-using System.Diagnostics;
-using System.ComponentModel;
-using System.Linq;
-using LiveSplit.UI;
-using System.Runtime.CompilerServices;
-using System.Globalization;
-using EnderLilies.Randomizer.Tools;
-using EnderLilies.Randomizer.Logic;
 
 namespace EnderLilies.Randomizer
 {
@@ -67,6 +64,12 @@ namespace EnderLilies.Randomizer
                     NotifyPropertyChanged("AP_IsConnected");
                 }
             }
+        }
+
+        public bool IsLocalSetting(string name)
+        {
+            return name == "BalanceEnemies" ||
+                    name == "NGPlus";
         }
 
         public bool AP_CanConnect => !AP_IsConnected && !AP_IsConnecting;
@@ -360,6 +363,23 @@ namespace EnderLilies.Randomizer
                 if (_ngPlus != value)
                 {
                     _ngPlus = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        bool _balanceEnemies = false;
+        public bool BalanceEnemies
+        {
+            get
+            {
+                return _balanceEnemies;
+            }
+            set
+            {
+                if (_balanceEnemies != value)
+                {
+                    _balanceEnemies = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -735,6 +755,7 @@ namespace EnderLilies.Randomizer
             this.shuffleWishes.DataBindings.Add("Checked", this, "ShuffleWishes", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.shuffleSlots.DataBindings.Add("Checked", this, "ShuffleSlots", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.ngPlusSetting.DataBindings.Add("Checked", this, "NGPlus", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            this.balanceEnemiesSetting.DataBindings.Add("Checked", this, "BalanceEnemies", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.unusedRelics.DataBindings.Add("Checked", this, "UnusedRelics", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this.uatserver.DataBindings.Add("Checked", this, "UATServer", false, DataSourceUpdateMode.OnPropertyChanged, false);
             this.shuffleRooms.DataBindings.Add("Checked", this, "ShuffleRooms", false, DataSourceUpdateMode.OnPropertyChanged, false);
@@ -822,6 +843,7 @@ namespace EnderLilies.Randomizer
             UnusedRelics = SettingsHelper.ParseBool(element["UnusedRelics"], true);
             UATServer = SettingsHelper.ParseBool(element["UATServer"], false);
             NGPlus = SettingsHelper.ParseBool(element["NGPlus"], false);
+            BalanceEnemies = SettingsHelper.ParseBool(element["BalanceEnemies"], false);
             ShuffleRooms = SettingsHelper.ParseBool(element["ShuffleRooms"], false);
             ShuffleBGM = SettingsHelper.ParseBool(element["ShuffleBGM"], false);
             StartingSpirits = SettingsHelper.ParseInt(element["StartingSpirits"], 0b11111);
@@ -856,6 +878,7 @@ namespace EnderLilies.Randomizer
             settings_node.AppendChild(SettingsHelper.ToElement(document, "UnusedRelics", UnusedRelics));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "UATServer", UATServer));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "NGPlus", NGPlus));
+            settings_node.AppendChild(SettingsHelper.ToElement(document, "BalanceEnemies", BalanceEnemies));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "Seed", Seed));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "SkinOverride", SkinOverride));
             settings_node.AppendChild(SettingsHelper.ToElement(document, "StartChapter", StartChapter));
@@ -1078,10 +1101,8 @@ namespace EnderLilies.Randomizer
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
                 if (!_internalInteraction)
                 {
-                    if (propertyName != "SeedText")
-                    {
+                    if (propertyName != "SeedText" && !IsLocalSetting(propertyName))
                         NotifyPropertyChanged("SeedText");
-                    }
                     else
                         PropertyChangedEnded(this, new PropertyChangedEventArgs(propertyName));
                 }

@@ -81,6 +81,7 @@ private:
 	bool _shuffle_upgrades = false;
 	bool _shuffle_enemies = false;
 	bool _shuffle_bgm = false;
+	bool _rebalance_enemies = false;
 	bool _force_ancient_souls = false;
 	bool _minibosses_chapter = false;
 	bool _need_ap_refresh = false;

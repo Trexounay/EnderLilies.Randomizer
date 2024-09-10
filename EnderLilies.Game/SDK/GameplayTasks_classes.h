@@ -83,7 +83,7 @@ public:
 
 
 
-	static class UGameplayTask_SpawnActor* STATIC_SpawnActor(const struct FVector& SpawnLocation, const struct FRotator& SpawnRotation, class UClass* Class, bool bSpawnOnlyOnAuthority);
+	class UGameplayTask_SpawnActor* STATIC_SpawnActor(const struct FVector& SpawnLocation, const struct FRotator& SpawnRotation, class UClass* Class, bool bSpawnOnlyOnAuthority);
 	void FinishSpawningActor(class UObject* WorldContextObject, class AActor* SpawnedActor);
 	bool BeginSpawningActor(class UObject* WorldContextObject, class AActor** SpawnedActor);
 };

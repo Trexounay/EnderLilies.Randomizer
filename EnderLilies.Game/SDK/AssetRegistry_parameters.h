@@ -247,6 +247,15 @@ struct UAssetRegistry_GetAssetByObjectPath_Params
 	struct FAssetData                                  ReturnValue;                                               // 0x0010(0x0050)  (Parm, OutParm, ReturnParm, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 };
 
+// Function AssetRegistry.AssetRegistry.GetAssetByObjectPath
+struct UAssetRegistry_GetAssetByObjectPath_Params2
+{
+	struct FSoftObjectPath							   ObjectPath;                                                // 0x0000(0x0008)  (ConstParm, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool                                               bIncludeOnlyOnDiskAssets;                                  // 0x0008(0x0001)  (Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+	bool											   bSkipARFilteredAssets;
+	struct FAssetData                                  ReturnValue;                                               // 0x0010(0x0050)  (Parm, OutParm, ReturnParm, HasGetValueTypeHash, NativeAccessSpecifierPublic)
+};
+
 // Function AssetRegistry.AssetRegistry.GetAllCachedPaths
 struct UAssetRegistry_GetAllCachedPaths_Params
 {

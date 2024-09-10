@@ -110,7 +110,7 @@ public:
 
 	void Add(T obj)
 	{
-		//Data = static_cast<T*>(realloc(Data, sizeof(T) * Count + 1));
+		Data = static_cast<T*>(realloc(Data, sizeof(T) * Count + 1));
 		Data[Count] = obj;
 		Count += 1;
 	}
@@ -920,7 +920,7 @@ public:
 	}
 };
 
-template<class InterfaceType>
+template<typename InterfaceType>
 class TScriptInterface : public FScriptInterface
 {
 public:

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.seedText = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -43,6 +43,7 @@
             this.shuffleRooms = new System.Windows.Forms.CheckBox();
             this.shuffleEnemies = new System.Windows.Forms.CheckBox();
             this.uatserver = new System.Windows.Forms.CheckBox();
+            this.balanceEnemiesSetting = new System.Windows.Forms.CheckBox();
             this.maxChapter = new System.Windows.Forms.TrackBar();
             this.chapterText = new System.Windows.Forms.Label();
             this.startChapter = new System.Windows.Forms.TrackBar();
@@ -133,6 +134,7 @@
             this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ArchipelagoPage = new System.Windows.Forms.TabPage();
             this.ArchipelagoSettings = new System.Windows.Forms.GroupBox();
+            this.APconnectedInfo = new System.Windows.Forms.Label();
             this.connectAP = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this._APSlotName = new System.Windows.Forms.TextBox();
@@ -147,7 +149,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.helpTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.APconnectedInfo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -259,6 +260,7 @@
             this.flowLayoutPanel2.Controls.Add(this.shuffleRooms);
             this.flowLayoutPanel2.Controls.Add(this.shuffleEnemies);
             this.flowLayoutPanel2.Controls.Add(this.uatserver);
+            this.flowLayoutPanel2.Controls.Add(this.balanceEnemiesSetting);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(35, 25);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -334,6 +336,18 @@
             this.helpTooltip.SetToolTip(this.uatserver, "Use this option to enable Auto Tracking in Pop Tracker\r\nIf everything is working " +
         "Pop Tracker should show a green AT icon at the top");
             this.uatserver.UseVisualStyleBackColor = true;
+            // 
+            // balanceEnemiesSetting
+            // 
+            this.balanceEnemiesSetting.AutoSize = true;
+            this.balanceEnemiesSetting.Location = new System.Drawing.Point(3, 141);
+            this.balanceEnemiesSetting.Name = "balanceEnemiesSetting";
+            this.balanceEnemiesSetting.Size = new System.Drawing.Size(133, 17);
+            this.balanceEnemiesSetting.TabIndex = 50;
+            this.balanceEnemiesSetting.Text = "Adjust enemies scaling";
+            this.helpTooltip.SetToolTip(this.balanceEnemiesSetting, "Enemies with difficulty locked to later chapters of the game will be scaled down " +
+        "in earlier chapters");
+            this.balanceEnemiesSetting.UseVisualStyleBackColor = true;
             // 
             // maxChapter
             // 
@@ -1450,11 +1464,11 @@
             this.LogicPreviewGridview.AllowUserToAddRows = false;
             this.LogicPreviewGridview.AllowUserToDeleteRows = false;
             this.LogicPreviewGridview.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.LogicPreviewGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.LogicPreviewGridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.LogicPreviewGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LogicPreviewGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1523,6 +1537,17 @@
             this.ArchipelagoSettings.TabIndex = 0;
             this.ArchipelagoSettings.TabStop = false;
             this.ArchipelagoSettings.Text = "Session";
+            // 
+            // APconnectedInfo
+            // 
+            this.APconnectedInfo.AutoSize = true;
+            this.APconnectedInfo.ForeColor = System.Drawing.Color.Green;
+            this.APconnectedInfo.Location = new System.Drawing.Point(274, 22);
+            this.APconnectedInfo.Name = "APconnectedInfo";
+            this.APconnectedInfo.Size = new System.Drawing.Size(62, 13);
+            this.APconnectedInfo.TabIndex = 7;
+            this.APconnectedInfo.Text = "Connected!";
+            this.APconnectedInfo.Visible = false;
             // 
             // connectAP
             // 
@@ -1637,17 +1662,6 @@
             // componentSettingsBindingSource
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
-            // 
-            // APconnectedInfo
-            // 
-            this.APconnectedInfo.AutoSize = true;
-            this.APconnectedInfo.ForeColor = System.Drawing.Color.Green;
-            this.APconnectedInfo.Location = new System.Drawing.Point(274, 22);
-            this.APconnectedInfo.Name = "APconnectedInfo";
-            this.APconnectedInfo.Size = new System.Drawing.Size(62, 13);
-            this.APconnectedInfo.TabIndex = 7;
-            this.APconnectedInfo.Text = "Connected!";
-            this.APconnectedInfo.Visible = false;
             // 
             // ComponentSettings
             // 
@@ -1815,5 +1829,6 @@
         private System.Windows.Forms.TextBox _APSlotName;
         private System.Windows.Forms.Button connectAP;
         private System.Windows.Forms.Label APconnectedInfo;
+        private System.Windows.Forms.CheckBox balanceEnemiesSetting;
     }
 }

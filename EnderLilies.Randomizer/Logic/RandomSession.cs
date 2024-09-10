@@ -24,7 +24,9 @@ namespace EnderLilies.Randomizer
         string _seed_text = "";
         private void _settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (!_settings.Init || _settings.SeedText == _seed_text || !_settings.AP_CanConnect)
+            if (!_settings.Init || !_settings.AP_CanConnect)
+                return;
+            if (!_settings.IsLocalSetting(e.PropertyName) && _settings.SeedText == _seed_text)
                 return;
             _seed_text = _settings.SeedText;
             Generate(_settings.Seed);
@@ -276,6 +278,8 @@ namespace EnderLilies.Randomizer
                     writer.WriteLine("SETTINGS:shuffle_bgm");
                 if (_settings.ShuffleEnemies)
                     writer.WriteLine("SETTINGS:shuffle_enemies");
+                if (_settings.BalanceEnemies)
+                    writer.WriteLine("SETTINGS:balance_enemies");
                 if (_settings.NGPlus)
                     writer.WriteLine("SETTINGS:NG+");
                 if (_settings.StartWeaponUsesAncientSouls)
