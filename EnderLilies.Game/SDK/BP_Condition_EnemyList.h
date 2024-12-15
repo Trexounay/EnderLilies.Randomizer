@@ -39,7 +39,7 @@ namespace CG
 		
 		void	SetConditionResult(bool ConditionResult, bool CallFunc_NotEqual_BoolBool_ReturnValue)
 		{
-			static UFunction* fn = CG::UObject::FindFunction("BP_Condition_C.SetConditionResult");
+			UFunction* fn = CG::UObject::FindFunction("BP_Condition_C.SetConditionResult");
 
 			BP_Condition_C_SetConditionResult_Params params;
 			params.ConditionResult = ConditionResult;
@@ -52,7 +52,7 @@ namespace CG
 
 		void	OnEnemyDeath(UObject* EnemySpawnPoint)
 		{
-			static UFunction* fn = CG::UObject::FindFunction("BP_Condition_EnemyList_C.OnEnemyDeath");
+			UFunction* fn = CG::UObject::FindFunction("BP_Condition_EnemyList_C.OnEnemyDeath");
 			OnEnemyDeath_Params params;
 			params.EnemySpawnPoint = EnemySpawnPoint;
 

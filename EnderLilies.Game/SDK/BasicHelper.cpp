@@ -54,6 +54,7 @@ bool InitSdk115()
 }
 bool InitSdk116()
 {
+
 	return InitSdk("EnderLiliesSteam-Win64-Shipping.exe", 0x451C068, 0x4503AC0, 0x46555D0);
 }
 #endif

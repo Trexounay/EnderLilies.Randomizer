@@ -331,7 +331,7 @@ class TScriptInterface<CG::UAssetRegistry> UAssetRegistryHelpers::STATIC_GetAsse
 //		class UObject*                                     ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UObject* UAssetRegistryHelpers::STATIC_GetAsset(const struct FAssetData& InAssetData)
 {
-	UFunction* fn = UObject::FindObject<UFunction>("Function AssetRegistry.AssetRegistryHelpers.GetAsset");
+	static UFunction* fn = UObject::FindObject<UFunction>("Function AssetRegistry.AssetRegistryHelpers.GetAsset");
 
 	UAssetRegistryHelpers_GetAsset_Params params;
 	params.InAssetData = InAssetData;

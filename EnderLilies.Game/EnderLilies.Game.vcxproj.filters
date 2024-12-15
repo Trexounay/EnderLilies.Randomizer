@@ -107,6 +107,12 @@
     <ClInclude Include="SDK\BP_Door.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SDK\BP_SwitchHitbox.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK\BP_SwitchHitbox_Door.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

@@ -26,7 +26,8 @@ namespace CG
 //		class AActor*                                      OtherActor                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 void ABP_WorldTravelVolume_C::ReceiveActorBeginOverlap(class AActor* OtherActor)
 {
-	UFunction* fn = UObject::FindObject<UFunction>("Function BP_WorldTravelVolume.BP_WorldTravelVolume_C.ReceiveActorBeginOverlap");
+	UFunction* fn = UObject::FindFunction("BP_WorldTravelVolume_C.ReceiveActorBeginOverlap");
+	//UFunction* fn = UObject::FindObject<UFunction>("Function BP_WorldTravelVolume.BP_WorldTravelVolume_C.ReceiveActorBeginOverlap");
 
 	ABP_WorldTravelVolume_C_ReceiveActorBeginOverlap_Params params;
 	params.OtherActor = OtherActor;
@@ -45,7 +46,8 @@ void ABP_WorldTravelVolume_C::ReceiveActorBeginOverlap(class AActor* OtherActor)
 //		Flags  -> (BlueprintCallable, BlueprintEvent)
 void ABP_WorldTravelVolume_C::OnPlayerEnter()
 {
-	UFunction* fn = UObject::FindObject<UFunction>("Function BP_WorldTravelVolume.BP_WorldTravelVolume_C.OnPlayerEnter");
+	UFunction* fn = UObject::FindFunction("BP_WorldTravelVolume_C.OnPlayerEnter");
+	//UFunction* fn = UObject::FindObject<UFunction>("Function BP_WorldTravelVolume.BP_WorldTravelVolume_C.OnPlayerEnter");
 
 	ABP_WorldTravelVolume_C_OnPlayerEnter_Params params;
 
@@ -65,7 +67,8 @@ void ABP_WorldTravelVolume_C::OnPlayerEnter()
 //		int                                                EntryPoint                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 void ABP_WorldTravelVolume_C::ExecuteUbergraph_BP_WorldTravelVolume(int EntryPoint)
 {
-	UFunction* fn = UObject::FindObject<UFunction>("Function BP_WorldTravelVolume.BP_WorldTravelVolume_C.ExecuteUbergraph_BP_WorldTravelVolume");
+	UFunction* fn = UObject::FindFunction("BP_WorldTravelVolume_C.ExecuteUbergraph_BP_WorldTravelVolume");
+	//UFunction* fn = UObject::FindObject<UFunction>("Function BP_WorldTravelVolume.BP_WorldTravelVolume_C.ExecuteUbergraph_BP_WorldTravelVolume");
 
 	ABP_WorldTravelVolume_C_ExecuteUbergraph_BP_WorldTravelVolume_Params params;
 	params.EntryPoint = EntryPoint;

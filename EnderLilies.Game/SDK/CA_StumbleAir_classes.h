@@ -10,34 +10,32 @@
 /*!!HELPER_INC!!*/
 
 #ifdef _MSC_VER
-	#pragma pack(push, 0x01)
+#pragma pack(push, 0x01)
 #endif
 
 namespace CG
 {
-//---------------------------------------------------------------------------
-// Classes
-//---------------------------------------------------------------------------
+	//---------------------------------------------------------------------------
+	// Classes
+	//---------------------------------------------------------------------------
 
-// BlueprintGeneratedClass CA_StumbleAir.CA_StumbleAir_C
-// 0x0000 (FullSize[0x0421] - InheritedSize[0x0421])
-class UCA_StumbleAir_C : public UCA_Stumble_C
-{
-public:
-
-
-	static UClass* StaticClass()
+	// BlueprintGeneratedClass CA_StumbleAir.CA_StumbleAir_C
+	// 0x0000 (FullSize[0x0421] - InheritedSize[0x0421])
+	class UCA_StumbleAir_C : public UCA_Stumble_C
 	{
-		static UClass* ptr = UObject::FindClass("BlueprintGeneratedClass CA_StumbleAir.CA_StumbleAir_C");
-		return ptr;
-	}
+	public:
 
 
+		static UClass* StaticClass()
+		{
+			static UClass* ptr = UObject::FindClass("BlueprintGeneratedClass CA_StumbleAir.CA_StumbleAir_C");
+			return ptr;
+		}
 
-};
+	};
 
 }
 
 #ifdef _MSC_VER
-	#pragma pack(pop)
+#pragma pack(pop)
 #endif

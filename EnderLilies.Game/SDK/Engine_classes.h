@@ -18817,7 +18817,7 @@ public:
 	class UAudioComponent* STATIC_SpawnSoundAttached(class USoundBase* Sound, class USceneComponent* AttachToComponent, const struct FName& AttachPointName, const struct FVector& Location, const struct FRotator& Rotation, TEnumAsByte<Engine_EAttachLocation> LocationType, bool bStopWhenAttachedToDestroyed, float VolumeMultiplier, float PitchMultiplier, float StartTime, class USoundAttenuation* AttenuationSettings, class USoundConcurrency* ConcurrencySettings, bool bAutoDestroy);
 	class UAudioComponent* STATIC_SpawnSoundAtLocation(class UObject* WorldContextObject, class USoundBase* Sound, const struct FVector& Location, const struct FRotator& Rotation, float VolumeMultiplier, float PitchMultiplier, float StartTime, class USoundAttenuation* AttenuationSettings, class USoundConcurrency* ConcurrencySettings, bool bAutoDestroy);
 	class UAudioComponent* STATIC_SpawnSound2D(class UObject* WorldContextObject, class USoundBase* Sound, float VolumeMultiplier, float PitchMultiplier, float StartTime, class USoundConcurrency* ConcurrencySettings, bool bPersistAcrossLevelTransition, bool bAutoDestroy);
-	static class UObject* STATIC_SpawnObject(class UClass* ObjectClass, class UObject* Outer);
+	class UObject* STATIC_SpawnObject(class UClass* ObjectClass, class UObject* Outer);
 	class UForceFeedbackComponent* STATIC_SpawnForceFeedbackAttached(class UForceFeedbackEffect* ForceFeedbackEffect, class USceneComponent* AttachToComponent, const struct FName& AttachPointName, const struct FVector& Location, const struct FRotator& Rotation, TEnumAsByte<Engine_EAttachLocation> LocationType, bool bStopWhenAttachedToDestroyed, bool bLooping, float IntensityMultiplier, float StartTime, class UForceFeedbackAttenuation* AttenuationSettings, bool bAutoDestroy);
 	class UForceFeedbackComponent* STATIC_SpawnForceFeedbackAtLocation(class UObject* WorldContextObject, class UForceFeedbackEffect* ForceFeedbackEffect, const struct FVector& Location, const struct FRotator& Rotation, bool bLooping, float IntensityMultiplier, float StartTime, class UForceFeedbackAttenuation* AttenuationSettings, bool bAutoDestroy);
 	class UParticleSystemComponent* STATIC_SpawnEmitterAttached(class UParticleSystem* EmitterTemplate, class USceneComponent* AttachToComponent, const struct FName& AttachPointName, const struct FVector& Location, const struct FRotator& Rotation, const struct FVector& Scale, TEnumAsByte<Engine_EAttachLocation> LocationType, bool bAutoDestroy, Engine_EPSCPoolMethod PoolingMethod, bool bAutoActivate);
@@ -18922,9 +18922,9 @@ public:
 	bool STATIC_Blueprint_PredictProjectilePath_ByTraceChannel(class UObject* WorldContextObject, struct FHitResult* OutHit, TArray<struct FVector>* OutPathPositions, struct FVector* OutLastTraceDestination, const struct FVector& StartPos, const struct FVector& LaunchVelocity, bool bTracePath, float ProjectileRadius, TEnumAsByte<Engine_ECollisionChannel> TraceChannel, bool bTraceComplex, TArray<class AActor*> ActorsToIgnore, TEnumAsByte<Engine_EDrawDebugTrace> DrawDebugType, float DrawDebugTime, float SimFrequency, float MaxSimTime, float OverrideGravityZ);
 	bool STATIC_Blueprint_PredictProjectilePath_ByObjectType(class UObject* WorldContextObject, struct FHitResult* OutHit, TArray<struct FVector>* OutPathPositions, struct FVector* OutLastTraceDestination, const struct FVector& StartPos, const struct FVector& LaunchVelocity, bool bTracePath, float ProjectileRadius, TArray<TEnumAsByte<Engine_EObjectTypeQuery>> ObjectTypes, bool bTraceComplex, TArray<class AActor*> ActorsToIgnore, TEnumAsByte<Engine_EDrawDebugTrace> DrawDebugType, float DrawDebugTime, float SimFrequency, float MaxSimTime, float OverrideGravityZ);
 	bool STATIC_Blueprint_PredictProjectilePath_Advanced(class UObject* WorldContextObject, const struct FPredictProjectilePathParams& PredictParams, struct FPredictProjectilePathResult* PredictResult);
-	static class AActor* STATIC_BeginSpawningActorFromClass(class UObject* WorldContextObject, class UClass* ActorClass, const struct FTransform& SpawnTransform, bool bNoCollisionFail, class AActor* Owner);
-	static class AActor* STATIC_BeginSpawningActorFromBlueprint(class UObject* WorldContextObject, class UBlueprint* Blueprint, const struct FTransform& SpawnTransform, bool bNoCollisionFail);
-	static class AActor* STATIC_BeginDeferredActorSpawnFromClass(class UObject* WorldContextObject, class UClass* ActorClass, const struct FTransform& SpawnTransform, Engine_ESpawnActorCollisionHandlingMethod CollisionHandlingOverride, class AActor* Owner);
+	class AActor* STATIC_BeginSpawningActorFromClass(class UObject* WorldContextObject, class UClass* ActorClass, const struct FTransform& SpawnTransform, bool bNoCollisionFail, class AActor* Owner);
+	class AActor* STATIC_BeginSpawningActorFromBlueprint(class UObject* WorldContextObject, class UBlueprint* Blueprint, const struct FTransform& SpawnTransform, bool bNoCollisionFail);
+	class AActor* STATIC_BeginDeferredActorSpawnFromClass(class UObject* WorldContextObject, class UClass* ActorClass, const struct FTransform& SpawnTransform, Engine_ESpawnActorCollisionHandlingMethod CollisionHandlingOverride, class AActor* Owner);
 	bool STATIC_AreSubtitlesEnabled();
 	bool STATIC_AreAnyListenersWithinRange(class UObject* WorldContextObject, const struct FVector& Location, float MaximumRange);
 	bool STATIC_ApplyRadialDamageWithFalloff(class UObject* WorldContextObject, float BaseDamage, float MinimumDamage, const struct FVector& Origin, float DamageInnerRadius, float DamageOuterRadius, float DamageFalloff, class UClass* DamageTypeClass, TArray<class AActor*> IgnoreActors, class AActor* DamageCauser, class AController* InstigatedByController, TEnumAsByte<Engine_ECollisionChannel> DamagePreventionChannel);
@@ -22917,11 +22917,14 @@ public:
 	/* Flags used to describe the spawned actor/object instance. */
 	CG::EObjectFlags ObjectFlags;
 
-	
+
 	FActorSpawnParameters()
 	{
 		uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
-		((void(__fastcall*)(FActorSpawnParameters*)) (base + 0x2945880))(this);
+		((void(__fastcall*)(FActorSpawnParameters*)) (base + 0x2944BF0))(this); // 1.1.5: 0x2945880
+
+		ObjectFlags = (CG::EObjectFlags)0x48;
+		SpawnCollisionHandlingOverride = CG::Engine_ESpawnActorCollisionHandlingMethod::ESpawnActorCollisionHandlingMethod__AdjustIfPossibleButDontSpawnIfColliding;
 	}
 };
 
@@ -22984,19 +22987,42 @@ public:
 	}
 
 	template<class T>
-	T* SpawnActor(UClass* InClass, FVector const* Location, FRotator const* Rotation, const FActorSpawnParameters& SpawnParameter)
+	T* SpawnActor(CG::UClass* InClass, CG::FVector const* Location, CG::FRotator const* Rotation, const CG::FActorSpawnParameters* SpawnParameter)
 	{
 		return reinterpret_cast<T*>(this->SpawnActor(InClass, Location, Rotation, SpawnParameter));
 	}
 
-	AActor* SpawnActor(UClass* InClass, FVector const* Location, FRotator const* Rotation, const FActorSpawnParameters& SpawnParameter)
+	CG::AActor* SpawnActor(CG::UClass* InClass, CG::AActor* Owner, CG::FVector const* Location, CG::FRotator const* Rotation)
 	{
-		uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
-		auto ptr = ((CG::AActor * (__fastcall*)(CG::UWorld*, CG::UClass*, const CG::FVector*, const CG::FRotator*, const CG::FActorSpawnParameters*))(base + 0x25FE600));
-		return ptr(this, InClass, Location, Rotation, &SpawnParameter);
+		CG::FActorSpawnParameters spawn_params;
+		//spawn_params.OverrideLevel = (CG::ULevel*)Owner->Outer;
+		spawn_params.Owner = Owner;
+
+		return this->SpawnActor(InClass, Location, Rotation, &spawn_params);
 	}
 
+	CG::AActor* SpawnActor(CG::UClass* InClass, CG::FVector const* Location, CG::FRotator const* Rotation, const CG::FActorSpawnParameters* SpawnParameter)
+	{
+		CG::FRotator r;
+		if (Rotation != nullptr)
+			r = *Rotation;
+		uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
+		auto ptr = ((CG::AActor * (__fastcall*)(CG::UWorld*, CG::UClass*, const CG::FVector*, const CG::FRotator*, const CG::FActorSpawnParameters*))(base + 0x25FD9B0)); // 1.1.5 25FE600 
+		return ptr(this, InClass, Location, &r, SpawnParameter);
+	}
 
+	CG::UObject* StaticLoadObject(CG::UClass* Class, CG::UObject* InOuter, const TCHAR* Name) const
+	{
+		uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
+		auto ptr = ((CG::UObject * (__fastcall*)(CG::UClass*, CG::UObject*, const TCHAR*))(base + 0x10DC0D0));
+		return ptr(Class, InOuter, Name);
+	}
+
+	template<class T>
+	T* LoadObject(CG::UObject* Outer, const TCHAR* Name) const
+	{
+		return (T*)StaticLoadObject(T::StaticClass(), Outer, Name);
+	}
 
 	class AWorldSettings* K2_GetWorldSettings();
 	void HandleTimelineScrubbed();

@@ -154,6 +154,8 @@
 #include "SDK/BP_Collectable_SpiritCurrencyLv2_Recollection_5_classes.h"
 #include "SDK/BP_Collectable_SpiritCurrencyLv2_Recollection_5_parameters.h"
 #include "SDK/BP_Door.h"
+#include "SDK/BP_SwitchHitbox.hpp"
+#include "SDK/BP_SwitchHitbox_Door.hpp"
 #include "SDK/ItemTrigger_SkillCount_Restore_Base_structs.h"
 #include "SDK/ItemTrigger_SkillCount_Restore_Base_classes.h"
 #include "SDK/ItemTrigger_SkillCount_Restore_Base_parameters.h"

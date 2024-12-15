@@ -1759,7 +1759,6 @@ enum class Engine_ECollisionChannel : uint8_t
 	ECC_GameTraceChannel18         = 31,
 	ECC_OverlapAll_Deprecated      = 32,
 	ECC_MAX                        = 33,
-
 };
 
 // Enum Engine.ENetworkSmoothingMode

@@ -1048,7 +1048,7 @@ public:
 
 	static UClass* StaticClass()
 	{
-		static UClass* ptr = UObject::FindClass("Class Zenith.ClearableComponent");
+		static UClass* ptr = UObject::FindClass("Class ²Zenith.ClearableComponent");
 		return ptr;
 	}
 

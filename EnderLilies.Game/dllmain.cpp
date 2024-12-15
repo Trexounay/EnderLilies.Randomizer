@@ -197,7 +197,10 @@ __declspec(noinline) void  ProcessEventHook(CG::UObject* obj, CG::UFunction* fn,
 bool DoDetour()
 {
 	if (rando->World() == nullptr || rando->World()->Name.ComparisonIndex <= 0)
+	{
+		std::cout << " Error detouring WORLD INVALID" << std::endl;
 		return false;
+	}
 
 	processEvent = CG::GetVFunction<void(*)(CG::UObject*, CG::UFunction*, void*)>(rando->World(), 67);
 	DetourRestoreAfterWith();

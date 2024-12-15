@@ -76212,7 +76212,6 @@ class UAudioComponent* UGameplayStatics::STATIC_SpawnSound2D(class UObject* Worl
 //		class UObject*                                     ReturnValue                                                (Parm, OutParm, ZeroConstructor, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 class UObject* UGameplayStatics::STATIC_SpawnObject(class UClass* ObjectClass, class UObject* Outer)
 {
-	static UClass* StaticClass = UGameplayStatics::StaticClass();
 	static UFunction* fn = UObject::FindObject<UFunction>("Function Engine.GameplayStatics.SpawnObject");
 
 	UGameplayStatics_SpawnObject_Params params;
@@ -76222,7 +76221,7 @@ class UObject* UGameplayStatics::STATIC_SpawnObject(class UClass* ObjectClass, c
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
 
-	StaticClass->ProcessEvent(fn, &params);
+	UObject::ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 
@@ -79435,7 +79434,7 @@ class AActor* UGameplayStatics::STATIC_BeginDeferredActorSpawnFromClass(class UO
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x00000400;
-	UGameplayStatics::StaticClass()->ProcessEvent(fn, &params);
+	UObject::ProcessEvent(fn, &params);
 	fn->FunctionFlags = flags;
 
 	return params.ReturnValue;

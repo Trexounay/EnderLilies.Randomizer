@@ -68,13 +68,15 @@ private:
 
 	bool _new_game = true;
 	bool _new_data = true;
-	static constexpr const int passive_weapons[] = { 10, 11, 12, 18 };
+	static constexpr const int weapons_special_doors[] = { 10, 11, 12, 18 };
+	static constexpr const int weapons_special_lanterns[] = { 5, 9, 10, 11, 12, 18, 22 };
 
 	int _starting_weapon = 0;
 	unsigned int _seed = 0;
 	int _skin_override = -1;
 	int _starting_room = 0;
-	bool _has_normal_weapon = true;
+	bool _weapon_can_break_doors = false;
+	bool _weapon_can_break_lantern = false;
 	bool _shuffle_relics = false;
 	bool _cheat = false;
 	bool _shuffle_rooms = false;
@@ -131,6 +133,7 @@ private:
 	void UpdateItems();
 	void QueueTipNotification(const std::string& item, const FTableRowProxy &result);
 	void PreventReturnToOutset();
+	void CreateOutsetRespite();
 	void ModifyEnemyTables();
 	void FixChapterProgression(CG::UParameterEnemyComponent* parameterEnemyComponent);
 

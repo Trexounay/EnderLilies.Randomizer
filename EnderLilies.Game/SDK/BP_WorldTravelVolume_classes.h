@@ -35,7 +35,8 @@ public:
 
 	void OnInteract(class AController* Controller)
 	{
-		UFunction* fn = UObject::FindObject<UFunction>("Function BP_Interactable_WorldTravel.BP_Interactable_WorldTravel_C.OnInteract");
+		UFunction* fn = UObject::FindFunction("BP_Interactable_WorldTravel_C.OnInteract");
+		//UFunction* fn = UObject::FindObject<UFunction>("Function BP_Interactable_WorldTravel.BP_Interactable_WorldTravel_C.OnInteract");
 
 		ABP_Interactable_WorldTravel_C_Params params;
 		params.Controller = Controller;

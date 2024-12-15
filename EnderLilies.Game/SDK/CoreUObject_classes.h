@@ -18,6 +18,7 @@ namespace CG
 {
 	class UClass;
 	class UFunction;
+	class UPackage;
 //---------------------------------------------------------------------------
 // Classes
 //---------------------------------------------------------------------------
@@ -174,6 +175,27 @@ public:
 		return ptr;
 	}
 
+
+	struct FStaticConstructObjectParameters
+	{
+		const CG::UClass* Class;
+		CG::UObject* Outer;
+		CG::FName Name;
+		CG::EObjectFlags SetFlags = RF_NoFlags;
+		int InternalSetFlags = 0;
+		bool bCopyTransientsFromClassDefaults = false;
+		bool bAssumeTemplateIsArchetype = false;
+		CG::UObject* Template = nullptr;
+		void* InstanceGraph = nullptr;
+		class CG::UPackage* ExternalPackage = nullptr;
+	};
+
+	static UObject* StaticConstructObject_Internal(const FStaticConstructObjectParameters& Params)
+	{
+		uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
+		auto ptr = ((CG::UObject * (__fastcall*)(const FStaticConstructObjectParameters&))(base + 0x1C43260));
+		return ptr(Params);
+	}
 
 	template<typename T>
 	static T* FindObjectQuick(const std::string& name)
@@ -351,7 +373,11 @@ template<typename T>
 
 	inline UObject* CreateDefaultObject()
 	{
-		return nullptr;
+		//return nullptr;
+		// 0xF63FB0
+		uintptr_t base = reinterpret_cast<uintptr_t>(GetModuleHandleA(0));
+		auto ptr = ((CG::UObject* (__fastcall*)(CG::UClass*))(base + 0xF63FB0));
+		return ptr(this);
 		//return GetVFunction<UObject*(*)(UClass*)>(this, /*FUNC_INDEX*/)(this);
 	}
 
@@ -360,9 +386,6 @@ template<typename T>
 		static UClass* ptr = UObject::FindClass("Class CoreUObject.Class");
 		return ptr;
 	}
-
-
-
 };
 
 // Class CoreUObject.Function

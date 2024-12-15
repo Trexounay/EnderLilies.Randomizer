@@ -115,25 +115,36 @@ void  Randomizer::OnInteract(CG::UObject* obj, CG::ABP_Interactable_Item_C_OnInt
 
 void  Randomizer::EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* params)
 {
-	if (!_cheat && _starting_weapon < 5)
+	if (_starting_weapon < 5)
 		return;
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::FName spiritID = gm->ItemSpiritTable->Data[_starting_weapon].Name;
-
-	if (!_has_normal_weapon)
+	
+	if (!_weapon_can_break_doors)
 	{
-		_has_normal_weapon = true;
-		for (int i = 0; i < 4; i++)
+		_weapon_can_break_doors = true;
+		for (int i : weapons_special_doors)
 		{
-			if (params->SpiritData.SpiritID == gm->ItemSpiritTable->Data[passive_weapons[i]].Name)
+			if (params->SpiritData.SpiritID == gm->ItemSpiritTable->Data[i].Name)
 			{
-				_has_normal_weapon = false;
+				_weapon_can_break_doors = false;
 				break;
 			}
 		}
 	}
-
-	if (!_cheat && params->SpiritData.SpiritID != spiritID)
+	if (!_weapon_can_break_lantern)
+	{
+		_weapon_can_break_lantern = true;
+		for (int i : weapons_special_lanterns)
+		{
+			if (params->SpiritData.SpiritID == gm->ItemSpiritTable->Data[i].Name)
+			{
+				_weapon_can_break_lantern = false;
+				break;
+			}
+		}
+	}
+	if (params->SpiritData.SpiritID != spiritID)
 		return;
 	auto command_class = params->SpiritData.CommandSettingsData->CommandSettings.CommandActionType;
 	auto count = CG::UObject::GetGlobalObjects().Num();
@@ -148,21 +159,11 @@ void  Randomizer::EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* param
 			{
 				auto cas = ((CG::UCommandActionSummon*)object);
 				cas->SettingsSummonCastLimit.CastLimitType = CG::Zenith_ECommandSummonLimitType::ECommandSummonLimitType__None;
-				if (_cheat)
-				{
-					cas->RecastTime = 0;
-					cas->MaxAirborneExecutionCount = 0;
-				}
 			}
 			else if (object->IsA(CG::UCommandActionComboSummon::StaticClass()))
 			{
 				auto cas = ((CG::UCommandActionComboSummon*)object);
 				cas->SettingsSummonCastLimit.CastLimitType = CG::Zenith_ECommandSummonLimitType::ECommandSummonLimitType__None;
-				if (_cheat)
-				{
-					cas->RecastTime = 0;
-					cas->MaxAirborneExecutionCount = 0;
-				}
 			}
 			return;
 		}
@@ -229,6 +230,43 @@ void Randomizer::GameDataReady()
 
 	auto spawn_point = gm->GameMapTable->GetValue<CG::FGameMapData>(0);
 	spawn_point->bContainsRestPoint = true;
+}
+
+
+void Randomizer::CreateOutsetRespite()
+{
+	auto pc = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController);
+	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
+
+	//auto spawn_point = gm->GameMapTable->GetValue<CG::FGameMapData>(0);
+
+	if (pc == nullptr || gm == nullptr || gm->GameMapTable == nullptr)
+		return;
+
+	CG::UWorldLoaderSubsystem* loader = (CG::UWorldLoaderSubsystem*)World()->OwningGameInstance->SubSystems[0x1F];
+	//CG::FRespawnPointData data = pc->GetRespawnPointData();
+
+	if (loader->CurrentGameMapID == gm->GameMapTable->GetName(0))
+	{
+		auto new_class = World()->LoadObject<CG::UClass>(nullptr, L"Blueprint'/Game/_Zenith/Gameplay/Interactables/BP_Interactable_RestingPoint.BP_Interactable_RestingPoint_C'");
+
+		CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
+		CG::TArray<CG::AActor*> out;
+		statics->STATIC_GetAllActorsOfClass(World(), CG::APlayerStart::StaticClass(), &out);
+		CG::APlayerStart* target = (CG::APlayerStart*)out[0];
+		for (int i = 0; i < out.Num(); ++i)
+			if (out[i]->Name.GetName() == "PlayerStart2")
+				target = (CG::APlayerStart*)out[i];
+		auto translate = target->GetTransform().Translation;
+		translate.Z -= 100;
+		auto a = (CG::ABP_Interactable_RestingPoint_C*)World()->SpawnActor(new_class, target, &translate, nullptr);
+		a->PlayerStart = target;
+		CG::FHitResult result;
+		a->PlayerStartLocation->K2_AddLocalOffset(CG::FVector(0, 0, -100), false, &result, false);
+		a->SpiritLocation_2->K2_AddLocalOffset(CG::FVector(-10, 0, -100), false, &result, false);
+		a->SpiritLocation_3->K2_AddLocalOffset(CG::FVector(-10, 0, -100), false, &result, false);
+		a->SpiritLocation_4->K2_AddLocalOffset(CG::FVector(-10, 0, -100), false, &result, false);
+	}
 }
 
 void Randomizer::PreventReturnToOutset()
@@ -317,14 +355,9 @@ void Randomizer::NewMap()
 
 	ModifyEnemyTables();
 	ModifySpawnPoints();
+	CreateOutsetRespite();
 
-	auto pc = ((CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController);
-
-	//auto toto = CG::UAssetRegistryHelpers::STATIC_GetAssetRegistryFix();
-
-
-	if (!_has_normal_weapon)
-		RemoveBreakable();
+	RemoveBreakable();
 }
 
 CG::UClass* GetCharacterClass(const wchar_t *name)
@@ -353,20 +386,40 @@ CG::UClass* GetCharacterClass(const wchar_t *name)
 	return (CG::UClass *)result;
 }
 
-
 void Randomizer::RemoveBreakable()
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
-	CG::UClass* type = _bp_classes["BP_Breakable_Base_C"];
-	if (type != nullptr)
+	if (!_weapon_can_break_doors)
 	{
-		CG::TArray<CG::AActor*> out;
-		statics->STATIC_GetAllActorsOfClass(World(), type, &out);
-		for (int i = 0; i < out.Num(); ++i)
+		CG::UClass* type = _bp_classes["BP_Breakable_Base_C"];
+		if (type != nullptr)
 		{
-			CG::ABreakable* door = (CG::ABreakable*)out[i];
-			door->HPComponent->DoDamage(nullptr, 1000, false, false);
+			CG::TArray<CG::AActor*> out;
+			statics->STATIC_GetAllActorsOfClass(World(), type, &out);
+			for (int i = 0; i < out.Num(); ++i)
+			{
+				CG::ABreakable* door = (CG::ABreakable*)out[i];
+				door->HPComponent->DoDamage(nullptr, 1000, false, false);
+			}
+		}
+	}
+	if (!_weapon_can_break_lantern)
+	{
+		CG::UClass* type = _bp_classes["BP_SwitchHitbox_Door_C"];
+		if (type != nullptr)
+		{
+			CG::TArray<CG::AActor*> out;
+			statics->STATIC_GetAllActorsOfClass(World(), type, &out);
+			for (int i = 0; i < out.Num(); ++i)
+			{
+				CG::ABP_SwitchHitbox_Door_C* door = (CG::ABP_SwitchHitbox_Door_C*)out[i];
+				if (!door->IsActivated && door->Door != nullptr)
+				{
+					if (!door->Door->IsOpen)
+						door->Clearable->MarkCleared();
+				}
+			}
 		}
 	}
 }
@@ -388,6 +441,7 @@ bool IsChapterLocked(const CG::TArray<CG::FDataTableData>& data)
 	auto chapter2 = (CG::FEnemyParameterLevelData*)data[1].ptr;
 	return chapter1->HP == chapter2->HP;
 }
+
 void Randomizer::FixChapterProgression(CG::UParameterEnemyComponent* parameterEnemyComponent)
 {
 	if (parameterEnemyComponent->LevelTable == nullptr || !IsChapterLocked(parameterEnemyComponent->LevelTable->Data))
@@ -460,11 +514,8 @@ void Randomizer::ModifySpawnPoints()
 				}
 				continue;
 			}
-			auto new_class = GetCharacterClass(L"e2180_Shadow");
-			spawn1->CharacterToSpawn = new_class;
-
-
-			spawn1->bShouldActivateByDefault = true;
+			
+			//auto new_class = World()->LoadObject<CG::UClass>(nullptr, L"Blueprint'/Game/_Zenith/Characters/e2180_Shadow/BP_e2180_Shadow.BP_e2180_Shadow_C'");
 			shuffled.push_back(i);
 		}
 		if (_shuffle_enemies)
@@ -476,10 +527,21 @@ void Randomizer::ModifySpawnPoints()
 				i--;
 				CG::ABP_EnemySpawnPoint_C* spawn1 = (CG::ABP_EnemySpawnPoint_C*)out[shuffled[i]];
 				CG::ABP_EnemySpawnPoint_C* spawn2 = (CG::ABP_EnemySpawnPoint_C*)out[shuffled[k]];
-				auto transform1 = spawn1->GetTransform();
-				spawn1->RootComponent->K2_SetWorldTransform(spawn2->GetTransform(), false, NULL, true);
-				spawn2->RootComponent->K2_SetWorldTransform(transform1, false, NULL, true);
+
+
+				spawn1->bShouldActivateByDefault = true;
+				auto a = (CG::ABP_Character_Enemy_Base_C*)spawn1->CharacterToSpawn->CreateDefaultObject();
+				a->KillOnSwim = false;
+
+				const auto from = 0x0268;
+				const auto s = 0x03D9 - 0x0268;
+
+				byte data[s];
+				memcpy(data, ((char*)spawn1) + from, s);
+				memcpy(((char*)spawn1) + from, ((char*)spawn2) + from, s);
+				memcpy(((char*)spawn2) + from, data, s);
 			}
+			/*
 			if (_bp_classes["BP_Condition_EnemyList_C"] != NULL)
 			{
 				CG::TArray<CG::AActor*> out;
@@ -490,7 +552,7 @@ void Randomizer::ModifySpawnPoints()
 					if (!condition->ConditionResult)
 						condition->SetConditionResult(true, true);
 				}
-			}
+			}*/
 		}
 	}
 }
@@ -508,7 +570,7 @@ void Randomizer::Update()
 	FindItems("BP_Interactable_WorldTravel_C");
 
 	UpdateChecks();
-	PreventReturnToOutset();
+	//PreventReturnToOutset();
 	if (count == 10)
 	{
 		UpdateItems();
@@ -518,14 +580,14 @@ void Randomizer::Update()
 
 	count++;
 	// Testing custom relic effect
-	static auto name = CG::FName("i_passive_stamina_up");
+/*	static auto name = CG::FName("i_passive_stamina_up");
 
 	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
 	if (pc->ZenithCharacter->CharacterMovement->Buoyancy > 0.5f && pc->PassiveEquipComponent->IsPassiveEquipped(name))
 	{
-		pc->ZenithCharacter->CharacterMovement->Buoyancy = 0.25f;
+		pc->ZenithCharacter->CharacterMovement->Buoyancy = 0.3f;
 	}
-
+*/
 #ifdef _DEBUG
 	if (!_kbhit())
 		wait = false;
@@ -533,24 +595,16 @@ void Randomizer::Update()
 	{
 		if (wait)
 			return;
-		std::cout << "Key struck was " << _getch() << std::endl;
-
 
 		auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
-		auto statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
-		CG::TArray<CG::AActor*> out;
-		statics->STATIC_GetAllActorsOfClass(World(), _bp_classes["BP_EnemySpawnPoint_C"], &out);
-		int count = out.Num();
-		if (count > 0)
-		{
-			auto spawn = (CG::ABP_EnemySpawnPoint_C*)out[0];
-			auto t = pc->Pawn->GetTransform();
-			done = !done;
-			wait = true;
-		}
+		int frame = pc->ZenithCharacter->CommandQueueComponent->GetNextFrameID();
+		std::cout << "Key struck was " << _getch() << std::endl;
+
+		done = !done;
 	}
 #endif
 }
+
 
 void Randomizer::FindItems(const std::string& type_name)
 {
@@ -771,7 +825,8 @@ void Randomizer::ReadSeedFile(std::string path)
 	_rebalance_enemies = false;
 	_starting_room = 0;
 	_cheat = false;
-	_has_normal_weapon = true;
+	_weapon_can_break_doors = false;
+	_weapon_can_break_lantern = false;
 	_minibosses_chapter = false;
 	_skin_override = -1;
 	_min_chapter = 0;
@@ -996,18 +1051,31 @@ void ModifyRelics(const CG::UWorld* world)
 {
 	auto gm = (CG::AGameModeZenithBase*)world->AuthorityGameMode;
 	CG::UDataTable* passiveTable = gm->ItemPassiveTable;
-	CG::UDataTable* spiritTable = gm->ItemSpiritTable;
-	//CG::FBaseItemData* from = spiritTable->GetValue<CG::FBaseItemData>(8);
-	CG::FBaseItemData* to = passiveTable->GetValue<CG::FBaseItemData>(33);
-	
-	auto achie = world->OwningGameInstance->GetGameInstanceSubsystem<CG::UAchievementsSubsystem>();
-	auto table = achie->GetAchievementDataTable();
-	CG::FAchievementData* from = table->GetValue<CG::FAchievementData>(36);
+	//auto achievementTable = world->OwningGameInstance->GetGameInstanceSubsystem<CG::UAchievementsSubsystem>()->GetAchievementDataTable();
+	//		CG::FAchievementData* from = achievementTable->GetValue<CG::FAchievementData>(relic[1]);
+	//		memcpy(to->Icon, from->LockedIcon, 0x28);
 
-	memcpy(to->Icon, from->UnlockedIcon, 0x28);
-	to->ShortExplanation.SetFromString(CG::FString(L"Stops Lily from floating into water"));
-	to->Name.SetFromString(CG::FString(L"Heavy Relic"));
-	to->Description.SetFromString(CG::FString(L"Look nice on your ankle"));
+	std::vector<std::pair<std::wstring, int> > relics = {
+		{ L"Unused Royal Aegis Crest", 2 },
+		{ L"Unused Giant's Ring", 8 },
+		{ L"Unused Ancient Dragon Claw", 10 },
+		{ L"Unused Aura's Ring", 18 },
+		{ L"Unused Calivia's Ring", 21 },
+		{ L"Unused Stun Resistance", 33 },
+	};
+
+	std::map<int, int> replace_icons = { {2, 1}, {8, 7}, {18, 17}, {18, 17}, {21, 20}, {21, 20}, {33, 5} };
+
+	for (auto relic : relics)
+	{
+		CG::FBaseItemData* to = passiveTable->GetValue<CG::FBaseItemData>(relic.second);
+		to->Name = relic.first.c_str();
+		if (replace_icons.contains(relic.second))
+		{
+			CG::FBaseItemData* from = passiveTable->GetValue<CG::FBaseItemData>(replace_icons[relic.second]);
+			memcpy(to->Icon, from->Icon, 0x28);
+		}
+	}
 }
 
 void Randomizer::ModifySpirits()
@@ -1018,19 +1086,10 @@ void Randomizer::ModifySpirits()
 	CG::FDataTableRowHandle empty = data->AptitudeToUnlock;
 	ModifyRelics(World());
 	_starting_weapon = 0;
+
 	auto entry = _replacements.find("starting_weapon");
 	if (entry != _replacements.end())
-	{
 		_starting_weapon = entry->second.entry;
-		for (int i = 0; i < 4; i++)
-		{
-			if (_starting_weapon == passive_weapons[i])
-			{
-				_has_normal_weapon = false;
-				break;
-			}
-		}
-	}
 
 	for (int i = 0; i < table->Data.Num(); ++i)
 	{

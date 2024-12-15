@@ -43,6 +43,12 @@ inline Fn GetVFunction(const void* instance, std::size_t index)
 	return reinterpret_cast<Fn>(vtable[index]);
 }
 
+const void* GetVFunction(const void* instance, std::size_t index)
+{
+	auto vtable = *static_cast<const void***>(const_cast<void*>(instance));
+	return (vtable[index]);
+}
+
 class UObject;
 
 enum EObjectFlags

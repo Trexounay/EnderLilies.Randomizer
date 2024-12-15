@@ -207,6 +207,8 @@
     <ClInclude Include="SDK\BP_Interactable_Treasure_classes.h" />
     <ClInclude Include="SDK\BP_Interactable_Treasure_parameters.h" />
     <ClInclude Include="SDK\BP_Interactable_Treasure_structs.h" />
+    <ClInclude Include="SDK\BP_SwitchHitbox.hpp" />
+    <ClInclude Include="SDK\BP_SwitchHitbox_Door.hpp" />
     <ClInclude Include="SDK\BP_WorldTravelVolume_classes.h" />
     <ClInclude Include="SDK\CoreUObject_classes.h" />
     <ClInclude Include="SDK\CoreUObject_parameters.h" />
