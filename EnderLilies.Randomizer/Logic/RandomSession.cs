@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Forms;
 
 namespace EnderLilies.Randomizer
 {
@@ -94,8 +93,10 @@ namespace EnderLilies.Randomizer
                 i = items.IndexOf("Generic.i_FinalPassivePart_Up");
             }
         }
+        Tuple<int, string> _startingRoom = Tuple.Create(0, "Start");
+        
 
-        (int, string) _startingRoom = (0, "Start");
+//        (int, string) _startingRoom = (0, "Start");
         public void Generate(int seed, bool write = true)
         {
             GameGraph = GetGraph();
@@ -129,38 +130,38 @@ namespace EnderLilies.Randomizer
                 "aegis",
                 "fellwyrm",
             };
-            List<(int, string)> rooms = new List<(int, string)>()
+            List<Tuple<int, string>> rooms = new List<Tuple<int, string>>()
         {
-            ( 0, "Start" ),
-            ( 3, "Cellar" ),
-            ( 5, "CathedralCloister" ),
-            ( 9, "SaintsPassage" ),
-            ( 12, "Crossroads" ),
-            ( 19, "CollapsedShack" ),
-            ( 23, "BridgeHead" ),
-            ( 35, "RuinedCastleCellar" ),
-            ( 38, "GuestChamber" ),
-            ( 41, "MaelstromRemparts" ),
+            Tuple.Create( 0, "Start" ),
+            Tuple.Create( 3, "Cellar" ),
+            Tuple.Create( 5, "CathedralCloister" ),
+            Tuple.Create( 9, "SaintsPassage" ),
+            Tuple.Create( 12, "Crossroads" ),
+            Tuple.Create( 19, "CollapsedShack" ),
+            Tuple.Create( 23, "BridgeHead" ),
+            Tuple.Create( 35, "RuinedCastleCellar" ),
+            Tuple.Create( 38, "GuestChamber" ),
+            Tuple.Create( 41, "MaelstromRemparts" ),
             //( 48, "KingsChamber" ),
             //( 51, "TowerAlcove" ),
-            ( 55, "BastionGates" ),
-            ( 61, "Courtyard" ),
-            ( 62, "SecondSpireChamber" ),
-            ( 68, "Fort_16_GAMEPLAY.BP_WorldTravelVolume4" ),
-            ( 72, "MourningHall" ),
-            ( 78, "DryadLake" ),
-            ( 83, "WitchsHermitage" ),
-            ( 87, "CovenHalls" ),
-            ( 91, "BottomOfTheWell" ),
-            ( 93, "Charnel" ),
-            ( 103, "Ossuary" ),
-            ( 106, "GreatHall" ),
-            ( 115, "Aqueduct" ),
-            ( 123, "Cells" ),
-            ( 132, "DarkChamber" ),
-            ( 138, "ExecutionGrounds" ),
-            ( 145, "Lab1" ),
-            ( 150, "Lab2" ),
+            Tuple.Create( 55, "BastionGates" ),
+            Tuple.Create( 61, "Courtyard" ),
+            Tuple.Create( 62, "SecondSpireChamber" ),
+            Tuple.Create( 68, "Fort_16_GAMEPLAY.BP_WorldTravelVolume4" ),
+            Tuple.Create( 72, "MourningHall" ),
+            Tuple.Create( 78, "DryadLake" ),
+            Tuple.Create( 83, "WitchsHermitage" ),
+            Tuple.Create( 87, "CovenHalls" ),
+            Tuple.Create( 91, "BottomOfTheWell" ),
+            Tuple.Create( 93, "Charnel" ),
+            Tuple.Create( 103, "Ossuary" ),
+            Tuple.Create( 106, "GreatHall" ),
+            Tuple.Create( 115, "Aqueduct" ),
+            Tuple.Create( 123, "Cells" ),
+            Tuple.Create( 132, "DarkChamber" ),
+            Tuple.Create( 138, "ExecutionGrounds" ),
+            Tuple.Create( 145, "Lab1" ),
+            Tuple.Create( 150, "Lab2" ),
             //new MapItem(154, "Lab3"),
             //new MapItem(156, "Lab4"),
             //new MapItem(166, "BlightedHeart"),
@@ -176,7 +177,7 @@ namespace EnderLilies.Randomizer
             var startingWeapons = startingSpirits.Where((s, i) => _settings.HasSpirit(i)).ToArray();
             if (startingWeapons.Length > 0)
                 weapon = startingWeapons[RNG.stream.Next(0, startingWeapons.Length)];
-            _startingRoom = (0, "Start");
+            _startingRoom = Tuple.Create(0, "Start");
             if (_settings.StartingRooms > 0)
             {
                 var startingRooms = rooms.Where((s, i) => _settings.HasRoom(i)).ToArray();

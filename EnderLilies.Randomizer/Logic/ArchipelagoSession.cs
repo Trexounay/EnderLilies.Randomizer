@@ -14,7 +14,6 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using WebSocketSharp;
-using static System.Collections.Specialized.BitVector32;
 
 namespace EnderLilies.Randomizer
 {
