@@ -422,11 +422,31 @@ void Randomizer::RemoveBreakable()
 			}
 		}
 	}
+	if (_starting_room == 68)
+	{
+		CG::UWorldLoaderSubsystem* loader = (CG::UWorldLoaderSubsystem*)World()->OwningGameInstance->SubSystems[0x1F];
+		if (loader->CurrentGameMapID != gm->GameMapTable->GetName(68))
+			return;
+		CG::UClass* type = _bp_classes["BP_Interactable_Base_C"];
+		if (type != nullptr)
+		{
+			CG::TArray<CG::AActor*> out;
+			statics->STATIC_GetAllActorsOfClass(World(), type, &out);
+			for (int i = 0; i < out.Num(); ++i)
+			{
+				CG::ABP_Interactable_Base_C* door = (CG::ABP_Interactable_Base_C*)out[i];
+				if (!door->ClearableComponent->bCleared && door->Name.GetName() == "BP_Interactable_Switch_Door_Unique3")
+				{
+					std::cout << door->Name.GetName() << std::endl;
+					door->ClearableComponent->MarkCleared();
+				}
+			}
+		}
+	}
 }
 
 void Randomizer::ModifyEnemyTables()
 {
-	// settings will go here
 	if (!_rebalance_enemies)
 		return;
 

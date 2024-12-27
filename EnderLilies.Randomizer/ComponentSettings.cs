@@ -74,9 +74,9 @@ namespace EnderLilies.Randomizer
 
         public bool AP_CanConnect => !AP_IsConnected && !AP_IsConnecting;
 
-        public string APServer { get; set; }
+        public string APServer { get; set; } = "127.0.0.1";
         public string APPassword => _APServerPassword.Text;
-        public string APSlotName { get; set; }
+        public string APSlotName { get; set; } = "Lily";
 
         const string disabledTooltip = "Ender Lilies's installation folder has not been detected yet.\nPlease manually launch the game once and save your LiveSplit Layout to enable this feature.";
         const string enabledTooltip = "Launch the Game";
@@ -673,7 +673,7 @@ namespace EnderLilies.Randomizer
                                   ShuffleSlots, ShuffleTablets, ShuffleWishes,
                                   ShuffleAmulets, ShuffleBlights, ShuffleChains,
                                   ShuffleFindings, ShuffleRelics, ShuffleSpirits},
-                           new int[]    {(1 << 27)-1, 1, 1, 1,
+                           new int[]    {(1 << 28)-1, 1, 1, 1,
                                   1, 1,
                                   10, 10, (1 << 26)-1,
                                   1, 1,
@@ -717,7 +717,7 @@ namespace EnderLilies.Randomizer
                         MinibossesChapter = stringSettings.PullBool();
                         NGPlus = stringSettings.PullBool();
                         ShuffleRooms = stringSettings.PullBool();
-                        StartingRooms = stringSettings.PullInt((1 << 27) - 1);
+                        StartingRooms = stringSettings.PullInt((1 << 28) - 1);
 
                         this.stringSettings = stringSettings;
                         _internalInteraction = false;

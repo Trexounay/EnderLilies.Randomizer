@@ -495,6 +495,36 @@
             Create a hint and announce it player that the item belongs to but only once announce if the hint didnt exist yet
             </summary>
         </member>
+        <member name="T:Archipelago.MultiClient.Net.Enums.HintStatus">
+            <summary>
+            The state of a player
+            </summary>
+        </member>
+        <member name="F:Archipelago.MultiClient.Net.Enums.HintStatus.Found">
+            <summary>
+            The location has been collected. Status cannot be changed once found.
+            </summary>
+        </member>
+        <member name="F:Archipelago.MultiClient.Net.Enums.HintStatus.Unspecified">
+            <summary>
+            The receiving player has not specified any status
+            </summary>
+        </member>
+        <member name="F:Archipelago.MultiClient.Net.Enums.HintStatus.NoPriority">
+            <summary>
+            The receiving player has specified that the item is unneeded
+            </summary>
+        </member>
+        <member name="F:Archipelago.MultiClient.Net.Enums.HintStatus.Avoid">
+            <summary>
+            The receiving player has specified that the item is detrimental
+            </summary>
+        </member>
+        <member name="F:Archipelago.MultiClient.Net.Enums.HintStatus.Priority">
+            <summary>
+            The receiving player has specified that the item is needed
+            </summary>
+        </member>
         <member name="T:Archipelago.MultiClient.Net.Enums.InvalidPacketErrorType">
             <summary>
             Types of errors that can be returned by the server if your packet gets rejected
@@ -711,6 +741,11 @@
         <member name="F:Archipelago.MultiClient.Net.Enums.JsonMessagePartType.Color">
             <summary>
             Regular text that should be colored. Only type that will contain color data.
+            </summary>
+        </member>
+        <member name="F:Archipelago.MultiClient.Net.Enums.JsonMessagePartType.HintStatus">
+            <summary>
+            The HintStatus of the hint
             </summary>
         </member>
         <member name="T:Archipelago.MultiClient.Net.Enums.OperationType">
@@ -1075,6 +1110,12 @@
         <member name="M:Archipelago.MultiClient.Net.Helpers.DataStorageHelper.TrackClientStatus(System.Action{Archipelago.MultiClient.Net.Enums.ArchipelagoClientState},System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <inheritdoc />
         </member>
+        <member name="M:Archipelago.MultiClient.Net.Helpers.DataStorageHelper.GetRaceMode">
+            <inheritdoc />
+        </member>
+        <member name="M:Archipelago.MultiClient.Net.Helpers.DataStorageHelper.GetRaceModeAsync">
+            <inheritdoc />
+        </member>
         <member name="T:Archipelago.MultiClient.Net.Helpers.IDataStorageWrapper">
             <summary>
             Methods for working with read-only data storage sets
@@ -1187,6 +1228,18 @@
             <param name="retrieveCurrentClientStatus">should the current status be retrieved or just the updates</param>
             <param name="slot">the slot id of the player to request the status for, defaults to the current player's slot if left empty</param>
             <param name="team">the team id of the player to request the status for, defaults to the current player's team if left empty</param>
+        </member>
+        <member name="M:Archipelago.MultiClient.Net.Helpers.IDataStorageWrapper.GetRaceMode">
+            <summary>
+            Retrieves the server's race mode setting. false for disabled or unavailable, true for enabled
+            </summary>
+            <returns>The race mode setting. false for disabled or unavailable, true for enabled</returns>
+        </member>
+        <member name="M:Archipelago.MultiClient.Net.Helpers.IDataStorageWrapper.GetRaceModeAsync">
+            <summary>
+            Retrieves the server's race mode setting. false for disabled or unavailable, true for enabled
+            </summary>
+            <returns>The race mode setting. false for disabled or unavailable, true for enabled</returns>
         </member>
         <member name="T:Archipelago.MultiClient.Net.Helpers.ArchipelagoSocketHelperDelagates">
             <summary>
@@ -1587,6 +1640,11 @@
             </summary>
             <returns>returns the players info's of members from a group slot, or null if this slot is not a group</returns>
         </member>
+        <member name="P:Archipelago.MultiClient.Net.Helpers.PlayerInfo.IsGroup">
+            <summary>
+            Is true if the player is a group.
+            </summary>
+        </member>
         <member name="M:Archipelago.MultiClient.Net.Helpers.PlayerInfo.IsRelatedTo(Archipelago.MultiClient.Net.Helpers.PlayerInfo)">
             <summary>
             True if this player is the same player, or if either player is a group (e.g. itemlinks) that contains the other player
@@ -1611,7 +1669,7 @@
         </member>
         <member name="M:Archipelago.MultiClient.Net.Helpers.PlayerInfo.#ctor(System.Int32,System.Int32,System.String,System.String,System.String,Archipelago.MultiClient.Net.Models.NetworkSlot[],System.Int32[])">
             <summary>
-            Creates and PlayerInfo object, used by json deserialization
+            Creates an PlayerInfo object, used by json deserialization
             </summary>
             <param name="team">The team of this player</param>
             <param name="slot">The slot of this player</param>
@@ -2064,6 +2122,12 @@
             </summary>
             <seealso cref="T:Archipelago.MultiClient.Net.MessageLog.Parts.MessagePart"/>
         </member>
+        <member name="T:Archipelago.MultiClient.Net.MessageLog.Parts.HintStatusMessagePart">
+            <summary>
+            Part of a LogMessage that contains information about the entrance
+            </summary>
+            <seealso cref="T:Archipelago.MultiClient.Net.MessageLog.Parts.MessagePart"/>
+        </member>
         <member name="T:Archipelago.MultiClient.Net.MessageLog.Parts.ItemMessagePart">
             <summary>
             Part of a LogMessage that contains information about an item
@@ -2150,6 +2214,9 @@
         </member>
         <member name="F:Archipelago.MultiClient.Net.MessageLog.Parts.MessagePartType.Entrance">
             <inheritdoc cref="T:Archipelago.MultiClient.Net.MessageLog.Parts.EntranceMessagePart"/>
+        </member>
+        <member name="F:Archipelago.MultiClient.Net.MessageLog.Parts.MessagePartType.HintStatus">
+            <inheritdoc cref="T:Archipelago.MultiClient.Net.MessageLog.Parts.HintStatusMessagePart"/>
         </member>
         <member name="T:Archipelago.MultiClient.Net.MessageLog.Parts.PlayerMessagePart">
             <summary>

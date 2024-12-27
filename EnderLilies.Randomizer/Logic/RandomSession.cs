@@ -146,7 +146,7 @@ namespace EnderLilies.Randomizer
             ( 55, "BastionGates" ),
             ( 61, "Courtyard" ),
             ( 62, "SecondSpireChamber" ),
-            //( 68, "MonumentOfTheWind" ),
+            ( 68, "Fort_16_GAMEPLAY.BP_WorldTravelVolume4" ),
             ( 72, "MourningHall" ),
             ( 78, "DryadLake" ),
             ( 83, "WitchsHermitage" ),
