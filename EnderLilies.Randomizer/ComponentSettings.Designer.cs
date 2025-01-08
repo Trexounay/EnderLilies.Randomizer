@@ -33,7 +33,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.seedText = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -64,6 +63,7 @@
             this.checkBox37 = new System.Windows.Forms.CheckBox();
             this.checkBox38 = new System.Windows.Forms.CheckBox();
             this.checkBox39 = new System.Windows.Forms.CheckBox();
+            this.checkBox53 = new System.Windows.Forms.CheckBox();
             this.checkBox40 = new System.Windows.Forms.CheckBox();
             this.checkBox41 = new System.Windows.Forms.CheckBox();
             this.checkBox42 = new System.Windows.Forms.CheckBox();
@@ -148,8 +148,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.helpTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.Randomize = new System.Windows.Forms.Button();
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.checkBox53 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -204,21 +204,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Randomizer";
             // 
-            // Randomize
-            // 
-            this.Randomize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Randomize.BackgroundImage = global::EnderLilies.Randomizer.Properties.Resources._600px_Refresh_icon;
-            this.Randomize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Randomize.Font = new System.Drawing.Font("Bahnschrift Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Randomize.Location = new System.Drawing.Point(414, 11);
-            this.Randomize.Name = "Randomize";
-            this.Randomize.Size = new System.Drawing.Size(50, 50);
-            this.Randomize.TabIndex = 3;
-            this.Randomize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.helpTooltip.SetToolTip(this.Randomize, "Roll a new seed\r\n");
-            this.Randomize.UseVisualStyleBackColor = true;
-            this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
-            // 
             // tabSettings
             // 
             this.tabSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -256,12 +241,12 @@
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.ngPlusSetting);
+            this.flowLayoutPanel2.Controls.Add(this.balanceEnemiesSetting);
             this.flowLayoutPanel2.Controls.Add(this.minibosses_chapter);
             this.flowLayoutPanel2.Controls.Add(this.shuffleBGM);
             this.flowLayoutPanel2.Controls.Add(this.shuffleRooms);
             this.flowLayoutPanel2.Controls.Add(this.shuffleEnemies);
             this.flowLayoutPanel2.Controls.Add(this.uatserver);
-            this.flowLayoutPanel2.Controls.Add(this.balanceEnemiesSetting);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(35, 25);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -283,7 +268,7 @@
             // minibosses_chapter
             // 
             this.minibosses_chapter.AutoSize = true;
-            this.minibosses_chapter.Location = new System.Drawing.Point(3, 26);
+            this.minibosses_chapter.Location = new System.Drawing.Point(3, 49);
             this.minibosses_chapter.Name = "minibosses_chapter";
             this.minibosses_chapter.Size = new System.Drawing.Size(156, 17);
             this.minibosses_chapter.TabIndex = 47;
@@ -295,7 +280,7 @@
             // shuffleBGM
             // 
             this.shuffleBGM.AutoSize = true;
-            this.shuffleBGM.Location = new System.Drawing.Point(3, 49);
+            this.shuffleBGM.Location = new System.Drawing.Point(3, 72);
             this.shuffleBGM.Name = "shuffleBGM";
             this.shuffleBGM.Size = new System.Drawing.Size(169, 17);
             this.shuffleBGM.TabIndex = 49;
@@ -306,7 +291,7 @@
             // shuffleRooms
             // 
             this.shuffleRooms.AutoSize = true;
-            this.shuffleRooms.Location = new System.Drawing.Point(3, 72);
+            this.shuffleRooms.Location = new System.Drawing.Point(3, 95);
             this.shuffleRooms.Name = "shuffleRooms";
             this.shuffleRooms.Size = new System.Drawing.Size(158, 17);
             this.shuffleRooms.TabIndex = 46;
@@ -318,7 +303,7 @@
             // shuffleEnemies
             // 
             this.shuffleEnemies.AutoSize = true;
-            this.shuffleEnemies.Location = new System.Drawing.Point(3, 95);
+            this.shuffleEnemies.Location = new System.Drawing.Point(3, 118);
             this.shuffleEnemies.Name = "shuffleEnemies";
             this.shuffleEnemies.Size = new System.Drawing.Size(169, 17);
             this.shuffleEnemies.TabIndex = 48;
@@ -329,7 +314,7 @@
             // uatserver
             // 
             this.uatserver.AutoSize = true;
-            this.uatserver.Location = new System.Drawing.Point(3, 118);
+            this.uatserver.Location = new System.Drawing.Point(3, 141);
             this.uatserver.Name = "uatserver";
             this.uatserver.Size = new System.Drawing.Size(149, 17);
             this.uatserver.TabIndex = 45;
@@ -341,11 +326,11 @@
             // balanceEnemiesSetting
             // 
             this.balanceEnemiesSetting.AutoSize = true;
-            this.balanceEnemiesSetting.Location = new System.Drawing.Point(3, 141);
+            this.balanceEnemiesSetting.Location = new System.Drawing.Point(3, 26);
             this.balanceEnemiesSetting.Name = "balanceEnemiesSetting";
-            this.balanceEnemiesSetting.Size = new System.Drawing.Size(133, 17);
+            this.balanceEnemiesSetting.Size = new System.Drawing.Size(108, 17);
             this.balanceEnemiesSetting.TabIndex = 50;
-            this.balanceEnemiesSetting.Text = "Adjust enemies scaling";
+            this.balanceEnemiesSetting.Text = "Enemy rebalance";
             this.helpTooltip.SetToolTip(this.balanceEnemiesSetting, "Enemies with difficulty locked to later chapters of the game will be scaled down " +
         "in earlier chapters");
             this.balanceEnemiesSetting.UseVisualStyleBackColor = true;
@@ -624,6 +609,18 @@
             this.checkBox39.TabIndex = 59;
             this.checkBox39.Text = "Second Spire Chamber";
             this.checkBox39.UseVisualStyleBackColor = true;
+            // 
+            // checkBox53
+            // 
+            this.checkBox53.AutoSize = true;
+            this.checkBox53.Location = new System.Drawing.Point(2, 280);
+            this.checkBox53.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox53.Name = "checkBox53";
+            this.checkBox53.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.checkBox53.Size = new System.Drawing.Size(164, 17);
+            this.checkBox53.TabIndex = 74;
+            this.checkBox53.Text = "Monument of the Wind";
+            this.checkBox53.UseVisualStyleBackColor = true;
             // 
             // checkBox40
             // 
@@ -1661,21 +1658,24 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Seed:";
             // 
+            // Randomize
+            // 
+            this.Randomize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Randomize.BackgroundImage = global::EnderLilies.Randomizer.Properties.Resources._600px_Refresh_icon;
+            this.Randomize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Randomize.Font = new System.Drawing.Font("Bahnschrift Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Randomize.Location = new System.Drawing.Point(414, 11);
+            this.Randomize.Name = "Randomize";
+            this.Randomize.Size = new System.Drawing.Size(50, 50);
+            this.Randomize.TabIndex = 3;
+            this.Randomize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.helpTooltip.SetToolTip(this.Randomize, "Roll a new seed\r\n");
+            this.Randomize.UseVisualStyleBackColor = true;
+            this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
+            // 
             // componentSettingsBindingSource
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
-            // 
-            // checkBox53
-            // 
-            this.checkBox53.AutoSize = true;
-            this.checkBox53.Location = new System.Drawing.Point(2, 280);
-            this.checkBox53.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBox53.Name = "checkBox53";
-            this.checkBox53.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.checkBox53.Size = new System.Drawing.Size(164, 17);
-            this.checkBox53.TabIndex = 74;
-            this.checkBox53.Text = "Monument of the Wind";
-            this.checkBox53.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 

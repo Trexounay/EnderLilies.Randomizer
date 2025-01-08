@@ -1,6 +1,6 @@
 ﻿// Name: enderlilies, Version: 1.1.3
 
-#include "../pch.h"
+#include "pch.h"
 
 /*!!DEFINE!!*/
 
@@ -139,7 +139,9 @@ void ABP_Breakable_Base_C::TriggerBreakSE()
 //		int                                                Damage                                                     (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 void ABP_Breakable_Base_C::BndEvt__HPComponent_K2Node_ComponentBoundEvent_2_HPDamageEvent__DelegateSignature(class AActor* From, int Damage)
 {
-	static UFunction* fn = UObject::FindObject<UFunction>("Function BP_Breakable_Base.BP_Breakable_Base_C.BndEvt__HPComponent_K2Node_ComponentBoundEvent_2_HPDamageEvent__DelegateSignature");
+	UFunction* fn = UObject::FindFunction("BP_Breakable_Base_C.BndEvt__HPComponent_K2Node_ComponentBoundEvent_2_HPDamageEvent__DelegateSignature");
+
+	//static UFunction* fn = UObject::FindObject<UFunction>("Function BP_Breakable_Base.BP_Breakable_Base_C.BndEvt__HPComponent_K2Node_ComponentBoundEvent_2_HPDamageEvent__DelegateSignature");
 
 	ABP_Breakable_Base_C_BndEvt__HPComponent_K2Node_ComponentBoundEvent_2_HPDamageEvent__DelegateSignature_Params params;
 	params.From = From;
@@ -159,7 +161,8 @@ void ABP_Breakable_Base_C::BndEvt__HPComponent_K2Node_ComponentBoundEvent_2_HPDa
 //		Flags  -> (Event, Protected, BlueprintEvent)
 void ABP_Breakable_Base_C::OnBreak()
 {
-	static UFunction* fn = UObject::FindObject<UFunction>("Function BP_Breakable_Base.BP_Breakable_Base_C.OnBreak");
+	UFunction* fn = UObject::FindFunction("BP_Breakable_Base_C.OnBreak");
+	//static UFunction* fn = UObject::FindObject<UFunction>("Function BP_Breakable_Base.BP_Breakable_Base_C.OnBreak");
 
 	ABP_Breakable_Base_C_OnBreak_Params params;
 

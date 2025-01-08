@@ -186,6 +186,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SDK\BP_Breakable_Base_classes.h" />
+    <ClInclude Include="SDK\BP_Breakable_Base_parameters.h" />
+    <ClInclude Include="SDK\BP_Breakable_Base_structs.h" />
     <ClInclude Include="SDK\BP_Condition_EnemyList.h" />
     <ClInclude Include="Function.hpp" />
     <ClInclude Include="lib\detours.h" />
@@ -224,6 +227,7 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="SDK\AssetRegistry_functions.cpp" />
+    <ClCompile Include="SDK\BP_Breakable_Base_functions.cpp" />
     <ClCompile Include="SDK\BP_Interactable_RestingPoint_functions.cpp" />
     <ClCompile Include="SDK\GameplayTasks_functions.cpp" />
     <ClCompile Include="SDK\UMG_functions.cpp" />

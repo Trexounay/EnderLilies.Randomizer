@@ -116,7 +116,11 @@ void  Randomizer::OnInteract(CG::UObject* obj, CG::ABP_Interactable_Item_C_OnInt
 void  Randomizer::EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* params)
 {
 	if (_starting_weapon < 5)
+	{
+		_weapon_can_break_doors = true;
+		_weapon_can_break_lantern = true;
 		return;
+	}
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::FName spiritID = gm->ItemSpiritTable->Data[_starting_weapon].Name;
 	
@@ -390,6 +394,9 @@ void Randomizer::RemoveBreakable()
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
 	CG::UGameplayStatics* statics = (CG::UGameplayStatics*)CG::UGameplayStatics::StaticClass();
+
+	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
+
 	if (!_weapon_can_break_doors)
 	{
 		CG::UClass* type = _bp_classes["BP_Breakable_Base_C"];
@@ -399,11 +406,15 @@ void Randomizer::RemoveBreakable()
 			statics->STATIC_GetAllActorsOfClass(World(), type, &out);
 			for (int i = 0; i < out.Num(); ++i)
 			{
-				CG::ABreakable* door = (CG::ABreakable*)out[i];
-				door->HPComponent->DoDamage(nullptr, 1000, false, false);
+				CG::ABP_Breakable_Base_C* door = (CG::ABP_Breakable_Base_C*)out[i];
+				if (door->bMarkClearedOnDeath)
+					door->OnBreak();
+				else
+					door->HPComponent->DoDamage(nullptr, 1000, false, false);
 			}
 		}
 	}
+
 	if (!_weapon_can_break_lantern)
 	{
 		CG::UClass* type = _bp_classes["BP_SwitchHitbox_Door_C"];
