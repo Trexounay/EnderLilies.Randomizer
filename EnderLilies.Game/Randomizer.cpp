@@ -611,14 +611,14 @@ void Randomizer::Update()
 
 	count++;
 	// Testing custom relic effect
-/*	static auto name = CG::FName("i_passive_stamina_up");
+	static auto name = CG::FName("i_passive_stamina_up");
 
 	auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
 	if (pc->ZenithCharacter->CharacterMovement->Buoyancy > 0.5f && pc->PassiveEquipComponent->IsPassiveEquipped(name))
 	{
 		pc->ZenithCharacter->CharacterMovement->Buoyancy = 0.3f;
 	}
-*/
+
 #ifdef _DEBUG
 	if (!_kbhit())
 		wait = false;
@@ -1092,10 +1092,10 @@ void ModifyRelics(const CG::UWorld* world)
 		{ L"Unused Ancient Dragon Claw", 10 },
 		{ L"Unused Aura's Ring", 18 },
 		{ L"Unused Calivia's Ring", 21 },
-		{ L"Unused Stun Resistance", 33 },
+		{ L"Heavy Boulder", 33 },
 	};
 
-	std::map<int, int> replace_icons = { {2, 1}, {8, 7}, {18, 17}, {18, 17}, {21, 20}, {21, 20}, {33, 5} };
+	std::map<int, int> replace_icons = { {2, 1}, {8, 7}, {18, 17}, {18, 17}, {21, 20}, {21, 20}, {33, 3} };
 
 	for (auto relic : relics)
 	{
@@ -1107,6 +1107,9 @@ void ModifyRelics(const CG::UWorld* world)
 			memcpy(to->Icon, from->Icon, 0x28);
 		}
 	}
+	CG::FBaseItemData* to = passiveTable->GetValue<CG::FBaseItemData>(33);
+	to->ShortExplanation.SetFromString(CG::FString(L"Stops Lily from floating into water"));
+	to->Description.SetFromString(CG::FString(L"Custom relic"));
 }
 
 void Randomizer::ModifySpirits()
