@@ -407,7 +407,7 @@ void Randomizer::RemoveBreakable()
 			for (int i = 0; i < out.Num(); ++i)
 			{
 				CG::ABP_Breakable_Base_C* door = (CG::ABP_Breakable_Base_C*)out[i];
-				if (door->bMarkClearedOnDeath)
+				if (door->bMarkClearedOnDeath && door->Class->SuperField->Name == type->Name.ComparisonIndex)
 					door->OnBreak();
 				else
 					door->HPComponent->DoDamage(nullptr, 1000, false, false);
