@@ -3752,7 +3752,7 @@
     },
     "Village_02_GAMEPLAY.BP_SCR_LV1S_2100_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
-      "rules": "Village02Left + (2LEDGE | silva + dodge | hook +  (LEDGE | claw))"
+      "rules": "(Village02Right | Village02Bottom | Village02Left + (LEDGE | claw)) + (2LEDGE | silva + dodge | hook)"
     },
     "Village_02_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_03.0",
