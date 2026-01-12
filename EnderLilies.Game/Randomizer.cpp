@@ -13,8 +13,10 @@ std::unordered_map<std::string, CG::UClass*>	Randomizer::_bp_classes;
 Randomizer::Randomizer(std::string path)
 {
 	_path = path;
+	_deathlink_memory = new SharedMemory(TEXT("EnderLilies.Deathlink.SharedMemory"), 256);
 	_game_memory = new SharedMemory(TEXT("EnderLilies.Game.SharedMemory"));
 	_remote_memory = new SharedMemory(TEXT("EnderLilies.Randomizer.SharedMemory"));
+	lastDeath = GetTimestamp();
 
 	lastDefaultRespite.GameMapID.ComparisonIndex = 0;
 }
@@ -209,6 +211,8 @@ void Randomizer::NewGame()
 	_receivedItems.clear();
 	_game_memory->Clear();
 	_remote_memory->Clear();
+	_deathlink_memory->Clear();
+	lastDeath = GetTimestamp();
 	_completedChecks.insert("starting_weapon");
 	data_to_send = "starting_weapon\n";
 	SendData();
@@ -369,19 +373,19 @@ CG::UClass* GetCharacterClass(const wchar_t *name)
 	CG::FAssetData data;
 	wchar_t buffer[128];
 
-	_swprintf(buffer, L"/Game/_Zenith/Characters/%s/BP_%s", name, name);
+	swprintf_s(buffer, L"/Game/_Zenith/Characters/%s/BP_%s", name, name);
 	data.PackageName = Unreal::FName::ConstructorInternal(buffer, Unreal::EFindName::FNAME_Add);
 
-	_swprintf(buffer, L"/Game/_Zenith/Characters/%s", name, name);
+	swprintf_s(buffer, L"/Game/_Zenith/Characters/%s", name);
 	data.PackagePath = Unreal::FName::ConstructorInternal(buffer, Unreal::EFindName::FNAME_Add);
 
-	_swprintf(buffer, L"/Game/_Zenith/Characters/%s/BP_%s.BP_%s_C", name, name, name);
+	swprintf_s(buffer, L"/Game/_Zenith/Characters/%s/BP_%s.BP_%s_C", name, name, name);
 	data.ObjectPath = Unreal::FName::ConstructorInternal(buffer, Unreal::EFindName::FNAME_Add);
 
-	_swprintf(buffer, L"BP_%s_C", name);
+	swprintf_s(buffer, L"BP_%s_C", name);
 	data.AssetClass = Unreal::FName::ConstructorInternal(buffer, Unreal::EFindName::FNAME_Add);
 
-	_swprintf(buffer, L"BP_%s", name);
+	swprintf_s(buffer, L"BP_%s", name);
 	data.AssetName = Unreal::FName::ConstructorInternal(name, Unreal::EFindName::FNAME_Add);
 
 	auto RegistryHelper = (CG::UAssetRegistryHelpers*)CG::UAssetRegistryHelpers::StaticClass();
@@ -605,6 +609,7 @@ void Randomizer::Update()
 	if (count == 10)
 	{
 		UpdateItems();
+		UpdateDeathlink();
 		SendData();
 		count = 0;
 	}
@@ -963,6 +968,44 @@ int stringCompare(const std::string& str1, const std::string& str2)
 	return -1;
 }
 
+void Randomizer::OnDie()
+{
+	std::cout << "DIE " << lastDeath << std::endl;
+	lastDeath = GetTimestamp();
+	if (isProcessingDeathlink)
+	{
+		isProcessingDeathlink = false;
+	}
+	else
+	{
+		_deathlink_memory->SetHeader(lastDeath);
+	}
+}
+
+void Randomizer::UpdateDeathlink()
+{
+	std::string str;
+
+	if (!_deathlink_memory->Read(str))
+	{
+		auto header = _deathlink_memory->GetHeader();
+		std::cout << "READ " << header << std::endl;
+
+		// remote death
+		if (header > lastDeath)
+		{
+			auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
+			if (pc->ZenithCharacter != nullptr)
+			{
+				pc->ZenithCharacter->DeathComponent->ForceDeath();
+				std::cout << "KILL " << header << std::endl;
+				lastDeath = header;
+				isProcessingDeathlink = true;
+			}
+		}
+	}
+}
+
 void Randomizer::QueueTipNotification(const std::string& item, const FTableRowProxy& result)
 {
 	CG::AGameModeZenithBase* gm = (CG::AGameModeZenithBase*)World()->AuthorityGameMode;
@@ -1309,7 +1352,7 @@ void Randomizer::UpdateChecks()
 
 void Randomizer::UpdateItems()
 {
-	char* str;
+	std::string str;
 	if (!_remote_memory->Read(str))
 	{
 		std::stringstream ss(str);

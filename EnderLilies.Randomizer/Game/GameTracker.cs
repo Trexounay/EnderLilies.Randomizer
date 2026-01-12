@@ -662,7 +662,7 @@ namespace EnderLilies.Randomizer
             _lastError = null;
             try
             {
-                _server = new WebSocketServer("ws://localhost:" + port.ToString());
+                _server = new WebSocketServer("ws://0.0.0.0:" + port.ToString());
                 _server.AddWebSocketService<UATService>("/", (UATService service) =>
                 {
                     service.tracker = this;

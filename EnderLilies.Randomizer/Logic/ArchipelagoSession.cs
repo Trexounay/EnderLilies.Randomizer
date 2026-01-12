@@ -1,8 +1,11 @@
 ﻿using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
+using Archipelago.MultiClient.Net.Converters;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.Models;
 using Archipelago.MultiClient.Net.Packets;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +26,7 @@ namespace EnderLilies.Randomizer
         const string __GAME = "Ender Lilies";
         const string __SHARED_CLIENT_MEMORY_FILE = "EnderLilies.Game.SharedMemory";
         const string __SHARED_SERVER_MEMORY_FILE = "EnderLilies.Randomizer.SharedMemory";
+        const string __SHARED_DEATHLINK_MEMORY_FILE = "EnderLilies.Deathlink.SharedMemory";
         const string __ITEM_SAVED_COUNT_KEY = "ItemSavedCount";
 
         ComponentSettings _settings;
@@ -33,7 +37,14 @@ namespace EnderLilies.Randomizer
         string[] _victory_locations = null;
         Mutex mutex_client;
         Mutex mutex_server;
+        Mutex mutex_deathlink;
         Stopwatch sw;
+        DeathLinkService deathlinkService;
+        uint lastLocalDeath;
+        DeathLink lastRemoteDeath;
+
+        public static uint GetTimestamp() => (uint)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        public  uint GetRemoteDeathTimestamp() => lastRemoteDeath != null ? (uint)lastRemoteDeath.Timestamp.ToUnixTimeStamp() : 0;
 
         public ArchipelagoSession(ComponentSettings settings)
         {
@@ -43,6 +54,7 @@ namespace EnderLilies.Randomizer
 
             mutex_client = new Mutex(false, __SHARED_CLIENT_MEMORY_FILE + "_mtx");
             mutex_server = new Mutex(false, __SHARED_SERVER_MEMORY_FILE + "_mtx");
+            mutex_deathlink = new Mutex(false, __SHARED_DEATHLINK_MEMORY_FILE + "_mtx");
         }
 
         public void APConnectionRequested()
@@ -60,10 +72,24 @@ namespace EnderLilies.Randomizer
             {
                 Items_ItemReceived(Session.Items);
                 Session.Items.ItemReceived += Items_ItemReceived;
+                if (this._settings.APDeathlink)
+                {
+                    deathlinkService = Session.CreateDeathLinkService();
+                    deathlinkService.OnDeathLinkReceived += DeathlinkService_OnDeathLinkReceived;
+                }
+                lastLocalDeath = GetTimestamp();
                 _sent = 0;
                 GetSlotData(loginInfo.SlotData);
                 sw = new Stopwatch();
                 sw.Start();
+            }
+        }
+
+        private void DeathlinkService_OnDeathLinkReceived(DeathLink deathLink)
+        {
+            if (lastRemoteDeath == null || deathLink.Timestamp > lastRemoteDeath.Timestamp)
+            {
+                lastRemoteDeath = deathLink;
             }
         }
 
@@ -77,7 +103,10 @@ namespace EnderLilies.Randomizer
             }
         }
 
-        private void _settings_PropertyChanged(object sender, PropertyChangedEventArgs e) { }
+        private void _settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+        
+        }
 
         private LoginSuccessful Connect()
         {
@@ -85,8 +114,13 @@ namespace EnderLilies.Randomizer
             loginInfo = null;
             try
             {
+                var tags = new List<string>();
+
+                if (_settings.APDeathlink)
+                    tags.Add("Deathlink");
+
                 Session = ArchipelagoSessionFactory.CreateSession(_settings.APServer);
-                result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.IncludeStartingInventory | ItemsHandlingFlags.RemoteItems, password: _settings.APPassword);
+                result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.IncludeStartingInventory | ItemsHandlingFlags.RemoteItems, password: _settings.APPassword, tags: tags.ToArray());
             }
             catch (Exception e)
             {
@@ -195,7 +229,9 @@ namespace EnderLilies.Randomizer
                     {
                         using (BinaryReader binReader = new BinaryReader(stream))
                         {
-                            byte[] bytes = binReader.ReadBytes((int)stream.Length);
+                            uint header = binReader.ReadUInt32();
+                            int remainingLength = (int)(stream.Length - 4);
+                            byte[] bytes = binReader.ReadBytes(remainingLength);
                             String str = System.Text.Encoding.ASCII.GetString(bytes).Split(new char[] { '\0' }, 2)[0];
                             var checks = str.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
                             if (checks.Length == 0 || checks[0].IsNullOrEmpty())
@@ -213,7 +249,7 @@ namespace EnderLilies.Randomizer
 
         public void Clear()
         {
-            mmf = MemoryMappedFile.CreateOrOpen(__SHARED_SERVER_MEMORY_FILE, 8192, access: MemoryMappedFileAccess.ReadWrite);
+            mmf = MemoryMappedFile.CreateOrOpen(__SHARED_SERVER_MEMORY_FILE, 16384, access: MemoryMappedFileAccess.ReadWrite);
             using (var stream = mmf.CreateViewAccessor())
             {
                 stream.Write(0, 0);
@@ -232,7 +268,7 @@ namespace EnderLilies.Randomizer
                 return;
             try
             {
-                mmf = MemoryMappedFile.CreateOrOpen(__SHARED_SERVER_MEMORY_FILE, 8192, access: MemoryMappedFileAccess.ReadWrite);
+                mmf = MemoryMappedFile.CreateOrOpen(__SHARED_SERVER_MEMORY_FILE, 16384, access: MemoryMappedFileAccess.ReadWrite);
                 using (var stream = mmf.CreateViewAccessor())
                 {
                     int value = Session.DataStorage[Scope.Slot, __ITEM_SAVED_COUNT_KEY];
@@ -263,6 +299,35 @@ namespace EnderLilies.Randomizer
 
                     stream.WriteArray<byte>(sizeof(uint), bytes, 0, bytes.Length);
                     _sent = new_len;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex.Message);
+            }
+        }
+
+        public void UpdateDeathlink()
+        {
+            try
+            {
+                using (var mmf = MemoryMappedFile.CreateOrOpen(__SHARED_DEATHLINK_MEMORY_FILE, 256, access: MemoryMappedFileAccess.ReadWrite))
+                {
+                    using (var stream = mmf.CreateViewAccessor())
+                    {
+                        uint header = stream.ReadUInt32(0);
+                        if (header > lastLocalDeath)
+                        {
+                            deathlinkService.SendDeathLink(new DeathLink(Session.Players.ActivePlayer.Name));
+                            lastLocalDeath = header;
+                        }
+                        if (lastRemoteDeath != null && GetRemoteDeathTimestamp() > header)
+                        {
+                            lastLocalDeath = header;
+                            lastRemoteDeath = null;
+                            stream.Write(0, GetTimestamp());
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -304,6 +369,8 @@ namespace EnderLilies.Randomizer
                     {
                         ExecuteLocked(ReadGameChecksList, mutex_client);
                         ExecuteLocked(SendGameItems, mutex_server);
+                        if (_settings.APDeathlink)
+                            ExecuteLocked(UpdateDeathlink, mutex_server);
                         sw.Restart();
                     }
                 }

@@ -33,16 +33,17 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.seedText = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Randomize = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.SettingsPage = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.ngPlusSetting = new System.Windows.Forms.CheckBox();
+            this.balanceEnemiesSetting = new System.Windows.Forms.CheckBox();
             this.minibosses_chapter = new System.Windows.Forms.CheckBox();
             this.shuffleBGM = new System.Windows.Forms.CheckBox();
             this.shuffleRooms = new System.Windows.Forms.CheckBox();
             this.shuffleEnemies = new System.Windows.Forms.CheckBox();
             this.uatserver = new System.Windows.Forms.CheckBox();
-            this.balanceEnemiesSetting = new System.Windows.Forms.CheckBox();
             this.maxChapter = new System.Windows.Forms.TrackBar();
             this.chapterText = new System.Windows.Forms.Label();
             this.startChapter = new System.Windows.Forms.TrackBar();
@@ -148,8 +149,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.helpTooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.Randomize = new System.Windows.Forms.Button();
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._APDeathlink = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -203,6 +204,21 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Randomizer";
+            // 
+            // Randomize
+            // 
+            this.Randomize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Randomize.BackgroundImage = global::EnderLilies.Randomizer.Properties.Resources._600px_Refresh_icon;
+            this.Randomize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Randomize.Font = new System.Drawing.Font("Bahnschrift Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Randomize.Location = new System.Drawing.Point(414, 11);
+            this.Randomize.Name = "Randomize";
+            this.Randomize.Size = new System.Drawing.Size(50, 50);
+            this.Randomize.TabIndex = 3;
+            this.Randomize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.helpTooltip.SetToolTip(this.Randomize, "Roll a new seed\r\n");
+            this.Randomize.UseVisualStyleBackColor = true;
+            this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
             // 
             // tabSettings
             // 
@@ -265,6 +281,18 @@
         "e");
             this.ngPlusSetting.UseVisualStyleBackColor = true;
             // 
+            // balanceEnemiesSetting
+            // 
+            this.balanceEnemiesSetting.AutoSize = true;
+            this.balanceEnemiesSetting.Location = new System.Drawing.Point(3, 26);
+            this.balanceEnemiesSetting.Name = "balanceEnemiesSetting";
+            this.balanceEnemiesSetting.Size = new System.Drawing.Size(108, 17);
+            this.balanceEnemiesSetting.TabIndex = 50;
+            this.balanceEnemiesSetting.Text = "Enemy rebalance";
+            this.helpTooltip.SetToolTip(this.balanceEnemiesSetting, "Enemies with difficulty locked to later chapters of the game will be scaled down " +
+        "in earlier chapters");
+            this.balanceEnemiesSetting.UseVisualStyleBackColor = true;
+            // 
             // minibosses_chapter
             // 
             this.minibosses_chapter.AutoSize = true;
@@ -322,18 +350,6 @@
             this.helpTooltip.SetToolTip(this.uatserver, "Use this option to enable Auto Tracking in Pop Tracker\r\nIf everything is working " +
         "Pop Tracker should show a green AT icon at the top");
             this.uatserver.UseVisualStyleBackColor = true;
-            // 
-            // balanceEnemiesSetting
-            // 
-            this.balanceEnemiesSetting.AutoSize = true;
-            this.balanceEnemiesSetting.Location = new System.Drawing.Point(3, 26);
-            this.balanceEnemiesSetting.Name = "balanceEnemiesSetting";
-            this.balanceEnemiesSetting.Size = new System.Drawing.Size(108, 17);
-            this.balanceEnemiesSetting.TabIndex = 50;
-            this.balanceEnemiesSetting.Text = "Enemy rebalance";
-            this.helpTooltip.SetToolTip(this.balanceEnemiesSetting, "Enemies with difficulty locked to later chapters of the game will be scaled down " +
-        "in earlier chapters");
-            this.balanceEnemiesSetting.UseVisualStyleBackColor = true;
             // 
             // maxChapter
             // 
@@ -1521,6 +1537,7 @@
             // 
             // ArchipelagoSettings
             // 
+            this.ArchipelagoSettings.Controls.Add(this._APDeathlink);
             this.ArchipelagoSettings.Controls.Add(this.APconnectedInfo);
             this.ArchipelagoSettings.Controls.Add(this.connectAP);
             this.ArchipelagoSettings.Controls.Add(this.label4);
@@ -1658,24 +1675,19 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Seed:";
             // 
-            // Randomize
-            // 
-            this.Randomize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Randomize.BackgroundImage = global::EnderLilies.Randomizer.Properties.Resources._600px_Refresh_icon;
-            this.Randomize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Randomize.Font = new System.Drawing.Font("Bahnschrift Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Randomize.Location = new System.Drawing.Point(414, 11);
-            this.Randomize.Name = "Randomize";
-            this.Randomize.Size = new System.Drawing.Size(50, 50);
-            this.Randomize.TabIndex = 3;
-            this.Randomize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.helpTooltip.SetToolTip(this.Randomize, "Roll a new seed\r\n");
-            this.Randomize.UseVisualStyleBackColor = true;
-            this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
-            // 
             // componentSettingsBindingSource
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
+            // 
+            // _APDeathlink
+            // 
+            this._APDeathlink.AutoSize = true;
+            this._APDeathlink.Location = new System.Drawing.Point(7, 118);
+            this._APDeathlink.Name = "_APDeathlink";
+            this._APDeathlink.Size = new System.Drawing.Size(71, 17);
+            this._APDeathlink.TabIndex = 8;
+            this._APDeathlink.Text = "Deathlink";
+            this._APDeathlink.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 
@@ -1845,5 +1857,6 @@
         private System.Windows.Forms.Label APconnectedInfo;
         private System.Windows.Forms.CheckBox balanceEnemiesSetting;
         private System.Windows.Forms.CheckBox checkBox53;
+        private System.Windows.Forms.CheckBox _APDeathlink;
     }
 }

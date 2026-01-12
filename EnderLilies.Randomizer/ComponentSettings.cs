@@ -78,6 +78,8 @@ namespace EnderLilies.Randomizer
         public string APPassword => _APServerPassword.Text;
         public string APSlotName { get; set; } = "Lily";
 
+        public bool APDeathlink { get; set; } = false;
+
         const string disabledTooltip = "Ender Lilies's installation folder has not been detected yet.\nPlease manually launch the game once and save your LiveSplit Layout to enable this feature.";
         const string enabledTooltip = "Launch the Game";
 
@@ -773,8 +775,11 @@ namespace EnderLilies.Randomizer
             this._APServerPassword.DataBindings.Add("Enabled", this, "AP_CanConnect", false, DataSourceUpdateMode.OnPropertyChanged, true);
             this._APSlotName.DataBindings.Add("Enabled", this, "AP_CanConnect", false, DataSourceUpdateMode.OnPropertyChanged, true);
 
+            this._APDeathlink.DataBindings.Add("Checked", this, "APDeathlink", false, DataSourceUpdateMode.OnPropertyChanged, false);
+
             this._APServerIP.DataBindings.Add("Text", this, "APServer", false, DataSourceUpdateMode.OnPropertyChanged, "127.0.0.1");
             this._APSlotName.DataBindings.Add("Text", this, "APSlotName", false, DataSourceUpdateMode.OnPropertyChanged, "Lily");
+
 
             for (int i = 0; i < startingSpiritsBox.Controls.Count; ++i)
             {

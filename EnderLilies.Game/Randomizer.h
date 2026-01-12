@@ -4,7 +4,7 @@
 #include "SDK.h"
 #include "SharedMemory.h"
 #include <map>
-
+#include <chrono>
 
 static inline void ltrim(std::string& s) {
 	s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
@@ -46,6 +46,7 @@ public:
 	bool	IsReady();
 	void	Update();
 	void	OnSave();
+	void	OnDie();
 	void	OnEndingReached();
 	void	EquipSpirit(CG::USummonerComponent_OnEquipSpirit_Params* params);
 	void	OnInteract(CG::UObject* obj, CG::ABP_Interactable_Item_C_OnInteract_Params* params);
@@ -65,6 +66,7 @@ private:
 
 	SharedMemory* _game_memory;
 	SharedMemory* _remote_memory;
+	SharedMemory* _deathlink_memory;
 
 	bool _new_game = true;
 	bool _new_data = true;
@@ -98,6 +100,9 @@ private:
 	int32_t BlueprintGeneratedClassIndex = 348039;
 	int32_t FunctionIndex = 395;
 
+	uint32_t lastDeath = -1;
+	bool isProcessingDeathlink = false;
+
 	CG::FRespawnPointData lastDefaultRespite;
 
 	std::string _path;
@@ -107,6 +112,13 @@ private:
 	std::unordered_map<std::string, int32_t> _player_start_tags;
 	std::unordered_map<std::string, int32_t> _events;
 	std::unordered_set<CG::FDataTableRowHandle*> _done;
+
+	__forceinline static uint32_t GetTimestamp() {
+		return static_cast<uint32_t>(
+			std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count()
+			);
+	}
+	void UpdateDeathlink();
 
 	void ModifySpirits();
 	void RefreshAptitudes();

@@ -125,6 +125,14 @@ __declspec(noinline) void SaveGameAsync(CG::UObject* Context, FFrame* TheStack, 
 	_detours[SaveGameAsync](Context, TheStack, ret_value);
 }
 
+__declspec(noinline) void OnDeath(CG::UObject* Context, FFrame* TheStack, void* ret_value)
+{
+	std::cout << "<<<<<<<<<<" << Context->Name.GetAnsiName() << std::endl;
+
+	rando->OnDie();
+	_detours[OnDeath](Context, TheStack, ret_value);
+}
+
 // prevent the game from adding missing items to the player inventory
 __declspec(noinline) void HasItem(CG::UObject* Context, FFrame* TheStack, void* ret_value)
 {
@@ -234,6 +242,12 @@ bool DoDetour()
 		return false;
 	}
 
+	if (!_detours[OnDeath] && DoDetourFunction<UFuntionPtr>("Function Zenith.ZenithPlayerController.OnPawnDeathEvent", OnDeath) == nullptr)
+	{
+		std::cout << "detouring incomplete 4" << std::endl;
+		return false;
+	}
+
 	std::cout << "No error detouring " << std::endl;
 	return true;
 }
@@ -321,15 +335,17 @@ T set_call(T& ptr, const char* name) {
 template<class T>
 T set_call(T& ptr, int ord) {
 	if (ptr == 0)
-		ptr = (T)GetProcAddress(xinput, (const char*)ord);
+		ptr = (T)GetProcAddress(xinput, MAKEINTRESOURCEA(ord));
 	return ptr;
 }
-
+#pragma warning(push)
+#pragma warning(disable : 4995)
 void WINAPI XInputEnable(BOOL state) WIN_NOEXCEPT
 {
 	static void (WINAPI * orig)(BOOL state);
 	return set_call(orig, __FUNCTION__)(state);
 }
+#pragma warning(pop)
 
 DWORD WINAPI XInputGetBatteryInformation(DWORD dwUserIndex, BYTE devType, XINPUT_BATTERY_INFORMATION* pBatteryInformation) WIN_NOEXCEPT
 {
