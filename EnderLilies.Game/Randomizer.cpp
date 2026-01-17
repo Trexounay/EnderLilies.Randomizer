@@ -989,13 +989,11 @@ void Randomizer::UpdateDeathlink()
 	if (!_deathlink_memory->Read(str))
 	{
 		auto header = _deathlink_memory->GetHeader();
-		std::cout << "READ " << header << std::endl;
-
 		// remote death
 		if (header > lastDeath)
 		{
 			auto pc = (CG::AZenithPlayerController*)World()->OwningGameInstance->LocalPlayers[0]->PlayerController;
-			if (pc->ZenithCharacter != nullptr)
+			if (pc->ZenithCharacter != nullptr && pc->ZenithCharacter && !pc->bInEvent && pc->LockInputCount <= 0 && pc->LockPauseCount <= 0)
 			{
 				pc->ZenithCharacter->DeathComponent->ForceDeath();
 				std::cout << "KILL " << header << std::endl;

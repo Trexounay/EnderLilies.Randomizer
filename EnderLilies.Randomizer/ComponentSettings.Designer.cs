@@ -135,6 +135,8 @@
             this.ReachablesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ArchipelagoPage = new System.Windows.Forms.TabPage();
             this.ArchipelagoSettings = new System.Windows.Forms.GroupBox();
+            this.APDebugDeathlink = new System.Windows.Forms.Button();
+            this._APDeathlink = new System.Windows.Forms.CheckBox();
             this.APconnectedInfo = new System.Windows.Forms.Label();
             this.connectAP = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -150,7 +152,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.helpTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.componentSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._APDeathlink = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -1537,6 +1538,7 @@
             // 
             // ArchipelagoSettings
             // 
+            this.ArchipelagoSettings.Controls.Add(this.APDebugDeathlink);
             this.ArchipelagoSettings.Controls.Add(this._APDeathlink);
             this.ArchipelagoSettings.Controls.Add(this.APconnectedInfo);
             this.ArchipelagoSettings.Controls.Add(this.connectAP);
@@ -1553,6 +1555,28 @@
             this.ArchipelagoSettings.TabIndex = 0;
             this.ArchipelagoSettings.TabStop = false;
             this.ArchipelagoSettings.Text = "Session";
+            // 
+            // APDebugDeathlink
+            // 
+            this.APDebugDeathlink.Location = new System.Drawing.Point(303, 115);
+            this.APDebugDeathlink.Name = "APDebugDeathlink";
+            this.APDebugDeathlink.Size = new System.Drawing.Size(75, 23);
+            this.APDebugDeathlink.TabIndex = 9;
+            this.APDebugDeathlink.Text = "Deathlink";
+            this.APDebugDeathlink.UseVisualStyleBackColor = true;
+            this.APDebugDeathlink.Visible = false;
+            this.APDebugDeathlink.Click += new System.EventHandler(this.deathAP_Click);
+            // 
+            // _APDeathlink
+            // 
+            this._APDeathlink.AutoSize = true;
+            this._APDeathlink.Location = new System.Drawing.Point(6, 119);
+            this._APDeathlink.Name = "_APDeathlink";
+            this._APDeathlink.Size = new System.Drawing.Size(71, 17);
+            this._APDeathlink.TabIndex = 8;
+            this._APDeathlink.Text = "Deathlink";
+            this._APDeathlink.UseVisualStyleBackColor = true;
+            this._APDeathlink.CheckedChanged += new System.EventHandler(this._APDeathlink_CheckedChanged);
             // 
             // APconnectedInfo
             // 
@@ -1678,16 +1702,6 @@
             // componentSettingsBindingSource
             // 
             this.componentSettingsBindingSource.DataSource = typeof(EnderLilies.Randomizer.ComponentSettings);
-            // 
-            // _APDeathlink
-            // 
-            this._APDeathlink.AutoSize = true;
-            this._APDeathlink.Location = new System.Drawing.Point(7, 118);
-            this._APDeathlink.Name = "_APDeathlink";
-            this._APDeathlink.Size = new System.Drawing.Size(71, 17);
-            this._APDeathlink.TabIndex = 8;
-            this._APDeathlink.Text = "Deathlink";
-            this._APDeathlink.UseVisualStyleBackColor = true;
             // 
             // ComponentSettings
             // 
@@ -1858,5 +1872,6 @@
         private System.Windows.Forms.CheckBox balanceEnemiesSetting;
         private System.Windows.Forms.CheckBox checkBox53;
         private System.Windows.Forms.CheckBox _APDeathlink;
+        private System.Windows.Forms.Button APDebugDeathlink;
     }
 }

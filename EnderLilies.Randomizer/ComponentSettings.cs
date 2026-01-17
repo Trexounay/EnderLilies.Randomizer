@@ -25,6 +25,8 @@ namespace EnderLilies.Randomizer
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public event PropertyChangedEventHandler PropertyChangedEnded = delegate { };
         public event Action APConnectionRequested;
+        public event Action DeathLinkRequested;
+        public event Action<bool> APDeathlinkChanged;
 
         string _exePath;
         public string ExePath
@@ -1157,6 +1159,17 @@ namespace EnderLilies.Randomizer
         private void connectAP_Click(object sender, EventArgs e)
         {
             APConnectionRequested?.Invoke();
+        }
+
+        private void deathAP_Click(object sender, EventArgs e)
+        {
+            DeathLinkRequested?.Invoke();
+        }
+
+        private void _APDeathlink_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            APDeathlinkChanged?.Invoke(_APDeathlink.Checked);
         }
     }
 }

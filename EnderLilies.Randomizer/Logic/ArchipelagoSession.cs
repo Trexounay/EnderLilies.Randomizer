@@ -20,6 +20,35 @@ using WebSocketSharp;
 
 namespace EnderLilies.Randomizer
 {
+    public class DebugSession
+    {
+        const string __GAME = "Ender Lilies";
+
+        Archipelago.MultiClient.Net.ArchipelagoSession Session;
+        DeathLinkService dl;
+
+        public void FakePlayerDeath()
+        {
+            if (Session == null || !Session.Socket.Connected)
+            {
+                Session = ArchipelagoSessionFactory.CreateSession("127.0.0.1");
+                var result = Session.TryConnectAndLogin(__GAME, "Debug",ItemsHandlingFlags.NoItems);
+                dl = Session.CreateDeathLinkService();
+                dl.OnDeathLinkReceived += Dl_OnDeathLinkReceived;
+                dl.EnableDeathLink();
+            }
+            else
+            {
+                dl.SendDeathLink(new DeathLink(Session.Players.ActivePlayer.Name));
+            }
+        }
+
+        private void Dl_OnDeathLinkReceived(DeathLink deathLink)
+        {
+            Console.WriteLine("ok");
+        }
+    }
+
 
     public class ArchipelagoSession
     {
@@ -44,17 +73,46 @@ namespace EnderLilies.Randomizer
         DeathLink lastRemoteDeath;
 
         public static uint GetTimestamp() => (uint)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        public  uint GetRemoteDeathTimestamp() => lastRemoteDeath != null ? (uint)lastRemoteDeath.Timestamp.ToUnixTimeStamp() : 0;
+        public uint GetRemoteDeathTimestamp() => lastRemoteDeath != null ? (uint)lastRemoteDeath.Timestamp.ToUnixTimeStamp() : 0;
 
+
+        DebugSession ss = new DebugSession();
         public ArchipelagoSession(ComponentSettings settings)
         {
             _settings = settings;
             _settings.PropertyChangedEnded += _settings_PropertyChanged;
             _settings.APConnectionRequested += APConnectionRequested;
+            _settings.APDeathlinkChanged += _settings_APDeathlinkChanged;
+
+            _settings.DeathLinkRequested += () => ss.FakePlayerDeath();
 
             mutex_client = new Mutex(false, __SHARED_CLIENT_MEMORY_FILE + "_mtx");
             mutex_server = new Mutex(false, __SHARED_SERVER_MEMORY_FILE + "_mtx");
             mutex_deathlink = new Mutex(false, __SHARED_DEATHLINK_MEMORY_FILE + "_mtx");
+        }
+
+        private void _settings_APDeathlinkChanged(bool isChecked)
+        {
+            if (!_settings.AP_IsConnected || Session == null || !Session.Socket.Connected)
+                return;
+            lastLocalDeath = GetTimestamp();
+            if (isChecked)
+            {
+                if (deathlinkService != null)
+                {
+                    deathlinkService.OnDeathLinkReceived -= DeathlinkService_OnDeathLinkReceived;
+                }
+                deathlinkService = Session.CreateDeathLinkService();
+                deathlinkService.EnableDeathLink();
+                deathlinkService.OnDeathLinkReceived -= DeathlinkService_OnDeathLinkReceived;
+                deathlinkService.OnDeathLinkReceived += DeathlinkService_OnDeathLinkReceived;
+            }
+            else if (deathlinkService != null)
+            {
+                deathlinkService.DisableDeathLink();
+                deathlinkService.OnDeathLinkReceived -= DeathlinkService_OnDeathLinkReceived;
+                deathlinkService = null;
+            }
         }
 
         public void APConnectionRequested()
@@ -72,12 +130,7 @@ namespace EnderLilies.Randomizer
             {
                 Items_ItemReceived(Session.Items);
                 Session.Items.ItemReceived += Items_ItemReceived;
-                if (this._settings.APDeathlink)
-                {
-                    deathlinkService = Session.CreateDeathLinkService();
-                    deathlinkService.OnDeathLinkReceived += DeathlinkService_OnDeathLinkReceived;
-                }
-                lastLocalDeath = GetTimestamp();
+                _settings_APDeathlinkChanged(this._settings.APDeathlink);
                 _sent = 0;
                 GetSlotData(loginInfo.SlotData);
                 sw = new Stopwatch();
@@ -105,7 +158,7 @@ namespace EnderLilies.Randomizer
 
         private void _settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-        
+
         }
 
         private LoginSuccessful Connect()
@@ -114,13 +167,9 @@ namespace EnderLilies.Randomizer
             loginInfo = null;
             try
             {
-                var tags = new List<string>();
-
-                if (_settings.APDeathlink)
-                    tags.Add("Deathlink");
-
                 Session = ArchipelagoSessionFactory.CreateSession(_settings.APServer);
-                result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.IncludeStartingInventory | ItemsHandlingFlags.RemoteItems, password: _settings.APPassword, tags: tags.ToArray());
+                //Session.Socket.PacketReceived += Socket_PacketReceived;
+                result = Session.TryConnectAndLogin(__GAME, _settings.APSlotName, ItemsHandlingFlags.IncludeStartingInventory | ItemsHandlingFlags.RemoteItems, password: _settings.APPassword);
             }
             catch (Exception e)
             {
@@ -145,7 +194,15 @@ namespace EnderLilies.Randomizer
             loginInfo = (LoginSuccessful)result;
             return loginInfo;
         }
-
+/*
+        private void Socket_PacketReceived(ArchipelagoPacketBase packet)
+        {
+            if (packet.PacketType == ArchipelagoPacketType.Connected)
+            {
+                // store packet, use to get location content
+            }
+        }
+*/
         Dictionary<string, long> key_to_address = new Dictionary<string, long>();
         Dictionary<long, string> code_to_key = new Dictionary<long, string>();
         public void GetSlotData(Dictionary<string, object> data, bool sort = false)
@@ -323,9 +380,10 @@ namespace EnderLilies.Randomizer
                         }
                         if (lastRemoteDeath != null && GetRemoteDeathTimestamp() > header)
                         {
-                            lastLocalDeath = header;
+                            uint time = GetTimestamp();
+                            lastLocalDeath = time;
                             lastRemoteDeath = null;
-                            stream.Write(0, GetTimestamp());
+                            stream.Write(0, time);
                         }
                     }
                 }
@@ -370,7 +428,7 @@ namespace EnderLilies.Randomizer
                         ExecuteLocked(ReadGameChecksList, mutex_client);
                         ExecuteLocked(SendGameItems, mutex_server);
                         if (_settings.APDeathlink)
-                            ExecuteLocked(UpdateDeathlink, mutex_server);
+                            ExecuteLocked(UpdateDeathlink, mutex_deathlink);
                         sw.Restart();
                     }
                 }
